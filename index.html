@@ -532,6 +532,9 @@
       color: var(--white);
     }
 
+    .section-prose--stack {
+      margin-top: 16px;
+    }
     .trust-marks-label {
       font-family: var(--mono);
       font-size: 11px;
@@ -542,28 +545,31 @@
       margin-top: 40px;
     }
 
-    .roadmap-label {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--faint);
-      margin-bottom: 12px;
-      margin-top: 32px;
-    }
     .roadmap-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 10px;
+      margin-top: 24px;
     }
     .roadmap-tag {
       font-family: var(--mono);
       font-size: 12px;
-      color: var(--muted);
-      padding: 4px 12px;
-      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--bg);
+      background: var(--lime);
+      padding: 6px 14px;
       border-radius: 4px;
       white-space: nowrap;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+    .roadmap-tag:hover { opacity: 0.85; text-decoration: none; }
+    .roadmap-prose {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 620px;
+      margin-top: 16px;
     }
 
     .trust-logos {
@@ -1504,30 +1510,51 @@
     <div class="section-label">// The stack</div>
     <h2 class="section-title reveal">Built on services you already trust.</h2>
     <p class="section-prose section-prose--stack reveal">
-      ArtDrop connects the services you already use. Your print provider fulfills and ships worldwide. Your storefront handles sales. Backblaze stores your files. Claude AI writes the copy. ArtDrop is the glue — and the automation. Built and sold by StanHattie LLC.
+      ArtDrop connects the services you already use. Your print provider fulfills and ships worldwide. Your storefront handles sales. Backblaze stores your files. ArtDrop is the glue — and the automation. Built and sold by StanHattie LLC.
     </p>
-    <div class="claude-callout reveal">
-      <div class="claude-callout-label">// AI engine</div>
-      <p>Powered by <strong>Claude from Anthropic</strong> — the AI engine behind every title, description, and SEO tag ArtDrop generates. No generic AI slop. No prompt engineering required.</p>
-    </div>
-    <div class="trust-marks-label reveal">Integrates with</div>
+    <div class="trust-marks-label reveal" style="font-size:13px;letter-spacing:0.12em;margin-top:40px;">Integrates with</div>
     <div class="trust-logos reveal">
-      <a href="https://www.anthropic.com" target="_blank" rel="noopener"><img src="logos/claude.svg" alt="Claude AI by Anthropic" class="trust-logo"></a>
       <a href="https://www.shopify.com" target="_blank" rel="noopener"><img src="logos/shopify.svg" alt="Shopify" class="trust-logo"></a>
       <a href="https://www.gelato.com" target="_blank" rel="noopener"><img src="logos/gelato.svg" alt="Gelato" class="trust-logo"></a>
       <a href="https://www.printful.com" target="_blank" rel="noopener"><img src="logos/printful.svg" alt="Printful" class="trust-logo trust-logo--printful"></a>
       <a href="https://www.printify.com" target="_blank" rel="noopener"><img src="logos/printify.svg" alt="Printify" class="trust-logo"></a>
+      <a href="https://www.anthropic.com" target="_blank" rel="noopener"><img src="logos/claude.svg" alt="Claude AI by Anthropic" class="trust-logo"></a>
     </div>
-    <div class="roadmap-label reveal">On the roadmap</div>
+    </div>
+  </section>
+
+  <!-- AI ENGINE -->
+  <section class="section">
+    <div class="wrapper">
+    <div class="section-label">// AI engine</div>
+    <h2 class="section-title reveal">Powered by Claude from Anthropic.</h2>
+    <p class="section-prose section-prose--stack reveal">
+      The AI engine behind every title, description, and SEO tag ArtDrop generates. No generic AI slop. No prompt engineering required. Train your voice once — Claude writes like you for every product, every platform, every time.
+    </p>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="section">
+    <div class="wrapper">
+    <div class="section-label">// What's next</div>
+    <h2 class="section-title reveal">We never stop building.</h2>
+    <p class="roadmap-prose reveal">
+      ArtDrop is under constant development. New providers, new storefronts, new intelligence features — all included at the same fixed price. No upgrade fees. No subscription creep. You buy once, you get everything that comes after.
+    </p>
     <div class="roadmap-grid reveal">
-      <span class="roadmap-tag">Prodigi</span>
-      <span class="roadmap-tag">Gooten</span>
-      <span class="roadmap-tag">Etsy</span>
-      <span class="roadmap-tag">WooCommerce</span>
-      <span class="roadmap-tag">Lulu Direct</span>
-      <span class="roadmap-tag">ShineOn</span>
+      <a href="https://www.prodigi.com" target="_blank" rel="noopener" class="roadmap-tag">Prodigi</a>
+      <a href="https://www.gooten.com" target="_blank" rel="noopener" class="roadmap-tag">Gooten</a>
+      <a href="https://www.etsy.com" target="_blank" rel="noopener" class="roadmap-tag">Etsy</a>
+      <a href="https://woocommerce.com" target="_blank" rel="noopener" class="roadmap-tag">WooCommerce</a>
+      <a href="https://www.lulu.com/sell/sell-on-your-site" target="_blank" rel="noopener" class="roadmap-tag">Lulu Direct</a>
+      <a href="https://www.shineon.com" target="_blank" rel="noopener" class="roadmap-tag">ShineOn</a>
       <span class="roadmap-tag">Custom Slipmats</span>
       <span class="roadmap-tag">AI Trend Recommendations</span>
+      <span class="roadmap-tag">Multi-Language Support</span>
+      <span class="roadmap-tag">Analytics Dashboard</span>
+      <span class="roadmap-tag">Digital Downloads</span>
+      <span class="roadmap-tag">Batch Processing</span>
     </div>
     </div>
   </section>
