@@ -3,322 +3,483 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ArtDrop — Testing</title>
+  <title>ArtDrop — Beta Testing</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1a2e'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='22' font-weight='bold' fill='%23bfff5e' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,700;1,6..96,900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/site.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #181818;
+      --border: rgba(255,255,255,0.07);
+      --border-bright: rgba(255,255,255,0.14);
+      --lime: #bfff5e;
+      --lime-dim: rgba(191,255,94,0.10);
+      --lime-glow: rgba(191,255,94,0.28);
+      --white: #f0f0ec;
+      --muted: rgba(240,240,236,0.50);
+      --faint: rgba(240,240,236,0.25);
+      --mono: 'DM Mono', monospace;
+      --body: 'Instrument Sans', system-ui, sans-serif;
+      --danger: #ff5f57;
+      --warn: #febc2e;
+      --ok: #28c840;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: var(--body); line-height: 1.6; }
+
+    .page { max-width: 760px; margin: 0 auto; padding: 48px 24px 100px; }
+
     .test-banner {
       background: var(--lime);
       color: var(--bg);
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-align: center;
-      padding: 10px 20px;
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
+      padding: 8px 20px;
     }
-    .test-page { padding: 60px 24px 80px; max-width: 900px; margin: 0 auto; }
-    .test-page h1 { font-family: var(--sans); font-size: 36px; font-weight: 900; margin-bottom: 8px; }
-    .test-page .subtitle { color: var(--muted); font-size: 15px; margin-bottom: 48px; }
-    .test-section { margin-bottom: 56px; border-top: 1px solid var(--border); padding-top: 32px; }
-    .test-section h2 { font-family: var(--mono); font-size: 14px; letter-spacing: 0.1em; color: var(--lime); margin-bottom: 20px; }
-    .test-section p { color: var(--muted); font-size: 14px; margin-bottom: 16px; line-height: 1.6; }
 
-    .checklist { list-style: none; padding: 0; }
-    .checklist li {
-      padding: 14px 16px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      margin-bottom: 8px;
-      font-size: 14px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      cursor: pointer;
-      transition: border-color 0.15s;
-    }
-    .checklist li:hover { border-color: var(--border-bright); }
-    .checklist li input[type="checkbox"] { margin-top: 2px; accent-color: var(--lime); }
-    .checklist li .check-label { flex: 1; }
-    .checklist li .check-page { font-family: var(--mono); font-size: 11px; color: var(--muted); }
-    .checklist li .check-status {
+    h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+    .subtitle { color: var(--muted); font-size: 15px; margin-bottom: 48px; line-height: 1.7; }
+
+    .section { margin-bottom: 56px; }
+    .section-label {
       font-family: var(--mono);
       font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 3px;
-      white-space: nowrap;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: var(--lime);
+      text-transform: uppercase;
+      margin-bottom: 16px;
     }
-    .status-pass { background: rgba(40,200,64,0.15); color: #28c840; }
-    .status-fail { background: rgba(255,95,87,0.15); color: #ff5f57; }
-    .status-warn { background: rgba(254,188,46,0.15); color: #febc2e; }
+    .section-desc { color: var(--muted); font-size: 14px; margin-bottom: 24px; line-height: 1.7; }
 
-    .logo-grid {
+    /* ── PERSONA CARDS ─────────────────────────── */
+    .persona-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
     }
-    .logo-card {
+    .persona-card {
+      background: var(--bg2);
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      padding: 20px;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .persona-card:hover { border-color: var(--lime); }
+    .persona-card.selected {
+      border-color: var(--lime);
+      box-shadow: 0 0 0 1px var(--lime), 0 4px 20px var(--lime-dim);
+    }
+    .persona-name { font-weight: 600; font-size: 15px; margin-bottom: 2px; }
+    .persona-store { font-family: var(--mono); font-size: 11px; color: var(--lime); margin-bottom: 8px; }
+    .persona-type { font-size: 13px; color: var(--muted); }
+    .persona-why { font-size: 12px; color: var(--faint); margin-top: 8px; line-height: 1.5; }
+
+    /* ── CREDENTIALS ──────────────────────────── */
+    .cred-block {
       background: var(--bg2);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 24px 16px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .cred-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--lime);
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .cred-value {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--white);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 8px 12px;
+      word-break: break-all;
+      user-select: all;
+      cursor: pointer;
+      margin-bottom: 4px;
+    }
+    .cred-value:hover { border-color: var(--border-bright); }
+    .cred-hint { font-size: 12px; color: var(--faint); }
+    .cred-pending {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--warn);
+      padding: 10px 14px;
+      border: 1px dashed var(--warn);
+      border-radius: 6px;
       text-align: center;
     }
-    .logo-card img { height: 32px; width: auto; margin-bottom: 12px; }
-    .logo-card .logo-name { font-family: var(--mono); font-size: 11px; color: var(--muted); }
 
-    .logo-card-dark { background: var(--bg); }
-    .logo-card-light { background: #ffffff; }
-    .logo-card-mid { background: #333333; }
-
-    .type-sample { margin-bottom: 24px; }
-    .type-sample .font-name { font-family: var(--mono); font-size: 11px; color: var(--lime); margin-bottom: 8px; }
-
-    .viewport-info {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--muted);
-      background: var(--bg2);
+    /* ── WHAT TO TEST ─────────────────────────── */
+    .test-areas { list-style: none; }
+    .test-area {
+      padding: 16px 20px;
       border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 12px 16px;
-      margin-bottom: 24px;
+      border-radius: 8px;
+      margin-bottom: 8px;
     }
-    .viewport-info strong { color: var(--white); }
+    .test-area-name { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+    .test-area-q { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
-    .page-links { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
-    .page-links a {
-      font-family: var(--mono);
-      font-size: 12px;
-      padding: 8px 16px;
+    /* ── FEEDBACK FORM ────────────────────────── */
+    .feedback-form {
+      background: var(--bg2);
       border: 1px solid var(--border-bright);
-      border-radius: 4px;
+      border-radius: 10px;
+      padding: 28px 24px;
+    }
+    .form-row { margin-bottom: 20px; }
+    .form-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      font-family: var(--body);
+      font-size: 14px;
       color: var(--white);
-      text-decoration: none;
+      background: var(--bg);
+      border: 1px solid var(--border-bright);
+      border-radius: 5px;
+      padding: 10px 14px;
       transition: border-color 0.15s;
     }
-    .page-links a:hover { border-color: var(--lime); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--lime);
+    }
+    .form-select { appearance: auto; }
+    .form-textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
+    .form-hint { font-size: 12px; color: var(--faint); margin-top: 4px; }
 
-    .noise-toggle {
-      font-family: var(--mono);
-      font-size: 12px;
-      padding: 8px 16px;
-      border: 1px solid var(--lime);
-      border-radius: 4px;
-      background: none;
-      color: var(--lime);
-      cursor: pointer;
-      margin-bottom: 16px;
+    .form-row-inline {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
     }
 
-    @media (max-width: 768px) {
-      .test-page h1 { font-size: 28px; }
-      .logo-grid { grid-template-columns: repeat(2, 1fr); }
+    .form-submit {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--bg);
+      background: var(--lime);
+      border: none;
+      border-radius: 5px;
+      padding: 12px 28px;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .form-submit:hover { opacity: 0.9; }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .form-success .check { font-size: 48px; margin-bottom: 12px; }
+    .form-success p { color: var(--muted); font-size: 14px; }
+
+    /* ── SEPARATOR ────────────────────────────── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+    /* ── RESPONSIVE ───────────────────────────── */
+    @media (max-width: 600px) {
+      .persona-grid { grid-template-columns: 1fr; }
+      .form-row-inline { grid-template-columns: 1fr; }
+      h1 { font-size: 26px; }
     }
   </style>
 </head>
 <body>
 
-<div class="test-banner">INTERNAL TESTING — NOT PUBLIC</div>
+<div class="test-banner">ARTDROP BETA TEST — CONFIDENTIAL</div>
 
-<div class="test-page">
-  <h1>ArtDrop Testing</h1>
-  <p class="subtitle">Internal test page for QA. Check items as you go. This page is noindexed.</p>
+<div class="page">
 
-  <div class="viewport-info">
-    Viewport: <strong id="vp-width"></strong> x <strong id="vp-height"></strong> ·
-    Device pixel ratio: <strong id="vp-dpr"></strong> ·
-    <span id="vp-breakpoint"></span>
-  </div>
-  <script>
-    function updateVP() {
-      document.getElementById('vp-width').textContent = window.innerWidth;
-      document.getElementById('vp-height').textContent = window.innerHeight;
-      document.getElementById('vp-dpr').textContent = window.devicePixelRatio;
-      var w = window.innerWidth;
-      var bp = w <= 400 ? 'XS (≤400)' : w <= 768 ? 'Mobile (≤768)' : w <= 1024 ? 'Tablet (≤1024)' : 'Desktop (>1024)';
-      document.getElementById('vp-breakpoint').textContent = bp;
-    }
-    updateVP();
-    window.addEventListener('resize', updateVP);
-  </script>
+  <h1>Welcome, tester.</h1>
+  <p class="subtitle">
+    Thank you for helping test ArtDrop. This page gives you everything you need to get started. We're not going to walk you through the app step by step — if something is confusing, that's exactly the kind of feedback we need. Just pick a persona, grab your credentials, and go.
+  </p>
 
-  <!-- QUICK NAV -->
-  <div class="test-section">
-    <h2>PAGES</h2>
-    <div class="page-links">
-      <a href="/">Home</a>
-      <a href="/about.html">About</a>
-      <a href="/faq.html">FAQ</a>
-      <a href="/docs.html">Docs</a>
-      <a href="/terms.html">Terms</a>
-      <a href="/privacy.html">Privacy</a>
-      <a href="/eula.html">EULA</a>
-      <a href="/help.html">Help</a>
-      <a href="/thanks.html">Thanks</a>
-    </div>
-  </div>
+  <!-- ── 1. PICK YOUR PERSONA ─────────────────── -->
+  <div class="section">
+    <div class="section-label">1 — Pick Your Persona</div>
+    <p class="section-desc">Each tester uses a different persona so we can see how the AI handles different art styles, voices, and product mixes. Claim one and stick with it for all your testing.</p>
 
-  <!-- LOGO VERIFICATION -->
-  <div class="test-section">
-    <h2>LOGO COLOR VERIFICATION</h2>
-    <p>All logos should appear in lime green (#bfff5e). If any appear black, different colors, or washed out, note which ones and what browser/device you're using.</p>
-
-    <button class="noise-toggle" onclick="document.querySelector('body').classList.toggle('no-noise');this.textContent=this.textContent.includes('OFF')?'Toggle noise overlay OFF':'Toggle noise overlay ON';">Toggle noise overlay OFF</button>
-    <style>.no-noise::before { display: none !important; }</style>
-
-    <h3 style="font-family:var(--mono);font-size:12px;color:var(--muted);margin:24px 0 12px;">Trust bar logos (dark bg)</h3>
-    <div class="logo-grid">
-      <div class="logo-card logo-card-dark">
-        <img src="/logos/claude.svg" alt="Claude">
-        <div class="logo-name">claude.svg</div>
+    <div class="persona-grid">
+      <div class="persona-card" onclick="selectPersona(this, 'Elena Vasquez')" data-persona="elena">
+        <div class="persona-name">Elena Vasquez</div>
+        <div class="persona-store">Verdant Studio</div>
+        <div class="persona-type">Watercolor botanical illustration — Savannah, GA</div>
+        <div class="persona-why">Scanned paintings, organic colors, warm descriptive voice. The baseline persona.</div>
       </div>
-      <div class="logo-card logo-card-dark">
-        <img src="/logos/shopify.svg" alt="Shopify">
-        <div class="logo-name">shopify.svg</div>
+      <div class="persona-card" onclick="selectPersona(this, 'Marcus Cole')" data-persona="marcus">
+        <div class="persona-name">Marcus Cole</div>
+        <div class="persona-store">Cole Works</div>
+        <div class="persona-type">Digital graphic art — Portland, OR</div>
+        <div class="persona-why">Bold geometric posters, no EXIF data, terse confident voice. "Loud art for quiet walls."</div>
       </div>
-      <div class="logo-card logo-card-dark">
-        <img src="/logos/gelato.svg" alt="Gelato">
-        <div class="logo-name">gelato.svg</div>
+      <div class="persona-card" onclick="selectPersona(this, 'Janelle Torres')" data-persona="janelle">
+        <div class="persona-name">Janelle Torres</div>
+        <div class="persona-store">Torres Gallery</div>
+        <div class="persona-type">Portrait &amp; lifestyle photography — Austin, TX</div>
+        <div class="persona-why">Photos with people, rich EXIF data, storytelling voice. New to POD — the overwhelmed artist.</div>
       </div>
-      <div class="logo-card logo-card-dark">
-        <img src="/logos/printful.svg" alt="Printful">
-        <div class="logo-name">printful.svg</div>
-      </div>
-      <div class="logo-card logo-card-dark">
-        <img src="/logos/printify.svg" alt="Printify">
-        <div class="logo-name">printify.svg</div>
-      </div>
-    </div>
-
-    <h3 style="font-family:var(--mono);font-size:12px;color:var(--muted);margin:24px 0 12px;">Social logos (dark bg)</h3>
-    <div class="logo-grid">
-      <div class="logo-card logo-card-dark">
-        <img src="/logos/pinterest.svg" alt="Pinterest">
-        <div class="logo-name">pinterest.svg</div>
-      </div>
-      <div class="logo-card logo-card-dark">
-        <img src="/logos/instagram.svg" alt="Instagram">
-        <div class="logo-name">instagram.svg</div>
-      </div>
-      <div class="logo-card logo-card-dark">
-        <img src="/logos/facebook.svg" alt="Facebook">
-        <div class="logo-name">facebook.svg</div>
-      </div>
-      <div class="logo-card logo-card-dark">
-        <img src="/logos/threads.svg" alt="Threads">
-        <div class="logo-name">threads.svg</div>
-      </div>
-      <div class="logo-card logo-card-dark">
-        <img src="/logos/bluesky.svg" alt="Bluesky">
-        <div class="logo-name">bluesky.svg</div>
-      </div>
-    </div>
-
-    <h3 style="font-family:var(--mono);font-size:12px;color:var(--muted);margin:24px 0 12px;">Same logos on white bg (control)</h3>
-    <div class="logo-grid">
-      <div class="logo-card logo-card-light">
-        <img src="/logos/claude.svg" alt="Claude">
-        <div class="logo-name" style="color:#666;">claude.svg</div>
-      </div>
-      <div class="logo-card logo-card-light">
-        <img src="/logos/shopify.svg" alt="Shopify">
-        <div class="logo-name" style="color:#666;">shopify.svg</div>
-      </div>
-      <div class="logo-card logo-card-light">
-        <img src="/logos/pinterest.svg" alt="Pinterest">
-        <div class="logo-name" style="color:#666;">pinterest.svg</div>
-      </div>
-      <div class="logo-card logo-card-light">
-        <img src="/logos/instagram.svg" alt="Instagram">
-        <div class="logo-name" style="color:#666;">instagram.svg</div>
-      </div>
-      <div class="logo-card logo-card-light">
-        <img src="/logos/bluesky.svg" alt="Bluesky">
-        <div class="logo-name" style="color:#666;">bluesky.svg</div>
+      <div class="persona-card" onclick="selectPersona(this, 'David Okonkwo')" data-persona="david">
+        <div class="persona-name">David Okonkwo</div>
+        <div class="persona-store">Dark Sky Prints</div>
+        <div class="persona-type">Astrophotography — Flagstaff, AZ</div>
+        <div class="persona-why">Mostly-dark images, specialized EXIF, scientific+poetic voice. The hardest test for the AI.</div>
       </div>
     </div>
   </div>
 
-  <!-- NAVIGATION CHECKLIST -->
-  <div class="test-section">
-    <h2>NAVIGATION</h2>
-    <ul class="checklist">
-      <li><input type="checkbox"><div class="check-label">Logo centered on mobile<div class="check-page">All pages · ≤768px</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Hamburger icon visible on mobile (left side)<div class="check-page">All pages · ≤768px</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Hamburger opens full-screen overlay menu<div class="check-page">All pages · ≤768px</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Menu links navigate correctly and menu closes<div class="check-page">All pages · ≤768px</div></div></li>
-      <li><input type="checkbox"><div class="check-label">"Get ArtDrop" CTA inside mobile menu works<div class="check-page">All pages · ≤768px</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Current page link highlighted in nav<div class="check-page">About, FAQ, Docs</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Desktop nav shows logo, links, and CTA button<div class="check-page">All pages · >768px</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Nav stays fixed on scroll<div class="check-page">All pages</div></div></li>
+  <!-- ── 2. YOUR CREDENTIALS ──────────────────── -->
+  <div class="section">
+    <div class="section-label">2 — Your Credentials</div>
+    <p class="section-desc">Use these credentials during setup. Click any value to select it for copying. All keys connect to a shared test environment — don't use your own accounts.</p>
+
+    <div class="cred-block">
+      <div class="cred-label">Download ArtDrop</div>
+      <div class="cred-pending">Download link will be provided separately — check your email or message Michael.</div>
+    </div>
+
+    <div class="cred-block">
+      <div class="cred-label">Shopify (Test Store)</div>
+      <div class="cred-pending">Credentials pending — dev store being set up on Shopify Partners. This page will be updated.</div>
+    </div>
+
+    <div class="cred-block">
+      <div class="cred-label">Anthropic API Key (Claude AI)</div>
+      <div class="cred-pending">Will be provided — a shared test key with enough credit for all testers.</div>
+    </div>
+
+    <div class="cred-block">
+      <div class="cred-label">Gelato API Key</div>
+      <div class="cred-pending">Will be provided once test store credentials are finalized.</div>
+    </div>
+
+    <div class="cred-block">
+      <div class="cred-label">Printful Token</div>
+      <div class="cred-pending">Will be provided once test store credentials are finalized.</div>
+    </div>
+
+    <div class="cred-block">
+      <div class="cred-label">Printify Token</div>
+      <div class="cred-pending">Will be provided once test store credentials are finalized.</div>
+    </div>
+
+    <div class="cred-block">
+      <div class="cred-label">Backblaze B2 Storage</div>
+      <div class="cred-pending">Will be provided — shared storage bucket for test images.</div>
+    </div>
+  </div>
+
+  <!-- ── 3. TEST IMAGES ───────────────────────── -->
+  <div class="section">
+    <div class="section-label">3 — Test Images</div>
+    <p class="section-desc">You'll need 3–5 images that match your persona's art style. Use high-resolution files (.tif, .png, or .jpg). These will be "dropped" into ArtDrop to trigger the full pipeline.</p>
+    <p class="section-desc">Find images that fit your persona — watercolor botanicals for Elena, bold geometric designs for Marcus, golden-hour portraits for Janelle, deep-sky astrophotos for David. Stock images are fine, or use your own work if it fits the style.</p>
+  </div>
+
+  <!-- ── 4. WHAT WE NEED TO LEARN ─────────────── -->
+  <div class="section">
+    <div class="section-label">4 — What We Need to Learn</div>
+    <p class="section-desc">These are the areas we need feedback on. We're not telling you how to use the app — if you can't figure something out, that's valuable data. Just use the app and tell us what happens.</p>
+
+    <ul class="test-areas">
+      <li class="test-area">
+        <div class="test-area-name">First Launch</div>
+        <div class="test-area-q">What happens when you open the app for the first time? Can you figure out what to do? Where do you get stuck?</div>
+      </li>
+      <li class="test-area">
+        <div class="test-area-name">Setup Wizard</div>
+        <div class="test-area-q">Can you get through the setup wizard using the credentials above? Is anything confusing? Do the help texts actually help? Does "Test Connections" work?</div>
+      </li>
+      <li class="test-area">
+        <div class="test-area-name">Voice Training</div>
+        <div class="test-area-q">Does the voice training understand your persona's style? Does the AI-generated voice profile sound right? Can you refine it?</div>
+      </li>
+      <li class="test-area">
+        <div class="test-area-name">Templates</div>
+        <div class="test-area-q">Can you add and configure product templates for your persona's product mix? Is the template setup clear?</div>
+      </li>
+      <li class="test-area">
+        <div class="test-area-name">Your First Drop</div>
+        <div class="test-area-q">Drop an image. What happens? Does the worker start? Can you tell what it's doing? How long does it take? Does it feel right?</div>
+      </li>
+      <li class="test-area">
+        <div class="test-area-name">Product Quality</div>
+        <div class="test-area-q">Check the products that appeared in the Shopify store. Are the titles good? Descriptions? SEO? Do they sound like your persona wrote them? Would you buy this?</div>
+      </li>
+      <li class="test-area">
+        <div class="test-area-name">Collection &amp; Organization</div>
+        <div class="test-area-q">Did a collection get created for the artwork? Is it organized well? Does it show up in the store navigation?</div>
+      </li>
+      <li class="test-area">
+        <div class="test-area-name">Multiple Drops</div>
+        <div class="test-area-q">Drop 2–3 more images. Does the pipeline hold up? Any errors? Does the store start to look like a real store?</div>
+      </li>
+      <li class="test-area">
+        <div class="test-area-name">Overall Experience</div>
+        <div class="test-area-q">Would you pay $197 for this? What's missing? What surprised you? What frustrated you? What would you tell a friend?</div>
+      </li>
     </ul>
   </div>
 
-  <!-- HOMEPAGE CHECKLIST -->
-  <div class="test-section">
-    <h2>HOMEPAGE</h2>
-    <ul class="checklist">
-      <li><input type="checkbox"><div class="check-label">Hero headline "Drop a file. Done." readable, no text overflow<div class="check-page">index.html · Mobile</div></div></li>
-      <li><input type="checkbox"><div class="check-label">"fi" in "file" not colliding (ligature fix)<div class="check-page">index.html · Mobile</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Terminal animation plays and fits in viewport<div class="check-page">index.html · Mobile + Desktop</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Product grid cards display properly (2-col mobile, 5-col desktop)<div class="check-page">index.html · "What Gets Created"</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Feature cards stack correctly on mobile<div class="check-page">index.html · "The Pipeline"</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Trust logos all visible and same color<div class="check-page">index.html · "The Stack"</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Social platform cards display properly<div class="check-page">index.html · Social section</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Pricing section readable and CTA works<div class="check-page">index.html · #pricing</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Roadmap pills wrap correctly on mobile<div class="check-page">index.html · "What's Next"</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Privacy section layout (2-col desktop, stack mobile)<div class="check-page">index.html</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Footer links wrap and are tappable on mobile<div class="check-page">All pages</div></div></li>
-    </ul>
+  <hr class="divider">
+
+  <!-- ── 5. FEEDBACK FORM ─────────────────────── -->
+  <div class="section" id="feedback">
+    <div class="section-label">Submit Feedback</div>
+    <p class="section-desc">Submit as many times as you want. One form per observation is ideal — don't batch everything into one giant submission. Screenshots are hugely helpful.</p>
+
+    <form class="feedback-form" name="artdrop-beta-feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="feedback-form">
+      <input type="hidden" name="form-name" value="artdrop-beta-feedback">
+      <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+      <div class="form-row-inline">
+        <div class="form-row">
+          <label class="form-label">Your Name</label>
+          <input class="form-input" type="text" name="tester-name" required placeholder="Your real name">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Persona</label>
+          <select class="form-select" name="persona" id="form-persona" required>
+            <option value="">Select your persona</option>
+            <option value="Elena Vasquez — Verdant Studio">Elena Vasquez</option>
+            <option value="Marcus Cole — Cole Works">Marcus Cole</option>
+            <option value="Janelle Torres — Torres Gallery">Janelle Torres</option>
+            <option value="David Okonkwo — Dark Sky Prints">David Okonkwo</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row-inline">
+        <div class="form-row">
+          <label class="form-label">Area</label>
+          <select class="form-select" name="area" required>
+            <option value="">What are you giving feedback on?</option>
+            <option value="First Launch">First Launch</option>
+            <option value="Setup Wizard">Setup Wizard</option>
+            <option value="Voice Training">Voice Training</option>
+            <option value="Templates">Templates</option>
+            <option value="First Drop">First Drop</option>
+            <option value="Product Quality">Product Quality</option>
+            <option value="Collection & Organization">Collection & Organization</option>
+            <option value="Multiple Drops">Multiple Drops</option>
+            <option value="Overall Experience">Overall Experience</option>
+            <option value="Bug Report">Bug Report</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Severity</label>
+          <select class="form-select" name="severity" required>
+            <option value="">How bad is it?</option>
+            <option value="Worked great">Worked great</option>
+            <option value="Minor issue">Minor issue — cosmetic or small</option>
+            <option value="Major issue">Major issue — blocked or frustrated</option>
+            <option value="Broken">Broken — couldn't continue</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">What happened?</label>
+        <textarea class="form-textarea" name="description" required placeholder="Tell us exactly what you did, what happened, and what you expected. Be specific — 'it didn't work' doesn't help us fix anything."></textarea>
+        <div class="form-hint">Be as specific as possible. What did you click? What did you see? What did you expect instead?</div>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">Screenshot (optional)</label>
+        <input class="form-input" type="file" name="screenshot" accept="image/*">
+        <div class="form-hint">Screenshots help enormously. Mark them up if you can.</div>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label">Device &amp; Browser</label>
+        <input class="form-input" type="text" name="device" placeholder="e.g. MacBook Pro / Chrome, iPhone 15 / Safari">
+      </div>
+
+      <button type="submit" class="form-submit">Submit Feedback</button>
+    </form>
+
+    <div class="form-success" id="form-success">
+      <div class="check">&#10003;</div>
+      <p><strong>Feedback received.</strong><br>Thank you — submit another whenever you're ready.</p>
+      <button class="form-submit" style="margin-top:20px;" onclick="document.getElementById('feedback-form').style.display='block';document.getElementById('form-success').style.display='none';document.getElementById('feedback-form').reset();">Submit Another</button>
+    </div>
   </div>
 
-  <!-- SUBPAGES CHECKLIST -->
-  <div class="test-section">
-    <h2>SUBPAGES</h2>
-    <ul class="checklist">
-      <li><input type="checkbox"><div class="check-label">About page hero text readable on mobile<div class="check-page">about.html</div></div></li>
-      <li><input type="checkbox"><div class="check-label">FAQ accordion works (expand/collapse)<div class="check-page">faq.html</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Docs sidebar collapses on mobile<div class="check-page">docs.html</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Legal pages (Terms, Privacy, EULA) readable<div class="check-page">terms/privacy/eula.html</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Help page contact section works<div class="check-page">help.html</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Thanks page displays after purchase flow<div class="check-page">thanks.html</div></div></li>
-    </ul>
-  </div>
-
-  <!-- CROSS-BROWSER -->
-  <div class="test-section">
-    <h2>CROSS-BROWSER / DEVICE</h2>
-    <ul class="checklist">
-      <li><input type="checkbox"><div class="check-label">Safari iOS (iPhone)<div class="check-page">All pages</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Safari iOS (iPad)<div class="check-page">All pages</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Chrome Android<div class="check-page">All pages</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Chrome Desktop<div class="check-page">All pages</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Safari Desktop (Mac)<div class="check-page">All pages</div></div></li>
-      <li><input type="checkbox"><div class="check-label">Firefox Desktop<div class="check-page">All pages</div></div></li>
-    </ul>
-  </div>
-
-  <!-- FEEDBACK -->
-  <div class="test-section">
-    <h2>FEEDBACK</h2>
-    <p>Found an issue? Screenshot it and send to Michael with:</p>
-    <ul style="color:var(--muted);font-size:14px;padding-left:20px;line-height:2;">
-      <li>Which page</li>
-      <li>Device + browser</li>
-      <li>What's wrong vs what you expected</li>
-      <li>Screenshot (mark up if possible)</li>
-    </ul>
+  <!-- ── THANK YOU ────────────────────────────── -->
+  <div class="section" style="text-align:center; padding: 20px 0 40px;">
+    <p style="color:var(--muted); font-size:14px; line-height:1.7;">
+      Questions? Text or call Michael at <a href="tel:+15153294498" style="color:var(--lime); text-decoration:none;">(515) 329-4498</a> or email <a href="mailto:support@getartdrop.com" style="color:var(--lime); text-decoration:none;">support@getartdrop.com</a>
+    </p>
   </div>
 
 </div>
+
+<script>
+// Persona selection
+function selectPersona(card, name) {
+  document.querySelectorAll('.persona-card').forEach(function(c) { c.classList.remove('selected'); });
+  card.classList.add('selected');
+  var sel = document.getElementById('form-persona');
+  for (var i = 0; i < sel.options.length; i++) {
+    if (sel.options[i].text === name || sel.options[i].value.indexOf(name) === 0) {
+      sel.selectedIndex = i;
+      break;
+    }
+  }
+}
+
+// Form submission with Netlify
+var form = document.getElementById('feedback-form');
+if (form) {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(form);
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString()
+    })
+    .then(function(response) {
+      if (response.ok) {
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        alert('Something went wrong. Try again or text Michael.');
+      }
+    })
+    .catch(function() {
+      alert('Network error. Try again or text Michael.');
+    });
+  });
+}
+</script>
 
 </body>
 </html>
