@@ -113,7 +113,6 @@
       justify-content: center;
       padding: 140px 48px 80px;
       position: relative;
-      overflow: hidden;
     }
 
     .hero-wrap {
@@ -122,6 +121,7 @@
       align-items: center;
       min-height: 100vh;
       position: relative;
+      overflow: hidden;
     }
     .hero-wrap .hero {
       min-height: unset;
@@ -146,8 +146,8 @@
 
     .hero-glow {
       position: absolute;
-      top: 20%;
-      left: 50%;
+      top: 25%;
+      left: 25%;
       transform: translateX(-50%);
       width: 600px;
       height: 400px;
@@ -408,8 +408,15 @@
     .product-card.fade-in  { opacity: 1; transform: translateY(0); }
 
     .product-icon {
-      font-size: 24px;
       margin-bottom: 14px;
+      color: var(--lime);
+      width: 28px;
+      height: 28px;
+    }
+    .product-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke-width: 1.5;
     }
 
     .product-name {
@@ -1035,6 +1042,7 @@
       nav { padding: 16px 24px; }
       .hero { padding: 120px 24px 60px; }
       .hero-wrap { grid-template-columns: 1fr; min-height: unset; }
+      .hero-glow { left: 50%; }
       .hero-wrap .hero { padding: 120px 24px 40px; min-height: unset; }
       .hero-wrap .terminal-section { padding: 0 24px 60px; }
       .terminal-section { padding: 0 24px 80px; }
@@ -1064,9 +1072,9 @@
   <main>
   <!-- HERO + TERMINAL -->
   <div class="hero-wrap">
-  <section class="hero">
     <div class="hero-grid-bg"></div>
     <div class="hero-glow"></div>
+  <section class="hero">
     <div class="hero-content">
       <h1 class="sr-only">ArtDrop — Automated Print-on-Demand Publishing Software</h1>
       <p class="hero-label">// Automated Print-on-Demand Publishing</p>
@@ -1075,7 +1083,7 @@
         <em>Done.</em>
       </h2>
       <p class="hero-sub">
-        Drop an image. That's it. ArtDrop analyzes your artwork — colors, composition, mood, subject — then writes the copy, creates every product format you sell, publishes everything to your store, and posts to Instagram, Pinterest, Facebook, Bluesky, and Threads. Collection, SEO, alt text, social — all of it. Configure once. Every drop after that is automatic.
+        Drop an image. That's it. ArtDrop analyzes your artwork — colors, composition, mood, subject — then writes the copy, creates every product format you sell, publishes everything to your store, and posts to all your socials. Collection, SEO, alt text — all of it. Configure once. Every drop after that is automatic.
       </p>
       <div class="hero-actions">
         <a href="#pricing" class="btn-primary">
@@ -1240,52 +1248,52 @@
     <div class="section-label">// What gets created</div>
     <h2 class="section-title reveal">One drop.<br>Every format you sell.</h2>
     <div class="products-grid reveal" id="products-grid">
-      <div class="product-card"><div class="product-icon">🖼️</div><div class="product-name">Fine Art Poster</div><div class="product-detail">Museum-quality print paper</div></div>
-      <div class="product-card"><div class="product-icon">✨</div><div class="product-name">Acrylic Print</div><div class="product-detail">Face-mounted, 4mm thickness</div></div>
-      <div class="product-card"><div class="product-icon">🎨</div><div class="product-name">Framed Canvas</div><div class="product-detail">Stretched canvas + frame</div></div>
-      <div class="product-card"><div class="product-icon">🪵</div><div class="product-name">Premium Wood Frame</div><div class="product-detail">Natural wood border</div></div>
-      <div class="product-card"><div class="product-icon">📱</div><div class="product-name">iPhone Tough Case</div><div class="product-detail">All current models</div></div>
-      <div class="product-card"><div class="product-icon">📲</div><div class="product-name">Samsung Tough Case</div><div class="product-detail">All current models</div></div>
+      <div class="product-card"><div class="product-icon"><i data-lucide="image"></i></div><div class="product-name">Fine Art Poster</div><div class="product-detail">Museum-quality print paper</div></div>
+      <div class="product-card"><div class="product-icon"><i data-lucide="gem"></i></div><div class="product-name">Acrylic Print</div><div class="product-detail">Face-mounted, 4mm thickness</div></div>
+      <div class="product-card"><div class="product-icon"><i data-lucide="frame"></i></div><div class="product-name">Framed Canvas</div><div class="product-detail">Stretched canvas + frame</div></div>
+      <div class="product-card"><div class="product-icon"><i data-lucide="square"></i></div><div class="product-name">Premium Wood Frame</div><div class="product-detail">Natural wood border</div></div>
+      <div class="product-card"><div class="product-icon"><i data-lucide="smartphone"></i></div><div class="product-name">iPhone Tough Case</div><div class="product-detail">All current models</div></div>
+      <div class="product-card"><div class="product-icon"><i data-lucide="smartphone"></i></div><div class="product-name">Samsung Tough Case</div><div class="product-detail">All current models</div></div>
     </div>
     <script>
     (function(){
       const allProducts = [
-        {icon:'🖼️', name:'Fine Art Poster', detail:'Museum-quality print paper'},
-        {icon:'✨', name:'Acrylic Print', detail:'Face-mounted, 4mm thickness'},
-        {icon:'🎨', name:'Framed Canvas', detail:'Stretched canvas + frame'},
-        {icon:'🪵', name:'Premium Wood Frame', detail:'Natural wood border'},
-        {icon:'📱', name:'iPhone Tough Case', detail:'All current models'},
-        {icon:'📲', name:'Samsung Tough Case', detail:'All current models'},
-        {icon:'☕', name:'Glossy Mug', detail:'11oz + 15oz ceramic'},
-        {icon:'👜', name:'Canvas Tote Bag', detail:'5 strap color options'},
-        {icon:'🛋️', name:'Velveteen Blanket', detail:'Plush throw, multiple sizes'},
-        {icon:'🧢', name:'Dad Hat', detail:'Embroidered, adjustable'},
-        {icon:'👕', name:'Unisex T-Shirt', detail:'Soft cotton, S–3XL'},
-        {icon:'🧥', name:'Pullover Hoodie', detail:'Fleece-lined, front print'},
-        {icon:'🖥️', name:'Mouse Pad', detail:'Desk-size, non-slip rubber'},
-        {icon:'📓', name:'Hardcover Journal', detail:'Lined pages, lay-flat binding'},
-        {icon:'🎒', name:'Backpack', detail:'All-over print, padded straps'},
-        {icon:'🧩', name:'Jigsaw Puzzle', detail:'500 or 1000 pieces'},
-        {icon:'🏷️', name:'Sticker Sheet', detail:'Kiss-cut, matte or glossy'},
-        {icon:'🛍️', name:'Drawstring Bag', detail:'Polyester, cinch closure'},
-        {icon:'🧣', name:'Scarf', detail:'Poly, all-over print'},
-        {icon:'🖼️', name:'Metal Print', detail:'HD aluminum, float mount'},
-        {icon:'🪟', name:'Tapestry', detail:'Lightweight fabric, wall-mount'},
-        {icon:'🎭', name:'Face Mask', detail:'Adjustable ear loops'},
-        {icon:'🍽️', name:'Cutting Board', detail:'Tempered glass, 8×11'},
-        {icon:'🕯️', name:'Ceramic Ornament', detail:'Glossy finish, ribbon loop'},
-        {icon:'📐', name:'Laptop Sleeve', detail:'Neoprene, 13" + 15"'},
-        {icon:'🧴', name:'Water Bottle', detail:'Stainless steel, 20oz'},
-        {icon:'🪑', name:'Throw Pillow', detail:'Square, multiple sizes'},
-        {icon:'🏠', name:'Shower Curtain', detail:'Polyester, standard size'},
-        {icon:'⌚', name:'Watch Band', detail:'Apple Watch, all sizes'},
-        {icon:'🎵', name:'Guitar Pick Set', detail:'6-pack, custom art'},
-        {icon:'🖼️', name:'Gallery Wrap', detail:'1.5" deep edge canvas'},
-        {icon:'📦', name:'Cube Ottoman', detail:'13" fabric, all-over print'},
-        {icon:'🧦', name:'Crew Socks', detail:'Sublimated, S/M/L'},
-        {icon:'☂️', name:'Compact Umbrella', detail:'Auto-open, custom canopy'},
-        {icon:'🎴', name:'Playing Cards', detail:'Poker size, custom back'},
-        {icon:'🧲', name:'Fridge Magnet', detail:'3" round or square'},
+        {icon:'image', name:'Fine Art Poster', detail:'Museum-quality print paper'},
+        {icon:'gem', name:'Acrylic Print', detail:'Face-mounted, 4mm thickness'},
+        {icon:'frame', name:'Framed Canvas', detail:'Stretched canvas + frame'},
+        {icon:'square', name:'Premium Wood Frame', detail:'Natural wood border'},
+        {icon:'smartphone', name:'iPhone Tough Case', detail:'All current models'},
+        {icon:'smartphone', name:'Samsung Tough Case', detail:'All current models'},
+        {icon:'coffee', name:'Glossy Mug', detail:'11oz + 15oz ceramic'},
+        {icon:'shopping-bag', name:'Canvas Tote Bag', detail:'5 strap color options'},
+        {icon:'layers', name:'Velveteen Blanket', detail:'Plush throw, multiple sizes'},
+        {icon:'hard-hat', name:'Dad Hat', detail:'Embroidered, adjustable'},
+        {icon:'shirt', name:'Unisex T-Shirt', detail:'Soft cotton, S–3XL'},
+        {icon:'shirt', name:'Pullover Hoodie', detail:'Fleece-lined, front print'},
+        {icon:'mouse', name:'Mouse Pad', detail:'Desk-size, non-slip rubber'},
+        {icon:'notebook', name:'Hardcover Journal', detail:'Lined pages, lay-flat binding'},
+        {icon:'backpack', name:'Backpack', detail:'All-over print, padded straps'},
+        {icon:'puzzle', name:'Jigsaw Puzzle', detail:'500 or 1000 pieces'},
+        {icon:'sticker', name:'Sticker Sheet', detail:'Kiss-cut, matte or glossy'},
+        {icon:'package', name:'Drawstring Bag', detail:'Polyester, cinch closure'},
+        {icon:'wind', name:'Scarf', detail:'Poly, all-over print'},
+        {icon:'rectangle-horizontal', name:'Metal Print', detail:'HD aluminum, float mount'},
+        {icon:'scroll', name:'Tapestry', detail:'Lightweight fabric, wall-mount'},
+        {icon:'shield', name:'Face Mask', detail:'Adjustable ear loops'},
+        {icon:'utensils-crossed', name:'Cutting Board', detail:'Tempered glass, 8×11'},
+        {icon:'snowflake', name:'Ceramic Ornament', detail:'Glossy finish, ribbon loop'},
+        {icon:'laptop', name:'Laptop Sleeve', detail:'Neoprene, 13" + 15"'},
+        {icon:'glass-water', name:'Water Bottle', detail:'Stainless steel, 20oz'},
+        {icon:'cloud', name:'Throw Pillow', detail:'Square, multiple sizes'},
+        {icon:'shower-head', name:'Shower Curtain', detail:'Polyester, standard size'},
+        {icon:'watch', name:'Watch Band', detail:'Apple Watch, all sizes'},
+        {icon:'guitar', name:'Guitar Pick Set', detail:'6-pack, custom art'},
+        {icon:'gallery-horizontal', name:'Gallery Wrap', detail:'1.5" deep edge canvas'},
+        {icon:'box', name:'Cube Ottoman', detail:'13" fabric, all-over print'},
+        {icon:'footprints', name:'Crew Socks', detail:'Sublimated, S/M/L'},
+        {icon:'umbrella', name:'Compact Umbrella', detail:'Auto-open, custom canopy'},
+        {icon:'spade', name:'Playing Cards', detail:'Poker size, custom back'},
+        {icon:'magnet', name:'Fridge Magnet', detail:'3" round or square'},
       ];
       const grid = document.getElementById('products-grid');
       if(!grid) return;
@@ -1317,7 +1325,8 @@
           visible.add(nextIdx);
           poolIdx = (poolIdx+1) % pool.length;
           // update content
-          card.querySelector('.product-icon').textContent = p.icon;
+          card.querySelector('.product-icon').innerHTML = '<i data-lucide="'+p.icon+'"></i>';
+          lucide.createIcons({attrs:{class:'product-lucide'},nameAttr:'data-lucide'});
           card.querySelector('.product-name').textContent = p.name;
           card.querySelector('.product-detail').textContent = p.detail;
           // fade in
@@ -1654,6 +1663,8 @@
 
   <!-- FOOTER -->
   <div id="site-footer"></div>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>lucide.createIcons();</script>
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="/footer.js"></script>
 
 <script>

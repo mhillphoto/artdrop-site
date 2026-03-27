@@ -85,9 +85,13 @@ nav {
   padding: 9px 20px;
   border-radius: 3px;
   text-decoration: none;
-  transition: opacity 0.15s;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 0 0 0 var(--lime-glow);
 }
-.nav-cta:hover { opacity: 0.85; }
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px var(--lime-glow);
+}
 
 /* ── Footer ─────────────────────────────────────────────────────── */
 footer {
