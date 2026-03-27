@@ -31,15 +31,6 @@
     body { background: var(--bg); color: var(--white); font-family: var(--body); line-height: 1.7; overflow-x: hidden; }
     body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1000; opacity: 0.6; }
 
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-    .nav-logo { font-family: var(--mono); font-weight: 500; font-size: 18px; letter-spacing: 0.04em; color: var(--lime); text-decoration: none; }
-    .nav-links { display: flex; gap: 28px; align-items: center; }
-    .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.15s; }
-    .nav-links a:visited { color: var(--muted); }
-    .nav-links a:hover, .nav-links a.active { color: var(--white); }
-    .nav-cta { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; color: var(--bg); background: var(--lime); padding: 9px 20px; border-radius: 3px; text-decoration: none; transition: opacity 0.15s; }
-    .nav-cta:hover { opacity: 0.85; }
-
     .docs-layout { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; padding-top: 65px; }
 
     /* SIDEBAR */
@@ -110,30 +101,14 @@
       .docs-layout { grid-template-columns: 1fr; }
       .sidebar { display: none; }
       .doc-content { padding: 48px 24px; }
-      nav { padding: 16px 24px; }
-      .nav-hamburger { display: block; order: -1; }
-      .nav-logo { order: 0; margin: 0 auto; }
-      .nav-cta { display: none; }
-      .nav-links { display: none; }
       footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
-    <nav>
-    <button class="nav-hamburger" aria-label="Menu" onclick="this.classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open');">
-      <span></span><span></span><span></span>
-    </button>
-    <a href="/index.html" class="nav-logo">ArtDrop™</a>
-    <div class="nav-links">
-      <a href="/about.html" onclick="document.querySelector('.nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');">About</a>
-      <a href="/faq.html" onclick="document.querySelector('.nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');">FAQ</a>
-      <a href="/docs.html" class="active" onclick="document.querySelector('.nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');">Docs</a>
-      <a href="https://buy.stripe.com/dRmfZgcG2cw724M6QC43S00" class="nav-cta-mobile" onclick="document.querySelector('.nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');">Get ArtDrop™ — $197</a>
-    </div>
-    <a href="https://buy.stripe.com/dRmfZgcG2cw724M6QC43S00" class="nav-cta">Get ArtDrop™ — $197</a>
-  </nav>
+  <header id="site-nav"></header>
+  <script src="/nav.js"></script>
 
   <div class="docs-layout">
 

@@ -18,19 +18,8 @@
   <link rel="stylesheet" href="/site.css">
 </head>
 <body>
-  <nav>
-    <button class="nav-hamburger" aria-label="Menu" onclick="this.classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open');">
-      <span></span><span></span><span></span>
-    </button>
-    <a href="/index.html" class="nav-logo">ArtDrop™</a>
-    <div class="nav-links">
-      <a href="/about.html" onclick="document.querySelector('.nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');">About</a>
-      <a href="/faq.html" onclick="document.querySelector('.nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');">FAQ</a>
-      <a href="/docs.html" onclick="document.querySelector('.nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');">Docs</a>
-      <a href="https://buy.stripe.com/dRmfZgcG2cw724M6QC43S00" class="nav-cta-mobile" onclick="document.querySelector('.nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');">Get ArtDrop™ — $197</a>
-    </div>
-    <a href="https://buy.stripe.com/dRmfZgcG2cw724M6QC43S00" class="nav-cta">Get ArtDrop™ — $197</a>
-  </nav>
+  <header id="site-nav"></header>
+  <script src="/nav.js"></script>
 
 <div class="legal-container">
   <div class="legal-label">Legal</div>
