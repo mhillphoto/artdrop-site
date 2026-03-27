@@ -99,8 +99,8 @@
     }
     .nav-cta:hover { opacity: 0.92; box-shadow: 0 4px 20px var(--lime-glow); }
     .nav-links { display: flex; gap: 28px; align-items: center; }
-    .nav-links a:link, .nav-links a:visited { font-family: var(--body); font-size: 13px; color: var(--muted); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-links a:link, .nav-links a:visited { font-family: var(--body); font-size: 13px; color: var(--lime); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s, text-shadow 0.15s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); text-shadow: 0 0 12px var(--lime-glow); }
 
     /* ── SR-ONLY (visually hidden, accessible to SEO & screen readers) */
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
@@ -342,8 +342,8 @@
     .section-title {
       font-family: var(--sans);
       font-size: clamp(32px, 4vw, 52px);
-      font-weight: 800;
-      font-variation-settings: 'opsz' 48;
+      font-weight: 900;
+      font-variation-settings: 'opsz' 96;
       letter-spacing: -0.02em;
       line-height: 1.1;
       margin-bottom: 64px;
@@ -741,7 +741,7 @@
     .privacy-section {
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 80px 0;
+      padding: 80px 48px;
       margin: 60px 0;
     }
     .privacy-section .section-inner {
@@ -795,7 +795,7 @@
 
     /* ── ARTIST SECTION ──────────────────────────── */
     .artist-section {
-      padding: 80px 0;
+      padding: 80px 48px;
     }
     .artist-section .section-inner {
       max-width: 680px;
@@ -875,13 +875,16 @@
     }
 
     .price-dollar {
-      font-size: 24px;
-      font-weight: 500;
+      font-family: var(--sans);
+      font-size: 28px;
+      font-weight: 400;
       color: var(--muted);
-      margin-top: 8px;
+      vertical-align: super;
+      line-height: 1;
     }
 
     .price-num {
+      font-family: var(--sans);
       font-size: 80px;
       font-weight: 900;
       font-variation-settings: 'opsz' 96;
@@ -949,7 +952,7 @@
     .pricing-note {
       font-family: var(--mono);
       font-size: 11px;
-      color: var(--faint);
+      color: var(--muted);
       text-align: center;
       letter-spacing: 0.05em;
     }
@@ -984,7 +987,9 @@
       text-decoration: none;
       letter-spacing: 0.05em;
     }
-    .footer-links a:hover { color: var(--white); }
+    .footer-links a:hover { color: var(--white); text-decoration: underline; }
+    .footer-copy a { transition: color 0.15s; }
+    .footer-copy a:hover { color: var(--white) !important; text-decoration: underline !important; }
 
     .footer-copy {
       font-family: var(--mono);
@@ -1603,7 +1608,7 @@
           <div class="pi-item"><div class="pi-dot"></div>Full Mac + Windows app</div>
           <div class="pi-item"><div class="pi-dot"></div>Unlimited artwork drops — no per-drop fees</div>
           <div class="pi-item"><div class="pi-dot"></div>Unlimited product formats — you configure the templates</div>
-          <div class="pi-item"><div class="pi-dot"></div>Setup guide + video walkthrough</div>
+          <div class="pi-item"><div class="pi-dot"></div>Setup guide included</div>
           <div class="pi-item"><div class="pi-dot"></div>Activate on up to 2 machines</div>
           <div class="pi-item"><div class="pi-dot"></div>Email support</div>
         </div>
