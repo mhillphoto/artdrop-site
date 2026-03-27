@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtDrop™ — Beta Testing Guide</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a; --bg2: #111111; --bg3: #181818;
+      --border: rgba(255,255,255,0.07); --border-bright: rgba(255,255,255,0.14);
+      --lime: #bfff5e; --lime-dim: rgba(191,255,94,0.12); --lime-glow: rgba(191,255,94,0.28);
+      --white: #f0f0ec; --muted: rgba(240,240,236,0.55); --faint: rgba(240,240,236,0.25);
+      --mono: 'DM Mono', monospace; --body: 'Instrument Sans', system-ui, sans-serif;
+      --red: #ff5f57; --green: #28c840; --yellow: #febc2e;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: var(--body); line-height: 1.6; padding: 0; }
+
+    .container { max-width: 780px; margin: 0 auto; padding: 80px 32px 60px; }
+
+    h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+    h1 span { color: var(--lime); }
+    .subtitle { color: var(--muted); font-size: 15px; margin-bottom: 48px; }
+
+    h2 { font-size: 20px; font-weight: 600; margin: 56px 0 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    h2 .step-num { color: var(--lime); font-family: var(--mono); font-size: 13px; font-weight: 400; letter-spacing: 0.1em; display: block; margin-bottom: 4px; }
+
+    h3 { font-size: 16px; font-weight: 600; margin: 32px 0 12px; }
+
+    p { color: var(--muted); margin-bottom: 16px; font-size: 15px; }
+    p strong { color: var(--white); font-weight: 500; }
+
+    .warn { background: rgba(254,188,46,0.08); border: 1px solid rgba(254,188,46,0.2); border-radius: 6px; padding: 14px 18px; margin: 16px 0; font-size: 14px; color: var(--yellow); }
+    .warn strong { color: var(--yellow); }
+
+    .info { background: var(--lime-dim); border: 1px solid rgba(191,255,94,0.15); border-radius: 6px; padding: 14px 18px; margin: 16px 0; font-size: 14px; color: var(--lime); }
+
+    /* ── Credential blocks ──────────────────────── */
+    .cred-grid { display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
+    .cred-row { display: flex; align-items: center; gap: 12px; background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; }
+    .cred-label { font-family: var(--mono); font-size: 12px; color: var(--muted); min-width: 180px; letter-spacing: 0.04em; flex-shrink: 0; }
+    .cred-value { font-family: var(--mono); font-size: 13px; color: var(--lime); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; user-select: all; }
+    .cred-copy { font-family: var(--mono); font-size: 11px; color: var(--bg); background: var(--lime); border: none; padding: 5px 12px; border-radius: 3px; cursor: pointer; flex-shrink: 0; letter-spacing: 0.05em; transition: opacity 0.15s; }
+    .cred-copy:hover { opacity: 0.85; }
+    .cred-copy.copied { background: var(--green); }
+
+    /* ── Checklist ──────────────────────────────── */
+    .checklist { list-style: none; margin: 16px 0; }
+    .checklist li { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 15px; }
+    .checklist li:last-child { border-bottom: none; }
+    .check-box { flex-shrink: 0; width: 22px; height: 22px; border: 2px solid var(--border-bright); border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; margin-top: 1px; }
+    .check-box:hover { border-color: var(--lime); }
+    .check-box.checked { background: var(--lime); border-color: var(--lime); }
+    .check-box.checked::after { content: '✓'; color: var(--bg); font-size: 14px; font-weight: 700; }
+    .check-text { flex: 1; }
+    .check-text .main { color: var(--white); }
+    .check-text .detail { color: var(--muted); font-size: 13px; margin-top: 4px; display: block; }
+    .check-text .success { color: var(--green); font-size: 13px; font-family: var(--mono); margin-top: 4px; display: block; }
+    li.done .main { text-decoration: line-through; color: var(--muted); }
+
+    /* ── Progress bar ──────────────────────────── */
+    .progress-bar { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; height: 36px; overflow: hidden; margin: 20px 0; position: relative; }
+    .progress-fill { height: 100%; background: var(--lime); transition: width 0.4s ease; border-radius: 4px; }
+    .progress-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 12px; color: var(--bg); font-weight: 500; letter-spacing: 0.05em; }
+
+    /* ── Footer ─────────────────────────────────── */
+    .test-footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border); font-family: var(--mono); font-size: 12px; color: var(--faint); }
+    .test-footer a { color: var(--lime); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .container { padding: 60px 20px 40px; }
+      .cred-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .cred-label { min-width: unset; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <h1><span>ArtDrop™</span> Beta Testing Guide</h1>
+  <p class="subtitle">Thank you for helping test ArtDrop. Follow each step below. Check off items as you complete them. If something breaks or behaves unexpectedly, screenshot it and send to Michael.</p>
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+    <div class="progress-text" id="progress-text">0 / 0 complete</div>
+  </div>
+
+  <div class="warn"><strong>Important:</strong> Do NOT use these credentials for anything other than testing ArtDrop. Do not share them. Michael will rotate all keys after the testing period.</div>
+
+  <!-- ════════════════════════════════════════════ -->
+  <h2><span class="step-num">STEP 1</span>Credentials</h2>
+  <p>Click any value to copy it to your clipboard. You'll paste these into ArtDrop's setup wizard.</p>
+
+  <h3>Shopify (Dev Store)</h3>
+  <div class="cred-grid">
+    <div class="cred-row">
+      <span class="cred-label">Store URL</span>
+      <span class="cred-value" data-copy>PASTE_SHOPIFY_DEV_STORE_HERE.myshopify.com</span>
+      <button class="cred-copy" onclick="copyVal(this)">COPY</button>
+    </div>
+    <div class="cred-row">
+      <span class="cred-label">Access Token</span>
+      <span class="cred-value" data-copy>PASTE_SHOPIFY_ACCESS_TOKEN_HERE</span>
+      <button class="cred-copy" onclick="copyVal(this)">COPY</button>
+    </div>
+  </div>
+
+  <h3>Anthropic (Claude AI)</h3>
+  <div class="cred-grid">
+    <div class="cred-row">
+      <span class="cred-label">API Key</span>
+      <span class="cred-value" data-copy>PASTE_ANTHROPIC_API_KEY_HERE</span>
+      <button class="cred-copy" onclick="copyVal(this)">COPY</button>
+    </div>
+  </div>
+
+  <h3>Gelato</h3>
+  <div class="cred-grid">
+    <div class="cred-row">
+      <span class="cred-label">API Key</span>
+      <span class="cred-value" data-copy>PASTE_GELATO_API_KEY_HERE</span>
+      <button class="cred-copy" onclick="copyVal(this)">COPY</button>
+    </div>
+    <div class="cred-row">
+      <span class="cred-label">Store ID</span>
+      <span class="cred-value" data-copy>PASTE_GELATO_STORE_ID_HERE</span>
+      <button class="cred-copy" onclick="copyVal(this)">COPY</button>
+    </div>
+  </div>
+
+  <h3>Printify</h3>
+  <div class="cred-grid">
+    <div class="cred-row">
+      <span class="cred-label">API Token</span>
+      <span class="cred-value" data-copy>PASTE_PRINTIFY_TOKEN_HERE</span>
+      <button class="cred-copy" onclick="copyVal(this)">COPY</button>
+    </div>
+    <div class="cred-row">
+      <span class="cred-label">Shop ID</span>
+      <span class="cred-value" data-copy>PASTE_PRINTIFY_SHOP_ID_HERE</span>
+      <button class="cred-copy" onclick="copyVal(this)">COPY</button>
+    </div>
+  </div>
+
+  <h3>Printful</h3>
+  <div class="cred-grid">
+    <div class="cred-row">
+      <span class="cred-label">API Token</span>
+      <span class="cred-value" data-copy>PASTE_PRINTFUL_TOKEN_HERE</span>
+      <button class="cred-copy" onclick="copyVal(this)">COPY</button>
+    </div>
+    <div class="cred-row">
+      <span class="cred-label">Store ID</span>
+      <span class="cred-value" data-copy>PASTE_PRINTFUL_STORE_ID_HERE</span>
+      <button class="cred-copy" onclick="copyVal(this)">COPY</button>
+    </div>
+  </div>
+
+  <h3>Backblaze B2</h3>
+  <div class="cred-grid">
+    <div class="cred-row">
+      <span class="cred-label">Key ID</span>
+      <span class="cred-value" data-copy>PASTE_B2_KEY_ID_HERE</span>
+      <button class="cred-copy" onclick="copyVal(this)">COPY</button>
+    </div>
+    <div class="cred-row">
+      <span class="cred-label">Application Key</span>
+      <span class="cred-value" data-copy>PASTE_B2_APP_KEY_HERE</span>
+      <button class="cred-copy" onclick="copyVal(this)">COPY</button>
+    </div>
+    <div class="cred-row">
+      <span class="cred-label">Bucket Name</span>
+      <span class="cred-value" data-copy>PASTE_B2_BUCKET_HERE</span>
+      <button class="cred-copy" onclick="copyVal(this)">COPY</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════ -->
+  <h2><span class="step-num">STEP 2</span>Install &amp; Launch</h2>
+  <p>Download ArtDrop for your platform and run it. The app opens in your browser at <strong>localhost:5100</strong>.</p>
+
+  <ul class="checklist" id="checklist-install">
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Download and run ArtDrop</span>
+        <span class="detail">Mac: double-click the .app file. Windows: run the .exe. If your OS warns about an unrecognized developer, click "Open Anyway" (Mac: System Settings → Privacy) or "Run Anyway" (Windows).</span>
+        <span class="success">✓ Browser opens to localhost:5100 with ArtDrop dashboard</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Verify the dashboard loads</span>
+        <span class="detail">You should see the ArtDrop UI with a setup wizard prompt if this is a first launch.</span>
+        <span class="success">✓ Dashboard visible, no errors in the browser console</span>
+      </div>
+    </li>
+  </ul>
+
+  <!-- ════════════════════════════════════════════ -->
+  <h2><span class="step-num">STEP 3</span>Setup Wizard</h2>
+  <p>Complete the guided setup. Paste credentials from Step 1 when prompted. The wizard validates each connection live before saving.</p>
+
+  <ul class="checklist" id="checklist-setup">
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Connect Shopify</span>
+        <span class="detail">Paste the dev store URL and access token. Wizard should confirm connection with a green checkmark.</span>
+        <span class="success">✓ "Connected" confirmation shown</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Connect Anthropic (Claude)</span>
+        <span class="detail">Paste the API key. This powers all AI analysis and copy generation.</span>
+        <span class="success">✓ API key validated successfully</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Connect at least one POD provider</span>
+        <span class="detail">Enable Gelato, Printify, or Printful (or all three). Paste the credentials from Step 1.</span>
+        <span class="success">✓ Provider(s) connected, templates visible</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Configure at least 2 product templates</span>
+        <span class="detail">Select product types you want created for each drop (e.g., Fine Art Poster + iPhone Tough Case). For Gelato, you'll need to create templates on gelato.com first, then enter the template IDs here.</span>
+        <span class="success">✓ Templates saved, shown in config summary</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Connect Backblaze B2</span>
+        <span class="detail">Paste the B2 credentials. This is where your high-res images are stored.</span>
+        <span class="success">✓ Bucket connection verified</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Complete setup wizard</span>
+        <span class="detail">Review all settings and save. The dashboard should now show your configured providers and templates.</span>
+        <span class="success">✓ Setup complete, dashboard shows all connections green</span>
+      </div>
+    </li>
+  </ul>
+
+  <!-- ════════════════════════════════════════════ -->
+  <h2><span class="step-num">STEP 4</span>Test Drop — Single File</h2>
+  <p>This is the core test. Drop one image and verify the full pipeline works end to end.</p>
+
+  <div class="info">Use any PNG, JPG, or TIF file. Art images work best — photographs, illustrations, paintings. Avoid screenshots or memes. The AI analyzes the visual content of the image to write product copy.</div>
+
+  <ul class="checklist" id="checklist-drop">
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Start the worker</span>
+        <span class="detail">Click "Start Worker" in the dashboard. The live log should show "Worker started. Watching for files..."</span>
+        <span class="success">✓ Worker running, log visible</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Drop one image into the incoming folder</span>
+        <span class="detail">Drag a PNG, JPG, or TIF file into the ArtDrop incoming folder (shown in the dashboard). Watch the live log — you should see each pipeline step appear in real time.</span>
+        <span class="success">✓ Log shows: image detected → AI analyzing → copy written → products created → published</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Verify AI-generated copy</span>
+        <span class="detail">Check the log output for the generated title and description. It should describe what's actually in the image, not be generic filler.</span>
+        <span class="success">✓ Title and description are relevant to the image content</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Verify products in Shopify</span>
+        <span class="detail">Log into the Shopify dev store admin. Go to Products. You should see new products created for each template you configured (e.g., one poster + one phone case).</span>
+        <span class="success">✓ Products exist in Shopify with correct titles, descriptions, images, and tags</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Verify SEO metadata</span>
+        <span class="detail">Click any product in Shopify admin → scroll to "Search engine listing." SEO title, meta description, and URL handle should all be filled in.</span>
+        <span class="success">✓ SEO title, meta description, and alt text are all populated</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Verify product images</span>
+        <span class="detail">Each product should have an image attached (the artwork on the product). Check that the image loaded correctly and isn't broken or blank.</span>
+        <span class="success">✓ Product images display correctly</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Check the audit log</span>
+        <span class="detail">An Excel file (mhp_product_log.xlsx) should be created/updated in the ArtDrop folder. Open it and verify entries for the products just created.</span>
+        <span class="success">✓ Audit log has entries with thumbnails, metadata, and timestamps</span>
+      </div>
+    </li>
+  </ul>
+
+  <!-- ════════════════════════════════════════════ -->
+  <h2><span class="step-num">STEP 5</span>Test Drop — Batch</h2>
+  <p>Drop 3 images at once to test batch processing. ArtDrop should process them sequentially.</p>
+
+  <ul class="checklist" id="checklist-batch">
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Drop 3 images into the incoming folder at once</span>
+        <span class="detail">Use three different images. The log should show them queued and processed one at a time.</span>
+        <span class="success">✓ All 3 images processed sequentially. Each gets unique copy. No duplicates, no crashes.</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Verify all products created in Shopify</span>
+        <span class="detail">Each image should produce products for all your configured templates. If you have 2 templates and dropped 3 images, you should see 6 new products.</span>
+        <span class="success">✓ Correct number of products, all with unique titles and descriptions</span>
+      </div>
+    </li>
+  </ul>
+
+  <!-- ════════════════════════════════════════════ -->
+  <h2><span class="step-num">STEP 6</span>Voice Trainer (Optional)</h2>
+  <p>Test the interactive Voice Trainer. This teaches ArtDrop how you describe your art.</p>
+
+  <ul class="checklist" id="checklist-voice">
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Open the Voice Trainer</span>
+        <span class="detail">Navigate to the Voice section in the dashboard. Drop an image to see AI-generated copy, then give feedback in plain English.</span>
+        <span class="success">✓ Voice Trainer UI loads, generates copy, accepts feedback</span>
+      </div>
+    </li>
+  </ul>
+
+  <!-- ════════════════════════════════════════════ -->
+  <h2><span class="step-num">STEP 7</span>Report Issues</h2>
+  <p>If anything breaks, doesn't work as described, or feels confusing — that's exactly what we need to know. No issue is too small.</p>
+
+  <div class="info">
+    <strong>How to report:</strong> Screenshot the issue + copy the relevant log output. Send both to Michael via text, email, or however he gave you this link. Include which step you were on.
+  </div>
+
+  <h3>What to include</h3>
+  <ul class="checklist" id="checklist-report">
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Your OS (Mac or Windows) and version</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Which step failed</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Screenshot of the error or unexpected behavior</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggle(this)"></div>
+      <div class="check-text">
+        <span class="main">Copy of the live log output (select all text in the log window)</span>
+      </div>
+    </li>
+  </ul>
+
+  <h3>Known Limitations (Not Bugs)</h3>
+  <p>These are expected in the beta and not things to report:</p>
+  <ul style="color: var(--muted); padding-left: 24px; margin: 12px 0; font-size: 14px; line-height: 2;">
+    <li>Products are created in <strong>draft</strong> status (not published) — this is intentional</li>
+    <li>Windows build is unsigned — you'll see a "Windows protected your PC" warning. Click "More info" → "Run anyway"</li>
+    <li>Social post generation creates text files but does not auto-post (that's a separate step)</li>
+    <li>Gelato templates must be created on gelato.com before use — ArtDrop references them by ID</li>
+    <li>First drop may take longer (5-8 min) as AI warms up. Subsequent drops are faster (3-5 min)</li>
+  </ul>
+
+  <div class="test-footer">
+    <p>ArtDrop™ Beta Testing Guide · Confidential · <a href="https://getartdrop.com">getartdrop.com</a></p>
+    <p style="margin-top: 8px;">Questions? Text or email Michael directly.</p>
+  </div>
+
+</div>
+
+<script>
+// Click-to-copy
+function copyVal(btn) {
+  const val = btn.parentElement.querySelector('.cred-value').textContent.trim();
+  navigator.clipboard.writeText(val).then(() => {
+    btn.textContent = 'COPIED';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'COPY'; btn.classList.remove('copied'); }, 1500);
+  });
+}
+
+// Checkbox toggle
+function toggle(el) {
+  el.classList.toggle('checked');
+  el.closest('li').classList.toggle('done');
+  updateProgress();
+  saveState();
+}
+
+// Progress bar
+function updateProgress() {
+  const all = document.querySelectorAll('.check-box');
+  const done = document.querySelectorAll('.check-box.checked');
+  const pct = all.length ? Math.round((done.length / all.length) * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = done.length + ' / ' + all.length + ' complete';
+}
+
+// Persist state to localStorage
+function saveState() {
+  const state = [];
+  document.querySelectorAll('.check-box').forEach((el, i) => {
+    state.push(el.classList.contains('checked'));
+  });
+  localStorage.setItem('artdrop-test-state', JSON.stringify(state));
+}
+
+function loadState() {
+  try {
+    const state = JSON.parse(localStorage.getItem('artdrop-test-state') || '[]');
+    document.querySelectorAll('.check-box').forEach((el, i) => {
+      if (state[i]) { el.classList.add('checked'); el.closest('li').classList.add('done'); }
+    });
+  } catch(e) {}
+  updateProgress();
+}
+
+loadState();
+</script>
+</body>
+</html>
