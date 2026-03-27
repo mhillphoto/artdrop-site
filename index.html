@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtDrop™ — Drop a file. Everything else is automatic.</title>
+  <meta name="description" content="ArtDrop automates print-on-demand publishing. Drop an image — AI writes copy, creates products, publishes to your store. $197 one-time. Mac + Windows.">
+  <meta property="og:title" content="ArtDrop™ — Automated Print-on-Demand Publishing">
+  <meta property="og:description" content="Drop a file. AI writes the copy, builds the products, publishes to your store — in minutes. $197 one-time.">
+  <meta property="og:url" content="https://getartdrop.com">
+  <meta property="og:image" content="https://getartdrop.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ArtDrop™">
+  <!-- OG tags handle social previews for all platforms -->
+  <link rel="canonical" href="https://getartdrop.com/">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1a2e'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='22' font-weight='bold' fill='%2300c853' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700;1,6..96,900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #181818;
+      --border: rgba(255,255,255,0.07);
+      --border-bright: rgba(255,255,255,0.14);
+      --lime: #bfff5e;
+      --lime-dim: rgba(191,255,94,0.12);
+      --lime-glow: rgba(191,255,94,0.28);
+      --white: #f0f0ec;
+      --muted: rgba(240,240,236,0.60);
+      --faint: rgba(240,240,236,0.40);
+      --mono: 'DM Mono', monospace;
+      --sans: 'Bodoni Moda', Georgia, serif;
+      --body: 'Instrument Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ─────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.6;
+    }
+
+    /* ── NAV ────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 18px;
+      color: var(--lime);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--bg);
+      background: var(--lime);
+      padding: 9px 20px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a:link, .nav-links a:visited { font-family: var(--body); font-size: 13px; color: var(--muted); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+
+    /* ── SR-ONLY (visually hidden, accessible to SEO & screen readers) */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    /* ── HERO ───────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 140px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+    }
+    .hero-wrap .hero {
+      min-height: unset;
+      padding: 140px 48px 80px;
+    }
+    .hero-wrap .terminal-section {
+      padding: 140px 48px 80px 0;
+      display: flex;
+      align-items: center;
+    }
+    .hero-wrap .terminal { max-width: 100%; width: 100%; opacity: 0; animation: fadeUp 0.8s 0.7s ease forwards; }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, var(--lime-glow) 0%, transparent 70%);
+      pointer-events: none;
+      filter: blur(40px);
+    }
+
+    .hero-content { position: relative; max-width: 600px; }
+
+    .hero-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.1s ease forwards;
+    }
+
+    .hero-headline {
+      font-size: clamp(48px, 7vw, 100px);
+      font-weight: 900;
+      font-variation-settings: 'opsz' 96;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s ease forwards;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      font-weight: 700;
+      font-variation-settings: 'opsz' 96;
+      color: var(--lime);
+    }
+
+    .hero-sub {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.65;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.35s ease forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s ease forwards;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--bg);
+      background: var(--lime);
+      padding: 16px 32px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 0 0 0 var(--lime-glow);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px var(--lime-glow);
+    }
+
+    .hero-price {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .hero-price strong { color: var(--white); }
+
+    /* ── TERMINAL DEMO ─────────────────────────────── */
+    .terminal-section {
+      padding: 0 48px 100px;
+    }
+    /* standalone terminal-section outside hero-wrap keeps original padding */
+
+    .terminal {
+      max-width: 700px;
+      background: var(--bg2);
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.7s ease forwards;
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #febc2e; }
+    .dot-g { background: #28c840; }
+
+    .terminal-body {
+      padding: 24px;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 2;
+      min-height: 340px;
+      max-height: 340px;
+      overflow: hidden;
+    }
+
+    .term-line {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .term-line.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .term-line .t-lime {
+      display: inline-block;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s;
+    }
+    .term-line.visible .t-lime {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .t-dim { color: var(--muted); }
+    .t-lime { color: var(--lime); }
+    .t-bold { font-weight: 600; }
+    .t-white { color: var(--white); }
+    .term-separator { border-top: 1px solid rgba(255,255,255,0.06); margin: 10px 0 8px; }
+    .term-feature { transition: opacity 0.5s ease; }
+    .t-prompt::before { content: '$ '; color: var(--muted); }
+    #term-product-cycle { transition: opacity 0.2s ease; }
+    .term-done { margin-top: 8px; font-weight: 600; font-size: 13px; }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background: var(--lime);
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+
+    /* ── WRAPPER ──────────────────────────────────── */
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* ── HOW IT WORKS ──────────────────────────────── */
+    .section {
+      padding: 100px 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--sans);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      font-variation-settings: 'opsz' 48;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 64px;
+      max-width: 600px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .step {
+      background: var(--bg);
+      padding: 40px 36px;
+      position: relative;
+    }
+
+    .step-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--lime);
+      margin-bottom: 20px;
+    }
+
+    .step-title {
+      font-family: var(--body);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ── WHAT GETS CREATED ─────────────────────────── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .product-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 28px 24px;
+      transition: border-color 0.2s, opacity 0.4s ease, transform 0.4s ease;
+    }
+    .product-card:hover { border-color: var(--border-bright); }
+    .product-card.fade-out { opacity: 0; transform: translateY(6px); }
+    .product-card.fade-in  { opacity: 1; transform: translateY(0); }
+
+    .product-icon {
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+
+    .product-name {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .product-detail {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── NUMBERS ───────────────────────────────────── */
+    .numbers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 64px;
+    }
+
+    .number-cell {
+      background: var(--bg);
+      padding: 40px 32px;
+    }
+
+    .number-val {
+      font-size: 52px;
+      font-weight: 900;
+      font-variation-settings: 'opsz' 48;
+      font-style: italic;
+      letter-spacing: -0.03em;
+      color: var(--lime);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .number-label {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── WHAT IT DOES ──────────────────────────────── */
+    .features-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .feature {
+      background: var(--bg);
+      padding: 32px 36px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .feature-check {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      background: var(--lime-dim);
+      border: 1px solid var(--lime);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .feature-check svg { width: 11px; height: 11px; }
+
+    .feature-text { }
+    .feature-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .feature-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── STACK ─────────────────────────────────────── */
+    .claude-callout {
+      background: var(--bg2);
+      border: 1px solid var(--lime);
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      max-width: 620px;
+    }
+    .claude-callout-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 10px;
+    }
+    .claude-callout p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+    .claude-callout strong {
+      color: var(--white);
+    }
+
+    .trust-marks-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .roadmap-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 12px;
+      margin-top: 32px;
+    }
+    .roadmap-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .roadmap-tag {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      padding: 4px 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .trust-logos {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 32px;
+    }
+
+    .trust-logo {
+      height: 28px;
+      width: auto;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+      filter: brightness(0) saturate(100%) invert(87%) sepia(47%) saturate(459%) hue-rotate(42deg) brightness(104%) contrast(104%);
+    }
+    .trust-logo:hover { opacity: 1; }
+    .trust-logo--printful { height: 34px; }
+
+    /* Social publishing section */
+    .social-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+      .social-feature-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .social-feature-grid { grid-template-columns: 1fr; }
+    }
+    .social-feature-card {
+      background: var(--surface-card, rgba(255,255,255,0.03));
+      border: 1px solid var(--border-subtle, rgba(255,255,255,0.08));
+      border-radius: 12px;
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .social-feature-logo {
+      height: 32px;
+      width: auto;
+      margin: 0 auto 12px;
+      display: block;
+      filter: brightness(0) saturate(100%) invert(87%) sepia(47%) saturate(459%) hue-rotate(42deg) brightness(104%) contrast(104%);
+      opacity: 0.85;
+    }
+    .social-feature-name {
+      font-family: var(--sans, 'DM Sans', sans-serif);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white, #fff);
+      margin-bottom: 8px;
+    }
+    .social-feature-desc {
+      font-size: 13px;
+      color: var(--muted, #999);
+      line-height: 1.5;
+    }
+    .social-feature-logo-text {
+      font-size: 28px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+    }
+
+    .stack-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .pill {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 14px 24px;
+      border: 1px solid var(--border-bright);
+      border-radius: 6px;
+      color: var(--white);
+      letter-spacing: 0.06em;
+      background: var(--bg2);
+      transition: border-color 0.2s;
+    }
+    .pill:hover {
+      border-color: var(--lime);
+    }
+
+    /* ── SECTION PROSE ────────────────────────────── */
+    .section-prose {
+      color: var(--muted);
+      max-width: 580px;
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+    .section-prose--wide { max-width: 620px; font-size: 17px; line-height: 1.8; }
+    .section-prose--stack { max-width: 520px; }
+
+    .section-sub {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ── SCREENSHOT GRID ─────────────────────────── */
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .screenshot-card {
+      background: var(--bg2);
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .screenshot-placeholder {
+      background: var(--bg3);
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .screenshot-placeholder span {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--faint);
+      text-align: center;
+      padding: 20px;
+    }
+    .screenshot-caption {
+      padding: 20px;
+    }
+    .screenshot-caption-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .screenshot-caption-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── TERMINAL BAR TITLE ──────────────────────── */
+    .terminal-bar-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      margin-left: 8px;
+    }
+
+    /* ── SOCIAL SECTION FOOTER NOTE ──────────────── */
+    .social-footer-note {
+      max-width: 600px;
+      margin: 30px auto 0;
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .social-intro {
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    /* ── PRICING NOTE ────────────────────────────── */
+    .pricing-note--spaced { margin-bottom: 12px; }
+
+    /* ── PRIVACY SECTION ──────────────────────────── */
+    .privacy-section {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 0;
+      margin: 60px 0;
+    }
+    .privacy-section .section-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .privacy-section .section-inner { grid-template-columns: 1fr; gap: 32px; }
+    }
+    .privacy-section h2 {
+      font-family: var(--sans);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      font-variation-settings: 'opsz' 48;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--white);
+      margin: 0 0 16px;
+    }
+    .privacy-section .privacy-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .privacy-section .privacy-bullets li {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .privacy-section .privacy-bullets li:last-child { border-bottom: none; }
+    .privacy-section .privacy-bullets .bullet-check {
+      color: var(--lime);
+      margin-right: 10px;
+      font-weight: 600;
+    }
+    .privacy-section .privacy-pledge {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-top: 20px;
+    }
+    .privacy-section .privacy-link {
+      color: var(--lime);
+      text-decoration: none;
+    }
+    .privacy-section .privacy-link:hover { text-decoration: underline; }
+
+    /* ── ARTIST SECTION ──────────────────────────── */
+    .artist-section {
+      padding: 80px 0;
+    }
+    .artist-section .section-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .artist-section h2 {
+      font-family: var(--sans);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      font-variation-settings: 'opsz' 48;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--white);
+      margin: 0 0 24px;
+    }
+    .artist-section p {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 0 0 16px;
+    }
+    .artist-section .artist-link {
+      color: var(--lime);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .artist-section .artist-link:hover { text-decoration: underline; }
+
+    /* ── SETUP CALLOUT ────────────────────────────── */
+    .setup-callout {
+      text-align: left;
+      max-width: 620px;
+    }
+    .setup-callout h3 {
+      font-family: var(--sans);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 800;
+      font-variation-settings: 'opsz' 48;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .setup-callout p {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ── PRICING ───────────────────────────────────── */
+    .pricing-card {
+      max-width: 520px;
+      background: var(--bg2);
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .pricing-top {
+      padding: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pricing-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--lime);
+      margin-bottom: 20px;
+    }
+
+    .pricing-amount {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .price-dollar {
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .price-num {
+      font-size: 80px;
+      font-weight: 900;
+      font-variation-settings: 'opsz' 96;
+      font-style: italic;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .price-once {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .pricing-includes {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .pi-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-family: var(--body);
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .pi-dot {
+      flex-shrink: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--lime);
+      margin-top: 7px;
+    }
+
+    .pricing-bottom {
+      padding: 40px 48px;
+    }
+
+    .btn-buy {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--bg);
+      background: var(--lime);
+      padding: 18px 32px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      margin-bottom: 16px;
+    }
+    .btn-buy:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px var(--lime-glow);
+    }
+
+    .pricing-note {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--faint);
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── FOOTER ────────────────────────────────────── */
+    footer {
+      padding: 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--lime);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px 32px;
+    }
+
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--faint);
+    }
+
+    /* ── ANIMATIONS ────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    /* ── SCROLL REVEAL ─────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Fallback: if JS fails, show content */
+    @media (prefers-reduced-motion: no-preference) {}
+    body.js-ready .reveal { opacity: 0; }
+    .reveal { opacity: 1; transform: translateY(0); }
+    .reveal.animated { opacity: 0; transform: translateY(24px); }
+    .reveal.animated.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .hero { padding: 120px 24px 60px; }
+      .hero-wrap { grid-template-columns: 1fr; min-height: unset; }
+      .hero-wrap .hero { padding: 120px 24px 40px; min-height: unset; }
+      .hero-wrap .terminal-section { padding: 0 24px 60px; }
+      .terminal-section { padding: 0 24px 80px; }
+      .section { padding: 80px 24px; }
+      footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+      .features-list { grid-template-columns: 1fr; }
+      .hero-headline { font-size: 42px; }
+      .pricing-top, .pricing-bottom { padding: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header>
+  <nav>
+    <a href="/index.html" class="nav-logo">ArtDrop™</a>
+    <div class="nav-links">
+      <a href="/about.html">About</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/docs.html">Docs</a>
+    </div>
+    <a href="#pricing" class="nav-cta">Get ArtDrop™ — $197</a>
+  </nav>
+  </header>
+
+  <main>
+  <!-- HERO + TERMINAL -->
+  <div class="hero-wrap">
+  <section class="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <h1 class="sr-only">ArtDrop — Automated Print-on-Demand Publishing Software</h1>
+      <p class="hero-label">// Automated Print-on-Demand Publishing</p>
+      <h2 class="hero-headline">
+        Drop a file.<br>
+        <em>Done.</em>
+      </h2>
+      <p class="hero-sub">
+        Drop an image. That's it. ArtDrop analyzes your artwork — colors, composition, mood, subject — then writes the copy, creates every product format you sell, and publishes everything to your store. Collection, SEO, alt text, all of it. Configure once. Every drop after that is automatic.
+      </p>
+      <div class="hero-actions">
+        <a href="#pricing" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
+          Get ArtDrop™
+        </a>
+        <span class="hero-price"><strong>$197</strong> &nbsp;one-time · Mac + Windows</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE STATUS UI (beside hero on desktop) -->
+  <div class="terminal-section">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="terminal-bar-title">ArtDrop — Live Log</span>
+      </div>
+      <div class="terminal-body" id="term-body"></div>
+      <script>
+      (function(){
+        const body = document.getElementById('term-body');
+        if(!body) return;
+
+        // Phase 1: The drop sequence
+        const dropSeq = [
+          {text:'<span class="t-dim">You dropped sunset-portrait.tif</span>', delay:0},
+          {text:'<span class="t-lime">✓</span> Image detected', delay:400},
+          {text:'<span class="t-lime">✓</span> AI analyzing artwork — colors, mood, composition', delay:1000},
+          {text:'<span class="t-lime">✓</span> Title, description, SEO tags &amp; alt text written', delay:1800},
+          {text:'<span class="t-lime">✓</span> Your products — created', delay:2600},
+          {text:'<span class="t-lime">✓</span> Collection built &amp; published to your store', delay:3400},
+          {text:'<span class="t-lime t-bold">Done.</span> All products live. Minutes, not hours.', delay:4400, cls:'term-done'},
+        ];
+
+        // Phase 2: Feature highlights that cycle after completion
+        const features = [
+          '<span class="t-lime">⚡</span> AI reads your actual artwork, not filenames',
+          '<span class="t-lime">⚡</span> Product copy written in your voice',
+          '<span class="t-lime">⚡</span> Your data stays on your machine',
+          '<span class="t-lime">⚡</span> One-time setup. Every drop is automatic',
+          '<span class="t-lime">⚡</span> Works with three POD providers at once',
+          '<span class="t-lime">⚡</span> Full SEO on every product. No manual entry',
+          '<span class="t-lime">⚡</span> Collections built and published automatically',
+          '<span class="t-lime">⚡</span> Voice trained from Reddit, website, or docs',
+          '<span class="t-lime">⚡</span> Drop a batch. Wake up to a full catalog',
+          '<span class="t-lime">⚡</span> $197 one-time. No subscription. Ever',
+        ];
+
+        let prodInterval;
+
+        // Phase 1: run the drop sequence
+        window._termStart = function(){
+          body.innerHTML = '';
+          dropSeq.forEach(function(item){
+            setTimeout(function(){
+              const div = document.createElement('div');
+              div.className = 'term-line';
+              if(item.cls) div.className += ' ' + item.cls;
+              div.innerHTML = item.text;
+              body.appendChild(div);
+              // force reflow then show
+              void div.offsetWidth;
+              div.classList.add('visible');
+              body.scrollTop = body.scrollHeight;
+            }, item.delay);
+          });
+
+          // (product cycling removed — clean single line)
+
+          // Phase 2: after drop sequence, start cycling features
+          setTimeout(function(){
+            clearInterval(prodInterval);
+            let featIdx = 0;
+
+            // Add a separator
+            const sep = document.createElement('div');
+            sep.className = 'term-separator';
+            body.appendChild(sep);
+
+            // Create 3 feature slots
+            const slots = [];
+            for(let i=0; i<3; i++){
+              const div = document.createElement('div');
+              div.className = 'term-line visible term-feature';
+              div.innerHTML = features[i];
+              body.appendChild(div);
+              slots.push(div);
+              featIdx = i+1;
+            }
+
+            // Cycle features one at a time
+            setInterval(function(){
+              const slot = Math.floor(Math.random()*3);
+              const div = slots[slot];
+              div.style.opacity = '0';
+              setTimeout(function(){
+                div.innerHTML = features[featIdx % features.length];
+                div.style.opacity = '1';
+                featIdx++;
+              }, 300);
+            }, 3000);
+          }, 5500);
+        };
+      })();
+      </script>
+    </div>
+  </div>
+  </div><!-- /hero-wrap -->
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <div class="section-label">// How it works</div>
+    <h2 class="section-title reveal">Drop a file. Everything else is automatic.</h2>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">01 / DETECT</div>
+        <div class="step-title">Drop your files</div>
+        <div class="step-desc">ArtDrop watches your incoming folder. Drop one file or a hundred — PNG, JPG, or TIF. ArtDrop processes them all, sequentially and reliably, without supervision. That's the entire workflow on your end.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02 / ANALYZE</div>
+        <div class="step-title">AI reads the image</div>
+        <div class="step-desc">AI studies your artwork — colors, composition, mood, subject matter. It looks at what's actually in the piece, not just guessing from a filename.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03 / WRITE</div>
+        <div class="step-title">Copy generated</div>
+        <div class="step-desc">Title, description, SEO tags — all written to match your brand voice. Use the built-in Voice Trainer to teach ArtDrop how you talk about your work — no prompt engineering required. No generic AI slop. No duplicates.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04 / BUILD</div>
+        <div class="step-title">Every product created</div>
+        <div class="step-desc">Your print provider creates every product format you've set up — simultaneously. Whatever templates you've configured: posters, canvases, phone cases — all from your setup. Nothing to touch.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">05 / PUBLISH</div>
+        <div class="step-title">Your store goes live</div>
+        <div class="step-desc">All products published with SEO title, description, alt text, collection, and tags. Full audit log so you know exactly what was created.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">06 / COMPLETE</div>
+        <div class="step-title">Fully automated</div>
+        <div class="step-desc">Each file takes a few minutes. Drop your whole collection before bed, wake up to a full catalog — every product live with professional copy, SEO, and a collection for each piece. Nothing left to do.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SET IT UP ONCE -->
+  <section class="section">
+    <div class="section-label">// One-time setup</div>
+    <div class="setup-callout reveal">
+      <h3>Set it up once</h3>
+      <p>Configure your products, connect your store, and train your voice — one time. Every drop after that is fully automatic. Drop one file or an entire portfolio. No touching templates, no re-entering settings, no babysitting.</p>
+    </div>
+  </section>
+
+  <!-- WHAT GETS CREATED -->
+  <section class="section">
+    <div class="section-label">// What gets created</div>
+    <h2 class="section-title reveal">One drop.<br>Every format you sell.</h2>
+    <div class="products-grid reveal" id="products-grid">
+      <div class="product-card"><div class="product-icon">🖼️</div><div class="product-name">Fine Art Poster</div><div class="product-detail">Museum-quality print paper</div></div>
+      <div class="product-card"><div class="product-icon">✨</div><div class="product-name">Acrylic Print</div><div class="product-detail">Face-mounted, 4mm thickness</div></div>
+      <div class="product-card"><div class="product-icon">🎨</div><div class="product-name">Framed Canvas</div><div class="product-detail">Stretched canvas + frame</div></div>
+      <div class="product-card"><div class="product-icon">🪵</div><div class="product-name">Premium Wood Frame</div><div class="product-detail">Natural wood border</div></div>
+      <div class="product-card"><div class="product-icon">📱</div><div class="product-name">iPhone Tough Case</div><div class="product-detail">All current models</div></div>
+      <div class="product-card"><div class="product-icon">📲</div><div class="product-name">Samsung Tough Case</div><div class="product-detail">All current models</div></div>
+    </div>
+    <script>
+    (function(){
+      const allProducts = [
+        {icon:'🖼️', name:'Fine Art Poster', detail:'Museum-quality print paper'},
+        {icon:'✨', name:'Acrylic Print', detail:'Face-mounted, 4mm thickness'},
+        {icon:'🎨', name:'Framed Canvas', detail:'Stretched canvas + frame'},
+        {icon:'🪵', name:'Premium Wood Frame', detail:'Natural wood border'},
+        {icon:'📱', name:'iPhone Tough Case', detail:'All current models'},
+        {icon:'📲', name:'Samsung Tough Case', detail:'All current models'},
+        {icon:'☕', name:'Glossy Mug', detail:'11oz + 15oz ceramic'},
+        {icon:'👜', name:'Canvas Tote Bag', detail:'5 strap color options'},
+        {icon:'🛋️', name:'Velveteen Blanket', detail:'Plush throw, multiple sizes'},
+        {icon:'🧢', name:'Dad Hat', detail:'Embroidered, adjustable'},
+        {icon:'👕', name:'Unisex T-Shirt', detail:'Soft cotton, S–3XL'},
+        {icon:'🧥', name:'Pullover Hoodie', detail:'Fleece-lined, front print'},
+        {icon:'🖥️', name:'Mouse Pad', detail:'Desk-size, non-slip rubber'},
+        {icon:'📓', name:'Hardcover Journal', detail:'Lined pages, lay-flat binding'},
+        {icon:'🎒', name:'Backpack', detail:'All-over print, padded straps'},
+        {icon:'🧩', name:'Jigsaw Puzzle', detail:'500 or 1000 pieces'},
+        {icon:'🏷️', name:'Sticker Sheet', detail:'Kiss-cut, matte or glossy'},
+        {icon:'🛍️', name:'Drawstring Bag', detail:'Polyester, cinch closure'},
+        {icon:'🧣', name:'Scarf', detail:'Lightweight poly, all-over print'},
+        {icon:'🖼️', name:'Metal Print', detail:'HD aluminum, float mount'},
+        {icon:'🪟', name:'Tapestry', detail:'Lightweight fabric, wall-mount'},
+        {icon:'🎭', name:'Face Mask', detail:'Adjustable ear loops'},
+        {icon:'🍽️', name:'Cutting Board', detail:'Tempered glass, 8×11'},
+        {icon:'🕯️', name:'Ceramic Ornament', detail:'Glossy finish, ribbon loop'},
+        {icon:'📐', name:'Laptop Sleeve', detail:'Neoprene, 13" + 15"'},
+        {icon:'🧴', name:'Water Bottle', detail:'Stainless steel, 20oz'},
+        {icon:'🪑', name:'Throw Pillow', detail:'Square, multiple sizes'},
+        {icon:'🏠', name:'Shower Curtain', detail:'Polyester, standard size'},
+        {icon:'⌚', name:'Watch Band', detail:'Apple Watch, all sizes'},
+        {icon:'🎵', name:'Guitar Pick Set', detail:'6-pack, custom art'},
+        {icon:'🖼️', name:'Gallery Wrap', detail:'1.5" deep edge canvas'},
+        {icon:'📦', name:'Cube Ottoman', detail:'13" fabric, all-over print'},
+        {icon:'🧦', name:'Crew Socks', detail:'Sublimated, S/M/L'},
+        {icon:'☂️', name:'Compact Umbrella', detail:'Auto-open, custom canopy'},
+        {icon:'🎴', name:'Playing Cards', detail:'Poker size, custom back'},
+        {icon:'🧲', name:'Fridge Magnet', detail:'3" round or square'},
+      ];
+      const grid = document.getElementById('products-grid');
+      if(!grid) return;
+      const cards = grid.querySelectorAll('.product-card');
+      const visible = new Set([0,1,2,3,4,5]);
+      let pool = [];
+      for(let i=6;i<allProducts.length;i++) pool.push(i);
+      // shuffle pool
+      for(let i=pool.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]; }
+      let poolIdx = 0;
+      function swapOne(){
+        // pick a random visible card slot (0-5)
+        const slot = Math.floor(Math.random()*6);
+        const card = cards[slot];
+        // fade out
+        card.classList.add('fade-out');
+        card.classList.remove('fade-in');
+        setTimeout(function(){
+          // get next product from pool
+          const nextIdx = pool[poolIdx];
+          const p = allProducts[nextIdx];
+          // put the old visible index back in pool
+          const arr = Array.from(visible);
+          const oldIdx = arr[slot] !== undefined ? arr[slot] : slot;
+          // track what's visible
+          const visArr = Array.from(visible);
+          pool.push(visArr[slot] !== undefined ? visArr[slot] : slot);
+          visible.delete(visArr[slot]);
+          visible.add(nextIdx);
+          poolIdx = (poolIdx+1) % pool.length;
+          // update content
+          card.querySelector('.product-icon').textContent = p.icon;
+          card.querySelector('.product-name').textContent = p.name;
+          card.querySelector('.product-detail').textContent = p.detail;
+          // fade in
+          card.classList.remove('fade-out');
+          card.classList.add('fade-in');
+        }, 450);
+      }
+      // swap one card every 2.5 seconds, staggered start
+      setTimeout(function(){ setInterval(swapOne, 2500); }, 1500);
+    })();
+    </script>
+
+    <div class="numbers reveal">
+      <div class="number-cell">
+        <div class="number-val">1 file</div>
+        <div class="number-label">every product in your catalog — automatically</div>
+      </div>
+      <div class="number-cell">
+        <div class="number-val">fast</div>
+        <div class="number-label">minutes from image to live store</div>
+      </div>
+      <div class="number-cell">
+        <div class="number-val">0</div>
+        <div class="number-label">data entry on any POD site</div>
+      </div>
+      <div class="number-cell">
+        <div class="number-val">batch</div>
+        <div class="number-label">drop your whole collection at once</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section">
+    <div class="section-label">// What's automated</div>
+    <h2 class="section-title reveal">All of this happens<br>without you.</h2>
+    <div class="features-list reveal">
+      <div class="feature">
+        <div class="feature-check">
+          <svg viewBox="0 0 12 12" fill="none" stroke="#c6f135" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"></polyline></svg>
+        </div>
+        <div class="feature-text">
+          <div class="feature-title">AI-written product copy</div>
+          <div class="feature-desc">Title, description, and SEO — written to match the specific visual language of each piece. Not boilerplate.</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-check">
+          <svg viewBox="0 0 12 12" fill="none" stroke="#c6f135" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"></polyline></svg>
+        </div>
+        <div class="feature-text">
+          <div class="feature-title">Tech specs from EXIF</div>
+          <div class="feature-desc">Camera, lens, focal length, shutter, aperture, ISO, resolution, DPI — pulled from the file itself. No manual input.</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-check">
+          <svg viewBox="0 0 12 12" fill="none" stroke="#c6f135" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"></polyline></svg>
+        </div>
+        <div class="feature-text">
+          <div class="feature-title">Full store SEO</div>
+          <div class="feature-desc">SEO title, meta description, alt text, product tags, collection assignment — all set automatically for every product.</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-check">
+          <svg viewBox="0 0 12 12" fill="none" stroke="#c6f135" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"></polyline></svg>
+        </div>
+        <div class="feature-text">
+          <div class="feature-title">Collection creation</div>
+          <div class="feature-desc">A new Shopify collection per artwork, with image, SEO, and every product added. Automatically.</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-check">
+          <svg viewBox="0 0 12 12" fill="none" stroke="#c6f135" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"></polyline></svg>
+        </div>
+        <div class="feature-text">
+          <div class="feature-title">Comprehensive tagging</div>
+          <div class="feature-desc">Style, color, mood, category, format — every product tagged automatically for filtering and search in your store.</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-check">
+          <svg viewBox="0 0 12 12" fill="none" stroke="#c6f135" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"></polyline></svg>
+        </div>
+        <div class="feature-text">
+          <div class="feature-title">Excel audit log</div>
+          <div class="feature-desc">Every product logged with thumbnail, all metadata, and timestamps. Full traceable record of everything created.</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-check">
+          <svg viewBox="0 0 12 12" fill="none" stroke="#c6f135" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"></polyline></svg>
+        </div>
+        <div class="feature-text">
+          <div class="feature-title">Guided setup wizard</div>
+          <div class="feature-desc">Step-by-step setup walks you through connecting your accounts, configuring templates, and customizing your brand voice. Validates everything live before saving.</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-check">
+          <svg viewBox="0 0 12 12" fill="none" stroke="#c6f135" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"></polyline></svg>
+        </div>
+        <div class="feature-text">
+          <div class="feature-title">Interactive Voice Trainer</div>
+          <div class="feature-desc">Don't write prompt rules — just react. Drop an image, see the AI copy, say what you'd change in plain English. ArtDrop learns your style and saves the rules for you.</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-check">
+          <svg viewBox="0 0 12 12" fill="none" stroke="#c6f135" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"></polyline></svg>
+        </div>
+        <div class="feature-text">
+          <div class="feature-title">Drag-and-drop browser UI</div>
+          <div class="feature-desc">Everything runs from a clean browser interface. Start/stop the worker, watch live logs, drop files — all point-and-click.</div>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-check">
+          <svg viewBox="0 0 12 12" fill="none" stroke="#c6f135" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 6 5 9 10 3"></polyline></svg>
+        </div>
+        <div class="feature-text">
+          <div class="feature-title">Batch processing</div>
+          <div class="feature-desc">Drop one file or a hundred. ArtDrop processes them all sequentially and reliably. Load up your portfolio before bed, wake up to a full catalog.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEE IT IN ACTION -->
+  <section class="section">
+    <div class="section-label">// See it in action</div>
+    <h2 class="section-title reveal">One drop. One complete <em>collection.</em></h2>
+    <p class="section-prose reveal">
+      Every image you drop becomes a full collection in your store — the poster, the canvas, the phone case, all grouped together under one artwork with its own page, its own SEO, its own story. This is how professional Shopify stores are built. ArtDrop does it automatically.
+    </p>
+    <div class="screenshot-grid reveal">
+      <!-- Placeholder 1: Collection page -->
+      <div class="screenshot-card">
+        <div class="screenshot-placeholder">
+          <span>[ Screenshot: A collection page from your store —<br>hero image at top, all product formats below ]</span>
+        </div>
+        <div class="screenshot-caption">
+          <div class="screenshot-caption-title">Your store collection</div>
+          <div class="screenshot-caption-desc">Each artwork gets its own collection page with a hero image, SEO metadata, and every product format grouped together. Customers browse by artwork, not by product type.</div>
+        </div>
+      </div>
+      <!-- Placeholder 2: ArtDrop dashboard -->
+      <div class="screenshot-card">
+        <div class="screenshot-placeholder">
+          <span>[ Screenshot: ArtDrop dashboard mid-drop —<br>live log showing a drop in progress ]</span>
+        </div>
+        <div class="screenshot-caption">
+          <div class="screenshot-caption-title">ArtDrop dashboard</div>
+          <div class="screenshot-caption-desc">Watch everything happen in real time. Drop a file, see the AI analyze it, watch products get created, and see them go live — all from one screen.</div>
+        </div>
+      </div>
+      <!-- Placeholder 3: Product listing -->
+      <div class="screenshot-card">
+        <div class="screenshot-placeholder">
+          <span>[ Screenshot: A finished product listing —<br>AI-written title, description, and SEO ]</span>
+        </div>
+        <div class="screenshot-caption">
+          <div class="screenshot-caption-title">AI-written product listing</div>
+          <div class="screenshot-caption-desc">Every product gets a unique title and description written specifically for what's in the image. SEO title, meta description, alt text, and tags — all done.</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- first social section removed — consolidated into card grid below -->
+
+  <!-- BUILT BY AN ARTIST -->
+  <section class="section artist-section">
+    <div class="wrapper">
+      <div class="section-label">// Built by a working artist</div>
+      <h2 class="section-title reveal">I built this because I needed it.</h2>
+      <p class="section-prose section-prose--wide reveal">Hundreds of photographs sitting on a hard drive. Each one needed a product listing — title, description, SEO tags, alt text, variants, pricing. Doing it by hand meant an hour per product. Multiply that by a hundred pieces and you've got a full-time job that has nothing to do with making art.</p>
+      <p class="section-prose section-prose--wide reveal">ArtDrop exists because that math didn't work. It was built by a photographer who got tired of the busywork and decided to automate every step between finishing an image and having it live in a store. Every feature in this tool came from a real problem encountered during real drops.</p>
+      <p class="reveal"><a href="/about.html" class="artist-link">Read the full story →</a></p>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="section">
+    <div class="wrapper">
+    <div class="section-label">// The stack</div>
+    <h2 class="section-title reveal">Built on services you already trust.</h2>
+    <p class="section-prose section-prose--stack reveal">
+      ArtDrop connects the services you already use. Your print provider fulfills and ships worldwide. Your storefront handles sales. Backblaze stores your files. Claude AI writes the copy. ArtDrop is the glue — and the automation. Built and sold by StanHattie LLC.
+    </p>
+    <div class="claude-callout reveal">
+      <div class="claude-callout-label">// AI engine</div>
+      <p>Powered by <strong>Claude from Anthropic</strong> — the AI engine behind every title, description, and SEO tag ArtDrop generates. No generic AI slop. No prompt engineering required.</p>
+    </div>
+    <div class="trust-marks-label reveal">Integrates with</div>
+    <div class="trust-logos reveal">
+      <a href="https://www.anthropic.com" target="_blank" rel="noopener"><img src="logos/claude.svg" alt="Claude AI by Anthropic" class="trust-logo"></a>
+      <a href="https://www.shopify.com" target="_blank" rel="noopener"><img src="logos/shopify.svg" alt="Shopify" class="trust-logo"></a>
+      <a href="https://www.gelato.com" target="_blank" rel="noopener"><img src="logos/gelato.svg" alt="Gelato" class="trust-logo"></a>
+      <a href="https://www.printful.com" target="_blank" rel="noopener"><img src="logos/printful.svg" alt="Printful" class="trust-logo trust-logo--printful"></a>
+      <a href="https://www.printify.com" target="_blank" rel="noopener"><img src="logos/printify.svg" alt="Printify" class="trust-logo"></a>
+    </div>
+    <div class="roadmap-label reveal">On the roadmap</div>
+    <div class="roadmap-grid reveal">
+      <span class="roadmap-tag">Prodigi</span>
+      <span class="roadmap-tag">Gooten</span>
+      <span class="roadmap-tag">Etsy</span>
+      <span class="roadmap-tag">WooCommerce</span>
+      <span class="roadmap-tag">Lulu Direct</span>
+      <span class="roadmap-tag">ShineOn</span>
+      <span class="roadmap-tag">Custom Slipmats</span>
+      <span class="roadmap-tag">AI Trend Recommendations</span>
+    </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PUBLISHING -->
+  <section class="section">
+    <div class="wrapper">
+    <div class="section-label">// Social publishing</div>
+    <h2 class="section-title reveal">Post everywhere.<br>Sound like yourself.</h2>
+    <p class="section-sub social-intro reveal">
+      Every drop generates unique, voice-matched posts for each platform — not the same caption copy-pasted five times. ArtDrop adapts your voice to each platform's culture so it reads like you wrote it, because it sounds like you did.
+    </p>
+    <div class="social-feature-grid reveal">
+      <div class="social-feature-card">
+        <img src="logos/pinterest.svg" alt="Pinterest" class="social-feature-logo">
+        <div class="social-feature-desc">Keyword-rich pins optimized for search discovery. Pinterest is a search engine — ArtDrop writes for it.</div>
+      </div>
+      <div class="social-feature-card">
+        <img src="logos/instagram.svg" alt="Instagram" class="social-feature-logo">
+        <div class="social-feature-desc">Voice-forward captions with smart hashtag blocks. Personal, engaging, not robotic.</div>
+      </div>
+      <div class="social-feature-card">
+        <img src="logos/facebook.svg" alt="Facebook" class="social-feature-logo">
+        <div class="social-feature-desc">Conversational posts with direct calls to action. Speaks to art buyers, not algorithms.</div>
+      </div>
+      <div class="social-feature-card">
+        <img src="logos/threads.svg" alt="Threads" class="social-feature-logo">
+        <div class="social-feature-desc">Brief, personality-first posts. Casual tone, genuine voice. No corporate speak.</div>
+      </div>
+      <div class="social-feature-card">
+        <img src="logos/bluesky.svg" alt="Bluesky" class="social-feature-logo">
+        <div class="social-feature-desc">Short, punchy posts with personality. The growing platform for independent creators.</div>
+      </div>
+    </div>
+    <p class="section-sub social-footer-note reveal">
+      All posts are generated automatically after each drop — no extra steps.
+    </p>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section class="privacy-section">
+    <div class="wrapper">
+      <div class="section-label">// Privacy</div>
+      <div class="section-inner reveal">
+        <div>
+          <h2>Your data stays yours.</h2>
+          <p class="privacy-pledge">We will never sell your information, share it with third parties, or use your purchase data to market to you. ArtDrop was built by someone who hates that stuff as much as you do.</p>
+          <a href="/privacy.html" class="privacy-link">Read our full privacy policy →</a>
+        </div>
+        <div>
+          <ul class="privacy-bullets">
+            <li><span class="bullet-check">✓</span> Runs entirely on your machine</li>
+            <li><span class="bullet-check">✓</span> API keys stored locally, never transmitted to us</li>
+            <li><span class="bullet-check">✓</span> No cloud dashboard or account required</li>
+            <li><span class="bullet-check">✓</span> No analytics, telemetry, or tracking</li>
+            <li><span class="bullet-check">✓</span> No data harvesting — ever</li>
+            <li><span class="bullet-check">✓</span> Your artwork never touches our servers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section" id="pricing">
+    <div class="section-label">// Pricing</div>
+    <h2 class="section-title reveal">One price. No subscription.</h2>
+    <div class="pricing-card reveal">
+      <div class="pricing-top">
+        <div class="pricing-label">ArtDrop™ v1.0</div>
+        <div class="pricing-amount">
+          <span class="price-dollar">$</span>
+          <span class="price-num">197</span>
+        </div>
+        <div class="price-once">one-time purchase · lifetime license</div>
+        <div class="pricing-includes">
+          <div class="pi-item"><div class="pi-dot"></div>Full Mac + Windows app</div>
+          <div class="pi-item"><div class="pi-dot"></div>Unlimited artwork drops — no per-drop fees</div>
+          <div class="pi-item"><div class="pi-dot"></div>Unlimited product formats — you configure the templates</div>
+          <div class="pi-item"><div class="pi-dot"></div>Setup guide + video walkthrough</div>
+          <div class="pi-item"><div class="pi-dot"></div>Activate on up to 2 machines</div>
+          <div class="pi-item"><div class="pi-dot"></div>Email support</div>
+        </div>
+      </div>
+      <div class="pricing-bottom">
+        <a href="https://buy.stripe.com/dRmfZgcG2cw724M6QC43S00" class="btn-buy">
+          Buy ArtDrop™ — $197
+        </a>
+        <div class="pricing-note pricing-note--spaced">Secure checkout via Stripe · License key emailed within minutes</div>
+        <div class="pricing-note">Try 3 free demo drops before you buy — fully functional, watermarked images.<br>All sales are final. If you hit a technical issue we can't resolve, we'll work with you.</div>
+      </div>
+    </div>
+  </section>
+
+
+  </main>
+
+  <!-- FOOTER -->
+  <div id="site-footer"></div>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="/footer.js"></script>
+
+<script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal'); reveals.forEach(el => el.classList.add('animated'));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 120);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+    document.body.classList.add('js-ready');
+
+    // Terminal animation — lines appear sequentially when scrolled into view
+    const termBody = document.getElementById('term-body');
+    if (termBody && window._termStart) {
+      let termFired = false;
+      const termObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !termFired) {
+            termFired = true;
+            window._termStart();
+            termObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      termObs.observe(termBody);
+    }
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ArtDrop",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "macOS, Windows",
+  "description": "ArtDrop automates print-on-demand publishing. Drop an image — AI analyzes your artwork, writes product copy, creates every product format, and publishes to your store. One action, everything handled.",
+  "url": "https://getartdrop.com",
+  "offers": {
+    "@type": "Offer",
+    "price": "197",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+    "priceValidUntil": "2027-12-31",
+    "description": "One-time purchase. No subscription."
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "StanHattie LLC"
+  }
+}
+</script>
+</body>
+</html>

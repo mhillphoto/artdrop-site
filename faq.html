@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — ArtDrop</title>
+  <meta name="description" content="Common questions about ArtDrop — setup, compatibility, what it automates, and what you need to get started.">
+  <meta property="og:title" content="FAQ — ArtDrop">
+  <meta property="og:description" content="Common questions about ArtDrop — setup, compatibility, what it automates, and what you need to get started.">
+  <meta property="og:url" content="https://getartdrop.com/faq.html">
+  <meta property="og:image" content="https://getartdrop.com/og-image.png">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://getartdrop.com/faq.html">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1a2e'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='22' font-weight='bold' fill='%2300c853' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700;1,6..96,900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a; --bg2: #111111; --bg3: #181818;
+      --border: rgba(255,255,255,0.07); --border-bright: rgba(255,255,255,0.14);
+      --lime: #bfff5e; --lime-dim: rgba(191,255,94,0.10); --lime-glow: rgba(191,255,94,0.28);
+      --white: #f0f0ec; --muted: rgba(240,240,236,0.45); --faint: rgba(240,240,236,0.18);
+      --mono: 'DM Mono', monospace;
+      --sans: 'Bodoni Moda', Georgia, serif;
+      --body: 'Instrument Sans', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: var(--body); line-height: 1.7; overflow-x: hidden; }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1000; opacity: 0.6;
+    }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(10,10,10,0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: var(--mono); font-weight: 500; font-size: 18px; letter-spacing: 0.04em; color: var(--lime); text-decoration: none; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s; }
+    .nav-links a:visited { color: var(--muted); }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; color: var(--bg); background: var(--lime); padding: 9px 20px; border-radius: 3px; text-decoration: none; transition: opacity 0.15s; }
+    .nav-cta:hover { opacity: 0.85; }
+
+    .page-hero {
+      padding: 160px 48px 80px;
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 100% 100% at 0% 50%, black 20%, transparent 80%);
+    }
+    .page-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); margin-bottom: 24px; position: relative; }
+    .page-title { font-family: var(--sans); font-size: clamp(44px, 6vw, 80px); font-weight: 900; font-variation-settings: 'opsz' 96; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 28px; position: relative; max-width: 700px; }
+    .page-title em { font-style: italic; color: var(--lime); }
+    .page-intro { font-size: 18px; color: var(--muted); max-width: 520px; line-height: 1.75; position: relative; }
+    .page-intro a { color: var(--lime); text-decoration: none; }
+    .page-intro a:hover { text-decoration: underline; }
+
+    .faq-wrap { max-width: 800px; margin: 0 auto; padding: 80px 48px 120px; }
+
+    .faq-category {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--lime);
+      padding: 48px 0 20px;
+      margin-top: 48px;
+    }
+    .faq-category:first-child { padding-top: 0; margin-top: 0; }
+
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+
+    .faq-q {
+      width: 100%; background: none; border: none; cursor: pointer;
+      text-align: left; padding: 28px 0;
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+    }
+
+    .faq-q-text {
+      font-family: var(--body); font-size: 17px; font-weight: 600;
+      color: var(--white); line-height: 1.4;
+    }
+
+    .faq-icon {
+      flex-shrink: 0; width: 28px; height: 28px;
+      border: 1px solid var(--lime); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px; transition: border-color 0.2s, background 0.2s;
+      color: var(--lime);
+    }
+    .faq-icon svg { transition: transform 0.3s ease; }
+
+    .faq-item.open .faq-icon { background: var(--lime); color: var(--bg); border-color: var(--lime); }
+    .faq-item.open .faq-icon svg { transform: rotate(180deg); }
+    .faq-item.open .faq-q-text { color: var(--lime); }
+
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.3s ease;
+    }
+    .faq-item.open .faq-a { max-height: 900px; transition: max-height 0.5s ease, padding 0.3s ease; }
+
+    .faq-a-inner {
+      padding-bottom: 32px;
+      font-size: 15px; color: var(--muted); line-height: 1.8;
+    }
+
+    .faq-a-inner p { margin-bottom: 14px; }
+    .faq-a-inner p:last-child { margin-bottom: 0; }
+    .faq-a-inner strong { color: var(--white); font-weight: 400; }
+    .faq-a-inner code { font-family: var(--mono); font-size: 12px; color: var(--lime); background: var(--lime-dim); padding: 2px 6px; border-radius: 3px; }
+    .faq-a-inner a { color: var(--lime); text-decoration: none; }
+    .faq-a-inner a:hover { text-decoration: underline; }
+    .faq-a-inner ul { padding-left: 20px; margin-top: 8px; }
+    .faq-a-inner ul li { margin-bottom: 6px; }
+
+    .cta-strip {
+      background: var(--bg2); border: 1px solid var(--border-bright);
+      border-radius: 8px; padding: 48px; margin-top: 80px;
+      text-align: center;
+    }
+    .cta-strip-title { font-family: var(--body); font-size: 26px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .cta-strip-sub { font-size: 15px; color: var(--muted); margin-bottom: 28px; }
+    .cta-strip a { color: var(--lime); text-decoration: none; font-size: 17px; }
+    .cta-strip a:hover { text-decoration: underline; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 14px; font-weight: 500; letter-spacing: 0.05em; color: var(--bg); background: var(--lime); padding: 16px 32px; border-radius: 4px; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--lime-glow); }
+
+    footer { padding: 48px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .footer-logo { font-family: var(--mono); font-size: 14px; color: var(--lime); }
+    .footer-links { display: flex; gap: 32px; }
+    .footer-links a { font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-family: var(--mono); font-size: 11px; color: var(--faint); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; } .nav-links { display: none; }
+      .page-hero { padding: 120px 24px 60px; }
+      .faq-wrap { padding: 60px 24px; }
+      footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+    <nav>
+    <a href="/index.html" class="nav-logo">ArtDrop™</a>
+    <div class="nav-links">
+      <a href="/about.html">About</a>
+      <a href="/faq.html" class="active">FAQ</a>
+      <a href="/docs.html">Docs</a>
+    </div>
+    <a href="https://buy.stripe.com/dRmfZgcG2cw724M6QC43S00" class="nav-cta">Get ArtDrop™ — $197</a>
+  </nav>
+
+  <div class="page-hero">
+    <div class="hero-grid-bg"></div>
+    <p class="page-label">// Common questions</p>
+    <h1 class="page-title">Everything<br>you're <em>wondering.</em></h1>
+    <p class="page-intro">If you have a question that's not here, email <a href="mailto:support@getartdrop.com">support@getartdrop.com</a></p>
+  </div>
+
+  <div class="faq-wrap">
+
+    <!-- CATEGORY: GETTING STARTED -->
+    <div class="faq-category">// Getting started</div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">What do I need before I can use ArtDrop™?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Four accounts — all free to start:</p>
+        <ul>
+          <li><strong>Shopify</strong> — your storefront. Free trial available.</li>
+          <li><strong>Gelato, Printful, or Printify</strong> — prints and ships your products worldwide. All three offer free accounts. You can use one, two, or all three.</li>
+          <li><strong>Backblaze B2</strong> — stores your high-res files. Free 10GB tier.</li>
+          <li><strong>Anthropic</strong> — the AI that writes your copy. Pay-per-use; $5 credit goes a long way.</li>
+          <li><strong>Your art files</strong> — PNG, JPG, or TIF. That's it.</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">How long does setup take?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Most users complete setup in <strong>30–60 minutes</strong>, depending on how many print providers you connect and how much time you spend training your voice. The setup wizard walks you through everything step by step — connecting your accounts, choosing your product templates, and teaching the AI how you talk about your work. It validates every credential live and runs a full connection test at the end.</p>
+        <p>After that, every drop is fully automatic. Configure once, drop files forever. You can also drop files in batches — load up your entire portfolio and let ArtDrop process them all without supervision.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">What API keys do I need and where do I get them?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>You'll need credentials from each service you use. The setup wizard walks you through every one — it tells you exactly where to find each key and validates them live before saving.</p>
+        <ul>
+          <li><strong>Shopify</strong> — a store URL and access token. The wizard shows you step by step how to create these in your Shopify admin.</li>
+          <li><strong>Gelato, Printful, and/or Printify</strong> — an API key for each print provider you want to use. All three have free accounts with API access.</li>
+          <li><strong>Anthropic</strong> — an API key for the AI that writes your copy. Add $5 credit to start; that covers hundreds of drops.</li>
+          <li><strong>Backblaze B2</strong> — a key ID and application key for file storage. Free 10GB tier.</li>
+        </ul>
+        <p>Every field in the wizard has a hint explaining exactly where to find the value — no guessing required. See the <a href="/docs.html">setup guide</a> for the full walkthrough.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">Does it work on Mac and Windows?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Yes. ArtDrop runs on Mac (Apple Silicon and Intel) and Windows 10/11. The license covers both — activate on up to 2 machines.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">Do I need to know how to code?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>No. ArtDrop is a desktop app with a clean browser interface. Everything is point-and-click — no coding, no config files, no technical knowledge required. The only thing you'll copy-paste are API keys from your accounts during setup, and the app tells you exactly where to find each one.</p>
+      </div></div>
+    </div>
+
+    <!-- CATEGORY: THE PIPELINE -->
+    <div class="faq-category">// How it works</div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">What exactly happens when I drop a file?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>ArtDrop runs five steps automatically:</p>
+        <ul>
+          <li><strong>Analyze</strong> — AI classifies the image: style, colors, mood, composition</li>
+          <li><strong>Write</strong> — title, description, and SEO tags generated from the analysis</li>
+          <li><strong>Upload</strong> — high-res file goes to your Backblaze B2 bucket</li>
+          <li><strong>Create</strong> — one product per template at each print provider you've configured</li>
+          <li><strong>Publish</strong> — all products published to your store with collection, alt text, tags, and SEO</li>
+        </ul>
+        <p>A typical drop takes 3–8 minutes end to end, depending on how many product types you have configured. More templates = more products = slightly more time. You can watch every step in real time in the app's live log — it shows you exactly what's happening at each stage.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">How good is the AI-generated copy?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Better than most humans writing product descriptions under time pressure. The AI does a two-pass analysis — it classifies the image first, then writes from the structural data, not generic impressions. This produces copy that's specific to what's actually in the piece rather than vague "vibrant colors and dynamic composition" boilerplate.</p>
+        <p>You can always edit any description in Shopify after it's published. But most will be publish-ready as-is.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">How do I get ArtDrop to sound like my brand?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Use the built-in <strong>Voice Trainer</strong>. Drop an image, see the AI-generated copy, and react in plain English — "too flowery", "shorter sentences", "never say whimsical." ArtDrop refines the copy based on your feedback, shows you a side-by-side comparison, and keeps going until it sounds like you. Then it extracts concrete rules from the conversation and saves them automatically.</p>
+        <p>No prompt engineering, no rule-writing, no guessing. Just react to what you see — ArtDrop learns your style from the conversation. You can train on multiple images to make sure the voice holds across different pieces. Each training session costs about $0.03-0.05 in API fees.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">Can I control what products get created for each drop?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Yes. You configure your own product templates in ArtDrop — each template is one product format (a specific size poster, a canvas, a phone case, etc.). Every file you drop will create one product per active template. Add or remove templates any time; changes take effect immediately.</p>
+        <p>One artist might run two templates and get two products per drop. Another might have fifteen templates. ArtDrop doesn't decide — you do.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">What file types does it support?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p><code>PNG</code> <code>JPG</code> <code>JPEG</code> <code>TIF</code> <code>TIFF</code></p>
+        <p>16-bit TIFs work. File size doesn't matter — 4MB or 1.5GB, ArtDrop handles it. Your high-res master goes to Backblaze, and ArtDrop automatically generates the right size for each print provider. Resolution recommendation: 300 DPI at your largest print size. For a 24×36" poster that's 7200×10800px minimum.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">What about EXIF and metadata?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>If your files contain EXIF or XMP metadata — camera, lens, focal length, aperture, shutter speed, ISO — ArtDrop can extract it and use it in three ways:</p>
+        <ul>
+          <li><strong>Full display</strong> — tech specs shown on your product pages (great for photographers who want buyers to see the craft behind the shot)</li>
+          <li><strong>Tags only</strong> — metadata extracted and added as product tags for SEO and filtering, but not shown on the page</li>
+          <li><strong>Off</strong> — metadata ignored completely</li>
+        </ul>
+        <p>This is configurable in your settings. Photographers love it. Painters and illustrators can turn it off — their files typically don't contain this data anyway, so nothing changes for them.</p>
+      </div></div>
+    </div>
+
+    <!-- CATEGORY: PRICING & LICENSE -->
+    <div class="faq-category">// Pricing &amp; license</div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">Is this really a one-time payment? No subscription?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Yes. $197 once. The app is yours. No monthly fee, no "per product" charge, no tier that unlocks features. You pay for the four services ArtDrop connects to (Shopify, Gelato, Backblaze, Anthropic) — those are separate costs that you'd have anyway to run a print-on-demand store. ArtDrop supports Gelato, Printful, and Printify — use whichever you prefer.</p>
+        <p>The Anthropic API usage for AI copy generation costs roughly $0.01–0.03 per image processed — that's per drop, not per product. A hundred drops costs about a dollar in API fees, and each of those drops can generate hundreds of products.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">How many machines can I run it on?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Two machines on one license. If you get a new computer, you can deactivate an old machine and activate the new one from within the app — no need to contact support.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">What's the refund policy?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>ArtDrop includes 3 free demo drops so you can test everything before purchasing. All sales are final. If you experience a technical issue we can't resolve, contact <a href="mailto:support@getartdrop.com">support@getartdrop.com</a> and we'll work with you.</p>
+        <p>The setup wizard runs a live test before you ever drop a real file — if that test fails, we'll troubleshoot it with you before you've committed to anything.</p>
+      </div></div>
+    </div>
+
+    <!-- CATEGORY: COMPATIBILITY -->
+    <div class="faq-category">// Compatibility</div>
+
+    <div style="background:rgba(191,255,94,0.07);border:1px solid rgba(191,255,94,0.2);border-radius:6px;padding:20px 24px;margin-bottom:24px;font-size:14px;color:rgba(240,240,236,0.6);line-height:1.7;font-family:'Instrument Sans',sans-serif;">
+      <span style="color:#bfff5e;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;">Requirement</span><br>ArtDrop currently works with <span style="color:#f0f0ec;">Shopify</span> as your storefront and <span style="color:#f0f0ec;">Gelato</span>, <span style="color:#f0f0ec;">Printful</span>, or <span style="color:#f0f0ec;">Printify</span> as your print provider. You can use one, two, or all three simultaneously. Etsy and WooCommerce support are coming soon.
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">Does it work with any Shopify store?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Any Shopify store with Admin API access enabled. That means any paid Shopify plan (Basic and up). You'll create a private app in your Shopify admin to generate an API token — the setup wizard tells you exactly how.</p>
+        <p>It doesn't matter what theme you're using or what other apps you have installed. ArtDrop talks to Shopify via API, completely separate from your storefront.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">Does it work with Gelato's free account?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Yes. Gelato's free account includes API access. You just need an API key and your Store ID (UUID from the Stores page in Gelato's dashboard). No paid Gelato tier required.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">Does it work with any type of art, or just photography?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Any image you can save as a PNG, JPG, or TIF. Digital illustration, photography, painting (scanned or photographed), generative art, mixed media, graphic design — if it's a flat image file, ArtDrop can process it.</p>
+        <p>The AI copy generation works from the visual content of the image itself. It adapts to what it sees regardless of medium or style.</p>
+      </div></div>
+    </div>
+
+    <!-- CATEGORY: VS THE COMPETITION -->
+    <div class="faq-category">// Why ArtDrop</div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">How is ArtDrop different from other POD tools?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Most POD tools handle one piece of the puzzle. Upload tools push files to marketplaces. Copy generators write descriptions. Bulk creators make products but skip the intelligence. No other tool does what ArtDrop does end-to-end: drop a file, get a fully analyzed, professionally written, SEO-optimized product published across multiple print providers to your Shopify store. One action, everything handled.</p>
+        <p>ArtDrop also analyzes the actual content of your image — colors, composition, mood, style — and writes copy from that analysis. Other tools either skip image analysis entirely or use basic subject recognition. The difference shows up in every product description.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">Why $197 one-time instead of a monthly subscription?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Because SaaS subscriptions are a tax on your business that never stops. The comparable tools on the market charge $10–$150 per month. That's $120–$1,800 per year, every year, forever. ArtDrop costs $197 once. You own it. After two months you're ahead of the cheapest competitor, and after a year you've saved hundreds to over a thousand dollars.</p>
+        <p>The only ongoing cost is your Anthropic API usage for AI copy generation — roughly $0.01–$0.05 per drop. That's pennies, not a subscription.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">What about Gelato's Instant Collections or Printify's built-in tools?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>They lock you into one provider. Gelato's Instant Collections only creates Gelato products. Printify's tools only create Printify products. If you use more than one provider — and you should, because different providers excel at different products — you're running separate workflows for each one.</p>
+        <p>ArtDrop publishes to Gelato, Printful, and Printify simultaneously from one drop. Same image, same voice, same SEO quality, three providers. And you're not paying a monthly fee to any of them for the automation — that's built into the $197 you already paid.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">Can't I just use ChatGPT or Jasper to write product descriptions?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>You can, and you'll spend 5–10 minutes per product doing it. Paste the image, write a prompt, wait for output, copy it, paste it into Shopify, fix the formatting, write the SEO title, write the meta description, write the alt text, set the tags. Now do that for four product types. Now do that for 30 images.</p>
+        <p>ArtDrop does all of that in one automated pass — and it writes in your trained brand voice, not generic AI output. Jasper alone costs $59–69 per month and still only writes copy. You're still creating products manually, uploading files manually, publishing manually. ArtDrop handles the entire chain.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">What about bulk upload tools like Flying Upload or LazyMerch?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Upload tools push designs to marketplaces like Amazon Merch and Redbubble. They don't create products from artwork files. They don't analyze your images. They don't write copy. They don't handle Shopify SEO. They don't work with Gelato, Printful, or Printify. Different tool for a different workflow.</p>
+        <p>If you're selling on Amazon Merch, those tools make sense. If you're building a Shopify store with professional print-on-demand products, ArtDrop is the tool that does the actual work.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">Why does ArtDrop run locally instead of in the cloud?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Your artwork is your livelihood. Every cloud-based tool requires you to upload your original files to someone else's servers. You're trusting that they don't misuse your work, don't get breached, and don't train AI models on your images.</p>
+        <p>ArtDrop runs on your machine. We don't have servers — your files never leave your machine. Your API keys stay in a local config file on your computer. The only external connections are the ones you explicitly set up — directly from your machine to Shopify, to your print providers, to Backblaze. We have no dashboard, no analytics, no telemetry. We literally cannot see your data because we never receive it.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">How complicated is this under the hood?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Extremely. ArtDrop coordinates across four different print provider APIs, a storefront API, a cloud storage API, and an AI platform — each with their own authentication, rate limits, error handling, image format requirements, and product data schemas. Every provider does things differently. What Gelato calls a "template," Printify calls a "blueprint." What works for a poster doesn't work for a phone case. Variant pricing, print area calculations, image scaling, collection management, SEO field mapping — every one of these has edge cases that took months to solve.</p>
+        <p>On top of that, the AI side isn't just "send an image to ChatGPT and paste the result." It's a multi-stage analysis: image classification, color extraction, composition mapping, brand voice matching, copy generation with enforced structure, SEO optimization — all validated and formatted to each provider's specifications automatically.</p>
+        <p>You see a drag-and-drop box. Behind it is thousands of hours of integration work, testing, and real-world production drops. $197 buys you all of that — every integration, every edge case, already handled.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">What does ArtDrop cost in total to run?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>ArtDrop itself: <strong>$197 one-time</strong>. That's it for the software. The services you connect to have their own costs:</p>
+        <ul>
+          <li><strong>Anthropic API</strong> — ~$0.01–$0.05 per drop. $5 credit covers hundreds of products.</li>
+          <li><strong>Backblaze B2</strong> — free up to 10GB. Most artists won't exceed this for a long time.</li>
+          <li><strong>Shopify</strong> — starts at $39/month (you'd pay this with or without ArtDrop).</li>
+          <li><strong>Print providers</strong> — free accounts. You only pay when a customer orders.</li>
+        </ul>
+        <p>Total ongoing cost attributable to ArtDrop: roughly a nickel per drop. Compare that to $10–$150/month for competitor subscriptions that do less.</p>
+      </div></div>
+    </div>
+
+    <!-- CATEGORY: PRIVACY & DATA -->
+    <div class="faq-category">// Privacy &amp; data</div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">Is my data really private?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Yes. StanHattie LLC doesn't operate application servers, databases, or cloud infrastructure. We don't have a dashboard that shows us your activity. We sell a desktop app you download — that's it. Your config, artwork, and business data stay on your machine. The only external calls are the ones you configure — directly from your machine to your print providers, your Shopify store, Backblaze for file storage, and Anthropic for AI copy generation. We're not in the middle of any of it. We will never sell your data, share it with third parties, or use your purchase information to market to you. That's a permanent commitment.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">What gets sent to the AI?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Your artwork image (for visual analysis), your voice rules (so copy sounds like you), and basic context like your artist name and artwork type. That's it. No API keys, no financial data, no customer info. Anthropic doesn't train on API data and deletes logs within 30 days.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">Will you ever sell my data?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>No. Not now, not ever. We don't collect it in the first place — there's nothing to sell. The only information StanHattie LLC has is your name and email from Stripe at checkout, and a machine fingerprint hash for license activation. That's the complete list. We don't run analytics, we don't track usage, and we don't have infrastructure that could harvest data even if we wanted to. ArtDrop was built to be a tool you own, not a service that owns you.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">Will you spam me with emails?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>No. When you buy ArtDrop, you'll get a welcome email with your license key. After that, you'll only hear from us when there's a real update — a new integration, a major feature, something that actually matters to your workflow. We don't send filler. We don't send weekly newsletters. Every email has an unsubscribe link, and if you click it, you're gone immediately. We will never sell or share your email with anyone.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">Can I use ArtDrop without AI?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Yes. You can disable AI in Settings and write all product titles, descriptions, and SEO tags yourself. ArtDrop will still handle file processing, product creation, and publishing — you just provide the copy manually.</p>
+      </div></div>
+    </div>
+
+    <div class="cta-strip">
+      <div class="cta-strip-title">Still have questions?</div>
+      <div class="cta-strip-sub">Email us before you buy. We'll answer honestly.</div>
+      <a href="mailto:support@getartdrop.com">support@getartdrop.com</a>
+    </div>
+
+  </div>
+  <div id="site-footer"></div>
+  <script src="/footer.js"></script>
+  <script>
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const wasOpen = item.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+        // Toggle clicked
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What do I need before I can use ArtDrop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Four accounts — all free to start: Shopify (your storefront), Gelato, Printful, or Printify (prints and ships your products), Backblaze B2 (stores your high-res files, free 10GB tier), and Anthropic (the AI that writes your copy, pay-per-use). Plus your art files in PNG, JPG, or TIF format."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does setup take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most users complete setup in 30-60 minutes. The setup wizard walks you through connecting accounts, choosing product templates, and teaching the AI your voice. After that, every drop is fully automatic."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What API keys do I need and where do I get them?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You need credentials from Shopify (store URL and access token), Gelato/Printful/Printify (API key for each provider), Anthropic (API key for AI copy), and Backblaze B2 (key ID and application key). The setup wizard walks you through every one and validates them live."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work on Mac and Windows?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. ArtDrop runs on Mac (Apple Silicon and Intel) and Windows 10/11. The license covers both — activate on up to 2 machines."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to know how to code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. ArtDrop is a desktop app with a clean browser interface. Everything is point-and-click — no coding, no config files, no technical knowledge required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What exactly happens when I drop a file?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ArtDrop runs five steps automatically: Analyze (AI classifies the image), Write (title, description, SEO tags generated), Upload (high-res file goes to Backblaze B2), Create (one product per template at each print provider), Publish (all products published to your store with collection, alt text, tags, and SEO). A typical drop takes 3-8 minutes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How good is the AI-generated copy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The AI does a two-pass analysis — it classifies the image first, then writes from the structural data, producing copy specific to your piece rather than generic boilerplate. You can always edit descriptions in Shopify after publishing, but most will be publish-ready as-is."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get ArtDrop to sound like my brand?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the built-in Voice Trainer. Drop an image, see the AI copy, react in plain English ('too flowery', 'shorter sentences'). ArtDrop refines based on your feedback and extracts concrete rules automatically. No prompt engineering required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I control what products get created for each drop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You configure your own product templates — each template is one product format (poster, canvas, phone case, etc.). Every file you drop creates one product per active template. Add or remove templates any time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What file types does it support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PNG, JPG, JPEG, TIF, and TIFF. 16-bit TIFs and large files up to 400MB+ are supported. Recommended resolution: 300 DPI at your largest print size. ArtDrop also extracts EXIF/XMP metadata for tech specs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this really a one-time payment? No subscription?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. $197 once. No monthly fee, no per-product charge. You pay separately for the services ArtDrop connects to (Shopify, print providers, Backblaze, Anthropic). AI copy generation costs roughly $0.01-0.03 per image processed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many machines can I run it on?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Two machines on one license. You can deactivate an old machine and activate a new one from within the app."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the refund policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ArtDrop includes 3 free demo drops so you can test everything before purchasing. All sales are final. If you experience a technical issue, contact support and we'll work with you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work with any Shopify store?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Any Shopify store with Admin API access (any paid plan, Basic and up). It works regardless of your theme or other installed apps — ArtDrop talks to Shopify via API."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work with Gelato's free account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Gelato's free account includes API access. You just need an API key and your Store ID. No paid Gelato tier required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work with any type of art, or just photography?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Any image you can save as PNG, JPG, or TIF — digital illustration, photography, painting, generative art, mixed media, graphic design. The AI adapts to what it sees regardless of medium or style."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is ArtDrop different from other POD tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No other tool does end-to-end what ArtDrop does: drop a file, get a fully analyzed, professionally written, SEO-optimized product published across multiple print providers to your Shopify store. ArtDrop also analyzes the actual content of your image for specific copy, not generic descriptions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why $197 one-time instead of a monthly subscription?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Comparable tools charge $10-$150/month ($120-$1,800/year). ArtDrop costs $197 once. After two months you're ahead of the cheapest competitor. The only ongoing cost is Anthropic API usage at pennies per drop."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does ArtDrop cost in total to run?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ArtDrop: $197 one-time. Anthropic API: ~$0.01-$0.05 per drop. Backblaze B2: free up to 10GB. Shopify: starts at $39/month (you'd pay this anyway). Print providers: free accounts, you only pay when customers order."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my data really private?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. ArtDrop runs on your machine. Your config, artwork, and business data stay local. The only external calls are the ones you configure — directly to your print providers, Shopify, Backblaze, and Anthropic. StanHattie LLC has no dashboard, no analytics, no telemetry."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What gets sent to the AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your artwork image (for visual analysis), your voice rules (so copy sounds like you), and basic context like your artist name and artwork type. No API keys, no financial data, no customer info. Anthropic doesn't train on API data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will you ever sell my data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Not now, not ever. The only information StanHattie LLC has is your name and email from Stripe at checkout, and a machine fingerprint hash for license activation. We don't run analytics or track usage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will you spam me with emails?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. When you buy ArtDrop, you get a welcome email with your license key. After that, you only hear from us when there's a real update — a new integration, a major feature, something that matters to your workflow. No filler, no weekly newsletters. Every email has an unsubscribe link, and if you click it, you're gone immediately. We will never sell or share your email with anyone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use ArtDrop without AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can disable AI in Settings and write all product titles, descriptions, and SEO tags yourself. ArtDrop will still handle file processing, product creation, and publishing."
+      }
+    }
+  ]
+}
+</script>
+</body>
+</html>

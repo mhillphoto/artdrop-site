@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docs — ArtDrop</title>
+  <meta name="description" content="ArtDrop setup guide and documentation. Connect your accounts, configure templates, and run your first drop.">
+  <meta property="og:title" content="Docs — ArtDrop">
+  <meta property="og:description" content="ArtDrop setup guide and documentation. Connect your accounts, configure templates, and run your first drop.">
+  <meta property="og:url" content="https://getartdrop.com/docs.html">
+  <meta property="og:image" content="https://getartdrop.com/og-image.png">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://getartdrop.com/docs.html">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1a2e'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='22' font-weight='bold' fill='%2300c853' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700;1,6..96,900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a; --bg2: #111111; --bg3: #181818;
+      --border: rgba(255,255,255,0.07); --border-bright: rgba(255,255,255,0.14);
+      --lime: #bfff5e; --lime-dim: rgba(191,255,94,0.10); --lime-glow: rgba(191,255,94,0.28);
+      --white: #f0f0ec; --muted: rgba(240,240,236,0.45); --faint: rgba(240,240,236,0.18);
+      --mono: 'DM Mono', monospace;
+      --sans: 'Bodoni Moda', Georgia, serif;
+      --body: 'Instrument Sans', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: var(--body); line-height: 1.7; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1000; opacity: 0.6; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--mono); font-weight: 500; font-size: 18px; letter-spacing: 0.04em; color: var(--lime); text-decoration: none; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .nav-links a:visited { color: var(--muted); }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; color: var(--bg); background: var(--lime); padding: 9px 20px; border-radius: 3px; text-decoration: none; transition: opacity 0.15s; }
+    .nav-cta:hover { opacity: 0.85; }
+
+    .docs-layout { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; padding-top: 65px; }
+
+    /* SIDEBAR */
+    .sidebar {
+      position: sticky; top: 65px; height: calc(100vh - 65px);
+      overflow-y: auto; border-right: 1px solid var(--border);
+      padding: 48px 0;
+    }
+    .sidebar-section { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--faint); padding: 20px 28px 8px; }
+    .sidebar-section:first-child { padding-top: 0; }
+    .sidebar a { display: block; font-size: 13px; color: var(--muted); text-decoration: none; padding: 7px 28px; transition: color 0.15s, background 0.15s; }
+    .sidebar a:hover { color: var(--white); background: rgba(255,255,255,0.03); }
+    .sidebar a.active { color: var(--lime); background: var(--lime-dim); }
+
+    /* CONTENT */
+    .doc-content { padding: 64px 72px 120px; max-width: 780px; }
+
+    .doc-content h1 { font-family: var(--sans); font-size: clamp(36px, 4vw, 52px); font-weight: 900; font-variation-settings: 'opsz' 96; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 20px; }
+    .doc-content h1 em { font-style: italic; color: var(--lime); }
+    .doc-content h2 { font-family: var(--body); font-size: 26px; font-weight: 700; letter-spacing: -0.02em; margin: 56px 0 20px; padding-top: 56px; border-top: 1px solid var(--border); }
+    .doc-content h3 { font-size: 17px; font-weight: 600; color: var(--white); margin: 32px 0 12px; }
+    .doc-content p { font-size: 15px; color: var(--muted); margin-bottom: 18px; line-height: 1.85; }
+    .doc-content p strong_DISABLED { color: var(--white); font-weight: 400; }
+    .doc-content ul, .doc-content ol { padding-left: 24px; margin-bottom: 18px; }
+    .doc-content li { font-size: 15px; color: var(--muted); margin-bottom: 8px; line-height: 1.7; }
+    .doc-content li strong { color: var(--white); font-weight: 400; }
+    .doc-content code { font-family: var(--mono); font-size: 12px; color: var(--lime); background: var(--lime-dim); padding: 2px 7px; border-radius: 3px; }
+    .doc-content a { color: var(--lime); text-decoration: none; }
+    .doc-content a:hover { text-decoration: underline; }
+
+    .doc-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); margin-bottom: 16px; }
+
+    .step-block {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 28px 32px; margin: 24px 0;
+      display: flex; gap: 20px; align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0; width: 32px; height: 32px;
+      background: var(--lime-dim); border: 1px solid var(--lime);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 12px; color: var(--lime); font-weight: 500;
+    }
+    .step-body h3 { margin-top: 4px; margin-bottom: 8px; font-weight: 500; }
+    .step-body p { margin-bottom: 0; }
+
+    .callout {
+      background: var(--lime-dim); border: 1px solid rgba(191,255,94,0.2);
+      border-radius: 6px; padding: 20px 24px; margin: 24px 0;
+      font-size: 14px; color: rgba(240,240,236,0.75); line-height: 1.7;
+    }
+    .callout strong { color: var(--lime); }
+
+    .status-grid { display: grid; grid-template-columns: auto 1fr; gap: 0; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin: 20px 0; }
+    .status-row { display: contents; }
+    .status-key { font-family: var(--mono); font-size: 12px; padding: 12px 20px; background: var(--bg3); border-bottom: 1px solid var(--border); color: var(--lime); white-space: nowrap; }
+    .status-val { font-size: 13px; padding: 12px 20px; background: var(--bg2); border-bottom: 1px solid var(--border); color: var(--muted); }
+    .status-key:last-of-type, .status-val:last-of-type { border-bottom: none; }
+
+    footer { padding: 48px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .footer-logo { font-family: var(--mono); font-size: 14px; color: var(--lime); }
+    .footer-links { display: flex; gap: 32px; }
+    .footer-links a { font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-family: var(--mono); font-size: 11px; color: var(--faint); }
+
+    @media (max-width: 900px) {
+      .docs-layout { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .doc-content { padding: 48px 24px; }
+      nav { padding: 16px 24px; } .nav-links { display: none; }
+      footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+    <nav>
+    <a href="/index.html" class="nav-logo">ArtDrop™</a>
+    <div class="nav-links">
+      <a href="/about.html">About</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/docs.html" class="active">Docs</a>
+    </div>
+    <a href="https://buy.stripe.com/dRmfZgcG2cw724M6QC43S00" class="nav-cta">Get ArtDrop™ — $197</a>
+  </nav>
+
+  <div class="docs-layout">
+
+    <aside class="sidebar">
+      <div class="sidebar-section">Setup</div>
+      <a href="#before-you-begin" class="active">Before you begin</a>
+      <a href="#step1">1 — Print Providers</a>
+      <a href="#step2">2 — Storefront</a>
+      <a href="#step3">3 — Storage</a>
+      <a href="#step4">4 — AI</a>
+      <a href="#step5">5 — Templates</a>
+      <a href="#step6">6 — Voice &amp; Identity</a>
+      <a href="#step7">7 — Analysis Rules</a>
+      <a href="#step8">8 — Test</a>
+
+      <div class="sidebar-section">Using ArtDrop</div>
+      <a href="#dropping">Dropping artwork</a>
+      <a href="#status">Status indicators</a>
+
+      <div class="sidebar-section">Troubleshooting</div>
+      <a href="#troubleshoot">Common issues</a>
+      <a href="#license">License &amp; machines</a>
+    </aside>
+
+    <main class="doc-content">
+
+      <div class="doc-label">// Documentation</div>
+      <h1>Setup &amp; <em>user guide.</em></h1>
+      <p>Everything you need to go from download to live products. Setup takes about 30–60 minutes.</p>
+
+      <!-- BEFORE YOU BEGIN -->
+      <h2 id="before-you-begin">Before you begin</h2>
+      <p>ArtDrop™ connects several services together. You'll need accounts with each one before starting setup. Have them open in your browser — you'll be copying keys from each during the wizard.</p>
+
+      <div class="step-block">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>A print provider — Gelato, Printful, or Printify (at least one)</h3>
+          <p>This is who prints and ships your products. <a href="https://gelato.com">gelato.com</a>, <a href="https://printful.com">printful.com</a>, or <a href="https://printify.com">printify.com</a> — all three have free accounts. You can use one, two, or all three.</p>
+        </div>
+      </div>
+      <div class="step-block">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Shopify — your storefront</h3>
+          <p>Where your products get listed for sale. <a href="https://shopify.com">shopify.com</a> — free trial available. Any paid plan works (Basic and up).</p>
+        </div>
+      </div>
+      <div class="step-block">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Backblaze B2 — file storage</h3>
+          <p>Stores your high-res image files so your print provider can access them. <a href="https://backblaze.com">backblaze.com</a> — free 10GB tier, costs pennies after that.</p>
+        </div>
+      </div>
+      <div class="step-block">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Anthropic — the AI</h3>
+          <p>Powers the AI that analyzes your artwork and writes all product copy. <a href="https://console.anthropic.com">console.anthropic.com</a> — pay per use. Add $5 credit to start; typical cost is $0.01–0.03 per image drop. A hundred drops costs about a dollar.</p>
+        </div>
+      </div>
+
+      <!-- STEP 1 -->
+      <h2 id="step1">Step 1 — Print Providers</h2>
+      <p>Connect ArtDrop to the print providers you want to use. You need at least one — Gelato, Printful, Printify, or any combination.</p>
+
+      <h3>Gelato</h3>
+      <p>In Gelato: click your profile icon → <strong>Developer → API Keys → Generate Key</strong>. Copy the full key. ArtDrop will automatically find your stores once you paste the key in.</p>
+
+      <h3>Printful</h3>
+      <p>In Printful: go to <strong>Settings → API → Generate Token</strong>. Copy the token. Your Store ID is the number in the URL when you click on your store in the Stores section.</p>
+
+      <h3>Printify</h3>
+      <p>In Printify: go to <strong>My Account → Connections → Generate API token</strong>. Copy the token. Your Shop ID is in the URL when you visit your shop — looks like <code>/shop/12345678/dashboard</code>.</p>
+
+      <div class="callout">
+        <strong>Tip:</strong> You can use any combination of Gelato, Printful, and Printify. Each one you connect will get its own product templates in Step 5. Leave a provider blank to skip it.
+      </div>
+
+      <!-- STEP 2 -->
+      <h2 id="step2">Step 2 — Storefront</h2>
+      <p>Connect your Shopify store so ArtDrop can publish products there.</p>
+
+      <h3>Store URL</h3>
+      <p>Use your <code>.myshopify.com</code> address, not your custom domain. Example: <code>yourstore.myshopify.com</code>. Find it in your browser bar when logged into Shopify admin.</p>
+
+      <h3>Access Token</h3>
+      <p>In Shopify admin: go to <strong>Settings → Apps and sales channels → Develop apps → Create an app</strong>. The wizard tells you exactly which permissions to check. Copy the access token — it starts with <code>shpat_</code> and is shown only once.</p>
+
+      <!-- STEP 3 -->
+      <h2 id="step3">Step 3 — Storage</h2>
+      <p>Connect your Backblaze B2 bucket. ArtDrop uploads your artwork files here so your print providers and store can access them.</p>
+
+      <h3>What you need from Backblaze</h3>
+      <ul>
+        <li><strong>Key ID</strong> and <strong>Application Key</strong> — create these at <strong>App Keys → Add a New Application Key</strong> in Backblaze. The Application Key is shown only once.</li>
+        <li><strong>Bucket Name</strong> and <strong>Bucket ID</strong> — found on the Backblaze Buckets page.</li>
+        <li><strong>Endpoint URL</strong> — click your bucket in Backblaze to find this. Looks like <code>https://s3.us-west-004.backblazeb2.com</code>.</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Tip:</strong> Every field in the wizard has a hint telling you exactly where to find the value. If you get stuck, the hint text walks you through it step by step.
+      </div>
+
+      <!-- STEP 4 -->
+      <h2 id="step4">Step 4 — AI</h2>
+      <p>Connect the Anthropic API. This is the AI that analyzes your artwork and writes all your product titles, descriptions, SEO copy, and alt text.</p>
+
+      <h3>API Key</h3>
+      <p>Go to <a href="https://console.anthropic.com/settings/keys">console.anthropic.com</a> → <strong>Create Key</strong>. Copy the full key — it starts with <code>sk-ant-</code>. Make sure your account has credit loaded ($5 is plenty to start).</p>
+
+      <h3>Copy Generation options</h3>
+      <p>This step also lets you choose how the AI writes your product titles and descriptions. By default, the AI writes everything. You can also switch individual fields to use your filename or a custom template instead.</p>
+
+      <!-- STEP 5 -->
+      <h2 id="step5">Step 5 — Templates</h2>
+      <p>Templates define what products ArtDrop creates for each image you drop. Each template is one product type — a poster, a canvas, a phone case, etc. Every image you drop creates one product per active template.</p>
+
+      <h3>Gelato templates</h3>
+      <p>Each row needs a <strong>Name</strong> (what you call it, like "Fine Art Poster") and a <strong>Template ID</strong> (found in the URL when you edit a template in Gelato). The wizard explains exactly where to find these.</p>
+
+      <h3>Printful templates</h3>
+      <p>If you connected Printful, you'll see a section for Printful templates. Each row needs a <strong>Name</strong>, one or more <strong>Catalog Variant IDs</strong> (comma-separated), a <strong>Placement</strong> (usually "default"), and a <strong>Price</strong>. Find variant IDs in the Printful product catalog — the wizard links you directly there.</p>
+
+      <h3>Printify templates</h3>
+      <p>If you connected Printify, you'll see a section for Printify templates too. Pick a product from Printify's catalog, enter its Blueprint ID and Provider ID, then click <strong>Lookup</strong> — ArtDrop will find all available sizes for you. Select the sizes you want and hit Add.</p>
+
+      <p>You can add, edit, or remove templates any time from the Templates page. Changes take effect on the next drop — no restart needed.</p>
+
+      <!-- STEP 6 -->
+      <h2 id="step6">Step 6 — Voice &amp; Identity</h2>
+      <p>This step tells the AI who you are and how you want your products described. It's what makes the AI copy sound like your brand instead of generic filler.</p>
+
+      <h3>Store Identity</h3>
+      <p>Fill in your name, store name, what kind of art you make, and how you make it. The more detail you give, the better the AI writes about your work. Example placeholder text shows how a portrait studio might fill this in.</p>
+
+      <h3>Copy Rules</h3>
+      <p>Optional but powerful. Set the tone of voice, tell the AI what to focus on, give it examples of good copy, and list words you never want used. Leave any field blank to use ArtDrop's defaults.</p>
+
+      <div class="callout">
+        <strong>Tip:</strong> You can download and upload your voice configuration as a file. This makes it easy to back up your settings or share them between machines.
+      </div>
+
+      <h3>Voice Trainer — the easier way</h3>
+      <p>Don't know what rules to write? Use the <strong>Voice Trainer</strong> instead. It's a separate page in ArtDrop (click "Voice" in the sidebar) that teaches the AI your style through conversation, not form-filling.</p>
+
+      <p><strong>How it works:</strong></p>
+      <ol>
+        <li><strong>Drop an image</strong> — upload any artwork, or pick one from your archive</li>
+        <li><strong>See the AI copy</strong> — ArtDrop analyzes the image and generates a title, description, SEO tags, and alt text using your current rules (or defaults if you haven't set any yet)</li>
+        <li><strong>React in plain English</strong> — type what you'd change: "too flowery", "shorter sentences", "never say whimsical", "I want a more direct tone"</li>
+        <li><strong>See it refined</strong> — ArtDrop revises the copy based on your feedback and shows you a side-by-side comparison with changes highlighted</li>
+        <li><strong>Keep going</strong> — refine as many times as you want until it sounds like you</li>
+        <li><strong>Save the rules</strong> — click "This sounds like me" and ArtDrop extracts concrete rules from the conversation. You review each one with a checkbox before saving.</li>
+      </ol>
+
+      <p>The saved rules feed directly into the voice and content fields on this page — so they apply to every future drop automatically. You can always come back to the Voice Trainer to refine further or test on different images.</p>
+
+      <div class="callout">
+        <strong>Tip:</strong> After saving rules, try the Voice Trainer on 2-3 more images to make sure the voice holds across different pieces. Each training session costs about $0.03-0.05 in API fees (4-6 Claude calls).
+      </div>
+
+      <!-- STEP 7 -->
+      <h2 id="step7">Step 7 — Analysis Rules</h2>
+      <p>This step teaches the AI how to categorize your images. Think of it as creating the buckets your artwork falls into — these categories feed directly into product titles and tags.</p>
+
+      <h3>How it works</h3>
+      <p>You define a classification system for your art. For example, a portrait photographer might create categories like "Close-up", "Half-body", "Full-body", and "Group". A landscape photographer might use "Mountain", "Ocean", "Forest", "Desert". The AI uses your definitions to sort each image into the right category.</p>
+
+      <h3>What to fill in</h3>
+      <ul>
+        <li><strong>Classification Label</strong> — what you call your categories (e.g. "Shot Type" or "Style")</li>
+        <li><strong>Valid Values</strong> — the categories themselves, separated by |</li>
+        <li><strong>Definitions</strong> — describe each category so the AI knows what to pick</li>
+        <li><strong>Color Rules</strong> — how you want the AI to name the dominant colors</li>
+        <li><strong>Stats</strong> — extra details the AI should note (like number of subjects, lighting type, mood)</li>
+      </ul>
+
+      <p>Every field has placeholder text showing an example. Leave fields blank if a category doesn't apply to your work.</p>
+
+      <!-- STEP 8 -->
+      <h2 id="step8">Step 8 — Test</h2>
+      <p>The final step tests all your connections. ArtDrop checks every service you configured and shows you a green or red status for each one.</p>
+      <ul>
+        <li>Anthropic and Backblaze must pass — they're always required</li>
+        <li>At least one print provider must pass (Gelato, Printful, or Printify)</li>
+        <li>At least one storefront must pass (Shopify)</li>
+      </ul>
+      <p>If something fails, the error message tells you what's wrong. Go back to the relevant step, fix it, and test again. Once everything is green, click <strong>Finish Setup</strong> and you're ready to drop your first file.</p>
+
+      <!-- DROPPING -->
+      <h2 id="dropping">Dropping artwork</h2>
+      <ol>
+        <li>Click <strong>Start Worker</strong> on the Dashboard — the status dot turns green</li>
+        <li>Drag and drop your artwork files directly onto the Dashboard, or use the file browser</li>
+        <li>Watch the live log — it shows every step as it happens</li>
+        <li>When complete, your products are live in your store</li>
+      </ol>
+
+      <p><strong>Supported formats:</strong> <code>PNG</code> <code>JPG</code> <code>JPEG</code> <code>TIF</code> <code>TIFF</code></p>
+      <p><strong>Minimum resolution:</strong> 300 DPI at your largest print size. For 24x36" that's 7200x10800px.</p>
+
+      <div class="callout">
+        <strong>Tip:</strong> Drop any single image file — <code>.tif</code>, <code>.png</code>, or <code>.jpg</code>. ArtDrop reads the metadata from whatever format you provide. No need to pair files — one image is all you need.
+      </div>
+
+      <!-- STATUS -->
+      <h2 id="status">Status indicators</h2>
+
+      <div class="status-grid">
+        <div class="status-key">Worker: Running</div><div class="status-val">ArtDrop is active and watching for new files</div>
+        <div class="status-key">Worker: Stopped</div><div class="status-val">Files won't be processed — click Start Worker</div>
+        <div class="status-key">Processing</div><div class="status-val">A file is being processed right now</div>
+        <div class="status-key">Complete</div><div class="status-val">Done — products are live in your store</div>
+        <div class="status-key">Failed</div><div class="status-val">Something went wrong — check the log for details</div>
+      </div>
+
+      <!-- TROUBLESHOOT -->
+      <h2 id="troubleshoot">Common issues</h2>
+
+      <h3>File drops in but nothing happens</h3>
+      <ul>
+        <li>Make sure the Worker is running — click Start Worker on the Dashboard</li>
+        <li>Check the file format is supported (PNG, JPG, TIF)</li>
+        <li>Check the live log for any error messages</li>
+      </ul>
+
+      <h3>Shopify connection fails</h3>
+      <ul>
+        <li>Access Token must start with <code>shpat_</code></li>
+        <li>Store URL must be <code>yourstore.myshopify.com</code> — not your custom domain</li>
+        <li>Make sure your Shopify app has the right permissions enabled</li>
+      </ul>
+
+      <h3>Gelato products aren't being created</h3>
+      <ul>
+        <li>Verify your Gelato API key is correct and hasn't been revoked</li>
+        <li>Make sure you selected a store from the dropdown</li>
+        <li>Template IDs must match valid templates in your Gelato account</li>
+      </ul>
+
+      <h3>Printful products aren't being created</h3>
+      <ul>
+        <li>Verify your Printful API token is correct and hasn't expired</li>
+        <li>Store ID must match an active store in your Printful account</li>
+        <li>Catalog Variant IDs must be valid — check the Printful product catalog</li>
+        <li>Printful rate limits to 120 requests per minute — large drops may take a moment</li>
+      </ul>
+
+      <h3>Printify products aren't being created</h3>
+      <ul>
+        <li>Verify your Printify API token is correct</li>
+        <li>Shop ID must match your shop — find it in the URL when viewing your shop</li>
+        <li>Blueprint and Provider IDs must be valid — use the Lookup button to verify</li>
+      </ul>
+
+      <h3>Backblaze upload fails</h3>
+      <ul>
+        <li>Key ID and Application Key are two different values — make sure you have both in the right fields</li>
+        <li>Bucket must exist and the key must have Read &amp; Write permissions</li>
+        <li>Bucket name is case-sensitive</li>
+      </ul>
+
+      <h3>AI copy doesn't sound right</h3>
+      <ul>
+        <li>Check your Voice &amp; Identity settings (Step 6) — the more detail you give, the better the output</li>
+        <li>Add examples of good copy in the "Good Examples" field — the AI matches your style</li>
+        <li>Use the "Never Use" and "Never Mention" fields to block words you don't want</li>
+        <li>You can always edit any description in your store after publishing</li>
+      </ul>
+
+      <!-- LICENSE -->
+      <h2 id="license">License &amp; machines</h2>
+      <p>Your license covers up to <strong>2 machines</strong>. To move to a new computer, open ArtDrop on the old machine → <strong>License</strong> tab → <strong>Transfer Machine</strong>. Then activate on the new machine with the same key.</p>
+      <p>If you can't access the old machine, email support@getartdrop.com and we'll reset it for you.</p>
+
+    </main>
+  </div>
+  <div id="site-footer"></div>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="/footer.js"></script>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.mi

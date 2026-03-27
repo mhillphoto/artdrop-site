@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — ArtDrop</title>
+  <meta name="description" content="ArtDrop privacy policy. ArtDrop runs locally on your computer — no cloud sync, no analytics, no telemetry. Learn what little data we receive and why.">
+  <meta property="og:title" content="Privacy Policy — ArtDrop">
+  <meta property="og:description" content="ArtDrop runs locally on your computer — no cloud sync, no analytics, no telemetry. Learn what little data we receive and why.">
+  <meta property="og:url" content="https://getartdrop.com/privacy.html">
+  <meta property="og:image" content="https://getartdrop.com/og-image.png">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://getartdrop.com/privacy.html">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1a2e'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='22' font-weight='bold' fill='%2300c853' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+</head>
+<body>
+  <nav>
+    <a href="/index.html" class="nav-logo">ArtDrop™</a>
+    <div class="nav-links">
+      <a href="/about.html">About</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/docs.html">Docs</a>
+    </div>
+    <a href="#pricing" class="nav-cta">Get ArtDrop™ — $197</a>
+  </nav>
+
+<div class="legal-container">
+  <div class="legal-label">Legal</div>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Last updated: March 25, 2026</p>
+
+  <div class="legal-callout">
+    <p>ArtDrop™ runs entirely on your computer. We built it that way on purpose. There is no cloud dashboard, no analytics, no telemetry, and no phone-home behavior. This policy explains exactly what little data we do receive and why.</p>
+  </div>
+
+  <h2>1. Who We Are</h2>
+  <p>ArtDrop is a desktop application developed and sold by StanHattie LLC ("we," "us," "our"). Our website is <a href="https://getartdrop.com">getartdrop.com</a>. Contact: <a href="mailto:support@getartdrop.com">support@getartdrop.com</a></p>
+
+  <h2>2. ArtDrop Runs Locally</h2>
+  <p>ArtDrop is installed and runs on your machine. Your artwork, product descriptions, API keys, configuration files, and business data all stay on your computer. Nothing is sent to StanHattie LLC servers during normal use.</p>
+  <p>There is no cloud sync. No usage tracking. No analytics. No telemetry. We cannot see what you create, what you publish, or how you use the software.</p>
+
+  <h2>3. What We Actually Receive</h2>
+  <p>The only data StanHattie LLC receives falls into two categories:</p>
+
+  <p><strong>License activation</strong></p>
+  <ul>
+    <li><strong>Machine fingerprint hash</strong> — a one-way hash of hardware identifiers, generated when you activate your license. Used solely to enforce the machine limit on your license. It cannot identify your computer to anyone.</li>
+    <li><strong>License key</strong> — the activation key issued to you at purchase</li>
+    <li><strong>Activation timestamps</strong> — when your license was activated and last validated</li>
+  </ul>
+
+  <p><strong>Purchase information (via Stripe)</strong></p>
+  <ul>
+    <li><strong>Name and email</strong> — provided at checkout, used to deliver your license key and provide support</li>
+  </ul>
+
+  <p>That is the complete list. We do not collect anything else.</p>
+
+  <div class="legal-callout">
+    <p>We never see your artwork, your product listings, your store data, your AI prompts, or your API keys. We have no mechanism to access any of it.</p>
+  </div>
+
+  <h2>4. Your API Keys</h2>
+  <p>When you connect services like Anthropic, Gelato, Printful, Printify, Shopify, or Backblaze, ArtDrop stores your API keys in a local configuration file on your computer. These keys are never transmitted to StanHattie LLC. All API calls go directly from your machine to the service you configured — we are not in the middle.</p>
+
+  <h2>5. AI Copy Generation (Anthropic)</h2>
+  <p>When you use ArtDrop's AI features, the app sends your artwork image and your voice/copy rules directly from your machine to Anthropic's API. Anthropic analyzes the image and generates product titles, descriptions, and SEO tags. This is the only external data transmission during normal use besides the print provider and Shopify API calls you explicitly configure.</p>
+  <p>What gets sent to Anthropic:</p>
+  <ul>
+    <li>Your artwork image (for visual analysis)</li>
+    <li>Your voice rules (so the copy sounds like you)</li>
+    <li>Basic context like your artist name and artwork type</li>
+  </ul>
+  <p>What does not get sent:</p>
+  <ul>
+    <li>Your API keys</li>
+    <li>Financial data</li>
+    <li>Customer information</li>
+    <li>Store analytics or sales data</li>
+  </ul>
+  <p>No data passes through StanHattie LLC servers at any point. The call goes directly from your machine to Anthropic. StanHattie LLC does not operate application servers, databases, or cloud infrastructure. We don't have a data pipeline. We don't have a dashboard that shows us your activity. We sell a downloadable desktop application and a license key — that's it. There is no backend to harvest data with, even if we wanted to.</p>
+  <p>Per Anthropic's terms of service, Anthropic does not train on API data. Anthropic deletes API request logs within 30 days. You can review their data policies at <a href="https://www.anthropic.com/policies">anthropic.com/policies</a>.</p>
+  <p>If you prefer not to use AI, you can disable it in Settings and write all product copy manually. ArtDrop will still handle file processing, product creation, and publishing — you just provide the titles, descriptions, and tags yourself.</p>
+
+  <h2>6. Third-Party Services</h2>
+  <p>ArtDrop connects only to the services you explicitly configure. Each has its own privacy policy:</p>
+  <ul>
+    <li><strong>Stripe</strong> — processes your payment at checkout. Stripe receives your name, email, and payment information.</li>
+    <li><strong>Anthropic</strong> — AI copy generation, as described in Section 5 above.</li>
+    <li><strong>Gelato, Printful, Printify</strong> — if you configure a print-on-demand provider, your product data goes directly from your machine to that provider.</li>
+    <li><strong>Shopify</strong> — if you connect your store, product data goes directly from your machine to Shopify.</li>
+    <li><strong>Backblaze B2</strong> — if you use Backblaze for image hosting, files go directly from your machine to your Backblaze bucket.</li>
+    <li><strong>Render</strong> — hosts our license activation server.</li>
+  </ul>
+  <p>We do not share your data with any other third parties. We do not sell your data. We will never sell your data. We will never use your purchase information to market to you, profile you, or share it with anyone. We do not use advertising, analytics, or tracking services of any kind. This is a permanent commitment, not a policy that changes when it becomes profitable.</p>
+
+  <h2>7. Cookies</h2>
+  <p>ArtDrop is a desktop application — there are no cookies. The getartdrop.com website does not use tracking cookies, advertising cookies, or analytics. The only cookies that may be set are functional cookies from our hosting provider (Netlify) required for site delivery.</p>
+
+  <h2>8. Email Communications</h2>
+  <p>When you purchase ArtDrop, we may send occasional product updates and feature announcements to the email address used at checkout. These emails are infrequent — only when there's something genuinely worth sharing. Every email includes an unsubscribe link. We will never share, sell, or rent your email address to anyone. If you unsubscribe, you're off the list immediately. We respect your inbox the same way we respect your data.</p>
+
+  <h2>9. How We Use the Data We Have</h2>
+  <ul>
+    <li>Delivering your license key and download link via email</li>
+    <li>Activating and validating your license</li>
+    <li>Enforcing the machine limit on your license</li>
+    <li>Providing customer support when you contact us</li>
+    <li>Sending occasional product updates (with easy unsubscribe)</li>
+  </ul>
+  <p>That is all. We do not use your data for advertising, profiling, or any other purpose.</p>
+
+  <h2>10. Where Your Data Is Stored</h2>
+  <p>License activation data is stored in a database hosted by Render, Inc. (render.com) in the United States. If you are located outside the United States, your license data is transferred to and processed in the United States.</p>
+
+  <h2>11. Data Retention</h2>
+  <p>We retain your license data for as long as your license is active. If you request deletion, we will remove your name, email, and machine fingerprint within 30 days and deactivate your license. Transaction records (key issued, date) may be retained for up to 3 years for accounting purposes.</p>
+
+  <h2>12. Your Rights</h2>
+  <p>You can request:</p>
+  <ul>
+    <li><strong>Access</strong> — a copy of the personal data we hold about you</li>
+    <li><strong>Correction</strong> — correction of inaccurate data</li>
+    <li><strong>Deletion</strong> — removal of your data (this will deactivate your license)</li>
+    <li><strong>Portability</strong> — your data in a portable format</li>
+  </ul>
+  <p>Email <a href="mailto:support@getartdrop.com">support@getartdrop.com</a> with the subject "Privacy Request." We will respond within 30 days.</p>
+
+  <h2>13. Children</h2>
+  <p>ArtDrop is not directed at children under 13. We do not knowingly collect personal data from children.</p>
+
+  <h2>14. Changes to This Policy</h2>
+  <p>If we update this policy, we will post the revised version here with a new "Last updated" date. Continued use of ArtDrop after an update constitutes acceptance.</p>
+
+  <h2>15. Contact</h2>
+  <p>Privacy questions or requests: <a href="mailto:support@getartdrop.com">support@getartdrop.com</a></p>
+</div>
+  <div id="site-footer"></div>
+  <script src="/footer.js"></script>
+</body>
+</html>

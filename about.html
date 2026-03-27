@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — ArtDrop</title>
+  <meta name="description" content="Why ArtDrop exists. A working artist hit a wall, built the tool that didn't exist.">
+  <meta property="og:title" content="About — ArtDrop">
+  <meta property="og:description" content="Why ArtDrop exists. A working artist hit a wall, built the tool that didn't exist.">
+  <meta property="og:url" content="https://getartdrop.com/about.html">
+  <meta property="og:image" content="https://getartdrop.com/og-image.png">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://getartdrop.com/about.html">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1a2e'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='22' font-weight='bold' fill='%2300c853' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700;1,6..96,900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a; --bg2: #111111;
+      --border: rgba(255,255,255,0.07); --border-bright: rgba(255,255,255,0.14);
+      --lime: #bfff5e; --lime-dim: rgba(191,255,94,0.10); --lime-glow: rgba(191,255,94,0.28);
+      --white: #f0f0ec; --muted: rgba(240,240,236,0.45); --faint: rgba(240,240,236,0.18);
+      --mono: 'DM Mono', monospace;
+      --sans: 'Bodoni Moda', Georgia, serif;
+      --body: 'Instrument Sans', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: var(--body); line-height: 1.7; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1000; opacity: 0.6; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--mono); font-weight: 500; font-size: 18px; letter-spacing: 0.04em; color: var(--lime); text-decoration: none; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s; }
+    .nav-links a:visited { color: var(--muted); }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; color: var(--bg); background: var(--lime); padding: 9px 20px; border-radius: 3px; text-decoration: none; transition: opacity 0.15s; }
+    .nav-cta:hover { opacity: 0.85; }
+
+    .page-hero { padding: 160px 48px 80px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 100% 100% at 0% 50%, black 20%, transparent 80%); }
+    .page-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); margin-bottom: 24px; position: relative; }
+    .page-title { font-family: var(--sans); font-size: clamp(44px, 6vw, 80px); font-weight: 900; font-variation-settings: 'opsz' 96; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 28px; position: relative; max-width: 700px; }
+    .page-title em { font-style: italic; color: var(--lime); }
+    .page-intro { font-size: 17px; color: var(--muted); max-width: 520px; line-height: 1.75; position: relative; }
+
+    .content { max-width: 640px; margin: 0 auto; padding: 80px 48px 100px; }
+    .content p { font-size: 16px; line-height: 1.85; color: var(--muted); margin-bottom: 24px; }
+    .content p:first-child { font-size: 18px; color: rgba(240,240,236,0.6); }
+
+    .pull-quote { font-family: var(--body); font-size: clamp(19px, 2.2vw, 24px); font-style: italic; font-weight: 600; line-height: 1.4; letter-spacing: -0.01em; color: var(--white); border-left: 3px solid var(--lime); padding: 6px 0 6px 28px; margin: 40px 0; }
+
+    .section-break { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); margin: 48px 0 20px; }
+    .divider { width: 40px; height: 2px; background: var(--lime); margin: 40px 0; }
+
+    .requires { background: var(--bg2); border: 1px solid var(--border-bright); border-radius: 6px; padding: 32px; margin: 32px 0; }
+    .requires-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); margin-bottom: 20px; }
+    .requires-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .req-item { display: flex; flex-direction: column; gap: 4px; }
+    .req-name { font-size: 14px; color: var(--white); }
+    .req-note { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+    .req-note a { color: var(--lime); text-decoration: none; }
+
+    .footnote { font-family: var(--mono); font-size: 12px; color: var(--faint); border-top: 1px solid var(--border); padding-top: 28px; margin-top: 56px; line-height: 1.8; }
+    .footnote a { color: var(--muted); }
+
+    .page-cta { background: var(--bg2); border: 1px solid var(--border-bright); border-radius: 8px; padding: 48px; margin-top: 64px; text-align: center; }
+    .page-cta-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); margin-bottom: 20px; }
+    .page-cta-title { font-family: var(--body); font-size: 30px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 10px; }
+    .page-cta-sub { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 14px; font-weight: 500; letter-spacing: 0.05em; color: var(--bg); background: var(--lime); padding: 16px 32px; border-radius: 4px; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--lime-glow); }
+
+    footer { padding: 48px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .footer-logo { font-family: var(--mono); font-size: 14px; color: var(--lime); }
+    .footer-links { display: flex; gap: 32px; }
+    .footer-links a { font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-family: var(--mono); font-size: 11px; color: var(--faint); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; } .nav-links { display: none; }
+      .page-hero { padding: 120px 24px 60px; }
+      .content { padding: 60px 24px; }
+      .requires-grid { grid-template-columns: 1fr; }
+      footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+    <nav>
+    <a href="/index.html" class="nav-logo">ArtDrop™</a>
+    <div class="nav-links">
+      <a href="/about.html" class="active">About</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/docs.html">Docs</a>
+    </div>
+    <a href="https://buy.stripe.com/dRmfZgcG2cw724M6QC43S00" class="nav-cta">Get ArtDrop™ — $197</a>
+  </nav>
+
+  <div class="page-hero">
+    <div class="hero-grid-bg"></div>
+    <p class="page-label">// The backstory</p>
+    <h1 class="page-title">Built because<br>it <em>didn't exist.</em></h1>
+    <p class="page-intro">ArtDrop™ started as the only way out of a problem that was eating studio time alive.</p>
+  </div>
+
+  <div class="content">
+
+    <p>I didn't build this because I wanted to build software. I built it because I had no other option.</p>
+
+    <p>I'm an artist. I shoot. I make things. At some point I had hundreds of pieces sitting on a hard drive that deserved to be out in the world. So I went through the process of getting them there. It nearly broke me.</p>
+
+    <p>The tools that print-on-demand platforms give you are built for someone with ten products. Maybe twenty. You click around, fill in the fields, upload your image, write your description, do your SEO, set your variants, publish. An hour a product. Sure. Fine. Now try doing that with a hundred pieces. You will run out of will to live before you run out of artwork.</p>
+
+    <div class="pull-quote">Every hour you spend in that interface is an hour you didn't spend making something.</div>
+
+    <p>So I built something that did it for me. Hooked it into AI so it could actually look at a piece and write about it — not generic garbage, something specific to what's in the image. Wired it into the print-on-demand API, the store API, the cloud storage. Automated the whole chain. Ran my entire catalogue through it.</p>
+
+    <p>Then I built the Voice Trainer — because telling an AI how to write about your art shouldn't require knowing how to write prompts. You drop an image, see the copy, and just react: "too flowery", "shorter", "never say that word." It learns your style from the conversation and saves the rules for you. No forms, no guesswork.</p>
+
+    <p>It worked. And then I thought about every other artist sitting in front of that same wall.</p>
+
+    <p>Making good art is the hard part. That should be the whole job. But it's not. The job also includes listing copy, SEO descriptions, variant management, collection organisation, tags, alt text, and publishing — again for every single format you sell. It's not creative work. It's data entry. And it scales terribly.</p>
+
+    <div class="pull-quote">You came up with the art. That was the hard part. This is the rest of it, handled.</div>
+
+    <div class="divider"></div>
+
+    <div class="section-break">// What it requires</div>
+
+    <p>ArtDrop currently supports Shopify as your storefront, with Gelato, Printful, and Printify as print providers. Use one, two, or all three simultaneously. Etsy and WooCommerce support are actively in development. ArtDrop publishes to every platform you're connected to — from a single drop.</p>
+
+    <div class="requires">
+      <div class="requires-label">// Required accounts</div>
+      <div class="requires-grid">
+        <div class="req-item">
+          <span class="req-name">Shopify</span>
+          <span class="req-note">Any paid plan · <a href="https://shopify.com">shopify.com</a></span>
+        </div>
+        <div class="req-item">
+          <span class="req-name">Gelato, Printful, or Printify</span>
+          <span class="req-note">Free accounts · at least one required · use any combination</span>
+        </div>
+        <div class="req-item">
+          <span class="req-name">Etsy / WooCommerce</span>
+          <span class="req-note">Coming soon</span>
+        </div>
+        <div class="req-item">
+          <span class="req-name">Backblaze B2</span>
+          <span class="req-note">Free 10GB tier · <a href="https://backblaze.com">backblaze.com</a></span>
+        </div>
+        <div class="req-item">
+          <span class="req-name">Anthropic API</span>
+          <span class="req-note">Pay per use · ~$0.02/image</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-quote">Making the art was the hard part. That should be the whole job.</div>
+
+    <div class="page-cta">
+      <div class="page-cta-label">// Ready</div>
+      <div class="page-cta-title">One drop. Every product.</div>
+      <div class="page-cta-sub">$197 once. No subscription. Mac + Windows.</div>
+      <a href="https://buy.stripe.com/dRmfZgcG2cw724M6QC43S00" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
+        Get ArtDrop™
+      </a>
+    </div>
+
+  </div>
+  <div id="site-footer"></div>
+  <script src="/footer.js"></script>
+</body>
+</html>
+     

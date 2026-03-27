@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Center — ArtDrop</title>
+  <meta name="description" content="ArtDrop Help Center. Find answers in the FAQ, read the documentation, or get started with the setup guide.">
+  <meta property="og:title" content="Help Center — ArtDrop">
+  <meta property="og:description" content="ArtDrop Help Center. Find answers in the FAQ, read the documentation, or get started with the setup guide.">
+  <meta property="og:url" content="https://getartdrop.com/help.html">
+  <meta property="og:image" content="https://getartdrop.com/og-image.png">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://getartdrop.com/help.html">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1a2e'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='22' font-weight='bold' fill='%2300c853' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700;1,6..96,900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #181818;
+      --border: rgba(255,255,255,0.07);
+      --border-bright: rgba(255,255,255,0.14);
+      --lime: #bfff5e;
+      --lime-dim: rgba(191,255,94,0.12);
+      --lime-glow: rgba(191,255,94,0.28);
+      --white: #f0f0ec;
+      --muted: rgba(240,240,236,0.45);
+      --faint: rgba(240,240,236,0.18);
+      --mono: 'DM Mono', monospace;
+      --sans: 'Bodoni Moda', Georgia, serif;
+      --body: 'Instrument Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--body);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.6;
+    }
+
+    /* ── NAV ────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 18px;
+      letter-spacing: 0.04em;
+      color: var(--lime);
+      text-decoration: none;
+    }
+
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--bg);
+      background: var(--lime);
+      padding: 9px 20px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a:link, .nav-links a:visited { font-family: var(--body); font-size: 13px; color: var(--muted); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+
+    /* ── PAGE ───────────────────────────────────────── */
+    .page-header {
+      padding: 160px 48px 80px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 16px;
+    }
+
+    .page-title {
+      font-family: var(--sans);
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 900;
+      font-variation-settings: 'opsz' 96;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+
+    .page-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.65;
+      margin-top: 20px;
+    }
+
+    /* ── HELP CARDS ────────────────────────────────── */
+    .help-section {
+      padding: 80px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .help-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      max-width: 960px;
+    }
+
+    .help-card {
+      background: var(--bg2);
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      padding: 36px 32px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s, transform 0.15s;
+      display: block;
+    }
+    .help-card:hover {
+      border-color: var(--lime);
+      transform: translateY(-2px);
+    }
+
+    .help-card-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .help-card-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .help-card-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .help-card-link {
+      display: inline-block;
+      margin-top: 16px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--lime);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── CONTACT ───────────────────────────────────── */
+    .contact-section {
+      padding: 80px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-box {
+      background: var(--bg2);
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      padding: 40px 36px;
+      max-width: 560px;
+    }
+
+    .contact-box h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .contact-box p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .contact-box a {
+      color: var(--lime);
+      text-decoration: none;
+    }
+    .contact-box a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-email {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--lime);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── FOOTER ────────────────────────────────────── */
+    footer {
+      padding: 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--lime);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--faint);
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .page-header { padding: 120px 24px 60px; }
+      .help-section { padding: 60px 24px; }
+      .contact-section { padding: 60px 24px; }
+      footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/index.html" class="nav-logo">ArtDrop™</a>
+    <div class="nav-links">
+      <a href="/about.html">About</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/docs.html">Docs</a>
+    </div>
+    <a href="/index.html#pricing" class="nav-cta">Get ArtDrop™ — $197</a>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="page-label">// Support</div>
+    <h1 class="page-title">Help Center</h1>
+    <p class="page-sub">Find what you need. Start with the guides below, or reach out directly if something is not covered.</p>
+  </div>
+
+  <!-- HELP CARDS -->
+  <div class="help-section">
+    <div class="help-grid">
+      <a href="/faq.html" class="help-card">
+        <div class="help-card-icon">?</div>
+        <div class="help-card-title">Frequently Asked Questions</div>
+        <div class="help-card-desc">Common questions about licensing, setup, compatibility, print providers, and how ArtDrop™ works.</div>
+        <span class="help-card-link">Read FAQ &rarr;</span>
+      </a>
+      <a href="/docs.html" class="help-card">
+        <div class="help-card-icon">&gt;_</div>
+        <div class="help-card-title">Documentation</div>
+        <div class="help-card-desc">Full reference covering configuration, API keys, templates, voice training, and how everything works together.</div>
+        <span class="help-card-link">Read Docs &rarr;</span>
+      </a>
+      <a href="/docs.html#before-you-begin" class="help-card">
+        <div class="help-card-icon">&raquo;</div>
+        <div class="help-card-title">Getting Started</div>
+        <div class="help-card-desc">Step-by-step guide to install ArtDrop, connect your accounts, configure your first templates, and run your first drop.</div>
+        <span class="help-card-link">Get started &rarr;</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- STILL NEED HELP -->
+  <div class="contact-section">
+    <div class="contact-box">
+      <h3>Still need help?</h3>
+      <p>If the guides above do not cover your issue, reach out directly. We respond to every message.</p>
+      <a href="mailto:support@getartdrop.com" class="contact-email">support@getartdrop.com</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div id="site-footer"></div>
+  <script src="/footer.js"></script>
+
+</body>
+</html>
