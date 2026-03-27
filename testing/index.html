@@ -10,6 +10,44 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    /* ── PASSWORD GATE ────────────────────────── */
+    .gate {
+      position: fixed;
+      inset: 0;
+      background: #0a0a0a;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      font-family: 'DM Mono', monospace;
+    }
+    .gate.hidden { display: none; }
+    .gate-label { font-size: 13px; color: rgba(240,240,236,0.5); letter-spacing: 0.1em; }
+    .gate-input {
+      font-family: 'DM Mono', monospace;
+      font-size: 16px;
+      color: #f0f0ec;
+      background: #111;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 5px;
+      padding: 12px 20px;
+      width: 260px;
+      text-align: center;
+      outline: none;
+    }
+    .gate-input:focus { border-color: #bfff5e; }
+    .gate-input.wrong { border-color: #ff5f57; animation: shake 0.3s; }
+    .gate-hint { font-size: 11px; color: rgba(240,240,236,0.2); }
+    .page-content { display: none; }
+    .page-content.unlocked { display: block; }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --bg: #0a0a0a;
@@ -211,6 +249,15 @@
   </style>
 </head>
 <body>
+
+<!-- PASSWORD GATE -->
+<div class="gate" id="gate">
+  <div class="gate-label">ARTDROP BETA</div>
+  <input class="gate-input" id="gate-input" type="password" placeholder="password" autofocus>
+  <div class="gate-hint">Ask Michael for the password</div>
+</div>
+
+<div class="page-content" id="page-content">
 
 <div class="test-banner">ARTDROP BETA TEST — CONFIDENTIAL</div>
 
@@ -479,7 +526,47 @@ if (form) {
     });
   });
 }
+
+// ── PASSWORD GATE ──────────────────────────
+(function() {
+  var HASH = '22f8a75e754c6922f301b408f56474c9498979db26d78030f72433cf8bd91d58';
+  var gate = document.getElementById('gate');
+  var input = document.getElementById('gate-input');
+  var content = document.getElementById('page-content');
+
+  // Check if already authenticated this session
+  if (sessionStorage.getItem('artdrop-beta-auth') === 'ok') {
+    gate.classList.add('hidden');
+    content.classList.add('unlocked');
+  }
+
+  async function checkPassword(pw) {
+    var enc = new TextEncoder();
+    var buf = await crypto.subtle.digest('SHA-256', enc.encode(pw));
+    var arr = Array.from(new Uint8Array(buf));
+    return arr.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+  }
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key !== 'Enter') return;
+    var pw = input.value.trim();
+    if (!pw) return;
+    checkPassword(pw).then(function(hash) {
+      if (hash === HASH) {
+        sessionStorage.setItem('artdrop-beta-auth', 'ok');
+        gate.classList.add('hidden');
+        content.classList.add('unlocked');
+      } else {
+        input.classList.add('wrong');
+        input.value = '';
+        setTimeout(function() { input.classList.remove('wrong'); }, 400);
+      }
+    });
+  });
+})();
 </script>
+
+</div><!-- /page-content -->
 
 </body>
 </html>
