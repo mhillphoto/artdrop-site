@@ -170,6 +170,7 @@
     }
 
     .hero-headline {
+      font-family: var(--sans);
       font-size: clamp(48px, 7vw, 100px);
       font-weight: 900;
       font-variation-settings: 'opsz' 96;
@@ -875,8 +876,8 @@
 
     .pricing-amount {
       display: flex;
-      align-items: baseline;
-      gap: 8px;
+      align-items: flex-start;
+      gap: 4px;
       margin-bottom: 8px;
     }
 
@@ -885,10 +886,8 @@
       font-size: 24px;
       font-weight: 600;
       color: var(--muted);
-      vertical-align: super;
       line-height: 1;
-      position: relative;
-      top: -0.35em;
+      padding-top: 0.12em;
     }
 
     .price-num {
@@ -1076,7 +1075,7 @@
         <em>Done.</em>
       </h2>
       <p class="hero-sub">
-        Drop an image. That's it. ArtDrop analyzes your artwork — colors, composition, mood, subject — then writes the copy, creates every product format you sell, and publishes everything to your store. Collection, SEO, alt text, all of it. Configure once. Every drop after that is automatic.
+        Drop an image. That's it. ArtDrop analyzes your artwork — colors, composition, mood, subject — then writes the copy, creates every product format you sell, publishes everything to your store, and posts to Instagram, Pinterest, Facebook, Bluesky, and Threads. Collection, SEO, alt text, social — all of it. Configure once. Every drop after that is automatic.
       </p>
       <div class="hero-actions">
         <a href="#pricing" class="btn-primary">
