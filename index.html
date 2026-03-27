@@ -487,8 +487,8 @@
 
     .feature-check {
       flex-shrink: 0;
-      width: 28px;
-      height: 28px;
+      width: 36px;
+      height: 36px;
       color: var(--lime);
       display: flex;
       align-items: center;
@@ -496,7 +496,7 @@
       margin-top: 2px;
     }
 
-    .feature-check svg { width: 20px; height: 20px; stroke-width: 1.5; }
+    .feature-check svg { width: 26px; height: 26px; stroke-width: 1.5; }
 
     .feature-text { }
     .feature-title {
@@ -542,12 +542,13 @@
       margin-top: 16px;
     }
     .trust-marks-label {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--faint);
-      margin-bottom: 16px;
+      font-family: var(--sans);
+      font-size: 22px;
+      font-weight: 700;
+      font-variation-settings: 'opsz' 24;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 20px;
       margin-top: 40px;
     }
 
@@ -594,6 +595,7 @@
     }
     .trust-logo:hover { opacity: 1; }
     .trust-logo--printful { height: 34px; }
+    .trust-logo--claude { filter: brightness(0) saturate(100%) invert(83%) sepia(84%) saturate(416%) hue-rotate(41deg) brightness(102%); opacity: 1; }
 
     /* Social publishing section */
     .social-feature-grid {
@@ -621,8 +623,9 @@
       width: auto;
       margin: 0 auto 12px;
       display: block;
-      opacity: 0.85;
+      filter: brightness(0) saturate(100%) invert(83%) sepia(84%) saturate(416%) hue-rotate(41deg) brightness(102%);
     }
+    .social-feature-logo--lg { height: 38px; }
     .social-feature-name {
       font-family: var(--sans);
       font-size: 16px;
@@ -743,7 +746,7 @@
     }
     .social-intro {
       max-width: 700px;
-      margin: 0 auto 40px;
+      margin: 0 0 40px;
     }
 
     /* ── PRICING NOTE ────────────────────────────── */
@@ -1337,30 +1340,12 @@
     })();
     </script>
 
-    <div class="numbers reveal">
-      <div class="number-cell">
-        <div class="number-val">1 file</div>
-        <div class="number-label">every product in your catalog — automatically</div>
-      </div>
-      <div class="number-cell">
-        <div class="number-val">fast</div>
-        <div class="number-label">minutes from image to live store</div>
-      </div>
-      <div class="number-cell">
-        <div class="number-val">0</div>
-        <div class="number-label">data entry on any POD site</div>
-      </div>
-      <div class="number-cell">
-        <div class="number-val">batch</div>
-        <div class="number-label">drop your whole collection at once</div>
-      </div>
-    </div>
   </section>
 
   <!-- FEATURES -->
   <section class="section">
     <div class="section-label">// What's automated</div>
-    <h2 class="section-title reveal">All of this happens<br>after you drop.</h2>
+    <h2 class="section-title reveal">All of this happens<br>after you drop a file.</h2>
     <div class="features-list reveal">
       <div class="feature">
         <div class="feature-check"><i data-lucide="pen-tool"></i></div>
@@ -1494,17 +1479,17 @@
   <section class="section">
     <div class="wrapper">
     <div class="section-label">// The stack</div>
-    <h2 class="section-title reveal">Built on services you already trust.</h2>
+    <h2 class="section-title reveal" style="margin-bottom:32px">Built on services you already trust.</h2>
     <p class="section-prose section-prose--stack reveal">
       ArtDrop connects the services you already use. Your print provider fulfills and ships worldwide. Your storefront handles sales. Backblaze stores your files. ArtDrop is the glue — and the automation. Built and sold by StanHattie LLC.
     </p>
-    <div class="trust-marks-label reveal" style="font-size:13px;letter-spacing:0.12em;margin-top:40px;">Integrates with</div>
+    <h3 class="trust-marks-label reveal">Integrates with</h3>
     <div class="trust-logos reveal">
       <a href="https://www.shopify.com" target="_blank" rel="noopener"><img src="logos/shopify.svg" alt="Shopify" class="trust-logo"></a>
       <a href="https://www.gelato.com" target="_blank" rel="noopener"><img src="logos/gelato.svg" alt="Gelato" class="trust-logo"></a>
       <a href="https://www.printful.com" target="_blank" rel="noopener"><img src="logos/printful.svg" alt="Printful" class="trust-logo trust-logo--printful"></a>
       <a href="https://www.printify.com" target="_blank" rel="noopener"><img src="logos/printify.svg" alt="Printify" class="trust-logo"></a>
-      <a href="https://www.anthropic.com" target="_blank" rel="noopener"><img src="logos/claude.svg" alt="Claude AI by Anthropic" class="trust-logo"></a>
+      <a href="https://www.anthropic.com" target="_blank" rel="noopener"><img src="logos/claude.svg" alt="Claude AI by Anthropic" class="trust-logo trust-logo--claude"></a>
     </div>
     </div>
   </section>
@@ -1513,7 +1498,7 @@
   <section class="section">
     <div class="wrapper">
     <div class="section-label">// AI engine</div>
-    <h2 class="section-title reveal">Powered by Claude from Anthropic.</h2>
+    <h2 class="section-title reveal" style="margin-bottom:32px">Powered by Claude from Anthropic.</h2>
     <p class="section-prose section-prose--stack reveal">
       The AI engine behind every title, description, and SEO tag ArtDrop generates. No generic AI slop. No prompt engineering required. Train your voice once — Claude writes like you for every product, every platform, every time.
     </p>
@@ -1524,7 +1509,7 @@
   <section class="section">
     <div class="wrapper">
     <div class="section-label">// What's next</div>
-    <h2 class="section-title reveal">We never stop building.</h2>
+    <h2 class="section-title reveal" style="margin-bottom:32px">We never stop building.</h2>
     <p class="roadmap-prose reveal">
       ArtDrop is under constant development. New providers, new storefronts, new intelligence features — all included at the same fixed price. No upgrade fees. No subscription creep. You buy once, you get everything that comes after.
     </p>
@@ -1549,7 +1534,7 @@
   <section class="section">
     <div class="wrapper">
     <div class="section-label">// Social publishing</div>
-    <h2 class="section-title reveal">Post everywhere.<br>Sound like yourself.</h2>
+    <h2 class="section-title reveal" style="margin-bottom:32px">Post everywhere.<br>Sound like yourself.</h2>
     <p class="section-sub social-intro reveal">
       Every drop generates unique, voice-matched posts for each platform — not the same caption copy-pasted five times. ArtDrop adapts your voice to each platform's culture so it reads like you wrote it, because it sounds like you did.
     </p>
@@ -1559,7 +1544,7 @@
         <div class="social-feature-desc">Keyword-rich pins optimized for search discovery. Pinterest is a search engine — ArtDrop writes for it.</div>
       </div>
       <div class="social-feature-card">
-        <img src="logos/instagram.svg" alt="Instagram" class="social-feature-logo">
+        <img src="logos/instagram.svg" alt="Instagram" class="social-feature-logo social-feature-logo--lg">
         <div class="social-feature-desc">Voice-forward captions with smart hashtag blocks. Personal, engaging, not robotic.</div>
       </div>
       <div class="social-feature-card">
