@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtDrop — Testing</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1a2e'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='22' font-weight='bold' fill='%23bfff5e' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,700;1,6..96,900&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+  <style>
+    .test-banner {
+      background: var(--lime);
+      color: var(--bg);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-align: center;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+    }
+    .test-page { padding: 60px 24px 80px; max-width: 900px; margin: 0 auto; }
+    .test-page h1 { font-family: var(--sans); font-size: 36px; font-weight: 900; margin-bottom: 8px; }
+    .test-page .subtitle { color: var(--muted); font-size: 15px; margin-bottom: 48px; }
+    .test-section { margin-bottom: 56px; border-top: 1px solid var(--border); padding-top: 32px; }
+    .test-section h2 { font-family: var(--mono); font-size: 14px; letter-spacing: 0.1em; color: var(--lime); margin-bottom: 20px; }
+    .test-section p { color: var(--muted); font-size: 14px; margin-bottom: 16px; line-height: 1.6; }
+
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .checklist li:hover { border-color: var(--border-bright); }
+    .checklist li input[type="checkbox"] { margin-top: 2px; accent-color: var(--lime); }
+    .checklist li .check-label { flex: 1; }
+    .checklist li .check-page { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+    .checklist li .check-status {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .status-pass { background: rgba(40,200,64,0.15); color: #28c840; }
+    .status-fail { background: rgba(255,95,87,0.15); color: #ff5f57; }
+    .status-warn { background: rgba(254,188,46,0.15); color: #febc2e; }
+
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .logo-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px 16px;
+      text-align: center;
+    }
+    .logo-card img { height: 32px; width: auto; margin-bottom: 12px; }
+    .logo-card .logo-name { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+    .logo-card-dark { background: var(--bg); }
+    .logo-card-light { background: #ffffff; }
+    .logo-card-mid { background: #333333; }
+
+    .type-sample { margin-bottom: 24px; }
+    .type-sample .font-name { font-family: var(--mono); font-size: 11px; color: var(--lime); margin-bottom: 8px; }
+
+    .viewport-info {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+    }
+    .viewport-info strong { color: var(--white); }
+
+    .page-links { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .page-links a {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 8px 16px;
+      border: 1px solid var(--border-bright);
+      border-radius: 4px;
+      color: var(--white);
+      text-decoration: none;
+      transition: border-color 0.15s;
+    }
+    .page-links a:hover { border-color: var(--lime); }
+
+    .noise-toggle {
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 8px 16px;
+      border: 1px solid var(--lime);
+      border-radius: 4px;
+      background: none;
+      color: var(--lime);
+      cursor: pointer;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .test-page h1 { font-size: 28px; }
+      .logo-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="test-banner">INTERNAL TESTING — NOT PUBLIC</div>
+
+<div class="test-page">
+  <h1>ArtDrop Testing</h1>
+  <p class="subtitle">Internal test page for QA. Check items as you go. This page is noindexed.</p>
+
+  <div class="viewport-info">
+    Viewport: <strong id="vp-width"></strong> x <strong id="vp-height"></strong> ·
+    Device pixel ratio: <strong id="vp-dpr"></strong> ·
+    <span id="vp-breakpoint"></span>
+  </div>
+  <script>
+    function updateVP() {
+      document.getElementById('vp-width').textContent = window.innerWidth;
+      document.getElementById('vp-height').textContent = window.innerHeight;
+      document.getElementById('vp-dpr').textContent = window.devicePixelRatio;
+      var w = window.innerWidth;
+      var bp = w <= 400 ? 'XS (≤400)' : w <= 768 ? 'Mobile (≤768)' : w <= 1024 ? 'Tablet (≤1024)' : 'Desktop (>1024)';
+      document.getElementById('vp-breakpoint').textContent = bp;
+    }
+    updateVP();
+    window.addEventListener('resize', updateVP);
+  </script>
+
+  <!-- QUICK NAV -->
+  <div class="test-section">
+    <h2>PAGES</h2>
+    <div class="page-links">
+      <a href="/">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/docs.html">Docs</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/eula.html">EULA</a>
+      <a href="/help.html">Help</a>
+      <a href="/thanks.html">Thanks</a>
+    </div>
+  </div>
+
+  <!-- LOGO VERIFICATION -->
+  <div class="test-section">
+    <h2>LOGO COLOR VERIFICATION</h2>
+    <p>All logos should appear in lime green (#bfff5e). If any appear black, different colors, or washed out, note which ones and what browser/device you're using.</p>
+
+    <button class="noise-toggle" onclick="document.querySelector('body').classList.toggle('no-noise');this.textContent=this.textContent.includes('OFF')?'Toggle noise overlay OFF':'Toggle noise overlay ON';">Toggle noise overlay OFF</button>
+    <style>.no-noise::before { display: none !important; }</style>
+
+    <h3 style="font-family:var(--mono);font-size:12px;color:var(--muted);margin:24px 0 12px;">Trust bar logos (dark bg)</h3>
+    <div class="logo-grid">
+      <div class="logo-card logo-card-dark">
+        <img src="/logos/claude.svg" alt="Claude">
+        <div class="logo-name">claude.svg</div>
+      </div>
+      <div class="logo-card logo-card-dark">
+        <img src="/logos/shopify.svg" alt="Shopify">
+        <div class="logo-name">shopify.svg</div>
+      </div>
+      <div class="logo-card logo-card-dark">
+        <img src="/logos/gelato.svg" alt="Gelato">
+        <div class="logo-name">gelato.svg</div>
+      </div>
+      <div class="logo-card logo-card-dark">
+        <img src="/logos/printful.svg" alt="Printful">
+        <div class="logo-name">printful.svg</div>
+      </div>
+      <div class="logo-card logo-card-dark">
+        <img src="/logos/printify.svg" alt="Printify">
+        <div class="logo-name">printify.svg</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--mono);font-size:12px;color:var(--muted);margin:24px 0 12px;">Social logos (dark bg)</h3>
+    <div class="logo-grid">
+      <div class="logo-card logo-card-dark">
+        <img src="/logos/pinterest.svg" alt="Pinterest">
+        <div class="logo-name">pinterest.svg</div>
+      </div>
+      <div class="logo-card logo-card-dark">
+        <img src="/logos/instagram.svg" alt="Instagram">
+        <div class="logo-name">instagram.svg</div>
+      </div>
+      <div class="logo-card logo-card-dark">
+        <img src="/logos/facebook.svg" alt="Facebook">
+        <div class="logo-name">facebook.svg</div>
+      </div>
+      <div class="logo-card logo-card-dark">
+        <img src="/logos/threads.svg" alt="Threads">
+        <div class="logo-name">threads.svg</div>
+      </div>
+      <div class="logo-card logo-card-dark">
+        <img src="/logos/bluesky.svg" alt="Bluesky">
+        <div class="logo-name">bluesky.svg</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--mono);font-size:12px;color:var(--muted);margin:24px 0 12px;">Same logos on white bg (control)</h3>
+    <div class="logo-grid">
+      <div class="logo-card logo-card-light">
+        <img src="/logos/claude.svg" alt="Claude">
+        <div class="logo-name" style="color:#666;">claude.svg</div>
+      </div>
+      <div class="logo-card logo-card-light">
+        <img src="/logos/shopify.svg" alt="Shopify">
+        <div class="logo-name" style="color:#666;">shopify.svg</div>
+      </div>
+      <div class="logo-card logo-card-light">
+        <img src="/logos/pinterest.svg" alt="Pinterest">
+        <div class="logo-name" style="color:#666;">pinterest.svg</div>
+      </div>
+      <div class="logo-card logo-card-light">
+        <img src="/logos/instagram.svg" alt="Instagram">
+        <div class="logo-name" style="color:#666;">instagram.svg</div>
+      </div>
+      <div class="logo-card logo-card-light">
+        <img src="/logos/bluesky.svg" alt="Bluesky">
+        <div class="logo-name" style="color:#666;">bluesky.svg</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION CHECKLIST -->
+  <div class="test-section">
+    <h2>NAVIGATION</h2>
+    <ul class="checklist">
+      <li><input type="checkbox"><div class="check-label">Logo centered on mobile<div class="check-page">All pages · ≤768px</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Hamburger icon visible on mobile (left side)<div class="check-page">All pages · ≤768px</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Hamburger opens full-screen overlay menu<div class="check-page">All pages · ≤768px</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Menu links navigate correctly and menu closes<div class="check-page">All pages · ≤768px</div></div></li>
+      <li><input type="checkbox"><div class="check-label">"Get ArtDrop" CTA inside mobile menu works<div class="check-page">All pages · ≤768px</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Current page link highlighted in nav<div class="check-page">About, FAQ, Docs</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Desktop nav shows logo, links, and CTA button<div class="check-page">All pages · >768px</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Nav stays fixed on scroll<div class="check-page">All pages</div></div></li>
+    </ul>
+  </div>
+
+  <!-- HOMEPAGE CHECKLIST -->
+  <div class="test-section">
+    <h2>HOMEPAGE</h2>
+    <ul class="checklist">
+      <li><input type="checkbox"><div class="check-label">Hero headline "Drop a file. Done." readable, no text overflow<div class="check-page">index.html · Mobile</div></div></li>
+      <li><input type="checkbox"><div class="check-label">"fi" in "file" not colliding (ligature fix)<div class="check-page">index.html · Mobile</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Terminal animation plays and fits in viewport<div class="check-page">index.html · Mobile + Desktop</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Product grid cards display properly (2-col mobile, 5-col desktop)<div class="check-page">index.html · "What Gets Created"</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Feature cards stack correctly on mobile<div class="check-page">index.html · "The Pipeline"</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Trust logos all visible and same color<div class="check-page">index.html · "The Stack"</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Social platform cards display properly<div class="check-page">index.html · Social section</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Pricing section readable and CTA works<div class="check-page">index.html · #pricing</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Roadmap pills wrap correctly on mobile<div class="check-page">index.html · "What's Next"</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Privacy section layout (2-col desktop, stack mobile)<div class="check-page">index.html</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Footer links wrap and are tappable on mobile<div class="check-page">All pages</div></div></li>
+    </ul>
+  </div>
+
+  <!-- SUBPAGES CHECKLIST -->
+  <div class="test-section">
+    <h2>SUBPAGES</h2>
+    <ul class="checklist">
+      <li><input type="checkbox"><div class="check-label">About page hero text readable on mobile<div class="check-page">about.html</div></div></li>
+      <li><input type="checkbox"><div class="check-label">FAQ accordion works (expand/collapse)<div class="check-page">faq.html</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Docs sidebar collapses on mobile<div class="check-page">docs.html</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Legal pages (Terms, Privacy, EULA) readable<div class="check-page">terms/privacy/eula.html</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Help page contact section works<div class="check-page">help.html</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Thanks page displays after purchase flow<div class="check-page">thanks.html</div></div></li>
+    </ul>
+  </div>
+
+  <!-- CROSS-BROWSER -->
+  <div class="test-section">
+    <h2>CROSS-BROWSER / DEVICE</h2>
+    <ul class="checklist">
+      <li><input type="checkbox"><div class="check-label">Safari iOS (iPhone)<div class="check-page">All pages</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Safari iOS (iPad)<div class="check-page">All pages</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Chrome Android<div class="check-page">All pages</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Chrome Desktop<div class="check-page">All pages</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Safari Desktop (Mac)<div class="check-page">All pages</div></div></li>
+      <li><input type="checkbox"><div class="check-label">Firefox Desktop<div class="check-page">All pages</div></div></li>
+    </ul>
+  </div>
+
+  <!-- FEEDBACK -->
+  <div class="test-section">
+    <h2>FEEDBACK</h2>
+    <p>Found an issue? Screenshot it and send to Michael with:</p>
+    <ul style="color:var(--muted);font-size:14px;padding-left:20px;line-height:2;">
+      <li>Which page</li>
+      <li>Device + browser</li>
+      <li>What's wrong vs what you expected</li>
+      <li>Screenshot (mark up if possible)</li>
+    </ul>
+  </div>
+
+</div>
+
+</body>
+</html>
