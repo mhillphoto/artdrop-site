@@ -267,11 +267,14 @@
 
     @media (max-width: 768px) {
       nav { padding: 16px 24px; }
+      .nav-hamburger { display: block; order: -1; }
+      .nav-logo { order: 0; margin: 0 auto; }
+      .nav-cta { display: none; }
+      .nav-links { display: none; }
       .page-header { padding: 120px 24px 60px; }
       .help-section { padding: 60px 24px; }
       .contact-section { padding: 60px 24px; }
       footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
-      .nav-links { display: none; }
     }
   </style>
 </head>
@@ -279,11 +282,15 @@
 
   <!-- NAV -->
   <nav>
+    <button class="nav-hamburger" aria-label="Menu" onclick="this.classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open');">
+      <span></span><span></span><span></span>
+    </button>
     <a href="/index.html" class="nav-logo">ArtDrop™</a>
     <div class="nav-links">
-      <a href="/about.html">About</a>
-      <a href="/faq.html">FAQ</a>
-      <a href="/docs.html">Docs</a>
+      <a href="/about.html" onclick="document.querySelector('.nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');">About</a>
+      <a href="/faq.html" onclick="document.querySelector('.nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');">FAQ</a>
+      <a href="/docs.html" onclick="document.querySelector('.nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');">Docs</a>
+      <a href="https://buy.stripe.com/dRmfZgcG2cw724M6QC43S00" class="nav-cta-mobile" onclick="document.querySelector('.nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');">Get ArtDrop™ — $197</a>
     </div>
     <a href="/index.html#pricing" class="nav-cta">Get ArtDrop™ — $197</a>
   </nav>
