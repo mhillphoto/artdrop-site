@@ -92,6 +92,7 @@ nav {
   transform: translateY(-2px);
   box-shadow: 0 8px 32px var(--lime-glow);
 }
+.nav-cta-mobile { display: none; }
 
 /* ── Footer ─────────────────────────────────────────────────────── */
 footer {
@@ -150,7 +151,7 @@ footer {
 }
 
 .page-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); margin-bottom: 24px; position: relative; }
-.page-title { font-family: var(--sans); font-size: clamp(44px, 6vw, 80px); font-weight: 900; font-variation-settings: 'opsz' 96; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 28px; position: relative; max-width: 700px; }
+.page-title { font-family: var(--sans); font-size: clamp(44px, 6vw, 80px); font-weight: 900; font-variation-settings: 'opsz' 96; font-feature-settings: 'liga' 0; line-height: 1.0; letter-spacing: -0.01em; margin-bottom: 28px; position: relative; max-width: 700px; }
 .page-title em { font-style: italic; color: var(--lime); }
 .page-intro { font-size: 17px; color: var(--muted); max-width: 520px; line-height: 1.75; position: relative; }
 .page-intro a { color: var(--lime); text-decoration: none; }
@@ -158,7 +159,7 @@ footer {
 /* ── Section Labels ─────────────────────────────────────────────── */
 .section { padding: 100px 48px; border-top: 1px solid var(--border); }
 .section-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); margin-bottom: 16px; }
-.section-title { font-family: var(--sans); font-size: clamp(32px, 4vw, 52px); font-weight: 800; font-variation-settings: 'opsz' 48; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 64px; max-width: 600px; }
+.section-title { font-family: var(--sans); font-size: clamp(32px, 4vw, 52px); font-weight: 800; font-variation-settings: 'opsz' 48; font-feature-settings: 'liga' 0; letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 64px; max-width: 600px; }
 .section-title em { font-style: italic; color: var(--lime); }
 
 /* ── Utility Classes ────────────────────────────────────────────── */
@@ -244,6 +245,7 @@ footer {
   .nav-links.open { display: flex; }
   .nav-links a:link, .nav-links a:visited { font-size: 20px; color: var(--white); }
   .nav-links .nav-cta-mobile {
+    display: block;
     font-family: var(--mono);
     font-size: 14px;
     font-weight: 500;

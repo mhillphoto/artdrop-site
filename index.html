@@ -98,6 +98,7 @@
       transition: opacity 0.15s;
     }
     .nav-cta:hover { opacity: 0.92; box-shadow: 0 4px 20px var(--lime-glow); }
+    .nav-cta-mobile { display: none; }
     .nav-links { display: flex; gap: 28px; align-items: center; }
     .nav-links a:link, .nav-links a:visited { font-family: var(--body); font-size: 13px; color: var(--lime); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s, text-shadow 0.15s; }
     .nav-links a:hover, .nav-links a.active { color: var(--white); text-shadow: 0 0 12px var(--lime-glow); }
@@ -174,8 +175,9 @@
       font-size: clamp(48px, 7vw, 100px);
       font-weight: 900;
       font-variation-settings: 'opsz' 96;
+      font-feature-settings: 'liga' 0;
       line-height: 1.0;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.01em;
       margin-bottom: 32px;
       opacity: 0;
       animation: fadeUp 0.7s 0.2s ease forwards;
@@ -393,7 +395,7 @@
     /* ── WHAT GETS CREATED ─────────────────────────── */
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 12px;
     }
 
@@ -619,13 +621,13 @@
       text-align: center;
     }
     .social-feature-logo {
-      height: 32px;
+      height: 24px;
       width: auto;
       margin: 0 auto 12px;
       display: block;
       opacity: 0.85;
     }
-    .social-feature-logo--lg { height: 38px; }
+    .social-feature-logo--lg { height: 30px; }
     .social-feature-name {
       font-family: var(--sans);
       font-size: 16px;
@@ -1112,7 +1114,7 @@
       .pill { padding: 10px 16px; font-size: 12px; }
       .terminal { max-width: 100%; }
       .terminal-body { font-size: 12px; padding: 16px; min-height: 280px; max-height: 280px; }
-      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .artist-section { padding: 60px 20px; }
       .privacy-section { padding: 60px 20px; }
       .footer-links { gap: 20px; flex-wrap: wrap; }
@@ -1122,7 +1124,7 @@
 
     @media (max-width: 400px) {
       .hero-headline { font-size: 32px; }
-      .product-grid { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -1317,6 +1319,8 @@
       <div class="product-card"><div class="product-icon"><i data-lucide="square"></i></div><div class="product-name">Premium Wood Frame</div><div class="product-detail">Natural wood border</div></div>
       <div class="product-card"><div class="product-icon"><i data-lucide="smartphone"></i></div><div class="product-name">iPhone Tough Case</div><div class="product-detail">All current models</div></div>
       <div class="product-card"><div class="product-icon"><i data-lucide="smartphone"></i></div><div class="product-name">Samsung Tough Case</div><div class="product-detail">All current models</div></div>
+      <div class="product-card"><div class="product-icon"><i data-lucide="coffee"></i></div><div class="product-name">Ceramic Mug</div><div class="product-detail">11oz &amp; 15oz, dishwasher safe</div></div>
+      <div class="product-card"><div class="product-icon"><i data-lucide="shopping-bag"></i></div><div class="product-name">Canvas Tote Bag</div><div class="product-detail">All-over print, cotton</div></div>
     </div>
     <script>
     (function(){
@@ -1599,7 +1603,7 @@
     <div class="section-label">// Social publishing</div>
     <h2 class="section-title section-title--tight reveal">Post everywhere.<br>Sound like yourself.</h2>
     <p class="section-sub social-intro reveal">
-      Every drop generates unique, voice-matched posts for each platform — not the same caption copy-pasted five times. ArtDrop adapts your voice to each platform's culture so it reads like you wrote it, because it sounds like you did.
+      Every drop generates unique, voice-matched posts for each platform — not the same caption copy-pasted five times. ArtDrop adapts your voice to each platform's culture so it reads like you wrote it, because it sounds like you did. Choose which platforms to post to, or turn off social publishing entirely — it's completely optional.
     </p>
     <div class="social-feature-grid reveal">
       <div class="social-feature-card">
@@ -1624,7 +1628,7 @@
       </div>
     </div>
     <p class="section-sub social-footer-note reveal">
-      All posts are generated automatically after each drop — no extra steps.
+      All posts are generated automatically after each drop — no extra steps. Enable the platforms you use, disable the ones you don't. Social publishing is fully optional.
     </p>
     </div>
   </section>
@@ -1706,6 +1710,28 @@
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
     document.body.classList.add('js-ready');
+
+    // SVG inliner — fixes Safari P3 color management bug where SVGs loaded
+    // as <img> render with inconsistent/wrong colors. Replaces <img> with
+    // inline <svg> so they render in the page's color space.
+    document.querySelectorAll('img.trust-logo, img.social-feature-logo').forEach(function(img) {
+      fetch(img.getAttribute('src'))
+        .then(function(r) { return r.text(); })
+        .then(function(svg) {
+          var wrap = document.createElement('div');
+          wrap.innerHTML = svg.trim();
+          var svgEl = wrap.querySelector('svg');
+          if (!svgEl) return;
+          // Carry over classes and alt (as aria-label)
+          img.classList.forEach(function(c) { svgEl.classList.add(c); });
+          svgEl.setAttribute('aria-label', img.getAttribute('alt') || '');
+          svgEl.setAttribute('role', 'img');
+          svgEl.removeAttribute('width');
+          svgEl.removeAttribute('height');
+          img.parentNode.replaceChild(svgEl, img);
+        })
+        .catch(function() { /* keep <img> fallback */ });
+    });
 
     // Terminal animation — lines appear sequentially when scrolled into view
     const termBody = document.getElementById('term-body');
