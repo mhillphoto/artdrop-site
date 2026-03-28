@@ -995,6 +995,70 @@
       letter-spacing: 0.05em;
     }
 
+    .pricing-guarantee {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--lime);
+      letter-spacing: 0.05em;
+      text-align: center;
+    }
+
+    .pricing-vs {
+      margin-top: 32px;
+      padding: 20px;
+      background: rgba(191,255,94,0.04);
+      border: 1px solid rgba(191,255,94,0.16);
+      border-radius: 6px;
+    }
+    .pricing-vs-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--faint, rgba(240,240,236,0.40));
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .pricing-vs-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--muted);
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pricing-vs-row:last-of-type {
+      border-bottom: none;
+    }
+    .pricing-vs-cost {
+      font-family: var(--mono);
+      color: var(--faint, rgba(240,240,236,0.40));
+      text-decoration: line-through;
+    }
+    .pricing-vs-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      padding: 10px 0 0;
+      margin-top: 4px;
+      border-top: 1px solid var(--border-bright);
+    }
+    .pricing-vs-total strong {
+      color: rgba(240,240,236,0.85);
+    }
+    .pricing-vs-artdrop {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--lime);
+      margin-top: 12px;
+      letter-spacing: 0.04em;
+    }
+
     /* ── FOOTER ────────────────────────────────────── */
     footer {
       padding: 48px;
@@ -1974,13 +2038,34 @@
           <div class="pi-item"><div class="pi-dot"></div>Activate on up to 2 machines</div>
           <div class="pi-item"><div class="pi-dot"></div>Email support</div>
         </div>
+        <div class="pricing-vs">
+          <div class="pricing-vs-label">vs. subscribing to separate tools</div>
+          <div class="pricing-vs-row">
+            <span>Automation tools</span>
+            <span class="pricing-vs-cost">$29/mo</span>
+          </div>
+          <div class="pricing-vs-row">
+            <span>Listing formatters</span>
+            <span class="pricing-vs-cost">$19/mo</span>
+          </div>
+          <div class="pricing-vs-row">
+            <span>AI mockup generators</span>
+            <span class="pricing-vs-cost">$49/mo</span>
+          </div>
+          <div class="pricing-vs-total">
+            <span>Total stack</span>
+            <span>$97/mo · <strong>$1,164/year</strong></span>
+          </div>
+          <div class="pricing-vs-artdrop">ArtDrop: $197 once. You're ahead in month 3.</div>
+        </div>
       </div>
       <div class="pricing-bottom">
         <a href="https://buy.stripe.com/dRmfZgcG2cw724M6QC43S00" class="btn-buy">
-          Buy ArtDrop™ — $197
+          Get Instant Access — $197
         </a>
-        <div class="pricing-note pricing-note--spaced">Secure checkout via Stripe · License key emailed within minutes</div>
-        <div class="pricing-note">Try 3 free drops before you buy — the full pipeline, end to end. No credit card required.<br>All sales are final. If you hit a technical issue we can't resolve, we'll work with you.</div>
+        <div class="pricing-note pricing-note--spaced"><i data-lucide="lock" style="width:11px;height:11px;vertical-align:middle;margin-right:4px;opacity:0.7;"></i>Secure checkout via Stripe · Apple Pay &amp; Google Pay supported · License key emailed within minutes</div>
+        <div class="pricing-note pricing-note--spaced">Try 3 free drops before you buy · No credit card required</div>
+        <div class="pricing-guarantee"><i data-lucide="shield-check" style="width:12px;height:12px;flex-shrink:0;"></i>30-day money-back guarantee. If ArtDrop doesn't complete your first drop successfully, email us for a full refund — no questions asked.</div>
       </div>
     </div>
   </section>
