@@ -48,7 +48,7 @@
     }
     .gate-input:focus { border-color: #bfff5e; }
     .gate-input.wrong { border-color: #ff5f57; animation: shake 0.3s; }
-    .gate-hint { font-size: 11px; color: rgba(240,240,236,0.2); }
+    .gate-hint { font-size: 13px; color: rgba(240,240,236,0.2); }
     .page-content { display: none; }
     .page-content.unlocked {
       display: block;
@@ -92,7 +92,7 @@
       background: var(--lime);
       color: var(--bg);
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.12em;
       text-align: center;
@@ -105,7 +105,7 @@
     .section { margin-bottom: 56px; }
     .section-label {
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.15em;
       color: var(--lime);
@@ -136,18 +136,18 @@
     }
     .persona-card.dimmed { opacity: 0.4; }
     .persona-name { font-weight: 600; font-size: 15px; margin-bottom: 2px; }
-    .persona-store { font-family: var(--mono); font-size: 11px; color: var(--lime); margin-bottom: 4px; }
-    .persona-tagline { font-size: 12px; color: rgba(240,240,236,0.5); font-style: italic; margin-bottom: 6px; }
+    .persona-store { font-family: var(--mono); font-size: 13px; color: var(--lime); margin-bottom: 4px; }
+    .persona-tagline { font-size: 14px; color: rgba(240,240,236,0.5); font-style: italic; margin-bottom: 6px; }
     .persona-type { font-size: 14px; color: rgba(240,240,236,0.7); }
-    .persona-why { font-size: 12px; color: rgba(240,240,236,0.5); margin-top: 8px; line-height: 1.5; }
+    .persona-why { font-size: 14px; color: rgba(240,240,236,0.5); margin-top: 8px; line-height: 1.5; }
 
     /* ── CREDENTIALS ──────────────────────────── */
-    .section--gated {
+    .section--gated--disabled {
       opacity: 0.4;
       pointer-events: none;
       transition: opacity 0.3s;
     }
-    .section--gated.active {
+    .section--gated--disabled.active {
       opacity: 1;
       pointer-events: all;
     }
@@ -160,7 +160,7 @@
     }
     .cred-label {
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 13px;
       color: var(--lime);
       letter-spacing: 0.08em;
       margin-bottom: 8px;
@@ -206,7 +206,7 @@
       line-height: 0;
     }
     .cred-value:hover .cred-copy-icon { color: var(--lime); }
-    .cred-hint { font-size: 12px; color: rgba(240,240,236,0.5); }
+    .cred-hint { font-size: 14px; color: rgba(240,240,236,0.5); }
 
     /* Long credential values (e.g. Printify JWT) */
     .cred-value--long .cred-value-text {
@@ -220,7 +220,7 @@
     /* Download pending block — neutral, not alarming */
     .cred-pending {
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: 14px;
       color: var(--muted);
       padding: 10px 14px;
       border: 1px dashed var(--border-bright);
@@ -263,7 +263,7 @@
     .form-label {
       display: block;
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 13px;
       letter-spacing: 0.08em;
       color: var(--muted);
       margin-bottom: 6px;
@@ -285,7 +285,7 @@
     }
     .form-select { appearance: auto; }
     .form-textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
-    .form-hint { font-size: 12px; color: rgba(240,240,236,0.5); margin-top: 4px; }
+    .form-hint { font-size: 14px; color: rgba(240,240,236,0.5); margin-top: 4px; }
 
     .form-row-inline {
       display: grid;
@@ -336,7 +336,7 @@
     /* ── FORM SECTION LABEL ───────────────────── */
     .form-section-label {
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 13px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: rgba(240,240,236,0.5);
@@ -369,7 +369,7 @@
       text-decoration: none;
     }
     .image-sources a:hover { text-decoration: underline; }
-    .image-sources .source-desc { font-size: 12px; color: rgba(240,240,236,0.5); margin-left: 4px; }
+    .image-sources .source-desc { font-size: 14px; color: rgba(240,240,236,0.5); margin-left: 4px; }
 
     /* ── SEPARATOR ────────────────────────────── */
     .divider { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
@@ -398,7 +398,7 @@
     }
     .reg-card-eyebrow {
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.15em;
       color: var(--lime);
@@ -420,7 +420,7 @@
     .reg-form-label {
       display: block;
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 13px;
       letter-spacing: 0.08em;
       color: var(--muted);
       margin-bottom: 6px;
@@ -441,7 +441,7 @@
       border-color: var(--lime);
     }
     .reg-form-hint {
-      font-size: 12px;
+      font-size: 14px;
       color: rgba(240,240,236,0.5);
       margin-top: 4px;
     }
@@ -473,7 +473,7 @@
     }
     .tester-section-label {
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.15em;
       color: var(--lime);
@@ -504,7 +504,7 @@
     }
     .tester-card-role {
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 13px;
       color: var(--lime);
       letter-spacing: 0.06em;
       margin-bottom: 6px;
@@ -515,7 +515,7 @@
       line-height: 1.5;
     }
     .tester-note {
-      font-size: 12px;
+      font-size: 14px;
       color: rgba(240,240,236,0.5);
       margin-top: 16px;
       line-height: 1.6;
@@ -533,7 +533,7 @@
     }
     .share-section-label {
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.15em;
       color: rgba(240,240,236,0.5);
@@ -554,7 +554,7 @@
     .share-url-display {
       flex: 1;
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: 14px;
       color: var(--muted);
       background: var(--bg);
       border: 1px solid var(--border);
@@ -566,7 +566,7 @@
     .share-copy-btn {
       flex-shrink: 0;
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 500;
       letter-spacing: 0.06em;
       color: var(--bg);
@@ -581,7 +581,7 @@
     .share-copy-btn:hover { opacity: 0.9; }
     .share-copy-btn.copied { background: var(--ok); }
     .share-note {
-      font-size: 12px;
+      font-size: 14px;
       color: rgba(240,240,236,0.5);
       margin-top: 10px;
       line-height: 1.6;
