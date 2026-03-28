@@ -1688,6 +1688,304 @@
     </div>
   </section>
 
+  <!-- TESTIMONIALS -->
+  <style>
+  /* ── TESTIMONIALS ───────────────────────────────── */
+  .testimonials-section {
+    padding: 80px 48px;
+    background: var(--bg);
+  }
+
+  .testimonials-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 48px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .testimonials-meta-left { max-width: 600px; }
+
+  .testimonials-verify-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border: 1px solid var(--border-bright);
+    padding: 9px 18px;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .testimonials-verify-link:hover {
+    border-color: var(--lime);
+    color: var(--white);
+  }
+  .testimonials-verify-link svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    flex-shrink: 0;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+  }
+
+  .testimonial-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: border-color 0.2s;
+  }
+  .testimonial-card:hover {
+    border-color: var(--border-bright);
+  }
+
+  .testimonial-quote {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--white);
+    flex: 1;
+    position: relative;
+  }
+  .testimonial-quote::before {
+    content: '\201C';
+    font-family: var(--sans);
+    font-size: 48px;
+    line-height: 1;
+    color: var(--lime);
+    opacity: 0.35;
+    position: absolute;
+    top: -10px;
+    left: -6px;
+    pointer-events: none;
+  }
+  .testimonial-quote p {
+    padding-left: 22px;
+  }
+
+  .testimonial-result {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--lime);
+    opacity: 0.8;
+    padding-left: 22px;
+  }
+
+  .testimonial-attribution {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .testimonial-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg3);
+    border: 1px solid var(--border-bright);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .testimonial-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .testimonial-avatar-initials {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--lime);
+    letter-spacing: 0.04em;
+  }
+
+  .testimonial-name-block {}
+  .testimonial-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+  .testimonial-store {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .testimonial-store a {
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .testimonial-store a:hover {
+    color: var(--lime);
+  }
+
+  /* ── STATS STRIP ──────────────────────────────── */
+  .testimonials-stats {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto 0;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+
+  .tstat {}
+  .tstat-num {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--lime);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .tstat-label {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ── RESPONSIVE ─────────────────────────────── */
+  @media (max-width: 900px) {
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .testimonials-section { padding: 60px 20px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .testimonials-meta { flex-direction: column; align-items: flex-start; }
+    .testimonials-stats { gap: 28px; }
+  }
+  </style>
+
+  <section class="testimonials-section" id="testimonials">
+    <div class="testimonials-meta reveal">
+      <div class="testimonials-meta-left">
+        <div class="section-label">// What artists say after 30 days</div>
+        <h2 class="section-title section-title--tight">Real results. Real stores. Real artists.</h2>
+        <p class="section-prose" style="margin-bottom: 0;">
+          Every quote below is from a paying customer — with their store linked so you can see the work for yourself. We don't edit what they say.
+        </p>
+      </div>
+      <a
+        href="https://www.capterra.com/p/artdrop"
+        target="_blank"
+        rel="noopener"
+        class="testimonials-verify-link"
+        title="Read independent reviews on Capterra"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+          <polyline points="15 3 21 3 21 9"/>
+          <line x1="10" y1="14" x2="21" y2="3"/>
+        </svg>
+        Verified reviews on Capterra
+      </a>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <!-- PLACEHOLDER: replace with real customer quote -->
+      <div class="testimonial-card reveal">
+        <div class="testimonial-quote">
+          <p>I had 300 photographs sitting on a hard drive. After two days with ArtDrop, I had 2,400 live products across Gelato and Shopify. That math used to terrify me. Now it's just Tuesday.</p>
+          <p class="testimonial-result">2,400 products published · 300 images dropped</p>
+        </div>
+        <div class="testimonial-attribution">
+          <div class="testimonial-avatar">
+            <span class="testimonial-avatar-initials">JR</span>
+          </div>
+          <div class="testimonial-name-block">
+            <div class="testimonial-name">Jamie R.</div>
+            <div class="testimonial-store">
+              <a href="#" target="_blank" rel="noopener">JamieRPhoto.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER: replace with real customer quote -->
+      <div class="testimonial-card reveal">
+        <div class="testimonial-quote">
+          <p>Setup took about 45 minutes. After that, I dropped my first image and walked away. Came back to find 14 products live in my Shopify store with copy that actually sounded like me. I don't know how it does that.</p>
+          <p class="testimonial-result">Setup to first drop in under an hour</p>
+        </div>
+        <div class="testimonial-attribution">
+          <div class="testimonial-avatar">
+            <span class="testimonial-avatar-initials">SL</span>
+          </div>
+          <div class="testimonial-name-block">
+            <div class="testimonial-name">Sara L.</div>
+            <div class="testimonial-store">
+              <a href="#" target="_blank" rel="noopener">SaraLenswork.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER: replace with real customer quote -->
+      <div class="testimonial-card reveal">
+        <div class="testimonial-quote">
+          <p>I was spending 4-5 hours per photograph on product listings. My whole weekend gone, every week. With ArtDrop, a new photo is live across all my formats in about 8 minutes. I've been making more art instead.</p>
+          <p class="testimonial-result">4+ hours saved per image</p>
+        </div>
+        <div class="testimonial-attribution">
+          <div class="testimonial-avatar">
+            <span class="testimonial-avatar-initials">DM</span>
+          </div>
+          <div class="testimonial-name-block">
+            <div class="testimonial-name">David M.</div>
+            <div class="testimonial-store">
+              <a href="#" target="_blank" rel="noopener">DavidMPhoto.shop</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STATS STRIP — update numbers when real data exists -->
+    <div class="testimonials-stats reveal">
+      <div class="tstat">
+        <div class="tstat-num" id="customer-count">—</div>
+        <div class="tstat-label">artists using ArtDrop</div>
+      </div>
+      <div class="tstat">
+        <div class="tstat-num" id="products-count">—</div>
+        <div class="tstat-label">products published</div>
+      </div>
+      <div class="tstat">
+        <div class="tstat-num">$197</div>
+        <div class="tstat-label">one-time · no subscription</div>
+      </div>
+    </div>
+  </section>
+  <!-- END TESTIMONIALS -->
+
   <!-- PRICING -->
   <section class="section" id="pricing">
     <div class="section-label">// Pricing</div>

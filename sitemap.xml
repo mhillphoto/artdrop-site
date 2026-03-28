@@ -2,41 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://getartdrop.com/</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://getartdrop.com/about.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://getartdrop.com/faq.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://getartdrop.com/docs.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://getartdrop.com/help.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://getartdrop.com/privacy.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://getartdrop.com/terms.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://getartdrop.com/eula.html</loc>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
