@@ -81,11 +81,14 @@
     .footer-links a:hover { color: var(--white); }
     .footer-copy { font-family: var(--mono); font-size: 11px; color: var(--faint); }
 
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
       .page-hero { padding: 120px 24px 60px; }
       .content { padding: 60px 24px; }
       .requires-grid { grid-template-columns: 1fr; }
       footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+      .requires { padding: 24px 20px; }
+      .page-cta { padding: 32px 20px; }
+      .footer-links { flex-direction: column; gap: 12px; }
     }
   </style>
 </head>

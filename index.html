@@ -340,6 +340,9 @@
     .section {
       padding: 100px 48px;
       border-top: 1px solid var(--border);
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .section-label {
@@ -1082,7 +1085,7 @@
     .nav-hamburger.open span:nth-child(2) { opacity: 0; }
     .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
       nav { padding: 16px 24px; }
       .nav-hamburger { display: block; order: -1; }
       .nav-logo { order: 0; margin: 0 auto; }
@@ -1138,7 +1141,8 @@
       .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .artist-section { padding: 60px 20px; }
       .privacy-section { padding: 60px 20px; }
-      .footer-links { gap: 20px; flex-wrap: wrap; }
+      .feature { padding: 24px 20px; }
+      .footer-links { flex-direction: column; gap: 12px; }
       .cta-strip { padding: 32px 20px; }
       .cta-strip-title { font-size: 20px; }
     }
