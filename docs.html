@@ -199,6 +199,18 @@
       <h3>Access Token</h3>
       <p>In Shopify admin: go to <strong>Settings → Apps and sales channels → Develop apps → Create an app</strong>. The wizard tells you exactly which permissions to check. Copy the access token — it starts with <code>shpat_</code> and is shown only once.</p>
 
+      <h3>Required API scopes</h3>
+      <p>When configuring your Shopify app, make sure the following scopes are enabled:</p>
+      <p><code>read_products</code> <code>write_products</code> <code>read_collections</code> <code>write_collections</code> <code>read_files</code> <code>write_files</code> <code>read_online_store_navigation</code> <code>write_online_store_navigation</code></p>
+      <p>The navigation scopes are needed because ArtDrop automatically adds new collections to your store's navigation menu when products are created — so customers can browse by artwork category right away.</p>
+
+      <div class="callout">
+        <strong>Note:</strong> If the navigation scopes aren't enabled, everything else still works — collections will be created and products will be published. They just won't be added to your nav menu automatically. You'd need to add them manually in Shopify under <strong>Online Store → Navigation</strong>.
+      </div>
+
+      <h3>Targeting a different menu</h3>
+      <p>By default, ArtDrop adds new collections to the <code>main-menu</code>. To target a different menu, set the <code>SHOPIFY_NAV_MENU_HANDLE</code> environment variable to your menu's handle. You can find the handle in Shopify under <strong>Online Store → Navigation</strong> — it's the slug shown in the URL when you click on a menu.</p>
+
       <!-- STEP 3 -->
       <h2 id="step3">Step 3 — Storage</h2>
       <p>Connect your Backblaze B2 bucket. ArtDrop uploads your artwork files here so your print providers and store can access them.</p>
@@ -342,6 +354,13 @@
         <li>Access Token must start with <code>shpat_</code></li>
         <li>Store URL must be <code>yourstore.myshopify.com</code> — not your custom domain</li>
         <li>Make sure your Shopify app has the right permissions enabled</li>
+      </ul>
+
+      <h3>Collections aren't appearing in the nav menu</h3>
+      <ul>
+        <li>Your Shopify app needs the <code>read_online_store_navigation</code> and <code>write_online_store_navigation</code> scopes — check your app's permissions under <strong>Settings → Apps and sales channels → Develop apps</strong></li>
+        <li>If those scopes aren't available, you can still add collections to the menu manually in Shopify under <strong>Online Store → Navigation</strong></li>
+        <li>If you're targeting a custom menu, make sure <code>SHOPIFY_NAV_MENU_HANDLE</code> is set to the correct menu handle (default is <code>main-menu</code>)</li>
       </ul>
 
       <h3>Gelato products aren't being created</h3>
