@@ -658,7 +658,10 @@
     <strong>ArtDrop is a desktop and web app that automates print-on-demand for artists.</strong> You drop an image in, and it creates products, writes descriptions, publishes to your store, and posts to social media — automatically. No manual listing. No copy-pasting. That's what you're testing.
   </p>
   <p class="subtitle">
-    This page gives you everything you need to get started. Pick a persona below, grab the credentials, and try to use the app. If something is confusing, that's exactly the kind of feedback we need. You can also chat with our AI assistant (the ? button in the bottom-right corner) for help anytime.
+    This page gives you everything you need to get started. Pick a persona below, grab the credentials, and try to use the app. If something is confusing, that's exactly the kind of feedback we need.
+  </p>
+  <p class="subtitle" style="background: rgba(191,255,94,0.08); border: 1px solid rgba(191,255,94,0.2); border-radius: 8px; padding: 16px 20px;">
+    <strong style="color: #bfff5e;">Need help?</strong> See the <strong style="color: #bfff5e;">?</strong> button in the bottom-right corner of your screen? Click it anytime to chat with an AI assistant that knows ArtDrop inside and out. It can answer any question about setup, features, or what to do next.
   </p>
 
   <!-- ── TESTERS ──────────────────────────────── -->
@@ -1578,6 +1581,63 @@ function toggleChat() {
   }
 }
 
+// Context tracking — automatically knows what the user is doing
+var _userContext = {
+  currentSection: 'top',
+  selectedPersona: null,
+  credentialsCopied: [],
+  timeOnPage: 0,
+  scrollDepth: 0,
+  sectionsViewed: [],
+  lastAction: null
+};
+
+// Track scroll position and visible section
+setInterval(function() {
+  _userContext.timeOnPage += 5;
+  var scrollPct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+  _userContext.scrollDepth = Math.max(_userContext.scrollDepth, scrollPct);
+
+  // Detect current section
+  var sections = document.querySelectorAll('.section-label, h1, h3');
+  var current = 'top';
+  sections.forEach(function(s) {
+    if (s.getBoundingClientRect().top < 200) current = s.textContent.trim().substring(0, 40);
+  });
+  _userContext.currentSection = current;
+  if (_userContext.sectionsViewed.indexOf(current) === -1) _userContext.sectionsViewed.push(current);
+}, 5000);
+
+// Track persona selection
+document.addEventListener('click', function(e) {
+  var card = e.target.closest('.persona-card');
+  if (card) {
+    var name = card.querySelector('.persona-name');
+    if (name) _userContext.selectedPersona = name.textContent.trim();
+    _userContext.lastAction = 'selected persona: ' + (_userContext.selectedPersona || 'unknown');
+  }
+  var cred = e.target.closest('.cred-value');
+  if (cred) {
+    var label = cred.closest('.cred-block');
+    var credName = label ? (label.querySelector('.cred-label') || {}).textContent || 'unknown' : 'unknown';
+    if (_userContext.credentialsCopied.indexOf(credName) === -1) _userContext.credentialsCopied.push(credName);
+    _userContext.lastAction = 'copied credential: ' + credName;
+  }
+});
+
+function buildContext() {
+  return {
+    page: 'testing',
+    currentSection: _userContext.currentSection,
+    selectedPersona: _userContext.selectedPersona,
+    credentialsCopied: _userContext.credentialsCopied,
+    timeOnPageMinutes: Math.round(_userContext.timeOnPage / 60),
+    scrollDepth: _userContext.scrollDepth + '%',
+    sectionsViewed: _userContext.sectionsViewed,
+    lastAction: _userContext.lastAction
+  };
+}
+
 function sendChat() {
   var input = document.getElementById('chat-input');
   var msg = input.value.trim();
@@ -1586,10 +1646,11 @@ function sendChat() {
   appendChat(msg, 'user');
   appendChat('Thinking...', 'bot typing');
 
+  var ctx = buildContext();
   fetch(ASSISTANT_URL, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({message: msg, context: {page: 'testing', step: null}})
+    body: JSON.stringify({message: msg, context: ctx})
   })
   .then(function(r) { return r.json(); })
   .then(function(d) {
