@@ -208,6 +208,9 @@
     }
     .cred-value:hover .cred-copy-icon { color: var(--lime); }
     .cred-hint { font-size: 14px; color: rgba(240,240,236,0.5); }
+    .cred-where { font-size: 13px; color: var(--lime); font-weight: 400; }
+    .cred-link { color: var(--lime); text-decoration: underline; }
+    .cred-link:hover { color: var(--white); }
 
     /* Long credential values (e.g. Printify JWT) */
     .cred-value--long .cred-value-text {
@@ -745,12 +748,12 @@
     <p class="section-desc">ArtDrop connects to several online services to do its job — a store to sell on, a place to store images, an AI to write descriptions, and companies that print your art on products. Each one needs a special password (sometimes called a "key" or "token") so ArtDrop can talk to it. <strong>We've already set all of these up for you.</strong> When the app asks for one during setup, just click the matching value below to copy it, then paste it in.</p>
 
     <div class="cred-block">
-      <div class="cred-label">Download ArtDrop</div>
-      <div class="cred-pending">The download link is on its way — check your email or message Michael directly. Everything else below is ready to go.</div>
+      <div class="cred-label">Step 1 — Open ArtDrop</div>
+      <div class="cred-pending">Go to <a href="https://sweet-stillness-production-55a6.up.railway.app/" target="_blank" rel="noopener" class="cred-link">sweet-stillness-production-55a6.up.railway.app</a> in a new tab. That's the app. Come back here to copy the passwords below as the app asks for them.</div>
     </div>
 
     <div class="cred-block">
-      <div class="cred-label">Shopify Store</div>
+      <div class="cred-label">Step 2 — Shopify Store <span class="cred-where">→ paste in the "Storefront" step</span></div>
       <div class="cred-value">
         <span class="cred-value-text">u0gyg3-dp.myshopify.com</span>
         <span class="cred-copy-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></span>
@@ -765,20 +768,20 @@
         <span class="cred-value-text">2026-01</span>
         <span class="cred-copy-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></span>
       </div>
-      <div class="cred-hint">Paste these into the Storefront step of the setup wizard.</div>
+      <div class="cred-hint">The app will ask for these in the "Storefront" setup step.</div>
     </div>
 
     <div class="cred-block">
-      <div class="cred-label">Anthropic API Key (Claude AI)</div>
+      <div class="cred-label">Step 3 — AI Password <span class="cred-where">→ paste in the "AI" step</span></div>
       <div class="cred-value">
         <span class="cred-value-text">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</span>
         <span class="cred-copy-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></span>
       </div>
-      <div class="cred-hint">Paste this into the AI step. This key is shared — don't use it for anything outside ArtDrop testing.</div>
+      <div class="cred-hint">This powers the AI that writes product descriptions. The app asks for it in the "AI" setup step.</div>
     </div>
 
     <div class="cred-block">
-      <div class="cred-label">Gelato API Key</div>
+      <div class="cred-label">Step 4 — Gelato (prints your art) <span class="cred-where">→ paste in "Print Providers" under Gelato</span></div>
       <div class="cred-value">
         <span class="cred-value-text">dc6ecb2f-deaa-4bcd-a88e-6a70fb3351f8-3fe836b9-c106-40d3-9e0a-9ce5066108c3:bf4feec8-616a-4c9e-8d9d-61c87601520e</span>
         <span class="cred-copy-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></span>
@@ -788,11 +791,11 @@
         <span class="cred-value-text">2dda7e8e-7865-4ef8-a91b-eda98f1f2036</span>
         <span class="cred-copy-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></span>
       </div>
-      <div class="cred-hint">Paste these into the Print Providers step under Gelato.</div>
+      <div class="cred-hint">Gelato is a company that prints posters, canvas, and more. The app asks for these in "Print Providers."</div>
     </div>
 
     <div class="cred-block">
-      <div class="cred-label">Printful Token</div>
+      <div class="cred-label">Step 5 — Printful (another printer) <span class="cred-where">→ paste in "Print Providers" under Printful</span></div>
       <div class="cred-value">
         <span class="cred-value-text">5p5Lh00KAhBlS1LG13X2RVDcN5IqTraQFddmyZLK</span>
         <span class="cred-copy-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></span>
@@ -802,11 +805,11 @@
         <span class="cred-value-text">17876946</span>
         <span class="cred-copy-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></span>
       </div>
-      <div class="cred-hint">Paste these into the Print Providers step under Printful.</div>
+      <div class="cred-hint">Printful is another printing company. Same "Print Providers" step, under Printful.</div>
     </div>
 
     <div class="cred-block">
-      <div class="cred-label">Printify Token</div>
+      <div class="cred-label">Step 6 — Printify (another printer) <span class="cred-where">→ paste in "Print Providers" under Printify</span></div>
       <div class="cred-value cred-value--long">
         <span class="cred-value-text">eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzN2Q0YmQzMDM1ZmUxMWU5YTgwM2FiN2VlYjNjY2M5NyIsImp0aSI6IjAxZDM4NmUwMjQ1NmViYzM4NTJkMjhlOGRjODFmNzM5YTRjNWNmY2NkYWE4OGQ3ZmNjNjVhNmZmMGZhOTQ2ZGEzZTNkYTdlY2JjM2FhN2Y3IiwiaWF0IjoxNzczMjE3MTEwLjA4NTE3MywibmJmIjoxNzczMjE3MTEwLjA4NTE3NSwiZXhwIjoxODA0NzUzMTEwLjA3NTgsInN1YiI6IjI2MjkxNTY5Iiwic2NvcGVzIjpbInNob3BzLm1hbmFnZSIsInNob3BzLnJlYWQiLCJjYXRhbG9nLnJlYWQiLCJvcmRlcnMucmVhZCIsIm9yZGVycy53cml0ZSIsInByb2R1Y3RzLnJlYWQiLCJwcm9kdWN0cy53cml0ZSIsIndlYmhvb2tzLnJlYWQiLCJ3ZWJob29rcy53cml0ZSIsInVwbG9hZHMucmVhZCIsInVwbG9hZHMud3JpdGUiLCJwcmludF9wcm92aWRlcnMucmVhZCIsInVzZXIuaW5mbyJdfQ.OyElPuH68GIWpB60K7p6GEXpYLtCq_ZP6Ey4Cvl2D_fq8HxAvkZMIOuXyxhY7GeryvmGESHShoJr-AAO8Bh_N37WwAQVWzhmkzxKI5Ipd3qwg4r_tFuPLAWJCLMX-MDJ2T_qCr47LFnMQnoo9z855TSgnvIdKDJyIWbNv_P-X-7By383INIVxZj6QvAourdHAuiH38A-dGVmDZ5ZmLE-mOHh0XnJbWBrMHDb3_LTuH3HMzRWqkeBGpFwyqztc32KKJVsFvj1HuOSvydaYEdE06zOHT06wk2kUS5-SgYwrDb7PbIMnh5XlvspyYjsvHli3S3d-pIAqr94lFfJZiVnbKM8d5MOPw4NwD7iXfUJzPUyLCtMLecmJ-Xd5BHyPtZJgy1LNlDJ6LqxdRebpPBC7AZYHj1GJM1jFl0pOeYSyRCcnlZG-ApsARJR_dnTcnvD03qKlzpLY_zt-LmLgyAMK_Rur4JGPhUoJ3QDsce_7RDXdSUjqSI6v5EGtsADikfjCzyCT2BhIo2ahrH7D9NkjV7Ux6Oegbm5Rw4XUZarE4ihmhLebmCUgIxcjA0TH1jMb52a6ndwrH_-xfjLvwS_VGwnolTgb_C8cHUjm9HdI0KVP4k7IROxtwYypFd6Iyr7T4WFWKLI6ECtCtvShFUKTGisQx7MulZ6SOVGeuMBaPg</span>
         <span class="cred-copy-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></span>
@@ -816,11 +819,11 @@
         <span class="cred-value-text">26811012</span>
         <span class="cred-copy-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></span>
       </div>
-      <div class="cred-hint">Paste these into the Print Providers step under Printify.</div>
+      <div class="cred-hint">Printify is a third printing company. Same "Print Providers" step, under Printify.</div>
     </div>
 
     <div class="cred-block">
-      <div class="cred-label">Backblaze B2 — Key ID</div>
+      <div class="cred-label">Step 7 — Backblaze (image storage) <span class="cred-where">→ paste in the "Storage" step</span></div>
       <div class="cred-value">
         <span class="cred-value-text">004d10121ac935a0000000004</span>
         <span class="cred-copy-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></span>
@@ -1691,6 +1694,76 @@ document.addEventListener('keydown', function(e) {
     if (panel.classList.contains('open')) toggleChat();
   }
 });
+
+// Progressive urgency — help button gets more attention-grabbing over time
+var _chatOpened = false;
+var _urgencyLevel = 0;
+
+function escalateHelp() {
+  if (_chatOpened) return;
+  _urgencyLevel++;
+  var fab = document.getElementById('chat-fab');
+
+  if (_urgencyLevel === 1) {
+    // 30s: gentle pulse
+    fab.style.animation = 'chatPulse 1s ease infinite';
+    fab.style.width = '52px';
+    fab.style.height = '52px';
+  }
+  if (_urgencyLevel === 2) {
+    // 60s: bigger, add label
+    fab.style.width = '56px';
+    fab.style.height = '56px';
+    fab.innerHTML = '?<span style="position:absolute;right:calc(100% + 8px);white-space:nowrap;background:#bfff5e;color:#0a0a0a;padding:6px 14px;border-radius:6px;font-size:13px;font-weight:600;top:50%;transform:translateY(-50%);">Need help? Click here</span>';
+  }
+  if (_urgencyLevel === 3) {
+    // 90s: auto-open the chat
+    toggleChat();
+    _chatOpened = true;
+    appendChat("Hey! It looks like you might be figuring things out. I'm here if you have any questions — about what ArtDrop does, how to use the test credentials, or anything else. Just type below.", 'bot');
+  }
+}
+
+// Only start escalation after page is unlocked
+var _helpTimer1, _helpTimer2, _helpTimer3;
+var _origUnlock = typeof unlockPage === 'function' ? null : null;
+
+// Watch for page unlock via mutation observer
+var _unlockObserver = new MutationObserver(function(mutations) {
+  mutations.forEach(function(m) {
+    if (m.target.classList && m.target.classList.contains('unlocked')) {
+      _helpTimer1 = setTimeout(function() { escalateHelp(); }, 30000);
+      _helpTimer2 = setTimeout(function() { escalateHelp(); }, 60000);
+      _helpTimer3 = setTimeout(function() { escalateHelp(); }, 90000);
+      _unlockObserver.disconnect();
+    }
+  });
+});
+var _pageContent = document.getElementById('page-content');
+if (_pageContent) {
+  if (_pageContent.classList.contains('unlocked')) {
+    _helpTimer1 = setTimeout(function() { escalateHelp(); }, 30000);
+    _helpTimer2 = setTimeout(function() { escalateHelp(); }, 60000);
+    _helpTimer3 = setTimeout(function() { escalateHelp(); }, 90000);
+  } else {
+    _unlockObserver.observe(_pageContent, { attributes: true, attributeFilter: ['class'] });
+  }
+}
+
+// Cancel escalation if they open chat themselves
+var _origToggle = toggleChat;
+toggleChat = function() {
+  _chatOpened = true;
+  clearTimeout(_helpTimer1);
+  clearTimeout(_helpTimer2);
+  clearTimeout(_helpTimer3);
+  var fab = document.getElementById('chat-fab');
+  fab.style.animation = '';
+  fab.style.width = '48px';
+  fab.style.height = '48px';
+  fab.innerHTML = '?';
+  _origToggle();
+};
 </script>
 
 </body>
