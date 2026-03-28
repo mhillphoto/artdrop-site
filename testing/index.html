@@ -42,13 +42,13 @@
       border: 1px solid rgba(255,255,255,0.14);
       border-radius: 5px;
       padding: 12px 20px;
-      width: 260px;
+      width: min(260px, calc(100vw - 48px));
       text-align: center;
       outline: none;
     }
     .gate-input:focus { border-color: #bfff5e; }
     .gate-input.wrong { border-color: #ff5f57; animation: shake 0.3s; }
-    .gate-submit { background: var(--lime); border: none; border-radius: 6px; color: #0a0a0a; font-weight: 600; font-size: 14px; padding: 12px 28px; cursor: pointer; margin-top: 12px; width: 100%; max-width: 320px; }
+    .gate-submit { background: var(--lime); border: none; border-radius: 6px; color: #0a0a0a; font-weight: 600; font-size: 14px; padding: 12px 28px; cursor: pointer; margin-top: 12px; width: 100%; max-width: 320px; min-height: 44px; }
     .gate-hint { font-size: 13px; color: rgba(240,240,236,0.2); }
     .page-content { display: none; }
     .page-content.unlocked {
@@ -173,7 +173,7 @@
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 4px;
-      padding: 8px 36px 8px 12px;
+      padding: 12px 36px 12px 12px;
       word-break: break-all;
       cursor: pointer;
       margin-bottom: 4px;
@@ -183,6 +183,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
+      min-height: 44px;
     }
     .cred-value:hover { border-color: var(--lime); }
     .cred-value.copied { border-color: var(--ok); }
@@ -310,6 +311,7 @@
       padding: 12px 28px;
       cursor: pointer;
       transition: opacity 0.15s;
+      min-height: 44px;
     }
     .form-submit:hover { opacity: 0.9; }
 
@@ -464,6 +466,7 @@
       transition: opacity 0.15s;
       width: 100%;
       margin-top: 8px;
+      min-height: 44px;
     }
     .reg-submit:hover { opacity: 0.9; }
     .reg-submitting { opacity: 0.6; pointer-events: none; }
@@ -582,6 +585,7 @@
       cursor: pointer;
       transition: opacity 0.15s;
       white-space: nowrap;
+      min-height: 44px;
     }
     .share-copy-btn:hover { opacity: 0.9; }
     .share-copy-btn.copied { background: var(--ok); }
@@ -601,6 +605,15 @@
     }
     .tester-greeting.visible { display: block; }
     .tester-greeting strong { color: var(--white); }
+
+    /* ── NEED HELP CALLOUT ────────────────────── */
+    .help-callout {
+      background: rgba(191,255,94,0.08);
+      border: 1px solid rgba(191,255,94,0.2);
+      border-radius: 8px;
+      padding: 16px 20px;
+    }
+    .help-callout strong { color: #bfff5e; }
 
     /* ── RESPONSIVE ───────────────────────────── */
     @media (max-width: 600px) {
@@ -666,8 +679,8 @@
   <p class="subtitle">
     This page gives you everything you need to get started. Pick a persona below, grab the credentials, and try to use the app. If something is confusing, that's exactly the kind of feedback we need.
   </p>
-  <p class="subtitle" style="background: rgba(191,255,94,0.08); border: 1px solid rgba(191,255,94,0.2); border-radius: 8px; padding: 16px 20px;">
-    <strong style="color: #bfff5e;">Need help?</strong> See the <strong style="color: #bfff5e;">?</strong> button in the bottom-right corner of your screen? Click it anytime to chat with an AI assistant that knows ArtDrop inside and out. It can answer any question about setup, features, or what to do next.
+  <p class="subtitle help-callout">
+    <strong>Need help?</strong> See the <strong>?</strong> button in the bottom-right corner of your screen? Click it anytime to chat with an AI assistant that knows ArtDrop inside and out. It can answer any question about setup, features, or what to do next.
   </p>
 
   <!-- ── TESTERS ──────────────────────────────── -->
@@ -1574,11 +1587,12 @@ function restoreCheckboxes() {
 .chat-send {
   background: var(--lime); border: none; border-radius: 8px;
   color: #0a0a0a; font-weight: 600; padding: 10px 16px; cursor: pointer;
-  font-size: 13px;
+  font-size: 13px; min-height: 44px; min-width: 44px;
 }
 @media (max-width: 640px) {
   .chat-panel { width: 100%; }
   .chat-fab { bottom: 16px; right: 16px; }
+  .chat-fab-label { display: none; }
 }
 </style>
 
