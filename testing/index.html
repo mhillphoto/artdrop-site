@@ -48,6 +48,7 @@
     }
     .gate-input:focus { border-color: #bfff5e; }
     .gate-input.wrong { border-color: #ff5f57; animation: shake 0.3s; }
+    .gate-submit { background: var(--lime); border: none; border-radius: 6px; color: #0a0a0a; font-weight: 600; font-size: 14px; padding: 12px 28px; cursor: pointer; margin-top: 12px; width: 100%; max-width: 320px; }
     .gate-hint { font-size: 13px; color: rgba(240,240,236,0.2); }
     .page-content { display: none; }
     .page-content.unlocked {
@@ -614,6 +615,7 @@
 <div class="gate" id="gate">
   <div class="gate-label">ARTDROP BETA</div>
   <input class="gate-input" id="gate-input" type="password" placeholder="password" autofocus>
+  <button class="gate-submit" id="gate-submit" type="button">Enter</button>
   <div class="gate-hint">Ask Michael for the password</div>
 </div>
 
@@ -739,8 +741,8 @@
 
   <!-- ── 2. YOUR CREDENTIALS ──────────────────── -->
   <div class="section section--gated" id="credentials-section">
-    <div class="section-label">2 — Your Credentials</div>
-    <p class="section-desc">Use these credentials during setup. Click any value to copy it. All keys connect to a shared test environment — don't use your own accounts.</p>
+    <div class="section-label">2 — Your Test Credentials</div>
+    <p class="section-desc"><strong>What are these?</strong> ArtDrop connects to several services (a store, image storage, AI, and print providers). Each service needs a password-like code called an "API key" or "token" to let ArtDrop talk to it. We've already created all these for you — just copy each one and paste it into ArtDrop when it asks for it during setup. Click any value below to copy it.</p>
 
     <div class="cred-block">
       <div class="cred-label">Download ArtDrop</div>
@@ -1470,8 +1472,7 @@ function restoreCheckboxes() {
     return arr.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
   }
 
-  input.addEventListener('keydown', function(e) {
-    if (e.key !== 'Enter') return;
+  function tryUnlock() {
     var pw = input.value.trim();
     if (!pw) return;
     checkPassword(pw).then(function(hash) {
@@ -1484,7 +1485,13 @@ function restoreCheckboxes() {
         setTimeout(function() { input.classList.remove('wrong'); }, 400);
       }
     });
+  }
+
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') tryUnlock();
   });
+
+  document.getElementById('gate-submit').addEventListener('click', tryUnlock);
 })();
 </script>
 
