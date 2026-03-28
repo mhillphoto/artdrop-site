@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FAQ — ArtDrop</title>
+  <title>ArtDrop FAQ — Print-on-Demand Desktop App Questions &amp; Answers</title>
   <meta name="description" content="Common questions about ArtDrop — setup, compatibility, what it automates, and what you need to get started.">
   <meta property="og:title" content="FAQ — ArtDrop">
   <meta property="og:description" content="Common questions about ArtDrop — setup, compatibility, what it automates, and what you need to get started.">
@@ -627,7 +627,15 @@
       "name": "What file types does it support?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "PNG, JPG, JPEG, TIF, and TIFF. 16-bit TIFs and large files up to 400MB+ are supported. Recommended resolution: 300 DPI at your largest print size. ArtDrop also extracts EXIF/XMP metadata for tech specs."
+        "text": "PNG, JPG, JPEG, TIF, and TIFF. 16-bit TIFs work. File size doesn't matter — 4MB or 1.5GB, ArtDrop handles it. Recommended resolution: 300 DPI at your largest print size. For a 24x36 inch poster that's 7200x10800px minimum."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about EXIF and metadata?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If your files contain EXIF or XMP metadata — camera, lens, focal length, aperture, shutter speed, ISO — ArtDrop can extract it and use it in three ways: Full display (tech specs shown on product pages), Tags only (metadata added as product tags for SEO and filtering but not shown on the page), or Off (metadata ignored completely). Configurable in your settings."
       }
     },
     {
@@ -692,6 +700,46 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Comparable tools charge $10-$150/month ($120-$1,800/year). ArtDrop costs $197 once. After two months you're ahead of the cheapest competitor. The only ongoing cost is Anthropic API usage at pennies per drop."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about Gelato's Instant Collections or Printify's built-in tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They lock you into one provider. Gelato's Instant Collections only creates Gelato products. Printify's tools only create Printify products. ArtDrop publishes to Gelato, Printful, and Printify simultaneously from one drop — same image, same brand voice, same SEO quality, three providers. No monthly fee required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can't I just use ChatGPT or Jasper to write product descriptions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can, and you'll spend 5-10 minutes per product doing it — pasting the image, writing a prompt, copying output, pasting into Shopify, writing SEO titles, meta descriptions, alt text, and tags, then repeating for every product type and every image. ArtDrop does all of that in one automated pass in your trained brand voice. Jasper costs $59-69/month and still only writes copy — you're still creating products and publishing manually. ArtDrop handles the entire chain."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about bulk upload tools like Flying Upload or LazyMerch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Upload tools push designs to marketplaces like Amazon Merch and Redbubble. They don't create products from artwork files, analyze images, write copy, handle Shopify SEO, or work with Gelato, Printful, or Printify. If you're selling on Amazon Merch, those tools make sense. If you're building a Shopify store with professional print-on-demand products, ArtDrop is the tool for that workflow."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does ArtDrop run locally instead of in the cloud?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your artwork is your livelihood. Every cloud-based tool requires you to upload your original files to someone else's servers. ArtDrop runs on your machine — your files never leave your machine. Your API keys stay in a local config file on your computer. We don't have servers, no dashboard, no analytics, no telemetry. We literally cannot see your data because we never receive it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How complicated is this under the hood?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ArtDrop coordinates across four different print provider APIs, a storefront API, a cloud storage API, and an AI platform — each with their own authentication, rate limits, error handling, image format requirements, and product data schemas. The AI side is a multi-stage analysis: image classification, color extraction, composition mapping, brand voice matching, copy generation with enforced structure, and SEO optimization. You see a drag-and-drop box. Behind it is thousands of hours of integration work. $197 buys you every integration, every edge case, already handled."
       }
     },
     {
