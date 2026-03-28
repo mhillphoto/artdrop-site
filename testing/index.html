@@ -211,6 +211,7 @@
     .cred-where { font-size: 13px; color: var(--lime); font-weight: 400; }
     .cred-link { color: var(--lime); text-decoration: underline; }
     .cred-link:hover { color: var(--white); }
+    .chat-fab-label { position: absolute; right: calc(100% + 10px); white-space: nowrap; background: #bfff5e; color: #0a0a0a; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; top: 50%; transform: translateY(-50%); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
 
     /* Long credential values (e.g. Printify JWT) */
     .cred-value--long .cred-value-text {
@@ -1695,74 +1696,52 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// Progressive urgency — help button gets more attention-grabbing over time
+// Progressive urgency — help button gets more aggressive over time
 var _chatOpened = false;
-var _urgencyLevel = 0;
 
-function escalateHelp() {
+function startHelpEscalation() {
   if (_chatOpened) return;
-  _urgencyLevel++;
   var fab = document.getElementById('chat-fab');
 
-  if (_urgencyLevel === 1) {
-    // 30s: gentle pulse
+  // 10s: start pulsing
+  setTimeout(function() {
+    if (_chatOpened) return;
     fab.style.animation = 'chatPulse 1s ease infinite';
-    fab.style.width = '52px';
-    fab.style.height = '52px';
-  }
-  if (_urgencyLevel === 2) {
-    // 60s: bigger, add label
-    fab.style.width = '56px';
-    fab.style.height = '56px';
-    fab.innerHTML = '?<span style="position:absolute;right:calc(100% + 8px);white-space:nowrap;background:#bfff5e;color:#0a0a0a;padding:6px 14px;border-radius:6px;font-size:13px;font-weight:600;top:50%;transform:translateY(-50%);">Need help? Click here</span>';
-  }
-  if (_urgencyLevel === 3) {
-    // 90s: auto-open the chat
-    toggleChat();
+    fab.style.width = '54px';
+    fab.style.height = '54px';
+  }, 10000);
+
+  // 20s: add "Need help?" label
+  setTimeout(function() {
+    if (_chatOpened) return;
+    fab.style.width = '58px';
+    fab.style.height = '58px';
+    fab.innerHTML = '?<span class="chat-fab-label">Need help? Click here →</span>';
+  }, 20000);
+
+  // 40s: auto-open the chat
+  setTimeout(function() {
+    if (_chatOpened) return;
     _chatOpened = true;
-    appendChat("Hey! It looks like you might be figuring things out. I'm here if you have any questions — about what ArtDrop does, how to use the test credentials, or anything else. Just type below.", 'bot');
-  }
+    document.getElementById('chat-panel').classList.add('open');
+    document.getElementById('chat-input').focus();
+    appendChat("Hey! I'm the ArtDrop assistant. It looks like you're getting started — I can help with anything. What are you trying to do right now?", 'bot');
+  }, 40000);
 }
 
-// Only start escalation after page is unlocked
-var _helpTimer1, _helpTimer2, _helpTimer3;
-var _origUnlock = typeof unlockPage === 'function' ? null : null;
+// Start escalation immediately — page is already unlocked if this script runs
+startHelpEscalation();
 
-// Watch for page unlock via mutation observer
-var _unlockObserver = new MutationObserver(function(mutations) {
-  mutations.forEach(function(m) {
-    if (m.target.classList && m.target.classList.contains('unlocked')) {
-      _helpTimer1 = setTimeout(function() { escalateHelp(); }, 30000);
-      _helpTimer2 = setTimeout(function() { escalateHelp(); }, 60000);
-      _helpTimer3 = setTimeout(function() { escalateHelp(); }, 90000);
-      _unlockObserver.disconnect();
-    }
-  });
-});
-var _pageContent = document.getElementById('page-content');
-if (_pageContent) {
-  if (_pageContent.classList.contains('unlocked')) {
-    _helpTimer1 = setTimeout(function() { escalateHelp(); }, 30000);
-    _helpTimer2 = setTimeout(function() { escalateHelp(); }, 60000);
-    _helpTimer3 = setTimeout(function() { escalateHelp(); }, 90000);
-  } else {
-    _unlockObserver.observe(_pageContent, { attributes: true, attributeFilter: ['class'] });
-  }
-}
-
-// Cancel escalation if they open chat themselves
-var _origToggle = toggleChat;
+// Reset if they open chat themselves
+var _baseToggle = toggleChat;
 toggleChat = function() {
   _chatOpened = true;
-  clearTimeout(_helpTimer1);
-  clearTimeout(_helpTimer2);
-  clearTimeout(_helpTimer3);
   var fab = document.getElementById('chat-fab');
   fab.style.animation = '';
   fab.style.width = '48px';
   fab.style.height = '48px';
   fab.innerHTML = '?';
-  _origToggle();
+  _baseToggle();
 };
 </script>
 
