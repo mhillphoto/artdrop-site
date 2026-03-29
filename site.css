@@ -286,6 +286,54 @@ footer {
 }
 .skip-link:focus { top: 0; }
 
+/* ── Beta Waitlist ─────────────────────────────────────────────── */
+.beta-badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--lime);
+  padding: 6px 16px;
+  border-radius: 3px;
+  margin-bottom: 16px;
+}
+
+.waitlist-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.waitlist-input {
+  font-family: var(--mono);
+  font-size: 14px;
+  padding: 14px 16px;
+  border: 1px solid rgba(191, 255, 94, 0.3);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--white);
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.waitlist-input:focus {
+  border-color: var(--lime);
+}
+
+.waitlist-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-buy[type="submit"] {
+  border: none;
+  cursor: pointer;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
