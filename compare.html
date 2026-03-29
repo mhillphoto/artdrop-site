@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArtDrop vs Manual POD Listing — Print on Demand Automation Comparison</title>
+  <meta name="description" content="See exactly what print on demand automation saves you. ArtDrop vs manual POD listing: time, cost, and control — side by side. $197 once vs. hours every week.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="ArtDrop vs Manual POD Listing — Print on Demand Automation">
+  <meta property="og:description" content="Manual POD listing takes 45–60 minutes per artwork. ArtDrop takes 5. See the full comparison — time, cost, and what you keep control of.">
+  <meta property="og:url" content="https://getartdrop.com/compare.html">
+  <meta property="og:image" content="https://getartdrop.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ArtDrop™">
+  <link rel="canonical" href="https://getartdrop.com/compare.html">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1a2e'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='22' font-weight='bold' fill='%23bfff5e' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+
+  <!-- Microsoft Clarity analytics -->
+  <script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "w2uh6ee7z5");
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700;1,6..96,900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #181818;
+      --border: rgba(255,255,255,0.07);
+      --border-bright: rgba(255,255,255,0.14);
+      --lime: #bfff5e;
+      --lime-dim: rgba(191,255,94,0.10);
+      --lime-glow: rgba(191,255,94,0.28);
+      --red-dim: rgba(255,80,80,0.10);
+      --red: rgba(255,110,110,0.85);
+      --white: #f0f0ec;
+      --muted: rgba(240,240,236,0.50);
+      --faint: rgba(240,240,236,0.22);
+      --mono: 'DM Mono', monospace;
+      --sans: 'Bodoni Moda', Georgia, serif;
+      --body: 'Instrument Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--body);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Noise overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.6;
+    }
+
+    /* Page hero */
+    .page-hero {
+      padding: 160px 48px 80px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 100% 100% at 0% 50%, black 20%, transparent 80%);
+    }
+
+    .page-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .page-title {
+      font-family: var(--sans);
+      font-size: clamp(36px, 5vw, 68px);
+      font-weight: 900;
+      font-variation-settings: 'opsz' 96;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+      position: relative;
+      max-width: 860px;
+    }
+
+    .page-title em {
+      font-style: italic;
+      color: var(--lime);
+    }
+
+    .page-intro {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 580px;
+      line-height: 1.75;
+      position: relative;
+    }
+
+    /* Main content wrapper */
+    .compare-wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 80px 48px 120px;
+    }
+
+    /* Section header */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: var(--sans);
+      font-size: clamp(26px, 3vw, 40px);
+      font-weight: 700;
+      font-variation-settings: 'opsz' 48;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--lime);
+    }
+
+    .section-intro {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 40px;
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    .section-block {
+      margin-bottom: 100px;
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--lime);
+      margin: 80px 0;
+    }
+
+    /* ── COMPARISON TABLE ─────────────────────────── */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .compare-table thead th {
+      padding: 20px 28px;
+      text-align: left;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border-bright);
+    }
+
+    .compare-table thead th:first-child {
+      color: var(--faint);
+      width: 22%;
+    }
+
+    .compare-table thead th.col-manual {
+      color: var(--red);
+      width: 37%;
+    }
+
+    .compare-table thead th.col-artdrop {
+      color: var(--lime);
+      width: 41%;
+      background: rgba(191,255,94,0.04);
+      border-left: 1px solid rgba(191,255,94,0.15);
+    }
+
+    .compare-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.12s;
+    }
+
+    .compare-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .compare-table tbody tr:hover {
+      background: var(--bg3);
+    }
+
+    .compare-table tbody tr.row-total {
+      background: var(--bg2);
+      border-top: 2px solid var(--border-bright);
+    }
+
+    .compare-table tbody tr.row-total:hover {
+      background: var(--bg2);
+    }
+
+    .compare-table td {
+      padding: 22px 28px;
+      vertical-align: top;
+    }
+
+    .compare-table td.step-name {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--faint);
+      padding-top: 24px;
+    }
+
+    .compare-table td.cell-manual {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .compare-table td.cell-artdrop {
+      font-size: 14px;
+      color: rgba(240,240,236,0.72);
+      line-height: 1.6;
+      background: rgba(191,255,94,0.03);
+      border-left: 1px solid rgba(191,255,94,0.10);
+    }
+
+    .compare-table td.cell-artdrop .artdrop-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--lime);
+      background: var(--lime-dim);
+      border: 1px solid rgba(191,255,94,0.2);
+      border-radius: 3px;
+      padding: 3px 8px;
+      margin-top: 8px;
+    }
+
+    .compare-table td.cell-artdrop .artdrop-badge svg {
+      flex-shrink: 0;
+    }
+
+    .row-total td.step-name {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .time-manual {
+      font-family: var(--sans);
+      font-size: 32px;
+      font-weight: 900;
+      font-variation-settings: 'opsz' 48;
+      color: var(--red);
+      line-height: 1;
+    }
+
+    .time-artdrop {
+      font-family: var(--sans);
+      font-size: 32px;
+      font-weight: 900;
+      font-variation-settings: 'opsz' 48;
+      color: var(--lime);
+      line-height: 1;
+    }
+
+    .time-sub {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      margin-top: 6px;
+    }
+
+    .time-sub-manual {
+      color: rgba(255,110,110,0.6);
+    }
+
+    .time-sub-artdrop {
+      color: rgba(191,255,94,0.5);
+    }
+
+    /* ── COST COMPARISON ──────────────────────────── */
+    .cost-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .cost-card {
+      background: var(--bg2);
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      padding: 32px;
+    }
+
+    .cost-card-artdrop {
+      background: rgba(191,255,94,0.04);
+      border-color: rgba(191,255,94,0.2);
+    }
+
+    .cost-card-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .cost-card-label-manual {
+      color: var(--red);
+    }
+
+    .cost-card-label-artdrop {
+      color: var(--lime);
+    }
+
+    .cost-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .cost-line:last-of-type {
+      border-bottom: none;
+    }
+
+    .cost-line-name {
+      color: var(--muted);
+    }
+
+    .cost-line-price {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--white);
+    }
+
+    .cost-total-row {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 2px solid var(--border-bright);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .cost-total-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    .cost-total-price {
+      font-family: var(--sans);
+      font-size: 36px;
+      font-weight: 900;
+      font-variation-settings: 'opsz' 48;
+      line-height: 1;
+    }
+
+    .cost-total-price-manual {
+      color: var(--red);
+    }
+
+    .cost-total-price-artdrop {
+      color: var(--lime);
+    }
+
+    .cost-total-cadence {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+      text-align: right;
+    }
+
+    .cost-note {
+      margin-top: 24px;
+      font-size: 13px;
+      color: var(--faint);
+      line-height: 1.7;
+    }
+
+    /* ── CONTROL SECTION ──────────────────────────── */
+    .control-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .control-card {
+      background: var(--bg2);
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      padding: 28px 24px;
+    }
+
+    .control-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--lime-dim);
+      border: 1px solid rgba(191,255,94,0.2);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .control-card-title {
+      font-family: var(--body);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+
+    .control-card-body {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ── CTA SECTION ──────────────────────────────── */
+    .cta-block {
+      background: var(--bg2);
+      border: 1px solid var(--border-bright);
+      border-radius: 10px;
+      padding: 64px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-block-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 120%, rgba(191,255,94,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-block-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    .cta-block-title {
+      font-family: var(--sans);
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 900;
+      font-variation-settings: 'opsz' 72;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .cta-block-title em {
+      font-style: italic;
+      color: var(--lime);
+    }
+
+    .cta-block-sub {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 36px;
+      position: relative;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: #0a0a0a;
+      background: var(--lime);
+      padding: 18px 36px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: none;
+      position: relative;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px var(--lime-glow);
+    }
+
+    .cta-guarantee {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--faint);
+      margin-top: 20px;
+      position: relative;
+    }
+
+    /* ── PULL QUOTE ───────────────────────────────── */
+    .pull-quote {
+      font-family: var(--body);
+      font-size: clamp(17px, 2vw, 22px);
+      font-style: italic;
+      font-weight: 600;
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      border-left: 3px solid var(--lime);
+      padding: 6px 0 6px 28px;
+      margin: 48px 0;
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────── */
+    @media (max-width: 900px) {
+      .cost-grid { grid-template-columns: 1fr; }
+      .control-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .page-hero { padding: 120px 24px 60px; }
+      .compare-wrap { padding: 60px 24px 80px; }
+      .control-grid { grid-template-columns: 1fr; }
+      .cta-block { padding: 48px 24px; }
+
+      .compare-table thead th,
+      .compare-table td {
+        padding: 16px 14px;
+      }
+
+      .compare-table thead th:first-child,
+      .compare-table td.step-name {
+        display: none;
+      }
+
+      .compare-table thead th.col-manual,
+      .compare-table thead th.col-artdrop {
+        width: 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="site-nav"></header>
+  <script src="/nav.js"></script>
+
+  <div class="page-hero">
+    <div class="hero-grid-bg"></div>
+    <p class="page-label">// Comparison · Print on demand automation</p>
+    <h1 class="page-title">ArtDrop vs.<br><em>Manual POD Listing</em></h1>
+    <p class="page-intro">Every step, side by side. Manual POD listing done right takes 45–60 minutes per artwork. ArtDrop takes 5. Here is exactly where the time goes — and where it disappears.</p>
+  </div>
+
+  <div class="compare-wrap">
+
+    <!-- ── SECTION 1: STEP COMPARISON ──────────────── -->
+    <div class="section-block">
+      <p class="section-label">// 01 — Step-by-step</p>
+      <h2 class="section-title">The full workflow, <em>compared</em></h2>
+      <p class="section-intro">Eight steps per artwork, times however many product types you sell. Here is how each one plays out manually versus with print on demand automation.</p>
+
+      <table class="compare-table" role="table">
+        <thead>
+          <tr>
+            <th scope="col">Step</th>
+            <th scope="col" class="col-manual">Manual</th>
+            <th scope="col" class="col-artdrop">ArtDrop</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="step-name">01 — Upload image</td>
+            <td class="cell-manual">Open Gelato → Products → New product → Upload. Repeat for every provider you use.</td>
+            <td class="cell-artdrop">
+              Drop the file into ArtDrop. Done. ArtDrop reads the image and EXIF data automatically.
+              <div class="artdrop-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                One drop, all providers
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="step-name">02 — Write title</td>
+            <td class="cell-manual">Think of a title that describes the piece, is SEO-friendly, and fits character limits. Type it for every product format.</td>
+            <td class="cell-artdrop">
+              AI analyzes the actual image and generates a specific title — not a template, not a placeholder.
+              <div class="artdrop-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Image-aware, not generic
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="step-name">03 — Write description</td>
+            <td class="cell-manual">Write 100+ words of product copy. Unique for each format. SEO-relevant. Done at speed, this is usually the worst copy on your store.</td>
+            <td class="cell-artdrop">
+              AI writes in your trained voice. Descriptions are specific to the artwork — not copy-pasted boilerplate.
+              <div class="artdrop-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Voice-trained output
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="step-name">04 — SEO tags</td>
+            <td class="cell-manual">Research keywords, figure out which ones apply to this piece, add them manually to Shopify tags and metafields.</td>
+            <td class="cell-artdrop">
+              Tags are auto-generated from what is actually in the artwork. Subject matter, style, color palette, mood.
+              <div class="artdrop-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Auto from image content
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="step-name">05 — Create variants</td>
+            <td class="cell-manual">Select sizes one by one. Set pricing per variant. Check that every size-and-frame combination is configured. Easy to miss one.</td>
+            <td class="cell-artdrop">
+              All configured product templates fire automatically. Every variant, every size, every format — from a single drop.
+              <div class="artdrop-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Template-driven, nothing missed
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="step-name">06 — Publish to Shopify</td>
+            <td class="cell-manual">Copy content from your provider into Shopify. Add metafields. Assign collections. Verify the fulfillment provider is attached correctly.</td>
+            <td class="cell-artdrop">
+              Auto-synced to Shopify with full SEO fields, collections, and fulfillment provider already wired up.
+              <div class="artdrop-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Full Shopify sync
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="step-name">07 — Social media</td>
+            <td class="cell-manual">Write posts for each platform from scratch. Different format, different copy, different image crop. Usually skipped. Revenue lost.</td>
+            <td class="cell-artdrop">
+              Platform-specific posts drafted and auto-published to up to 5 platforms at launch.
+              <div class="artdrop-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                5 platforms, zero extra work
+              </div>
+            </td>
+          </tr>
+          <tr class="row-total">
+            <td class="step-name">Total time</td>
+            <td class="cell-manual">
+              <div class="time-manual">45–60 min</div>
+              <div class="time-sub time-sub-manual">per artwork, if done properly</div>
+            </td>
+            <td class="cell-artdrop">
+              <div class="time-artdrop">~5 min</div>
+              <div class="time-sub time-sub-artdrop">drop, review, done</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="pull-quote">One artwork. Eight manual steps. Multiply by every product type, every provider, every piece you have ever made. That is the wall print on demand automation removes.</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ── SECTION 2: COST COMPARISON ───────────────── -->
+    <div class="section-block">
+      <p class="section-label">// 02 — Cost</p>
+      <h2 class="section-title">Subscription stack vs.<br><em>one-time price</em></h2>
+      <p class="section-intro">Most POD sellers piece together three or four SaaS tools to cover what ArtDrop does end-to-end. Here is what that stack actually costs.</p>
+
+      <div class="cost-grid">
+        <div class="cost-card">
+          <div class="cost-card-label cost-card-label-manual">Manual toolstack — Monthly</div>
+          <div class="cost-line">
+            <span class="cost-line-name">AI copywriter (Jasper, Copy.ai, etc.)</span>
+            <span class="cost-line-price">$49/mo</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-line-name">Social media scheduler (Buffer, Later)</span>
+            <span class="cost-line-price">$18/mo</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-line-name">SEO keyword tool (Ubersuggest, etc.)</span>
+            <span class="cost-line-price">$29/mo</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-line-name">Shopify bulk editor / metafield app</span>
+            <span class="cost-line-price">$15/mo</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-line-name">Your time (5 hrs/artwork × $20/hr est.)</span>
+            <span class="cost-line-price">~$100/artwork</span>
+          </div>
+          <div class="cost-total-row">
+            <span class="cost-total-label">SaaS alone</span>
+            <div>
+              <div class="cost-total-price cost-total-price-manual">$111/mo</div>
+              <div class="cost-total-cadence">+ $1,332/year, forever</div>
+            </div>
+          </div>
+          <p class="cost-note">None of these tools talk to each other. You still do all the steps — just slightly faster. And the subscriptions never stop.</p>
+        </div>
+
+        <div class="cost-card cost-card-artdrop">
+          <div class="cost-card-label cost-card-label-artdrop">ArtDrop — One-time</div>
+          <div class="cost-line">
+            <span class="cost-line-name">AI copy, trained to your voice</span>
+            <span class="cost-line-price">included</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-line-name">Social publishing to 5 platforms</span>
+            <span class="cost-line-price">included</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-line-name">SEO tags auto-generated from image</span>
+            <span class="cost-line-price">included</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-line-name">Full Shopify sync with metafields</span>
+            <span class="cost-line-price">included</span>
+          </div>
+          <div class="cost-line">
+            <span class="cost-line-name">Multi-provider (Gelato, Printful, Printify)</span>
+            <span class="cost-line-price">included</span>
+          </div>
+          <div class="cost-total-row">
+            <span class="cost-total-label">Total price</span>
+            <div>
+              <div class="cost-total-price cost-total-price-artdrop">$197</div>
+              <div class="cost-total-cadence">one-time. Mac + Windows.</div>
+            </div>
+          </div>
+          <p class="cost-note">Pays for itself before you finish listing your first ten artworks. No renewal, no seat limits, no surprise pricing tiers.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ── SECTION 3: CONTROL ─────────────────────── -->
+    <div class="section-block">
+      <p class="section-label">// 03 — What you keep</p>
+      <h2 class="section-title">Automation that does not<br><em>take over</em></h2>
+      <p class="section-intro">Print on demand automation gets a bad reputation because most tools run on their servers, behind their accounts, under their terms. ArtDrop is different by design.</p>
+
+      <div class="control-grid">
+        <div class="control-card">
+          <div class="control-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#bfff5e" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </div>
+          <div class="control-card-title">Your API keys stay on your machine</div>
+          <div class="control-card-body">ArtDrop is a desktop app. Your Shopify credentials, your Gelato API key, your AI provider key — all stored locally. Nothing passes through our servers. No data leaves your machine unless you send it to Shopify or a provider yourself.</div>
+        </div>
+
+        <div class="control-card">
+          <div class="control-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#bfff5e" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          </div>
+          <div class="control-card-title">You review AI copy before publishing</div>
+          <div class="control-card-body">Nothing publishes without a review step. You see every title and description the AI generated before it touches your store. Approve it, edit a sentence, or reject it entirely. The workflow keeps you in the loop without keeping you in the weeds.</div>
+        </div>
+
+        <div class="control-card">
+          <div class="control-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#bfff5e" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"></path></svg>
+          </div>
+          <div class="control-card-title">You choose which providers to use</div>
+          <div class="control-card-body">ArtDrop connects to Gelato, Printful, and Printify. You decide which ones to activate and in which order. You are not locked into a provider relationship through us — you keep your own accounts, your own contracts, your own pricing.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ── SECTION 4: CTA ──────────────────────────── -->
+    <div class="cta-block">
+      <div class="cta-block-bg"></div>
+      <p class="cta-block-label">// Ready to automate</p>
+      <h2 class="cta-block-title">Drop a file.<br><em>Everything else is automatic.</em></h2>
+      <p class="cta-block-sub">One-time purchase. No subscriptions. Mac + Windows. Your API keys stay on your machine — always.</p>
+      <a href="https://buy.stripe.com/dRmfZgcG2cw724M6QC43S00" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
+        Get Instant Access — $197
+      </a>
+      <p class="cta-guarantee">One-time price · Mac + Windows · Instant download · No subscription</p>
+    </div>
+
+  </div>
+
+  <div id="site-footer"></div>
+  <script src="/footer.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "ArtDrop vs Manual POD Listing — Print on Demand Automation Comparison",
+    "description": "See exactly what print on demand automation saves you. ArtDrop vs manual POD listing: time, cost, and control — side by side.",
+    "url": "https://getartdrop.com/compare.html",
+    "datePublished": "2026-03-28",
+    "dateModified": "2026-03-28",
+    "publisher": {
+      "@type": "Organization",
+      "name": "ArtDrop",
+      "url": "https://getartdrop.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://getartdrop.com/og-image.png"
+      }
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://getartdrop.com/og-image.png"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://getartdrop.com/compare.html"
+    },
+    "keywords": "print on demand automation, ArtDrop vs manual POD, Shopify POD automation, automated product listing, print on demand software comparison"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ArtDrop",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "macOS, Windows",
+    "url": "https://getartdrop.com",
+    "offers": {
+      "@type": "Offer",
+      "price": "197",
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "197",
+        "priceCurrency": "USD",
+        "referenceQuantity": {
+          "@type": "QuantitativeValue",
+          "value": "1",
+          "unitText": "one-time"
+        }
+      }
+    },
+    "description": "ArtDrop automates print-on-demand publishing for Shopify. Drop an image — AI writes copy, creates products across all configured providers, and publishes to your store in minutes.",
+    "featureList": [
+      "AI-generated product copy trained to your voice",
+      "Multi-provider support: Gelato, Printful, Printify",
+      "Automatic Shopify sync with full SEO",
+      "Social media publishing to 5 platforms",
+      "Local desktop app — API keys never leave your machine"
+    ]
+  }
+  </script>
+
+</body>
+</html>
