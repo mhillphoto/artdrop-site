@@ -49,3 +49,35 @@
     <priority>0.3</priority>
   </url>
 </urlset>
+<!-- Blog pages are currently noindex. Add these entries when blog goes live:
+  <url>
+    <loc>https://getartdrop.com/blog/</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://getartdrop.com/blog/automate-shopify-pod-listings.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://getartdrop.com/blog/pod-without-subscription.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://getartdrop.com/blog/ai-print-on-demand.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://getartdrop.com/blog/gelato-vs-printful-vs-printify.html</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+-->

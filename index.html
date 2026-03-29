@@ -1244,6 +1244,49 @@
       }
     }
   </style>
+
+  <!-- Structured data: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ArtDrop",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "macOS, Windows, Web",
+    "description": "Automated print-on-demand product creation for artists. Drop an image, get products.",
+    "url": "https://getartdrop.com",
+    "author": {
+      "@type": "Organization",
+      "name": "StanHattie LLC",
+      "url": "https://getartdrop.com"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "197.00",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "priceValidUntil": "2027-12-31"
+    }
+  }
+  </script>
+
+  <!-- Structured data: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ArtDrop",
+    "legalName": "StanHattie LLC",
+    "url": "https://getartdrop.com",
+    "logo": "https://getartdrop.com/static/icon-512.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-833-278-5002",
+      "contactType": "customer service",
+      "email": "support@getartdrop.com"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -2152,6 +2195,25 @@
   "publisher": {
     "@type": "Organization",
     "name": "StanHattie LLC"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ArtDrop",
+  "url": "https://getartdrop.com",
+  "description": "ArtDrop automates print-on-demand publishing for artists. Drop an image — AI writes copy, creates products, publishes to your Shopify store. $197 one-time.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "ArtDrop",
+    "url": "https://getartdrop.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getartdrop.com/og-image.png"
+    }
   }
 }
 </script>
