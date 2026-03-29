@@ -113,6 +113,36 @@
       .stat-row { grid-template-columns: 1fr; }
       .step { flex-direction: column; gap: 12px; }
     }
+
+  /* ── ARTICLE LISTS ───────────────────────────────── */
+  .article-ol {
+    padding-left: 24px;
+    margin-bottom: 24px;
+  }
+  .article-ul {
+    padding-left: 24px;
+    margin-bottom: 24px;
+  }
+  .article-li {
+    color: var(--muted);
+    font-size: 16px;
+    margin-bottom: 10px;
+    line-height: 1.75;
+  }
+  .article-li--spaced {
+    color: var(--muted);
+    font-size: 16px;
+    margin-bottom: 12px;
+    line-height: 1.75;
+  }
+  .article-li-strong {
+    color: var(--white);
+  }
+
+  /* ── STAT NUMBER UNIT ────────────────────────────── */
+  .stat-unit {
+    font-size: 20px;
+  }
   </style>
 </head>
 <body>
@@ -151,30 +181,30 @@
 
     <p>Here is what the manual workflow actually involves for a single piece of artwork published across your full product catalog:</p>
 
-    <ol style="padding-left: 24px; margin-bottom: 24px;">
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 10px; line-height: 1.75;">Upload the source image to your print provider (Gelato, Printful, Printify — whichever you use)</li>
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 10px; line-height: 1.75;">Create each product individually within that provider's interface</li>
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 10px; line-height: 1.75;">Write a title for each product</li>
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 10px; line-height: 1.75;">Write a product description — ideally unique and SEO-relevant for each format</li>
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 10px; line-height: 1.75;">Set pricing on every variant</li>
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 10px; line-height: 1.75;">Assign tags, collections, and metadata in Shopify</li>
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 10px; line-height: 1.75;">Publish and verify everything rendered correctly</li>
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 10px; line-height: 1.75;">Repeat for every product type in your catalog</li>
+    <ol class="article-ol">
+      <li class="article-li">Upload the source image to your print provider (Gelato, Printful, Printify — whichever you use)</li>
+      <li class="article-li">Create each product individually within that provider's interface</li>
+      <li class="article-li">Write a title for each product</li>
+      <li class="article-li">Write a product description — ideally unique and SEO-relevant for each format</li>
+      <li class="article-li">Set pricing on every variant</li>
+      <li class="article-li">Assign tags, collections, and metadata in Shopify</li>
+      <li class="article-li">Publish and verify everything rendered correctly</li>
+      <li class="article-li">Repeat for every product type in your catalog</li>
     </ol>
 
     <p>That is eight distinct steps for each product variation. If you sell framed prints, canvas, metal prints, acrylic, posters, and tote bags from a single artwork, that is eight steps times six products equals 48 individual actions. For one image.</p>
 
     <div class="stat-row">
       <div class="stat-card">
-        <div class="stat-num">45<span style="font-size:20px">min</span></div>
+        <div class="stat-num">45<span class="stat-unit">min</span></div>
         <div class="stat-label">Per listing, done right</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">6<span style="font-size:20px">hr</span></div>
+        <div class="stat-num">6<span class="stat-unit">hr</span></div>
         <div class="stat-label">One artwork, 10 products</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">60<span style="font-size:20px">hr</span></div>
+        <div class="stat-num">60<span class="stat-unit">hr</span></div>
         <div class="stat-label">Ten artworks, full catalog</div>
       </div>
     </div>
@@ -189,11 +219,11 @@
 
     <h3>What automation handles well</h3>
 
-    <ul style="padding-left: 24px; margin-bottom: 24px;">
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 10px; line-height: 1.75;"><strong style="color: var(--white);">Image analysis and product matching.</strong> Given a source image, a good automation system can determine what product types make sense and pre-select them. A horizontal landscape photograph maps differently to product formats than a square abstract piece does.</li>
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 10px; line-height: 1.75;"><strong style="color: var(--white);">AI-generated product copy.</strong> Titles, descriptions, and SEO metadata can be generated from the image itself. This is not about producing generic text — a properly prompted AI model that can actually see the image will write something specific to what is in it.</li>
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 10px; line-height: 1.75;"><strong style="color: var(--white);">Publishing to Shopify.</strong> The API handoff from print provider to Shopify storefront — creating the product, assigning the fulfillment provider, setting up variants — is pure data plumbing. There is no reason a human should do this step.</li>
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 10px; line-height: 1.75;"><strong style="color: var(--white);">Multi-provider publishing.</strong> If you use more than one print provider, automation can publish to all of them simultaneously rather than requiring you to go through the workflow once per provider.</li>
+    <ul class="article-ul">
+      <li class="article-li"><strong class="article-li-strong">Image analysis and product matching.</strong> Given a source image, a good automation system can determine what product types make sense and pre-select them. A horizontal landscape photograph maps differently to product formats than a square abstract piece does.</li>
+      <li class="article-li"><strong class="article-li-strong">AI-generated product copy.</strong> Titles, descriptions, and SEO metadata can be generated from the image itself. This is not about producing generic text — a properly prompted AI model that can actually see the image will write something specific to what is in it.</li>
+      <li class="article-li"><strong class="article-li-strong">Publishing to Shopify.</strong> The API handoff from print provider to Shopify storefront — creating the product, assigning the fulfillment provider, setting up variants — is pure data plumbing. There is no reason a human should do this step.</li>
+      <li class="article-li"><strong class="article-li-strong">Multi-provider publishing.</strong> If you use more than one print provider, automation can publish to all of them simultaneously rather than requiring you to go through the workflow once per provider.</li>
     </ul>
 
     <h3>What automation does not handle</h3>
@@ -292,12 +322,12 @@
 
     <p>If you are starting from zero, here is the right order of operations for getting Shopify print-on-demand automation working:</p>
 
-    <ol style="padding-left: 24px; margin-bottom: 24px;">
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 12px; line-height: 1.75;"><strong style="color: var(--white);">Standardize your source files first.</strong> Automation only works cleanly if your input is consistent. Decide on your resolution standard (300 DPI minimum for print), your file format (TIFF or high-quality PNG), and your color profile (sRGB for most providers) before you automate anything. Running bad files through automation just creates bad products faster.</li>
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 12px; line-height: 1.75;"><strong style="color: var(--white);">Configure your product catalog once.</strong> Decide which product types you actually want to sell before automating. The best automation tools let you set a default product template — these are the product formats that get created for every new artwork. Get this right once and do not revisit it unless your catalog changes.</li>
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 12px; line-height: 1.75;"><strong style="color: var(--white);">Train the AI on your voice before you run your backlog.</strong> If your automation tool supports any form of style training, do this before you process your existing catalog. Fixing copy on 200 existing products is more work than getting it right before you start.</li>
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 12px; line-height: 1.75;"><strong style="color: var(--white);">Run a test batch of five to ten pieces.</strong> Confirm the output looks right — correct products, correct copy, correct Shopify configuration — before you run your full backlog through. This is 30 minutes of sanity-checking that saves hours of cleanup.</li>
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 12px; line-height: 1.75;"><strong style="color: var(--white);">Process your backlog in batches.</strong> If you have 200 pieces sitting on a drive waiting to be listed, do not try to run them all in one session. Batch them and review the output in groups. This keeps the review step manageable and lets you catch any systematic issues early.</li>
+    <ol class="article-ol">
+      <li class="article-li--spaced"><strong class="article-li-strong">Standardize your source files first.</strong> Automation only works cleanly if your input is consistent. Decide on your resolution standard (300 DPI minimum for print), your file format (TIFF or high-quality PNG), and your color profile (sRGB for most providers) before you automate anything. Running bad files through automation just creates bad products faster.</li>
+      <li class="article-li--spaced"><strong class="article-li-strong">Configure your product catalog once.</strong> Decide which product types you actually want to sell before automating. The best automation tools let you set a default product template — these are the product formats that get created for every new artwork. Get this right once and do not revisit it unless your catalog changes.</li>
+      <li class="article-li--spaced"><strong class="article-li-strong">Train the AI on your voice before you run your backlog.</strong> If your automation tool supports any form of style training, do this before you process your existing catalog. Fixing copy on 200 existing products is more work than getting it right before you start.</li>
+      <li class="article-li--spaced"><strong class="article-li-strong">Run a test batch of five to ten pieces.</strong> Confirm the output looks right — correct products, correct copy, correct Shopify configuration — before you run your full backlog through. This is 30 minutes of sanity-checking that saves hours of cleanup.</li>
+      <li class="article-li--spaced"><strong class="article-li-strong">Process your backlog in batches.</strong> If you have 200 pieces sitting on a drive waiting to be listed, do not try to run them all in one session. Batch them and review the output in groups. This keeps the review step manageable and lets you catch any systematic issues early.</li>
     </ol>
 
     <div class="divider"></div>

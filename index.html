@@ -621,6 +621,7 @@
     }
     .trust-logo:hover { opacity: 1; }
     .trust-logo--printful { height: 34px; }
+    .trust-logo--backblaze { height: 22px; }
 
     /* Social publishing section */
     .social-feature-grid {
@@ -1181,8 +1182,8 @@
 
       /* ── HERO ── */
       .hero { padding: 100px 20px 50px; }
-      .hero-wrap { grid-template-columns: 1fr; min-height: unset; }
-      .hero-glow { left: 50%; }
+      .hero-wrap { grid-template-columns: 1fr; min-height: unset; overflow: hidden; }
+      .hero-glow { left: 50%; width: 100%; max-width: 400px; height: 280px; }
       .hero-wrap .hero { padding: 100px 20px 40px; min-height: unset; }
       .hero-wrap .terminal-section { padding: 0 20px 50px; }
       .terminal-section { padding: 0 20px 60px; }
@@ -1223,20 +1224,22 @@
       .feature { padding: 20px 16px; }
       .feature-check { width: 28px; height: 28px; }
       .feature-check svg { width: 22px; height: 22px; }
-      .feature-title { font-size: 14px; }
-      .feature-desc { font-size: 13px; }
+      .feature-title { font-size: 15px; }
+      .feature-desc { font-size: 14px; }
 
       /* ── TRUST LOGOS ── */
       .trust-logos {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px 16px;
-        justify-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         align-items: center;
+        gap: 24px 20px;
         margin-bottom: 24px;
       }
-      .trust-logo { height: 22px; width: auto; max-width: 100%; }
+      .trust-logos a { display: flex; align-items: center; justify-content: center; }
+      .trust-logo { height: 22px; width: auto; max-width: 120px; }
       .trust-logo--printful { height: 26px; }
+      .trust-logo--backblaze { height: 18px; }
 
       /* ── SOCIAL FEATURE CARDS — compact on mobile ── */
       .social-feature-grid {
@@ -1278,6 +1281,7 @@
       .number-val { font-size: 40px; }
 
       /* ── TERMINAL ── */
+      .hero-wrap .terminal-section { display: none; }
       .terminal { max-width: 100%; }
       .terminal-body { font-size: 12px; padding: 16px; min-height: 260px; max-height: 260px; }
 
@@ -1317,15 +1321,16 @@
       /* ── OVERFLOW PREVENTION ── */
       .hero-content { max-width: 100%; }
       .section-prose--wide { max-width: 100%; font-size: 16px; }
-      .social-intro { margin-bottom: 28px; font-size: 14px; }
-      .social-footer-note { font-size: 13px; margin-top: 20px; }
+      .social-intro { margin-bottom: 28px; font-size: 15px; }
+      .social-footer-note { font-size: 14px; margin-top: 20px; }
+      .section-sub { font-size: 15px; }
       .term-line { white-space: normal; overflow: visible; text-overflow: unset; }
     }
 
     @media (max-width: 400px) {
       .hero-headline { font-size: 32px; }
       .products-grid { grid-template-columns: repeat(2, 1fr); }
-      .trust-logos { grid-template-columns: repeat(2, 1fr); }
+      .trust-logos { gap: 16px 12px; }
       .social-feature-grid { grid-template-columns: 1fr; }
     }
 
@@ -1830,6 +1835,7 @@
       <a href="https://www.printful.com" target="_blank" rel="noopener"><img src="logos/printful.svg" alt="Printful" class="trust-logo trust-logo--printful"></a>
       <a href="https://www.printify.com" target="_blank" rel="noopener"><img src="logos/printify.svg" alt="Printify" class="trust-logo"></a>
       <a href="https://www.anthropic.com" target="_blank" rel="noopener"><img src="logos/claude.svg" alt="Claude AI by Anthropic" class="trust-logo"></a>
+      <a href="https://www.backblaze.com" target="_blank" rel="noopener"><img src="logos/backblaze.svg" alt="Backblaze" class="trust-logo trust-logo--backblaze"></a>
     </div>
     </div>
   </section>

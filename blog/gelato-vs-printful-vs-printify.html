@@ -140,6 +140,21 @@
       .compare-table th, .compare-table td { padding: 8px 10px; }
       .decision-card { flex-direction: column; gap: 8px; }
     }
+
+  /* ── ARTICLE LISTS ───────────────────────────────── */
+  .article-ol {
+    padding-left: 24px;
+    margin-bottom: 24px;
+  }
+  .article-li--spaced {
+    color: var(--muted);
+    font-size: 16px;
+    margin-bottom: 12px;
+    line-height: 1.75;
+  }
+  .article-li-strong {
+    color: var(--white);
+  }
   </style>
 </head>
 <body>
@@ -399,11 +414,11 @@
 
     <p>If you are setting up a Shopify POD store and have not committed to a provider yet, here is a sensible starting point:</p>
 
-    <ol style="padding-left: 24px; margin-bottom: 24px;">
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 12px; line-height: 1.75;"><strong style="color: var(--white);">Start with one provider, not three.</strong> The temptation when researching is to set up accounts everywhere. Resist it. Pick the provider that best fits your primary product type and primary customer geography, launch with them, and add a second provider once you have real order data to guide the decision.</li>
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 12px; line-height: 1.75;"><strong style="color: var(--white);">Order samples before you sell.</strong> This is non-negotiable. Color calibration, paper weight, print registration, and packaging quality all vary. A sample order for your three or four key products costs less than $100 and prevents you from shipping quality you have not verified to paying customers.</li>
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 12px; line-height: 1.75;"><strong style="color: var(--white);">Check where your buyers actually are.</strong> If you have an existing social media audience, look at where your followers are geographically before choosing a provider. An audience that is 60% European points toward Gelato more strongly than one that is 90% US.</li>
-      <li style="color: var(--muted); font-size: 16px; margin-bottom: 12px; line-height: 1.75;"><strong style="color: var(--white);">Run the margin math before you price.</strong> Base cost plus shipping plus Shopify transaction fees versus your retail price. Do this for each product type at each provider you are considering. A product that looks profitable at a glance may not be once you account for all the costs.</li>
+    <ol class="article-ol">
+      <li class="article-li--spaced"><strong class="article-li-strong">Start with one provider, not three.</strong> The temptation when researching is to set up accounts everywhere. Resist it. Pick the provider that best fits your primary product type and primary customer geography, launch with them, and add a second provider once you have real order data to guide the decision.</li>
+      <li class="article-li--spaced"><strong class="article-li-strong">Order samples before you sell.</strong> This is non-negotiable. Color calibration, paper weight, print registration, and packaging quality all vary. A sample order for your three or four key products costs less than $100 and prevents you from shipping quality you have not verified to paying customers.</li>
+      <li class="article-li--spaced"><strong class="article-li-strong">Check where your buyers actually are.</strong> If you have an existing social media audience, look at where your followers are geographically before choosing a provider. An audience that is 60% European points toward Gelato more strongly than one that is 90% US.</li>
+      <li class="article-li--spaced"><strong class="article-li-strong">Run the margin math before you price.</strong> Base cost plus shipping plus Shopify transaction fees versus your retail price. Do this for each product type at each provider you are considering. A product that looks profitable at a glance may not be once you account for all the costs.</li>
     </ol>
 
     <div class="section-break">// The bottom line</div>
