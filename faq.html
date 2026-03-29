@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ArtDrop FAQ — Print-on-Demand Desktop App Questions &amp; Answers</title>
-  <meta name="description" content="Common questions about ArtDrop — setup, compatibility, what it automates, and what you need to get started.">
+  <meta name="description" content="Common questions about ArtDrop — what it automates, what accounts you need, setup time, compatibility, pricing, and how the AI writing works. Answers before you buy.">
   <meta property="og:title" content="FAQ — ArtDrop">
-  <meta property="og:description" content="Common questions about ArtDrop — setup, compatibility, what it automates, and what you need to get started.">
+  <meta property="og:description" content="Common questions about ArtDrop — what it automates, required accounts, setup time, compatibility, and how the AI writing works.">
   <meta property="og:url" content="https://getartdrop.com/faq.html">
   <meta property="og:image" content="https://getartdrop.com/og-image.png">
   <meta property="og:type" content="website">
@@ -145,6 +145,303 @@
       .footer-links { flex-direction: column; gap: 12px; }
     }
   </style>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What do I need before I can use ArtDrop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Four accounts — all free to start: Shopify (your storefront), Gelato, Printful, or Printify (prints and ships your products), Backblaze B2 (stores your high-res files, free 10GB tier), and Anthropic (the AI that writes your copy, pay-per-use). Plus your art files in PNG, JPG, or TIF format."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does setup take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most users complete setup in 30-60 minutes. The setup wizard walks you through connecting accounts, choosing product templates, and teaching the AI your voice. After that, every drop is fully automatic."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What API keys do I need and where do I get them?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You need credentials from Shopify (store URL and access token), Gelato/Printful/Printify (API key for each provider), Anthropic (API key for AI copy), and Backblaze B2 (key ID and application key). The setup wizard walks you through every one and validates them live."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are API keys and why do I need them?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An API key is like a password that lets one app talk to another. When you create an API key in Shopify, Gelato, or Anthropic, you're giving ArtDrop permission to act on your behalf — publishing products, uploading files, generating copy — without logging in and clicking through each service manually. Keys are stored locally on your machine, never on our servers. The setup wizard tells you exactly where to find each one. We're also working on one-click connections that will remove this step for most services."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work on Mac and Windows?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. ArtDrop runs on Mac (Apple Silicon and Intel) and Windows 10/11. The license covers both — activate on up to 2 machines."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use ArtDrop on my phone or tablet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. ArtDrop runs in your browser as a web app, so it works on any device — Mac, Windows, iPhone, iPad, Android. You can also add it to your home screen on iPhone or Android and it behaves like a native app with its own icon and full-screen experience."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to know how to code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. ArtDrop is a desktop app with a clean browser interface. Everything is point-and-click — no coding, no config files, no technical knowledge required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What exactly happens when I drop a file?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ArtDrop runs five steps automatically: Analyze (AI classifies the image), Write (title, description, SEO tags generated), Upload (high-res file goes to Backblaze B2), Create (one product per template at each print provider), Publish (all products published to the right categories in your store with alt text, tags, and SEO). A typical drop takes 3-8 minutes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How good is the AI-generated copy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The AI does a two-pass analysis — it classifies the image first, then writes from the structural data, producing copy specific to your piece rather than generic boilerplate. You can always edit descriptions in Shopify after publishing, but most will be publish-ready as-is."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if the AI writes a bad description?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can edit any product description directly inside ArtDrop before publishing. If the result misses the mark, there's also a Regenerate button that runs the AI again on the same image. You always review before anything goes live — nothing publishes automatically without your approval."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get ArtDrop to sound like my brand?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the built-in Voice Trainer. Drop an image, see the AI copy, react in plain English ('too flowery', 'shorter sentences'). ArtDrop refines based on your feedback and extracts concrete rules automatically. No prompt engineering required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I control what products get created for each drop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You configure your own product templates — each template is one product format (poster, canvas, phone case, etc.). Every file you drop creates one product per active template. Add or remove templates any time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What file types does it support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PNG, JPG, JPEG, TIF, and TIFF. 16-bit TIFs work. File size doesn't matter — 4MB or 1.5GB, ArtDrop handles it. Recommended resolution: 300 DPI at your largest print size. For a 24x36 inch poster that's 7200x10800px minimum."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about EXIF and metadata?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If your files contain EXIF or XMP metadata — camera, lens, focal length, aperture, shutter speed, ISO — ArtDrop can extract it and use it in three ways: Full display (tech specs shown on product pages), Tags only (metadata added as product tags for SEO and filtering but not shown on the page), or Off (metadata ignored completely). Configurable in your settings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this really a one-time payment? No subscription?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. $197 once. No monthly fee, no per-product charge. You pay separately for the services ArtDrop connects to (Shopify, print providers, Backblaze, Anthropic). AI copy generation costs roughly $0.01-0.03 per image processed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many machines can I run it on?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Two machines on one license. You can deactivate an old machine and activate a new one from within the app."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the refund policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "30-day money-back guarantee. If ArtDrop doesn't work for you, email support@getartdrop.com within 30 days of purchase for a full refund. ArtDrop also includes 3 free demo drops so you can test the full pipeline before you buy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a money-back guarantee?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. If ArtDrop doesn't work for you, email support@getartdrop.com within 30 days of purchase and we'll refund you in full. No hoops, no partial credits, no store credit only — a full refund back to your original payment method."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work with any Shopify store?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Any Shopify store with Admin API access (any paid plan, Basic and up). It works regardless of your theme or other installed apps — ArtDrop talks to Shopify via API."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work with Gelato's free account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Gelato's free account includes API access. You just need an API key and your Store ID. No paid Gelato tier required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work with any type of art, or just photography?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Any image you can save as PNG, JPG, or TIF — digital illustration, photography, painting, generative art, mixed media, graphic design. The AI adapts to what it sees regardless of medium or style."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need all three print providers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. One is enough to get started. Most users start with Gelato. You can add Printful and Printify at any time through Settings. Each one you add means more products per drop and more fulfillment options, but none are required on day one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is ArtDrop different from other POD tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No other tool does end-to-end what ArtDrop does: drop a file, get a fully analyzed, professionally written, SEO-optimized product published across multiple print providers to your Shopify store. ArtDrop also analyzes the actual content of your image for specific copy, not generic descriptions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why $197 one-time instead of a monthly subscription?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Comparable tools charge $10-$150/month ($120-$1,800/year). ArtDrop costs $197 once. After two months you're ahead of the cheapest competitor. The only ongoing cost is Anthropic API usage at pennies per drop."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about Gelato's Instant Collections or Printify's built-in tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They lock you into one provider. Gelato's Instant Collections only creates Gelato products. Printify's tools only create Printify products. ArtDrop publishes to Gelato, Printful, and Printify simultaneously from one drop — same image, same brand voice, same SEO quality, three providers. No monthly fee required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can't I just use ChatGPT or Jasper to write product descriptions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can, and you'll spend 5-10 minutes per product doing it — pasting the image, writing a prompt, copying output, pasting into Shopify, writing SEO titles, meta descriptions, alt text, and tags, then repeating for every product type and every image. ArtDrop does all of that in one automated pass in your trained brand voice. Jasper costs $59-69/month and still only writes copy — you're still creating products and publishing manually. ArtDrop handles the entire chain."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about bulk upload tools like Flying Upload or LazyMerch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Upload tools push designs to marketplaces like Amazon Merch and Redbubble. They don't create products from artwork files, analyze images, write copy, handle Shopify SEO, or work with Gelato, Printful, or Printify. If you're selling on Amazon Merch, those tools make sense. If you're building a Shopify store with professional print-on-demand products, ArtDrop is the tool for that workflow."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does ArtDrop run locally instead of in the cloud?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your artwork is your livelihood. Every cloud-based tool requires you to upload your original files to someone else's servers. ArtDrop runs on your machine — your files never leave your machine. Your API keys stay in a local config file on your computer. We don't have servers, no dashboard, no analytics, no telemetry. We literally cannot see your data because we never receive it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How complicated is this under the hood?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ArtDrop coordinates across four different print provider APIs, a storefront API, a cloud storage API, and an AI platform — each with their own authentication, rate limits, error handling, image format requirements, and product data schemas. The AI side is a multi-stage analysis: image classification, color extraction, composition mapping, brand voice matching, copy generation with enforced structure, and SEO optimization. You see a drag-and-drop box. Behind it is thousands of hours of integration work. $197 buys you every integration, every edge case, already handled."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does ArtDrop cost in total to run?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ArtDrop: $197 one-time. Anthropic API: ~$0.01-$0.05 per drop. Backblaze B2: free up to 10GB. Shopify: starts at $39/month (you'd pay this anyway). Print providers: free accounts, you only pay when customers order."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the Intelligence feature?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Intelligence is an optional feature that tracks what's trending across 16 countries and surfaces signals about what to create next — colors, subjects, and formats with growing demand in your market. It's currently in beta. Toggle it on in Settings to try it. It's not required for any other part of ArtDrop to work."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my data really private?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. ArtDrop runs on your machine. Your config, artwork, and business data stay local. The only external calls are the ones you configure — directly to your print providers, Shopify, Backblaze, and Anthropic. StanHattie LLC has no dashboard, no analytics, no telemetry."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What gets sent to the AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your artwork image (for visual analysis), your voice rules (so copy sounds like you), and basic context like your artist name and artwork type. No API keys, no financial data, no customer info. Anthropic doesn't train on API data."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will you ever sell my data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Not now, not ever. The only information StanHattie LLC has is your name and email from Stripe at checkout, and a machine fingerprint hash for license activation. We don't run analytics or track usage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will you spam me with emails?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. When you buy ArtDrop, you get a welcome email with your license key. After that, you only hear from us when there's a real update — a new integration, a major feature, something that matters to your workflow. No filler, no weekly newsletters. Every email has an unsubscribe link, and if you click it, you're gone immediately. We will never sell or share your email with anyone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use ArtDrop without AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. You can disable AI in Settings and write all product titles, descriptions, and SEO tags yourself. ArtDrop will still handle file processing, product creation, and publishing."
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -238,6 +535,27 @@
       </div></div>
     </div>
 
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">What are API keys and why do I need them?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Think of an API key like a password that lets one app talk to another. When you create an API key in Shopify, Gelato, or Anthropic, you're giving ArtDrop permission to act on your behalf — publishing products, uploading files, generating copy — without you having to log in and click through each service manually.</p>
+        <p>ArtDrop needs them because it connects directly to your accounts at each service. The keys are stored locally on your machine, never on our servers. The setup wizard tells you exactly where to find each one — it's a copy-paste, not a technical exercise. We're also working on one-click connections that will remove this step entirely for most services.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">Can I use ArtDrop on my phone or tablet?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Yes. ArtDrop runs in your browser as a web app, so it works on any device — Mac, Windows, iPhone, iPad, Android. Nothing to install. You can also add it to your home screen on iPhone or Android and it behaves like a native app, with its own icon and full-screen experience.</p>
+      </div></div>
+    </div>
+
     <!-- CATEGORY: THE PIPELINE -->
     <div class="faq-category">// How it works</div>
 
@@ -267,6 +585,16 @@
       <div class="faq-a"><div class="faq-a-inner">
         <p>Better than most humans writing product descriptions under time pressure. The AI does a two-pass analysis — it classifies the image first, then writes from the structural data, not generic impressions. This produces copy that's specific to what's actually in the piece rather than vague "vibrant colors and dynamic composition" boilerplate.</p>
         <p>You can always edit any description in Shopify after it's published. But most will be publish-ready as-is.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">What happens if the AI writes a bad description?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>You can edit any product description directly inside ArtDrop before publishing. If the result misses the mark, there's also a <strong>Regenerate</strong> button that runs the AI again on the same image. You always review before anything goes live — nothing publishes automatically without your approval.</p>
       </div></div>
     </div>
 
@@ -349,8 +677,18 @@
         <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
       </button>
       <div class="faq-a"><div class="faq-a-inner">
-        <p>ArtDrop includes 3 free demo drops so you can test everything before purchasing. All sales are final. If you experience a technical issue we can't resolve, contact <a href="mailto:support@getartdrop.com">support@getartdrop.com</a> and we'll work with you.</p>
-        <p>The setup wizard runs a live test before you ever drop a real file — if that test fails, we'll troubleshoot it with you before you've committed to anything.</p>
+        <p>30-day money-back guarantee. If ArtDrop doesn't work for you, email <a href="mailto:support@getartdrop.com">support@getartdrop.com</a> within 30 days of purchase and we'll issue a full refund — no questions asked.</p>
+        <p>ArtDrop also includes 3 free demo drops so you can test the full pipeline before you buy. The setup wizard runs a live connection test at the end — if something doesn't work, we'll troubleshoot it with you before you've committed to anything.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">Is there a money-back guarantee?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Yes. If ArtDrop doesn't work for you, email <a href="mailto:support@getartdrop.com">support@getartdrop.com</a> within 30 days of purchase and we'll refund you in full. No hoops, no partial credits, no "store credit only." A full refund back to your original payment method.</p>
       </div></div>
     </div>
 
@@ -390,6 +728,16 @@
       <div class="faq-a"><div class="faq-a-inner">
         <p>Any image you can save as a PNG, JPG, or TIF. Digital illustration, photography, painting (scanned or photographed), generative art, mixed media, graphic design — if it's a flat image file, ArtDrop can process it.</p>
         <p>The AI copy generation works from the visual content of the image itself. It adapts to what it sees regardless of medium or style.</p>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">Do I need all three print providers?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>No. One is enough to get started. Most users start with Gelato — it has the best international coverage and a clean API. You can add Printful and Printify at any time through Settings. Each one you add means more products per drop and more fulfillment options, but none of them are required on day one.</p>
       </div></div>
     </div>
 
@@ -492,6 +840,16 @@
       </div></div>
     </div>
 
+    <div class="faq-item">
+      <button class="faq-q">
+        <span class="faq-q-text">What's the Intelligence feature?</span>
+        <span class="faq-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="2,4 6,8 10,4"/></svg></span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Intelligence is an optional feature that tracks what's trending across 16 countries and surfaces signals about what to create next — colors, subjects, and formats with growing demand in your market. It's currently in beta. Toggle it on in <strong>Settings → Intelligence</strong> if you want to try it. It's not required for any other part of ArtDrop to work.</p>
+      </div></div>
+    </div>
+
     <!-- CATEGORY: PRIVACY & DATA -->
     <div class="faq-category">// Privacy &amp; data</div>
 
@@ -567,11 +925,8 @@
     });
   </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+<!-- FAQPage schema moved to <head> -->
+<!--
     {
       "@type": "Question",
       "name": "What do I need before I can use ArtDrop?",
@@ -681,7 +1036,15 @@
       "name": "What's the refund policy?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "ArtDrop includes 3 free demo drops so you can test everything before purchasing. All sales are final. If you experience a technical issue, contact support and we'll work with you."
+        "text": "30-day money-back guarantee. If ArtDrop doesn't work for you, email support@getartdrop.com within 30 days of purchase for a full refund. ArtDrop also includes 3 free demo drops so you can test the full pipeline before you buy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a money-back guarantee?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. If ArtDrop doesn't work for you, email support@getartdrop.com within 30 days of purchase and we'll refund you in full. No hoops, no partial credits, no store credit only — a full refund back to your original payment method."
       }
     },
     {
@@ -811,9 +1174,49 @@
         "@type": "Answer",
         "text": "Yes. You can disable AI in Settings and write all product titles, descriptions, and SEO tags yourself. ArtDrop will still handle file processing, product creation, and publishing."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "What are API keys and why do I need them?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An API key is like a password that lets one app talk to another. When you create an API key in Shopify, Gelato, or Anthropic, you're giving ArtDrop permission to act on your behalf — publishing products, uploading files, generating copy — without logging in and clicking through each service manually. Keys are stored locally on your machine, never on our servers. The setup wizard tells you exactly where to find each one. We're also working on one-click connections that will remove this step for most services."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use ArtDrop on my phone or tablet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. ArtDrop runs in your browser as a web app, so it works on any device — Mac, Windows, iPhone, iPad, Android. You can also add it to your home screen on iPhone or Android and it behaves like a native app with its own icon and full-screen experience."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if the AI writes a bad description?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can edit any product description directly inside ArtDrop before publishing. If the result misses the mark, there's also a Regenerate button that runs the AI again on the same image. You always review before anything goes live — nothing publishes automatically without your approval."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need all three print providers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. One is enough to get started. Most users start with Gelato. You can add Printful and Printify at any time through Settings. Each one you add means more products per drop and more fulfillment options, but none are required on day one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the Intelligence feature?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Intelligence is an optional feature that tracks what's trending across 16 countries and surfaces signals about what to create next — colors, subjects, and formats with growing demand in your market. It's currently in beta. Toggle it on in Settings → Intelligence if you want to try it. It's not required for any other part of ArtDrop to work."
+      }
     }
   ]
 }
-</script>
+-->
 </body>
 </html>
