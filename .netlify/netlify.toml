@@ -1,0 +1,29 @@
+functionsDirectory = "/Users/michaelhill/Downloads/ARTDROP/ARTDROP SITE HTML/netlify/functions"
+functionsDirectoryOrigin = "config"
+plugins = []
+headers = []
+redirects = []
+
+[build]
+publish = "/Users/michaelhill/Downloads/ARTDROP/ARTDROP SITE HTML"
+publishOrigin = "config"
+functions = "/Users/michaelhill/Downloads/ARTDROP/ARTDROP SITE HTML/netlify/functions"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[functions]
+
+[functions."*"]
+node_bundler = "esbuild"
