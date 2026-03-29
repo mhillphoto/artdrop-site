@@ -1754,7 +1754,7 @@ function startHelpEscalation() {
     _chatOpened = true;
     document.getElementById('chat-panel').classList.add('open');
     document.getElementById('chat-input').focus();
-    appendChat("Hey! I'm the ArtDrop assistant. It looks like you're getting started — I can help with anything. What are you trying to do right now?", 'bot');
+    // Don't add a second welcome message — the HTML already has one
   }, 40000);
 }
 
