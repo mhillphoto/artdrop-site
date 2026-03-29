@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog — ArtDrop v1.0 Release Notes</title>
+  <meta name="description" content="ArtDrop v1.0 release notes. Full feature list: AI pipeline, Voice Trainer, Intelligence Engine, web app, built-in assistant. Launched March 31, 2026.">
+  <meta property="og:title" content="ArtDrop v1.0 — Release Notes">
+  <meta property="og:description" content="Everything that ships in v1.0. Core pipeline, Intelligence Engine, web app, AI assistant, and what's coming next.">
+  <meta property="og:url" content="https://getartdrop.com/changelog.html">
+  <meta property="og:image" content="https://getartdrop.com/og-image.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ArtDrop™">
+  <link rel="canonical" href="https://getartdrop.com/changelog.html">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1a2e'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='22' font-weight='bold' fill='%23bfff5e' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+
+  <!-- Microsoft Clarity analytics -->
+  <script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "w2uh6ee7z5");
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700;1,6..96,900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #181818;
+      --border: rgba(255,255,255,0.07);
+      --border-bright: rgba(255,255,255,0.14);
+      --lime: #bfff5e;
+      --lime-dim: rgba(191,255,94,0.10);
+      --lime-glow: rgba(191,255,94,0.28);
+      --white: #f0f0ec;
+      --muted: rgba(240,240,236,0.55);
+      --faint: rgba(240,240,236,0.28);
+      --mono: 'DM Mono', monospace;
+      --sans: 'Bodoni Moda', Georgia, serif;
+      --body: 'Instrument Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: var(--body); line-height: 1.65; overflow-x: hidden; }
+
+    /* noise overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.6;
+    }
+
+    /* ── NAV shared styles ──────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(10,10,10,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: var(--mono); font-weight: 500; font-size: 18px; color: var(--lime); letter-spacing: 0.04em; text-decoration: none; }
+    .nav-cta { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; color: var(--bg); background: var(--lime); padding: 9px 20px; border-radius: 3px; text-decoration: none; transition: opacity 0.15s; }
+    .nav-cta:hover { opacity: 0.92; box-shadow: 0 4px 20px var(--lime-glow); }
+    .nav-cta-mobile { display: none; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a:link, .nav-links a:visited { font-family: var(--body); font-size: 13px; color: var(--lime); text-decoration: none; letter-spacing: 0.02em; transition: color 0.15s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-hamburger { display: none; }
+    .skip-link { position: absolute; left: -9999px; }
+    .skip-link:focus { left: 48px; top: 20px; z-index: 200; background: var(--lime); color: var(--bg); padding: 8px 16px; border-radius: 3px; font-family: var(--mono); font-size: 12px; }
+
+    /* ── PAGE HERO ──────────────────────────────────────────── */
+    .page-hero {
+      padding: 160px 48px 80px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 100% 100% at 0% 50%, black 20%, transparent 80%);
+    }
+    .page-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .page-title {
+      font-family: var(--sans);
+      font-size: clamp(44px, 6vw, 80px);
+      font-weight: 900;
+      font-variation-settings: 'opsz' 96;
+      font-feature-settings: 'liga' 0;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+      position: relative;
+      max-width: 700px;
+    }
+    .page-title em { font-style: italic; color: var(--lime); }
+    .page-intro {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.75;
+      position: relative;
+    }
+
+    /* ── CHANGELOG LAYOUT ───────────────────────────────────── */
+    .changelog-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px 48px 120px;
+    }
+
+    /* ── VERSION BLOCK ──────────────────────────────────────── */
+    .version-block {
+      margin-bottom: 80px;
+    }
+
+    .version-header {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      margin-bottom: 48px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-bright);
+      flex-wrap: wrap;
+    }
+
+    .version-number {
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--lime);
+      letter-spacing: 0.04em;
+    }
+
+    .version-date {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    .version-badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--lime);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    /* ── SECTION ────────────────────────────────────────────── */
+    .cl-section {
+      margin-bottom: 44px;
+    }
+
+    .cl-section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .cl-section-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: var(--lime-dim);
+      border: 1px solid rgba(191,255,94,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--lime);
+    }
+
+    .cl-section-icon svg { display: block; }
+
+    .cl-section-title {
+      font-family: var(--body);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .cl-section-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border-bright);
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+
+    /* ── ITEM LIST ──────────────────────────────────────────── */
+    .cl-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .cl-item {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 14px;
+      align-items: baseline;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.12s;
+    }
+    .cl-item:last-child { border-bottom: none; }
+    .cl-item:hover { background: var(--bg2); }
+
+    .cl-item-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--lime);
+      opacity: 0.55;
+      margin-top: 8px;
+      justify-self: center;
+    }
+
+    .cl-item-text {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .cl-item-text strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* ── ROADMAP SECTION ────────────────────────────────────── */
+    .cl-section--roadmap .cl-item-dot {
+      background: var(--faint);
+      opacity: 1;
+    }
+
+    .cl-section--roadmap .cl-items {
+      border-color: var(--border);
+    }
+
+    .cl-section--roadmap .cl-section-icon {
+      background: rgba(240,240,236,0.06);
+      border-color: var(--border-bright);
+      color: var(--muted);
+    }
+
+    .cl-section--roadmap .cl-section-title {
+      color: var(--muted);
+    }
+
+    /* ── FOOTER SHARED ──────────────────────────────────────── */
+    footer {
+      padding: 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-logo { font-family: var(--mono); font-size: 14px; color: var(--lime); }
+    .footer-links { display: flex; gap: 32px; flex-wrap: wrap; }
+    .footer-links a { font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-family: var(--mono); font-size: 11px; color: var(--faint); width: 100%; }
+    .footer-copy a { color: var(--faint); text-decoration: none; transition: color 0.2s; }
+    .footer-copy a:hover { color: var(--white); }
+
+    /* ── CTA BLOCK ──────────────────────────────────────────── */
+    .changelog-cta {
+      background: var(--bg2);
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      padding: 48px;
+      margin-top: 64px;
+      text-align: center;
+    }
+    .changelog-cta-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 16px;
+    }
+    .changelog-cta-title {
+      font-family: var(--body);
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    .changelog-cta-sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--bg);
+      background: var(--lime);
+      padding: 16px 32px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--lime-glow); }
+
+    /* ── MOBILE ─────────────────────────────────────────────── */
+    @media (max-width: 767px) {
+      nav { padding: 16px 20px; }
+
+      .nav-hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 22px;
+        height: 16px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        order: -1;
+      }
+      .nav-hamburger span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: var(--white);
+        border-radius: 1px;
+        transition: transform 0.2s, opacity 0.2s;
+      }
+      .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+      .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 57px; left: 0; right: 0;
+        background: rgba(10,10,10,0.97);
+        backdrop-filter: blur(16px);
+        flex-direction: column;
+        align-items: stretch;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--border);
+        gap: 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 14px 24px; font-size: 15px; }
+      .nav-cta-mobile { display: block; margin: 8px 16px 4px; padding: 14px 20px; text-align: center; font-family: var(--mono); font-size: 13px; font-weight: 500; letter-spacing: 0.08em; color: var(--bg); background: var(--lime); border-radius: 3px; text-decoration: none; }
+      .nav-cta { display: none; }
+
+      .page-hero { padding: 120px 24px 60px; }
+      .changelog-wrap { padding: 48px 24px 80px; }
+      .version-header { gap: 12px; }
+      .version-number { font-size: 18px; }
+      .cl-item { padding: 12px 16px; }
+      .changelog-cta { padding: 32px 20px; }
+      footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-direction: column; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="site-nav"></header>
+  <script src="/nav.js"></script>
+
+  <div id="main-content" class="page-hero">
+    <div class="hero-grid-bg"></div>
+    <p class="page-label">// Release notes</p>
+    <h1 class="page-title">What<br>shipped.</h1>
+    <p class="page-intro">Every feature in ArtDrop v1.0. What's here, what it does, what's coming next.</p>
+  </div>
+
+  <main class="changelog-wrap">
+
+    <!-- ── v1.0.0 ─────────────────────────────────────────── -->
+    <div class="version-block">
+
+      <div class="version-header">
+        <span class="version-number">v1.0.0</span>
+        <span class="version-date">March 31, 2026</span>
+        <span class="version-badge">Launch</span>
+      </div>
+
+      <!-- Core Pipeline -->
+      <div class="cl-section">
+        <div class="cl-section-header">
+          <div class="cl-section-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline>
+            </svg>
+          </div>
+          <span class="cl-section-title">Core Pipeline</span>
+        </div>
+        <div class="cl-items">
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text"><strong>Drop to published in minutes.</strong> Drop an image — AI analyzes it, writes the copy, creates products across your providers, publishes to Shopify, and posts to social. Zero manual steps after initial setup.</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text"><strong>Three providers, one drop.</strong> Gelato, Printful, and Printify all run simultaneously. Use one or all three — ArtDrop publishes to every provider you've connected from the same drop.</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text"><strong>One-click Shopify connection.</strong> OAuth flow — click, authorize, done. ArtDrop handles store organization, SEO metadata, tags, and navigation menus automatically on every drop.</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text"><strong>Social publishing built in.</strong> Instagram, Pinterest, Facebook, Threads, and Bluesky. Connect once, post automatically every time you drop.</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text"><strong>Voice Trainer.</strong> Teach the AI your writing style in plain conversation. React to copy — "too flowery," "shorter," "never say that word" — and it saves your rules. No forms, no prompts, no guesswork.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Intelligence Engine -->
+      <div class="cl-section">
+        <div class="cl-section-header">
+          <div class="cl-section-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"></path>
+            </svg>
+          </div>
+          <span class="cl-section-title">Intelligence Engine</span>
+          <span class="cl-section-tag">Beta</span>
+        </div>
+        <div class="cl-items">
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text"><strong>Market Weather.</strong> Real-time trend temperature pulled from 12+ free data sources across 16 countries. See what's heating up before you drop.</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text"><strong>Personalized recommendation cards.</strong> Scored opportunities based on your art type, products, and target markets. Multi-source signals get a convergence boost — if five independent sources agree, you see it.</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text"><strong>Niche discovery.</strong> Cross-niche opportunity detection with 40 novelty seeds. Finds intersections you wouldn't search for.</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text"><strong>Entertainment-to-aesthetic mapping.</strong> Trending shows and films mapped to art styles and product categories. What's on Netflix this week translates into what to drop next.</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text"><strong>Provider comparison alerts.</strong> Price, shipping, and quality differences across Gelato, Printful, and Printify — surfaced before you commit to a drop.</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text"><strong>Drop calendar.</strong> Seasonal timing recommendations based on cultural events, holidays, and trend windows across all 16 tracked countries. Southern Hemisphere inversions handled automatically.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Web App -->
+      <div class="cl-section">
+        <div class="cl-section-header">
+          <div class="cl-section-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+          <span class="cl-section-title">Web App</span>
+        </div>
+        <div class="cl-items">
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text"><strong>Runs in any browser.</strong> Mac, Windows, iPad, phone. Same ArtDrop, no install required.</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text"><strong>PWA support.</strong> Install ArtDrop on your home screen. Works like a native app from your device.</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text"><strong>One license, everywhere.</strong> Your $197 covers the desktop app (Mac + Windows) and the web app. No separate seat, no upsell.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Built-in AI Assistant -->
+      <div class="cl-section">
+        <div class="cl-section-header">
+          <div class="cl-section-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <span class="cl-section-title">Built-in AI Assistant</span>
+        </div>
+        <div class="cl-items">
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text"><strong>Always available.</strong> Press <strong>Shift + ?</strong> anywhere in the app, or click the help button. The panel slides in without breaking your flow.</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text"><strong>Context-aware.</strong> The assistant knows what page and step you're on. It doesn't give you the same generic help text regardless of where you are.</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text"><strong>Full product knowledge base.</strong> Answers from a complete internal knowledge base — not a search bar, not a link to docs. Ask it anything about setup, providers, or the pipeline.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- What's Next -->
+      <div class="cl-section cl-section--roadmap">
+        <div class="cl-section-header">
+          <div class="cl-section-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
+          <span class="cl-section-title">What's Next</span>
+          <span class="cl-section-tag">Roadmap</span>
+        </div>
+        <div class="cl-items">
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text">WooCommerce and Etsy storefronts — coded, finishing testing</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text">Digital downloads</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text">Analytics dashboard — drop performance, revenue, provider comparison</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-item-dot"></div>
+            <div class="cl-item-text">Community intelligence — opt-in aggregate signals from the ArtDrop network</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /version-block -->
+
+    <div class="changelog-cta">
+      <div class="changelog-cta-label">// v1.0 is live</div>
+      <div class="changelog-cta-title">Everything above. $197 once.</div>
+      <div class="changelog-cta-sub">No subscription. No per-drop fees. Mac + Windows + Web.</div>
+      <a href="https://buy.stripe.com/dRmfZgcG2cw724M6QC43S00" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
+        Get ArtDrop™
+      </a>
+    </div>
+
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="/footer.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "url": "https://getartdrop.com/changelog.html",
+  "name": "ArtDrop Changelog — v1.0 Release Notes",
+  "description": "ArtDrop v1.0 release notes. Full feature list: AI pipeline, Voice Trainer, Intelligence Engine, web app, built-in assistant.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "ArtDrop",
+    "url": "https://getartdrop.com",
+    "founder": {
+      "@type": "Person",
+      "name": "Michael Hill"
+    }
+  },
+  "mainEntity": {
+    "@type": "SoftwareApplication",
+    "name": "ArtDrop",
+    "softwareVersion": "1.0.0",
+    "datePublished": "2026-03-31",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "macOS, Windows",
+    "url": "https://getartdrop.com",
+    "offers": {
+      "@type": "Offer",
+      "price": "197",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+}
+</script>
+</body>
+</html>
