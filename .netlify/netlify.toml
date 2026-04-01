@@ -2,6 +2,7 @@ functionsDirectory = "/Users/michaelhill/Downloads/Claude/ArtDrop/ARTDROP SITE H
 functionsDirectoryOrigin = "config"
 plugins = []
 headers = []
+redirects = []
 
 [build]
 publish = "/Users/michaelhill/Downloads/Claude/ArtDrop/ARTDROP SITE HTML"
@@ -26,99 +27,3 @@ functions = "/Users/michaelhill/Downloads/Claude/ArtDrop/ARTDROP SITE HTML/netli
 
 [functions."*"]
 node_bundler = "esbuild"
-
-[[redirects]]
-from = "https://getartdrop.com/q/*"
-to = "https://glowupworks.com/q/:splat"
-status = 301.0
-force = true
-
-[redirects.query]
-
-[redirects.conditions]
-
-[redirects.headers]
-
-[[redirects]]
-from = "https://www.getartdrop.com/q/*"
-to = "https://glowupworks.com/q/:splat"
-status = 301.0
-force = true
-
-[redirects.query]
-
-[redirects.conditions]
-
-[redirects.headers]
-
-[[redirects]]
-from = "https://getartdrop.com/c/*"
-to = "https://glowupworks.com/c/:splat"
-status = 301.0
-force = true
-
-[redirects.query]
-
-[redirects.conditions]
-
-[redirects.headers]
-
-[[redirects]]
-from = "https://www.getartdrop.com/c/*"
-to = "https://glowupworks.com/c/:splat"
-status = 301.0
-force = true
-
-[redirects.query]
-
-[redirects.conditions]
-
-[redirects.headers]
-
-[[redirects]]
-from = "https://getartdrop.com/glow/*"
-to = "https://glowupworks.com/:splat"
-status = 301.0
-force = true
-
-[redirects.query]
-
-[redirects.conditions]
-
-[redirects.headers]
-
-[[redirects]]
-from = "https://getbizglow.com/*"
-to = "https://glowupworks.com/business/:splat"
-status = 301.0
-force = true
-
-[redirects.query]
-
-[redirects.conditions]
-
-[redirects.headers]
-
-[[redirects]]
-from = "https://www.getbizglow.com/*"
-to = "https://glowupworks.com/business/:splat"
-status = 301.0
-force = true
-
-[redirects.query]
-
-[redirects.conditions]
-
-[redirects.headers]
-
-[[redirects]]
-from = "https://getartdrop.com/concierge/*"
-to = "https://glowupworks.com/:splat"
-status = 301.0
-force = true
-
-[redirects.query]
-
-[redirects.conditions]
-
-[redirects.headers]
