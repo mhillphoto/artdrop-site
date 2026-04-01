@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ArtDrop Logo Library</title>
+    <style>
+        :root {
+            --artdrop-green: #bfff5e;
+            --bg: #0a0a0a;
+            --card-bg: #141414;
+            --card-border: #222;
+            --text: #e0e0e0;
+            --text-dim: #777;
+            --missing-bg: #1a1010;
+            --missing-border: #3a2020;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: var(--artdrop-green);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .category-title {
+            color: var(--text);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .logo-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 1.2rem 0.8rem 0.8rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            transition: border-color 0.2s;
+        }
+
+        .logo-card:hover {
+            border-color: var(--artdrop-green);
+        }
+
+        .logo-card.missing {
+            background: var(--missing-bg);
+            border-color: var(--missing-border);
+            opacity: 0.6;
+        }
+
+        .logo-img {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .placeholder {
+            font-size: 1.5rem;
+            color: var(--missing-border);
+        }
+
+        .logo-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .logo-file {
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            font-family: "SF Mono", Monaco, monospace;
+        }
+
+        .logo-card.missing .logo-file {
+            color: #664444;
+        }
+
+        .stats {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: var(--card-bg);
+            border-radius: 8px;
+            border: 1px solid var(--card-border);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .stats span {
+            color: var(--artdrop-green);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <h1>ArtDrop Logo Library</h1>
+    <p class="subtitle">All integration logos — colored #bfff5e (ArtDrop lime green)</p>
+
+        <h2 class="category-title">POD Providers</h2>
+        <div class="logo-grid">
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="gelato.svg" alt="Gelato" />
+            </div>
+            <span class="logo-label">Gelato</span>
+            <span class="logo-file">gelato.svg</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="printful.svg" alt="Printful" />
+            </div>
+            <span class="logo-label">Printful</span>
+            <span class="logo-file">printful.svg</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="printify.svg" alt="Printify" />
+            </div>
+            <span class="logo-label">Printify</span>
+            <span class="logo-file">printify.svg</span>
+          </div>
+          <div class="logo-card missing">
+            <div class="logo-img">
+              <span class="placeholder">?</span>
+            </div>
+            <span class="logo-label">Prodigi</span>
+            <span class="logo-file">MISSING</span>
+          </div>
+          <div class="logo-card missing">
+            <div class="logo-img">
+              <span class="placeholder">?</span>
+            </div>
+            <span class="logo-label">Fourthwall</span>
+            <span class="logo-file">MISSING</span>
+          </div>
+          <div class="logo-card missing">
+            <div class="logo-img">
+              <span class="placeholder">?</span>
+            </div>
+            <span class="logo-label">CustomCat</span>
+            <span class="logo-file">MISSING</span>
+          </div>
+          <div class="logo-card missing">
+            <div class="logo-img">
+              <span class="placeholder">?</span>
+            </div>
+            <span class="logo-label">ShineOn</span>
+            <span class="logo-file">MISSING</span>
+          </div>
+          <div class="logo-card missing">
+            <div class="logo-img">
+              <span class="placeholder">?</span>
+            </div>
+            <span class="logo-label">T-Pop</span>
+            <span class="logo-file">MISSING</span>
+          </div>
+          <div class="logo-card missing">
+            <div class="logo-img">
+              <span class="placeholder">?</span>
+            </div>
+            <span class="logo-label">Gooten</span>
+            <span class="logo-file">MISSING</span>
+          </div>
+          <div class="logo-card missing">
+            <div class="logo-img">
+              <span class="placeholder">?</span>
+            </div>
+            <span class="logo-label">Scalable Press</span>
+            <span class="logo-file">MISSING</span>
+          </div>
+        </div>
+        <h2 class="category-title">Storefronts</h2>
+        <div class="logo-grid">
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="shopify.svg" alt="Shopify" />
+            </div>
+            <span class="logo-label">Shopify</span>
+            <span class="logo-file">shopify.svg</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="etsy.svg" alt="Etsy" />
+            </div>
+            <span class="logo-label">Etsy</span>
+            <span class="logo-file">etsy.svg</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="woocommerce.svg" alt="WooCommerce" />
+            </div>
+            <span class="logo-label">WooCommerce</span>
+            <span class="logo-file">woocommerce.svg</span>
+          </div>
+        </div>
+        <h2 class="category-title">Social Platforms</h2>
+        <div class="logo-grid">
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="instagram.svg" alt="Instagram" />
+            </div>
+            <span class="logo-label">Instagram</span>
+            <span class="logo-file">instagram.svg</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="pinterest.svg" alt="Pinterest" />
+            </div>
+            <span class="logo-label">Pinterest</span>
+            <span class="logo-file">pinterest.svg</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="facebook.svg" alt="Facebook" />
+            </div>
+            <span class="logo-label">Facebook</span>
+            <span class="logo-file">facebook.svg</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="threads.svg" alt="Threads" />
+            </div>
+            <span class="logo-label">Threads</span>
+            <span class="logo-file">threads.svg</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="bluesky.svg" alt="Bluesky" />
+            </div>
+            <span class="logo-label">Bluesky</span>
+            <span class="logo-file">bluesky.svg</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="x.svg" alt="X (Twitter)" />
+            </div>
+            <span class="logo-label">X (Twitter)</span>
+            <span class="logo-file">x.svg</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="tiktok.svg" alt="TikTok" />
+            </div>
+            <span class="logo-label">TikTok</span>
+            <span class="logo-file">tiktok.svg</span>
+          </div>
+        </div>
+        <h2 class="category-title">Storage</h2>
+        <div class="logo-grid">
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="backblaze.svg" alt="Backblaze B2" />
+            </div>
+            <span class="logo-label">Backblaze B2</span>
+            <span class="logo-file">backblaze.svg</span>
+          </div>
+          <div class="logo-card missing">
+            <div class="logo-img">
+              <span class="placeholder">?</span>
+            </div>
+            <span class="logo-label">AWS S3</span>
+            <span class="logo-file">MISSING</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="cloudflare.svg" alt="Cloudflare R2" />
+            </div>
+            <span class="logo-label">Cloudflare R2</span>
+            <span class="logo-file">cloudflare.svg</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="google-drive.svg" alt="Google Drive" />
+            </div>
+            <span class="logo-label">Google Drive</span>
+            <span class="logo-file">google-drive.svg</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="dropbox.svg" alt="Dropbox" />
+            </div>
+            <span class="logo-label">Dropbox</span>
+            <span class="logo-file">dropbox.svg</span>
+          </div>
+          <div class="logo-card missing">
+            <div class="logo-img">
+              <span class="placeholder">?</span>
+            </div>
+            <span class="logo-label">OneDrive</span>
+            <span class="logo-file">MISSING</span>
+          </div>
+        </div>
+        <h2 class="category-title">Technology</h2>
+        <div class="logo-grid">
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="anthropic.svg" alt="Anthropic" />
+            </div>
+            <span class="logo-label">Anthropic</span>
+            <span class="logo-file">anthropic.svg</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="stripe.svg" alt="Stripe" />
+            </div>
+            <span class="logo-label">Stripe</span>
+            <span class="logo-file">stripe.svg</span>
+          </div>
+          <div class="logo-card missing">
+            <div class="logo-img">
+              <span class="placeholder">?</span>
+            </div>
+            <span class="logo-label">Twilio</span>
+            <span class="logo-file">MISSING</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="discord.svg" alt="Discord" />
+            </div>
+            <span class="logo-label">Discord</span>
+            <span class="logo-file">discord.svg</span>
+          </div>
+        </div>
+        <h2 class="category-title">Intelligence</h2>
+        <div class="logo-grid">
+          <div class="logo-card missing">
+            <div class="logo-img">
+              <span class="placeholder">?</span>
+            </div>
+            <span class="logo-label">FRED</span>
+            <span class="logo-file">MISSING</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="wikipedia.svg" alt="Wikipedia" />
+            </div>
+            <span class="logo-label">Wikipedia</span>
+            <span class="logo-file">wikipedia.svg</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="ebay.svg" alt="eBay" />
+            </div>
+            <span class="logo-label">eBay</span>
+            <span class="logo-file">ebay.svg</span>
+          </div>
+          <div class="logo-card">
+            <div class="logo-img">
+              <img src="reddit.svg" alt="Reddit" />
+            </div>
+            <span class="logo-label">Reddit</span>
+            <span class="logo-file">reddit.svg</span>
+          </div>
+        </div>
+
+    <div class="stats">
+        <span>23</span> of <span>34</span> logos downloaded.
+        <span>11</span> missing — see MISSING.md
+    </div>
+</body>
+</html>

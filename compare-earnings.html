@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Print on Demand Earnings Comparison — How Much Do Artists Really Keep?</title>
+  <meta name="description" content="Interactive POD earnings calculator. Compare what artists keep on Redbubble, Society6, TeePublic, Etsy, Shopify, and ArtDrop. See exactly how much middlemen take.">
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="POD earnings comparison, Redbubble vs Shopify earnings, print on demand profit calculator, artist earnings calculator, print on demand revenue comparison">
+  <meta property="og:title" content="Print on Demand Earnings Comparison — How Much Do Artists Really Keep?">
+  <meta property="og:description" content="Interactive calculator: see exactly what you keep on every POD platform. The math doesn't lie — most artists give away 90%+ of their revenue.">
+  <meta property="og:url" content="https://getartdrop.com/compare-earnings.html">
+  <meta property="og:image" content="https://getartdrop.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ArtDrop™">
+  <link rel="canonical" href="https://getartdrop.com/compare-earnings.html">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1a2e'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='22' font-weight='bold' fill='%23bfff5e' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+
+  <!-- Microsoft Clarity analytics -->
+  <script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "w2uh6ee7z5");
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700;1,6..96,900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #181818;
+      --border: rgba(255,255,255,0.07);
+      --border-bright: rgba(255,255,255,0.14);
+      --lime: #bfff5e;
+      --lime-dim: rgba(191,255,94,0.10);
+      --lime-glow: rgba(191,255,94,0.28);
+      --red: #ff6e6e;
+      --red-dim: rgba(255,80,80,0.10);
+      --red-bright: rgba(255,110,110,0.85);
+      --white: #f0f0ec;
+      --muted: rgba(240,240,236,0.50);
+      --faint: rgba(240,240,236,0.22);
+      --mono: 'DM Mono', monospace;
+      --sans: 'Bodoni Moda', Georgia, serif;
+      --body: 'Instrument Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--white); font-family: var(--body); line-height: 1.7; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1000; opacity: 0.6; }
+
+    /* ── Hero ── */
+    .page-hero { padding: 160px 48px 80px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 100% 100% at 0% 50%, black 20%, transparent 80%); }
+    .page-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); margin-bottom: 24px; position: relative; }
+    .page-title { font-family: var(--sans); font-size: clamp(40px, 5.5vw, 72px); font-weight: 900; font-variation-settings: 'opsz' 96; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 28px; position: relative; max-width: 780px; }
+    .page-title em { font-style: italic; color: var(--lime); }
+    .page-intro { font-size: 17px; color: var(--muted); max-width: 560px; line-height: 1.75; position: relative; }
+
+    /* ── Calculator Section ── */
+    .calc-section { max-width: 900px; margin: 0 auto; padding: 80px 48px 60px; }
+
+    .price-control { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; margin-bottom: 48px; }
+    .price-label { font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .price-display { font-family: var(--mono); font-size: 48px; font-weight: 500; color: var(--lime); letter-spacing: -0.02em; min-width: 140px; }
+    .price-slider-wrap { flex: 1; min-width: 200px; position: relative; }
+    .price-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; background: var(--border-bright); border-radius: 2px; outline: none; cursor: pointer; }
+    .price-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 24px; height: 24px; border-radius: 50%; background: var(--lime); cursor: pointer; box-shadow: 0 0 20px var(--lime-glow); transition: transform 0.15s; }
+    .price-slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+    .price-slider::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; background: var(--lime); cursor: pointer; border: none; box-shadow: 0 0 20px var(--lime-glow); }
+    .slider-range { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--faint); margin-top: 8px; }
+
+    /* ── Comparison Chart ── */
+    .chart-header { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); margin-bottom: 24px; }
+
+    .platform-row { display: grid; grid-template-columns: 180px 1fr 100px; align-items: center; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+    .platform-row:last-child { border-bottom: none; }
+    .platform-row.is-artdrop { background: var(--lime-dim); margin: 0 -24px; padding: 20px 24px; border-radius: 8px; border-bottom: none; }
+
+    .platform-name { font-family: var(--mono); font-size: 13px; color: var(--white); white-space: nowrap; }
+    .platform-row.is-artdrop .platform-name { color: var(--lime); font-weight: 500; }
+
+    .bar-container { position: relative; height: 36px; background: var(--bg2); border-radius: 4px; overflow: hidden; display: flex; }
+    .bar-kept { height: 100%; background: var(--lime); border-radius: 4px 0 0 4px; transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1); display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; min-width: 0; }
+    .bar-taken { height: 100%; background: var(--red); opacity: 0.35; transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+    .bar-label-kept { font-family: var(--mono); font-size: 11px; color: var(--bg); font-weight: 500; white-space: nowrap; opacity: 0; transition: opacity 0.3s; }
+    .bar-kept[style*="width: 1"], .bar-kept[style*="width: 2"], .bar-kept[style*="width: 3"], .bar-kept[style*="width: 4"], .bar-kept[style*="width: 5"] { padding-right: 0; }
+
+    .platform-pct { font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--white); text-align: right; }
+    .platform-row.is-artdrop .platform-pct { color: var(--lime); }
+
+    .bar-amounts { display: flex; justify-content: space-between; margin-top: 4px; font-family: var(--mono); font-size: 10px; }
+    .bar-amounts .kept-amt { color: var(--lime); }
+    .bar-amounts .taken-amt { color: var(--red-bright); }
+
+    /* ── Monthly/Annual Projections ── */
+    .projections { margin-top: 80px; }
+    .proj-header { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); margin-bottom: 8px; }
+    .proj-subhead { font-size: 15px; color: var(--muted); margin-bottom: 32px; line-height: 1.6; }
+
+    .sales-control { display: flex; align-items: center; gap: 16px; margin-bottom: 40px; flex-wrap: wrap; }
+    .sales-label { font-family: var(--mono); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .sales-input { font-family: var(--mono); font-size: 20px; color: var(--lime); background: var(--bg2); border: 1px solid var(--border-bright); border-radius: 4px; padding: 8px 14px; width: 90px; text-align: center; outline: none; transition: border-color 0.2s; }
+    .sales-input:focus { border-color: var(--lime); }
+
+    .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .proj-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 24px; transition: border-color 0.2s; }
+    .proj-card.is-artdrop { border-color: var(--lime); background: linear-gradient(135deg, var(--lime-dim), transparent); }
+    .proj-card-name { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .proj-card.is-artdrop .proj-card-name { color: var(--lime); }
+    .proj-card-monthly { font-family: var(--mono); font-size: 28px; font-weight: 500; color: var(--white); margin-bottom: 4px; letter-spacing: -0.02em; }
+    .proj-card.is-artdrop .proj-card-monthly { color: var(--lime); }
+    .proj-card-annual { font-family: var(--mono); font-size: 14px; color: var(--muted); }
+    .proj-card-annual span { color: var(--white); }
+    .proj-card.is-artdrop .proj-card-annual span { color: var(--lime); }
+
+    /* ── Emotional Section ── */
+    .emotional { max-width: 900px; margin: 0 auto; padding: 0 48px 80px; }
+    .emotional-divider { width: 60px; height: 3px; background: var(--red); margin-bottom: 48px; }
+    .emotional-header { font-family: var(--sans); font-size: clamp(28px, 3.5vw, 44px); font-weight: 900; font-variation-settings: 'opsz' 96; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .emotional-header em { font-style: italic; color: var(--red); }
+    .emotional-subhead { font-size: 17px; color: var(--muted); margin-bottom: 48px; max-width: 640px; line-height: 1.7; }
+
+    .gap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 48px; }
+    .gap-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 28px; position: relative; overflow: hidden; }
+    .gap-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); opacity: 0.6; }
+    .gap-card.is-artdrop::before { background: var(--lime); opacity: 1; }
+    .gap-card-name { font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+    .gap-card.is-artdrop .gap-card-name { color: var(--lime); }
+    .gap-card-annual { font-family: var(--mono); font-size: 36px; font-weight: 500; color: var(--white); letter-spacing: -0.02em; margin-bottom: 8px; }
+    .gap-card.is-artdrop .gap-card-annual { color: var(--lime); }
+    .gap-card-lost { font-family: var(--mono); font-size: 12px; color: var(--red-bright); }
+    .gap-card.is-artdrop .gap-card-lost { color: var(--lime); opacity: 0.7; }
+
+    .reality-block { background: var(--bg2); border: 1px solid var(--border-bright); border-radius: 8px; padding: 40px; margin-bottom: 48px; }
+    .reality-number { font-family: var(--mono); font-size: clamp(48px, 6vw, 72px); font-weight: 500; color: var(--lime); letter-spacing: -0.03em; line-height: 1; margin-bottom: 16px; }
+    .reality-label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--lime); opacity: 0.7; margin-bottom: 24px; }
+    .reality-examples { list-style: none; }
+    .reality-examples li { font-size: 16px; color: var(--muted); padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+    .reality-examples li:last-child { border-bottom: none; }
+    .reality-examples li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--lime); flex-shrink: 0; }
+
+    /* ── CTA ── */
+    .page-cta { max-width: 900px; margin: 0 auto; padding: 0 48px 100px; }
+    .cta-box { background: var(--bg2); border: 1px solid var(--lime); border-radius: 8px; padding: 56px; text-align: center; position: relative; overflow: hidden; }
+    .cta-box::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, var(--lime-dim), transparent 70%); pointer-events: none; }
+    .cta-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lime); margin-bottom: 20px; position: relative; }
+    .cta-title { font-family: var(--sans); font-size: clamp(28px, 4vw, 48px); font-weight: 900; font-variation-settings: 'opsz' 96; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; position: relative; }
+    .cta-title em { font-style: italic; color: var(--lime); }
+    .cta-sub { font-size: 15px; color: var(--muted); margin-bottom: 32px; position: relative; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 14px; font-weight: 500; letter-spacing: 0.05em; color: var(--bg); background: var(--lime); padding: 16px 32px; border-radius: 4px; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; position: relative; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--lime-glow); }
+
+    /* ── Methodology ── */
+    .methodology { max-width: 900px; margin: 0 auto; padding: 0 48px 80px; }
+    .method-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--faint); margin-bottom: 16px; }
+    .method-text { font-size: 13px; color: var(--faint); line-height: 1.8; max-width: 640px; }
+    .method-text a { color: var(--muted); text-decoration: none; }
+    .method-text a:hover { color: var(--white); }
+
+    /* ── Footer ── */
+    footer { padding: 48px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .footer-logo { font-family: var(--mono); font-size: 14px; color: var(--lime); }
+    .footer-links { display: flex; gap: 32px; }
+    .footer-links a { font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-family: var(--mono); font-size: 11px; color: var(--faint); }
+
+    /* ── Mobile ── */
+    @media (max-width: 767px) {
+      .page-hero { padding: 120px 24px 60px; }
+      .calc-section { padding: 60px 24px 40px; }
+      .emotional { padding: 0 24px 60px; }
+      .page-cta { padding: 0 24px 80px; }
+      .methodology { padding: 0 24px 60px; }
+      .cta-box { padding: 36px 24px; }
+      footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-direction: column; gap: 12px; }
+
+      .price-control { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .price-display { font-size: 36px; }
+      .price-slider-wrap { width: 100%; }
+
+      .platform-row { grid-template-columns: 1fr 80px; gap: 8px; }
+      .platform-name { grid-column: 1 / -1; }
+      .bar-container { grid-column: 1; }
+      .platform-pct { font-size: 18px; }
+
+      .proj-grid { grid-template-columns: 1fr; }
+      .gap-grid { grid-template-columns: 1fr; }
+      .reality-number { font-size: 40px; }
+
+      .sales-control { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-up { animation: fadeUp 0.6s ease-out forwards; }
+    .fade-up-d1 { animation-delay: 0.1s; opacity: 0; }
+    .fade-up-d2 { animation-delay: 0.2s; opacity: 0; }
+    .fade-up-d3 { animation-delay: 0.3s; opacity: 0; }
+    .fade-up-d4 { animation-delay: 0.4s; opacity: 0; }
+    .fade-up-d5 { animation-delay: 0.5s; opacity: 0; }
+    .fade-up-d6 { animation-delay: 0.6s; opacity: 0; }
+  </style>
+</head>
+<body>
+
+  <header id="site-nav"></header>
+  <script src="/nav.js"></script>
+
+  <div id="main-content" class="page-hero">
+    <div class="hero-grid-bg"></div>
+    <p class="page-label">// The math doesn't lie</p>
+    <h1 class="page-title">How much are you <em>giving away?</em></h1>
+    <p class="page-intro">Every platform takes a cut. Most take almost everything. Drag the slider, see the truth.</p>
+  </div>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- CALCULATOR                                    -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="calc-section">
+
+    <div class="price-control fade-up">
+      <div>
+        <div class="price-label">Your retail price</div>
+        <div class="price-display" id="priceDisplay">$40</div>
+      </div>
+      <div class="price-slider-wrap">
+        <input type="range" class="price-slider" id="priceSlider" min="15" max="120" value="40" step="1">
+        <div class="slider-range"><span>$15</span><span>$120</span></div>
+      </div>
+    </div>
+
+    <div class="chart-header fade-up fade-up-d1">// What you keep per sale</div>
+
+    <div id="chartRows"></div>
+
+    <!-- ── Projections ── -->
+    <div class="projections">
+      <div class="proj-header fade-up">// Monthly &amp; annual projection</div>
+      <div class="proj-subhead fade-up fade-up-d1">Drag the slider above. Change your sales volume below. Watch the gap compound.</div>
+
+      <div class="sales-control fade-up fade-up-d2">
+        <span class="sales-label">Sales per month</span>
+        <input type="number" class="sales-input" id="salesInput" value="50" min="1" max="9999">
+      </div>
+
+      <div class="proj-header" style="font-size:10px; letter-spacing:0.15em; margin-bottom:16px; opacity:0.6;">MONTHLY EARNINGS</div>
+      <div class="proj-grid" id="monthlyGrid"></div>
+
+      <div class="proj-header" style="font-size:10px; letter-spacing:0.15em; margin-bottom:16px; margin-top:32px; opacity:0.6;">ANNUAL EARNINGS</div>
+      <div class="proj-grid" id="annualGrid"></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- EMOTIONAL SECTION                             -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="emotional">
+    <div class="emotional-divider"></div>
+    <h2 class="emotional-header">Over 12 months, here's what each platform <em>costs you.</em></h2>
+    <p class="emotional-subhead">This isn't hypothetical. This is the annual revenue difference at your current price and sales volume. Money that exists. Money you earned. Money someone else keeps.</p>
+
+    <div class="gap-grid" id="gapGrid"></div>
+
+    <div class="reality-block" id="realityBlock">
+      <div class="reality-number" id="realityNumber">$14,520</div>
+      <div class="reality-label">What you lose choosing Redbubble over ArtDrop — per year</div>
+      <ul class="reality-examples">
+        <li>A used car</li>
+        <li>Braces for two kids</li>
+        <li>A year of groceries for a family of four</li>
+        <li>Three months of rent in most U.S. cities</li>
+        <li>A professional camera body and two lenses</li>
+        <li>Round-trip flights to Europe for two</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- CTA                                           -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="page-cta">
+    <div class="cta-box">
+      <div class="cta-label">// Stop giving away your art</div>
+      <div class="cta-title">Keep what you <em>earn.</em></div>
+      <div class="cta-sub">$197 once. No subscription. No revenue share. Your store, your margins.*</div>
+      <div class="cta-sub" style="font-size: 11px; font-family: var(--mono); opacity: 0.5; margin-top: -20px;">* ArtDrop is $197 one-time. Your storefront (Shopify $39/mo, Etsy listing fees, or free ArtDrop Storefront) is separate.</div>
+      <a href="/index.html#pricing" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
+        Join the Beta
+      </a>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- METHODOLOGY                                   -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="methodology">
+    <div class="method-label">// How we calculated this</div>
+    <p class="method-text">
+      Redbubble: Standard tier, default markup. Society6: 5-10% depending on product category (10% shown for prints/framed art). TeePublic pays flat $2-4 per item regardless of retail price — not a percentage. Etsy + Printful includes Etsy's 6.5% transaction fee, 3% + $0.25 payment processing, $0.20 listing fee, and Printful's base cost (~40% of retail). Shopify + Printful uses Shopify's Basic plan payment processing (2.9% + $0.30) plus Printful base cost. ArtDrop assumes you use a print provider at cost and keep everything above production + payment processing. No platform takes a revenue cut. Range reflects different product types and providers. Note: Marketplace platforms (Redbubble, Society6, TeePublic) provide built-in customer traffic. ArtDrop is infrastructure — you bring your own audience via your Shopify/Etsy store or ArtDrop Storefront. * ArtDrop is $197 one-time. Your storefront (Shopify $39/mo, Etsy listing fees, or free ArtDrop Storefront) is separate. <a href="/faq.html">See full FAQ</a>.
+    </p>
+  </div>
+
+  <div id="site-footer"></div>
+  <script src="/footer.js"></script>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- CALCULATOR ENGINE                             -->
+  <!-- ════════════════════════════════════════════ -->
+  <script>
+  (function() {
+    'use strict';
+
+    // Platform definitions: each returns { kept, taken, pct } or { keptLo, keptHi, takenLo, takenHi, pctLo, pctHi } for ranges
+    var platforms = [
+      {
+        name: 'Redbubble',
+        id: 'redbubble',
+        calc: function(p) {
+          var pct = 0.07;
+          var kept = round2(p * pct);
+          return { kept: kept, taken: round2(p - kept), pct: Math.round(pct * 100) };
+        }
+      },
+      {
+        name: 'TeePublic',
+        id: 'teepublic',
+        isFlat: true,
+        calc: function(p) {
+          // TeePublic pays flat $2-4 per item, not a percentage of retail
+          var kept = 3; // midpoint of $2-4 flat royalty
+          if (kept > p) kept = p;
+          return { kept: kept, taken: round2(p - kept), pct: Math.round((kept / p) * 100), flatLabel: '$2-4 per item' };
+        }
+      },
+      {
+        name: 'Society6',
+        id: 'society6',
+        calc: function(p) {
+          var pct = 0.10;
+          var kept = round2(p * pct);
+          return { kept: kept, taken: round2(p - kept), pct: Math.round(pct * 100) };
+        }
+      },
+      {
+        name: 'Etsy + Printful',
+        id: 'etsy',
+        calc: function(p) {
+          // Printful base cost ~40% of retail
+          var printfulCost = p * 0.40;
+          // Etsy fees: 6.5% transaction + 3% + $0.25 payment + $0.20 listing
+          var etsyFees = (p * 0.065) + (p * 0.03) + 0.25 + 0.20;
+          var kept = round2(p - printfulCost - etsyFees);
+          if (kept < 0) kept = 0;
+          var taken = round2(p - kept);
+          var pct = Math.round((kept / p) * 100);
+          return { kept: kept, taken: taken, pct: pct };
+        }
+      },
+      {
+        name: 'Shopify + Printful',
+        id: 'shopify',
+        calc: function(p) {
+          // Printful base cost ~40%
+          var printfulCost = p * 0.40;
+          // Shopify Basic: 2.9% + $0.30
+          var shopifyFees = (p * 0.029) + 0.30;
+          var kept = round2(p - printfulCost - shopifyFees);
+          if (kept < 0) kept = 0;
+          var taken = round2(p - kept);
+          var pct = Math.round((kept / p) * 100);
+          return { kept: kept, taken: taken, pct: pct };
+        }
+      },
+      {
+        name: 'ArtDrop + Own Store',
+        id: 'artdrop',
+        isArtdrop: true,
+        calc: function(p) {
+          // Best case: low-cost provider (~17% production) + payment processing 2.9% + $0.30
+          var prodLo = p * 0.17;
+          var prodHi = p * 0.33;
+          var paymentFee = (p * 0.029) + 0.30;
+          var keptHi = round2(p - prodLo - paymentFee);
+          var keptLo = round2(p - prodHi - paymentFee);
+          if (keptLo < 0) keptLo = 0;
+          if (keptHi < 0) keptHi = 0;
+          var pctLo = Math.round((keptLo / p) * 100);
+          var pctHi = Math.round((keptHi / p) * 100);
+          return { keptLo: keptLo, keptHi: keptHi, takenLo: round2(p - keptHi), takenHi: round2(p - keptLo), pctLo: pctLo, pctHi: pctHi, kept: round2((keptLo + keptHi) / 2), taken: round2(p - (keptLo + keptHi) / 2), pct: Math.round(((keptLo + keptHi) / 2 / p) * 100) };
+        }
+      }
+    ];
+
+    function round2(n) { return Math.round(n * 100) / 100; }
+    function fmt(n) { return '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function fmtInt(n) { return '$' + Math.round(n).toLocaleString(); }
+
+    var slider = document.getElementById('priceSlider');
+    var priceDisplay = document.getElementById('priceDisplay');
+    var chartRows = document.getElementById('chartRows');
+    var monthlyGrid = document.getElementById('monthlyGrid');
+    var annualGrid = document.getElementById('annualGrid');
+    var salesInput = document.getElementById('salesInput');
+    var gapGrid = document.getElementById('gapGrid');
+    var realityNumber = document.getElementById('realityNumber');
+
+    function buildChart() {
+      var html = '';
+      for (var i = 0; i < platforms.length; i++) {
+        var p = platforms[i];
+        var cls = p.isArtdrop ? ' is-artdrop' : '';
+        var delay = ' fade-up fade-up-d' + (i + 2 <= 6 ? i + 2 : 6);
+        html += '<div class="platform-row' + cls + delay + '" data-platform="' + p.id + '">';
+        html += '  <div class="platform-name">' + p.name + '</div>';
+        html += '  <div>';
+        html += '    <div class="bar-container"><div class="bar-kept"></div><div class="bar-taken"></div></div>';
+        html += '    <div class="bar-amounts"><span class="kept-amt"></span><span class="taken-amt"></span></div>';
+        html += '  </div>';
+        html += '  <div class="platform-pct"></div>';
+        html += '</div>';
+      }
+      chartRows.innerHTML = html;
+    }
+
+    function update() {
+      var price = parseFloat(slider.value);
+      priceDisplay.textContent = '$' + price;
+
+      var sales = parseInt(salesInput.value) || 50;
+      var monthlyHTML = '';
+      var annualHTML = '';
+      var gapHTML = '';
+      var artdropAnnual = 0;
+
+      // First pass: get ArtDrop annual for gap calc
+      for (var i = 0; i < platforms.length; i++) {
+        var p = platforms[i];
+        var d = p.calc(price);
+        if (p.isArtdrop) {
+          artdropAnnual = d.kept * sales * 12;
+        }
+      }
+
+      for (var i = 0; i < platforms.length; i++) {
+        var p = platforms[i];
+        var d = p.calc(price);
+        var row = chartRows.querySelector('[data-platform="' + p.id + '"]');
+        if (!row) continue;
+
+        var keptPct, takenPct, pctText, keptText, takenText;
+
+        if (p.isArtdrop) {
+          keptPct = ((d.keptLo + d.keptHi) / 2 / price) * 100;
+          takenPct = 100 - keptPct;
+          pctText = d.pctLo + '-' + d.pctHi + '%';
+          keptText = fmt(d.keptLo) + '-' + fmt(d.keptHi);
+          takenText = fmt(d.takenLo) + '-' + fmt(d.takenHi);
+        } else if (p.isFlat) {
+          keptPct = (d.kept / price) * 100;
+          takenPct = 100 - keptPct;
+          pctText = d.flatLabel;
+          keptText = fmt(d.kept);
+          takenText = fmt(d.taken);
+        } else {
+          keptPct = (d.kept / price) * 100;
+          takenPct = 100 - keptPct;
+          pctText = d.pct + '%';
+          keptText = fmt(d.kept);
+          takenText = fmt(d.taken);
+        }
+
+        var barKept = row.querySelector('.bar-kept');
+        var barTaken = row.querySelector('.bar-taken');
+        barKept.style.width = keptPct + '%';
+        barTaken.style.width = takenPct + '%';
+
+        row.querySelector('.kept-amt').textContent = 'You keep ' + keptText;
+        row.querySelector('.taken-amt').textContent = 'They take ' + takenText;
+        row.querySelector('.platform-pct').textContent = pctText;
+
+        // Projection cards
+        var monthly = d.kept * sales;
+        var annual = monthly * 12;
+        var artCls = p.isArtdrop ? ' is-artdrop' : '';
+
+        if (p.isArtdrop) {
+          var mLo = d.keptLo * sales;
+          var mHi = d.keptHi * sales;
+          monthlyHTML += '<div class="proj-card' + artCls + '"><div class="proj-card-name">' + p.name + '</div><div class="proj-card-monthly">' + fmtInt(mLo) + '-' + fmtInt(mHi) + '</div><div class="proj-card-annual">Annual: <span>' + fmtInt(mLo * 12) + '-' + fmtInt(mHi * 12) + '</span></div></div>';
+          annualHTML += '<div class="proj-card' + artCls + '"><div class="proj-card-name">' + p.name + '</div><div class="proj-card-monthly">' + fmtInt(mLo * 12) + '-' + fmtInt(mHi * 12) + '</div><div class="proj-card-annual">Per month: <span>' + fmtInt(mLo) + '-' + fmtInt(mHi) + '</span></div></div>';
+        } else {
+          monthlyHTML += '<div class="proj-card' + artCls + '"><div class="proj-card-name">' + p.name + '</div><div class="proj-card-monthly">' + fmtInt(monthly) + '</div><div class="proj-card-annual">Annual: <span>' + fmtInt(annual) + '</span></div></div>';
+          annualHTML += '<div class="proj-card' + artCls + '"><div class="proj-card-name">' + p.name + '</div><div class="proj-card-monthly">' + fmtInt(annual) + '</div><div class="proj-card-annual">Per month: <span>' + fmtInt(monthly) + '</span></div></div>';
+        }
+
+        // Gap cards
+        var gapAmt = artdropAnnual - annual;
+        var lostLabel = gapAmt > 0 ? fmtInt(gapAmt) + ' less than ArtDrop' : 'Best option';
+
+        gapHTML += '<div class="gap-card' + artCls + '"><div class="gap-card-name">' + p.name + '</div><div class="gap-card-annual">' + fmtInt(annual) + '/yr</div><div class="gap-card-lost">' + lostLabel + '</div></div>';
+      }
+
+      monthlyGrid.innerHTML = monthlyHTML;
+      annualGrid.innerHTML = annualHTML;
+      gapGrid.innerHTML = gapHTML;
+
+      // Reality block: gap between worst (TeePublic) and ArtDrop
+      var worstAnnual = platforms[1].calc(price).kept * sales * 12; // TeePublic
+      var redbubbleAnnual = platforms[0].calc(price).kept * sales * 12;
+      var gapAmount = artdropAnnual - redbubbleAnnual;
+      realityNumber.textContent = fmtInt(gapAmount);
+    }
+
+    buildChart();
+    update();
+
+    slider.addEventListener('input', update);
+    salesInput.addEventListener('input', update);
+    salesInput.addEventListener('change', function() {
+      if (parseInt(this.value) < 1) this.value = 1;
+      update();
+    });
+  })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://getartdrop.com/compare-earnings.html",
+    "name": "Print on Demand Earnings Comparison — How Much Do Artists Really Keep?",
+    "description": "Interactive POD earnings calculator. Compare what artists keep on Redbubble, Society6, TeePublic, Etsy, Shopify, and ArtDrop.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "ArtDrop",
+      "url": "https://getartdrop.com"
+    },
+    "mainEntity": {
+      "@type": "SoftwareApplication",
+      "name": "ArtDrop",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "macOS, Windows",
+      "url": "https://getartdrop.com",
+      "offers": {
+        "@type": "Offer",
+        "price": "197",
+        "priceCurrency": "USD"
+      }
+    }
+  }
+  </script>
+</body>
+</html>

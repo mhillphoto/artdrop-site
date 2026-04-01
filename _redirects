@@ -1,0 +1,21 @@
+# ── GUW content moved to glowupworks.com ──────────────────────
+# Forms, dashboards, and marketing pages are now on glowupworks Netlify project.
+# These redirects catch anyone hitting old URLs.
+
+# Form URLs (getartdrop.com/q/*)
+https://getartdrop.com/q/* https://glowupworks.com/q/:splat 301!
+https://www.getartdrop.com/q/* https://glowupworks.com/q/:splat 301!
+
+# Dashboard URLs (getartdrop.com/c/*)
+https://getartdrop.com/c/* https://glowupworks.com/c/:splat 301!
+https://www.getartdrop.com/c/* https://glowupworks.com/c/:splat 301!
+
+# GUW marketing (was served from /glow/ on artdrop)
+https://getartdrop.com/glow/* https://glowupworks.com/:splat 301!
+
+# getbizglow.com redirects
+https://getbizglow.com/* https://glowupworks.com/business/:splat 301!
+https://www.getbizglow.com/* https://glowupworks.com/business/:splat 301!
+
+# Concierge pages
+https://getartdrop.com/concierge/* https://glowupworks.com/:splat 301!

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The ArtDrop Manifesto — Why ArtDrop Exists</title>
+  <meta name="description" content="Artists create the value. Platforms extract it. ArtDrop exists to end that. Infrastructure, not a platform. No cut. No lock-in. Your art, your money, your customers.">
+  <meta property="og:title" content="The ArtDrop Manifesto — Why ArtDrop Exists">
+  <meta property="og:description" content="A $40 print earns the artist $2.80 on Redbubble. That's not a business model — that's exploitation. ArtDrop exists to end it.">
+  <meta property="og:url" content="https://getartdrop.com/manifesto.html">
+  <meta property="og:image" content="https://getartdrop.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ArtDrop™">
+  <link rel="canonical" href="https://getartdrop.com/manifesto.html">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1a2e'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='22' font-weight='bold' fill='%23bfff5e' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+
+  <!-- Microsoft Clarity analytics -->
+  <script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "w2uh6ee7z5");
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700;1,6..96,900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
+
+  <style>
+    /* ── Manifesto-specific styles ─────────────────────────────────── */
+    .manifesto-hero {
+      padding: 200px 48px 120px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .manifesto-hero .hero-grid-bg {
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 10%, transparent 70%);
+      opacity: 0.5;
+    }
+
+    .manifesto-hero-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .manifesto-hero-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(48px, 8vw, 100px);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 40px;
+      position: relative;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .manifesto-hero-title em {
+      font-style: italic;
+      color: var(--lime);
+    }
+
+    .manifesto-hero-sub {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(18px, 2.5vw, 26px);
+      font-style: italic;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.5;
+      position: relative;
+    }
+
+    /* ── Manifesto sections ────────────────────────────────────────── */
+    .manifesto-body {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .manifesto-section {
+      padding: 100px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .manifesto-section:last-child {
+      border-bottom: none;
+    }
+
+    .manifesto-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 32px;
+    }
+
+    .manifesto-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(32px, 4.5vw, 56px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 40px;
+    }
+
+    .manifesto-heading em {
+      font-style: italic;
+      color: var(--lime);
+    }
+
+    .manifesto-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(17px, 1.8vw, 21px);
+      line-height: 1.85;
+      color: rgba(240,240,236,0.70);
+      margin-bottom: 28px;
+    }
+
+    .manifesto-text:last-child {
+      margin-bottom: 0;
+    }
+
+    .manifesto-text strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* ── Stat callout ──────────────────────────────────────────────── */
+    .manifesto-stat {
+      text-align: center;
+      padding: 64px 0;
+      margin: 48px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .manifesto-stat-num {
+      font-family: var(--mono);
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 500;
+      color: var(--lime);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .manifesto-stat-label {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    /* ── Beliefs list ──────────────────────────────────────────────── */
+    .beliefs-list {
+      list-style: none;
+      padding: 0;
+      margin: 48px 0;
+    }
+
+    .beliefs-list li {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(19px, 2vw, 24px);
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--white);
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .beliefs-list li:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .beliefs-list li span {
+      color: var(--lime);
+      font-style: italic;
+    }
+
+    /* ── Pricing comparison chart ──────────────────────────────────── */
+    .manifesto-chart {
+      margin: 64px 0;
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .chart-header {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      padding: 20px 28px 16px;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .chart-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 24px;
+      align-items: center;
+      padding: 16px 28px;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .chart-row:last-child {
+      border-bottom: none;
+    }
+
+    .chart-platform {
+      font-family: var(--body);
+      color: var(--muted);
+    }
+
+    .chart-artist-cut {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--faint);
+      text-align: right;
+      min-width: 80px;
+    }
+
+    .chart-take {
+      font-family: var(--mono);
+      font-size: 13px;
+      text-align: right;
+      min-width: 100px;
+    }
+
+    .chart-take-bad {
+      color: rgba(255,110,110,0.85);
+    }
+
+    .chart-take-good {
+      color: var(--lime);
+      font-weight: 500;
+    }
+
+    .chart-row-highlight {
+      background: rgba(191,255,94,0.04);
+    }
+
+    .chart-row-header {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--faint);
+      padding: 12px 28px 8px;
+      background: var(--bg2);
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .chart-row-header span:nth-child(2),
+    .chart-row-header span:nth-child(3) {
+      text-align: right;
+    }
+
+    .chart-row-header span:nth-child(2) { min-width: 80px; }
+    .chart-row-header span:nth-child(3) { min-width: 100px; }
+
+    .chart-footnote {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--faint);
+      padding: 16px 28px;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Vision cities ─────────────────────────────────────────────── */
+    .vision-cities {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(20px, 2.5vw, 30px);
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--muted);
+      margin: 48px 0;
+    }
+
+    .vision-cities strong {
+      color: var(--white);
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    /* ── Promise list ──────────────────────────────────────────────── */
+    .promise-list {
+      list-style: none;
+      padding: 0;
+      margin: 48px 0;
+    }
+
+    .promise-list li {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(16px, 1.6vw, 19px);
+      line-height: 1.7;
+      color: rgba(240,240,236,0.70);
+      padding: 16px 0 16px 28px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .promise-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 24px;
+      width: 8px;
+      height: 8px;
+      background: var(--lime);
+      border-radius: 50%;
+    }
+
+    .promise-list li:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── CTA section ───────────────────────────────────────────────── */
+    .manifesto-cta {
+      text-align: center;
+      padding: 120px 48px;
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .manifesto-cta .hero-grid-bg {
+      mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 10%, transparent 70%);
+      opacity: 0.3;
+    }
+
+    .manifesto-cta-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .manifesto-cta-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .manifesto-cta-title em {
+      font-style: italic;
+      color: var(--lime);
+    }
+
+    .manifesto-cta-sub {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .manifesto-cta .btn-primary {
+      position: relative;
+    }
+
+    /* ── Signature ─────────────────────────────────────────────────── */
+    .manifesto-signature {
+      text-align: center;
+      padding: 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .manifesto-signature p {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--faint);
+    }
+
+    /* ── Responsive ────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .manifesto-hero { padding: 140px 24px 80px; }
+      .manifesto-body { padding: 0 24px; }
+      .manifesto-section { padding: 64px 0; }
+      .manifesto-stat { padding: 48px 0; margin: 32px 0; }
+      .manifesto-cta { padding: 80px 24px; }
+      .manifesto-signature { padding: 32px 24px; }
+      .chart-row { grid-template-columns: 1fr auto auto; gap: 12px; padding: 14px 16px; font-size: 13px; }
+      .chart-header { padding: 16px; }
+      .chart-row-header { padding: 10px 16px; gap: 12px; }
+      .chart-footnote { padding: 14px 16px; }
+      .chart-artist-cut { min-width: 60px; }
+      .chart-take { min-width: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="site-nav"></header>
+  <script src="/nav.js"></script>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <div id="main-content" class="manifesto-hero">
+    <div class="hero-grid-bg"></div>
+    <p class="manifesto-hero-label">// The ArtDrop Manifesto</p>
+    <h1 class="manifesto-hero-title">Artists create<br>the value.<br><em>Keep it.</em></h1>
+    <p class="manifesto-hero-sub">Why ArtDrop exists, what it stands against, and what we promise to every artist who uses it.</p>
+  </div>
+
+  <div class="manifesto-body">
+
+    <!-- ═══════════════════ THE PROBLEM ═══════════════════ -->
+    <section class="manifesto-section">
+      <p class="manifesto-label">01 / The Problem</p>
+      <h2 class="manifesto-heading">You made the art.<br>Someone else made <em>the money.</em></h2>
+
+      <p class="manifesto-text">A customer pays $40 for a print of your work on Redbubble. You get $2.80. The platform takes the rest. They hosted the page, sure. But you created the thing people actually wanted to buy.</p>
+
+      <p class="manifesto-text">That's not a business model. That's exploitation wearing a terms-of-service agreement.</p>
+
+      <div class="manifesto-stat">
+        <div class="manifesto-stat-num">$2.80</div>
+        <div class="manifesto-stat-label">What the artist earns on a $40 print. The platform keeps the rest.</div>
+      </div>
+
+      <p class="manifesto-text">It gets worse. These platforms own your customer relationships. They own your storefront. They set the prices. They change the rules whenever they want. And when things go sideways, the artist is the last one protected.</p>
+
+      <!-- Pricing comparison chart -->
+      <div class="manifesto-chart">
+        <div class="chart-header">// What artists actually earn on a $40 print</div>
+        <div class="chart-row-header">
+          <span>Platform</span>
+          <span>Artist gets</span>
+          <span>Platform takes</span>
+        </div>
+        <div class="chart-row">
+          <span class="chart-platform">Redbubble</span>
+          <span class="chart-artist-cut">$2.80</span>
+          <span class="chart-take chart-take-bad">93% gone</span>
+        </div>
+        <div class="chart-row">
+          <span class="chart-platform">Society6</span>
+          <span class="chart-artist-cut">$4.00</span>
+          <span class="chart-take chart-take-bad">90% gone</span>
+        </div>
+        <div class="chart-row">
+          <span class="chart-platform">Zazzle</span>
+          <span class="chart-artist-cut">$6.00</span>
+          <span class="chart-take chart-take-bad">85% gone</span>
+        </div>
+        <div class="chart-row">
+          <span class="chart-platform">Etsy + POD</span>
+          <span class="chart-artist-cut">$19.75</span>
+          <span class="chart-take chart-take-bad">51% gone</span>
+        </div>
+        <div class="chart-row chart-row-highlight">
+          <span class="chart-platform"><strong>ArtDrop + Your Store</strong></span>
+          <span class="chart-artist-cut"><strong>$25.50+</strong></span>
+          <span class="chart-take chart-take-good">You keep it</span>
+        </div>
+        <div class="chart-footnote">Based on a $40 print. Redbubble: Standard tier, default markup. Society6: 10% category (framed art, posters). Etsy + POD: includes transaction, processing, listing fees + Printful base cost. ArtDrop takes $0 — you pay production + payment processing only.</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ HOW WE GOT HERE ═══════════════════ -->
+    <section class="manifesto-section">
+      <p class="manifesto-label">02 / How We Got Here</p>
+      <h2 class="manifesto-heading">Marketplaces promised <em>exposure.</em><br>They delivered dependency.</h2>
+
+      <p class="manifesto-text">The pitch was simple: put your art on our platform, we'll bring the customers. Millions of them. All you have to do is upload.</p>
+
+      <p class="manifesto-text">What they didn't mention: those customers would never be yours. You can't email them. You can't build a relationship. You can't take them with you if you leave. The platform sits between you and every single person who buys your work.</p>
+
+      <p class="manifesto-text">They control your prices. They change the royalty structure whenever they want. Redbubble recalculated royalties retroactively in 2023, affecting previously paid earnings. Artists woke up to negative balances in their accounts. Minimal notice. No negotiation. Just gone.</p>
+
+      <p class="manifesto-text">That's not a partnership. That's a landlord who can change your rent, take your customers' phone numbers, and evict you whenever the math doesn't work for them anymore.</p>
+    </section>
+
+    <!-- ═══════════════════ WHAT WE BELIEVE ═══════════════════ -->
+    <section class="manifesto-section">
+      <p class="manifesto-label">03 / What ArtDrop Believes</p>
+      <h2 class="manifesto-heading">Six things we'll <em>never</em> compromise on.</h2>
+
+      <ul class="beliefs-list">
+        <li><span>You made the art.</span> You keep the money.</li>
+        <li><span>Your customers</span> are your customers. Not ours. Ever.</li>
+        <li><span>Your data</span> is your data. We don't mine it, sell it, or train on it.</li>
+        <li><span>One price. No subscription.</span> No bleeding you dry month after month.</li>
+        <li><span>Privacy by default.</span> Opt-in, not opt-out. The opposite of Big Tech.</li>
+        <li><span>Technology serves artists.</span> Not the other way around.</li>
+      </ul>
+    </section>
+
+    <!-- ═══════════════════ WHAT WE DO ═══════════════════ -->
+    <section class="manifesto-section">
+      <p class="manifesto-label">04 / What ArtDrop Does</p>
+      <h2 class="manifesto-heading">Infrastructure,<br>not a <em>platform.</em></h2>
+
+      <p class="manifesto-text">ArtDrop is the plumbing between your art and your customers. We connect the pipes. We automate the tedious parts. We get out of the way.</p>
+
+      <p class="manifesto-text">We don't take a cut of your sales. We don't own your store. We don't control your audience. We don't sit between you and your customers. We don't even see your revenue.</p>
+
+      <p class="manifesto-text">You pay once. You own the tool. You run your business. That's it. No monthly rent. No percentage skimmed off the top. No "platform fees" that grow as you do.</p>
+
+      <p class="manifesto-text"><strong>When the tool works, you make more money. We don't make more money. That's the whole point.</strong></p>
+    </section>
+
+    <!-- ═══════════════════ THE VISION ═══════════════════ -->
+    <section class="manifesto-section">
+      <p class="manifesto-label">05 / The Vision</p>
+      <h2 class="manifesto-heading">Same tools.<br>Same power.<br><em>No gatekeepers.</em></h2>
+
+      <p class="manifesto-text">The biggest brands in the world have teams that handle product listings, SEO, store management, and publishing. An independent artist has a laptop and sixteen browser tabs open.</p>
+
+      <p class="manifesto-text">That gap isn't about talent. It's about infrastructure. And infrastructure shouldn't cost $10,000 a month or require a team of five.</p>
+
+      <div class="vision-cities">
+        <strong>A photographer in Lagos.</strong> An illustrator in Des Moines. <strong>A digital artist in Seoul.</strong> A muralist in Mexico City. <strong>A printmaker in Berlin.</strong><br>Same tools. Same power. No gatekeepers.
+      </div>
+
+      <p class="manifesto-text">Every artist, everywhere, with access to the same automation, the same AI, the same publishing pipeline that the biggest operations use. That's where we're going.</p>
+    </section>
+
+    <!-- ═══════════════════ THE PROMISE ═══════════════════ -->
+    <section class="manifesto-section">
+      <p class="manifesto-label">06 / The Promise</p>
+      <h2 class="manifesto-heading">What we will <em>never</em> do.</h2>
+
+      <ul class="promise-list">
+        <li>We will never sell your data. Not to advertisers. Not to AI companies. Not to anyone.</li>
+        <li>We will never take a percentage of your sales. Your margins are yours.</li>
+        <li>We will never lock you in. If you leave ArtDrop, your art, your customers, and your store come with you. Every bit of it.</li>
+        <li>We will never switch to a subscription model. $197 once means once.</li>
+        <li>We will never train AI models on your artwork. Your images stay yours.</li>
+        <li>We will never put our brand between you and your customers. Your store is your store.</li>
+      </ul>
+
+      <p class="manifesto-text"><strong>These aren't aspirations. They're the rules. Written down, published, permanent. If we break them, call us out.</strong></p>
+    </section>
+
+  </div>
+
+  <!-- ═══════════════════ CTA ═══════════════════ -->
+  <div class="manifesto-cta">
+    <div class="hero-grid-bg"></div>
+    <p class="manifesto-cta-label">// Join the Movement</p>
+    <h2 class="manifesto-cta-title">Your art. Your store.<br><em>Your money.</em></h2>
+    <p class="manifesto-cta-sub">$197 once. No subscription. No cut. No lock-in.*</p>
+    <p class="manifesto-cta-sub" style="font-size: 12px; font-family: var(--mono); opacity: 0.5; margin-top: -28px;">* ArtDrop is $197 one-time. Your storefront (Shopify $39/mo, Etsy listing fees, or free ArtDrop Storefront) is separate.</p>
+    <a href="/index.html#pricing" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
+      Join the Beta
+    </a>
+  </div>
+
+  <!-- ═══════════════════ SIGNATURE ═══════════════════ -->
+  <div class="manifesto-signature">
+    <p>Powered by rage and radial light photography.</p>
+  </div>
+
+  <div id="site-footer"></div>
+  <script src="/footer.js"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "url": "https://getartdrop.com/manifesto.html",
+  "name": "The ArtDrop Manifesto",
+  "description": "Why ArtDrop exists. Artists create the value. Platforms extract it. ArtDrop is infrastructure, not a platform.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "ArtDrop",
+    "url": "https://getartdrop.com"
+  }
+}
+</script>
+
+</body>
+</html>

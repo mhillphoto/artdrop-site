@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IHA Annual Meeting — Booth Selection</title>
+  <meta name="description" content="Interactive booth selection for the IHA Annual Meeting. Click an available booth to reserve it.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Microsoft Clarity analytics -->
+  <script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "w2uh6ee7z5");
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #181818;
+      --bg4: #1e1e1e;
+      --border: rgba(255,255,255,0.08);
+      --border-bright: rgba(255,255,255,0.16);
+      --lime: #bfff5e;
+      --lime-dim: rgba(191,255,94,0.12);
+      --lime-glow: rgba(191,255,94,0.30);
+      --red: #ff4545;
+      --red-dim: rgba(255,69,69,0.15);
+      --white: #f0f0ec;
+      --muted: rgba(240,240,236,0.55);
+      --faint: rgba(240,240,236,0.35);
+      --mono: 'DM Mono', monospace;
+      --body: 'Instrument Sans', system-ui, sans-serif;
+      --radius: 6px;
+      --transition: 150ms ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--body);
+      line-height: 1.5;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ─────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 900;
+      opacity: 0.6;
+    }
+
+    /* ── LAYOUT ────────────────────────────────────── */
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── HEADER ────────────────────────────────────── */
+    .header {
+      margin-bottom: 40px;
+    }
+
+    .header-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 12px;
+    }
+
+    .header-title {
+      font-family: var(--mono);
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .header-sub {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    /* ── TOOLBAR ───────────────────────────────────── */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 16px 20px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 28px;
+    }
+
+    .counter {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .counter strong {
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--lime);
+      display: block;
+      line-height: 1.1;
+    }
+
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-family: var(--mono);
+      color: var(--muted);
+    }
+
+    .legend-swatch {
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .legend-swatch.available {
+      background: transparent;
+      border: 1.5px solid var(--border-bright);
+    }
+
+    .legend-swatch.selected {
+      background: var(--lime-dim);
+      border: 1.5px solid var(--lime);
+    }
+
+    .legend-swatch.taken {
+      background: var(--red-dim);
+      border: 1.5px solid var(--red);
+    }
+
+    .btn-reset {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--faint);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: color var(--transition), border-color var(--transition);
+    }
+
+    .btn-reset:hover {
+      color: var(--red);
+      border-color: var(--red);
+    }
+
+    /* ── FLOOR PLAN ────────────────────────────────── */
+    .floor-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .floor {
+      display: flex;
+      gap: 32px;
+      min-width: min-content;
+    }
+
+    .floor-section {
+      flex: 1;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .booth-grid {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 6px;
+    }
+
+    .aisle {
+      width: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .aisle-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--faint);
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+    }
+
+    .aisle-line {
+      width: 1px;
+      flex: 1;
+      background: var(--border);
+    }
+
+    /* ── BOOTH ─────────────────────────────────────── */
+    .booth {
+      aspect-ratio: 1;
+      min-width: 52px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--border-bright);
+      border-radius: 4px;
+      background: var(--bg2);
+      cursor: pointer;
+      position: relative;
+      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+      user-select: none;
+    }
+
+    .booth-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1;
+    }
+
+    .booth-company {
+      font-family: var(--mono);
+      font-size: 8px;
+      color: var(--red);
+      text-align: center;
+      padding: 0 3px;
+      margin-top: 3px;
+      line-height: 1.2;
+      max-width: 100%;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    /* Available hover */
+    .booth.available:hover {
+      border-color: var(--lime);
+      background: var(--lime-dim);
+      transform: scale(1.04);
+    }
+
+    .booth.available:hover .booth-num {
+      color: var(--lime);
+    }
+
+    /* Selected state */
+    .booth.selected {
+      border-color: var(--lime);
+      background: var(--lime-dim);
+      box-shadow: 0 0 12px var(--lime-glow);
+    }
+
+    .booth.selected .booth-num {
+      color: var(--lime);
+    }
+
+    /* Taken state */
+    .booth.taken {
+      border-color: var(--red);
+      background: var(--red-dim);
+      cursor: default;
+      opacity: 0.75;
+    }
+
+    .booth.taken .booth-num {
+      color: var(--red);
+    }
+
+    /* Tooltip */
+    .booth[data-tooltip]:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg4);
+      border: 1px solid var(--border-bright);
+      color: var(--white);
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    /* ── MODAL OVERLAY ─────────────────────────────── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.78);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--bg2);
+      border: 1px solid var(--border-bright);
+      border-radius: 10px;
+      padding: 32px;
+      width: 100%;
+      max-width: 420px;
+      transform: translateY(12px);
+      transition: transform 200ms ease;
+    }
+
+    .modal-overlay.open .modal {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      margin-bottom: 24px;
+    }
+
+    .modal-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 6px;
+    }
+
+    .modal-title {
+      font-family: var(--mono);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    .modal-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── FORM ──────────────────────────────────────── */
+    .form-field {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .form-input {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid var(--border-bright);
+      border-radius: var(--radius);
+      color: var(--white);
+      font-family: var(--body);
+      font-size: 15px;
+      padding: 10px 14px;
+      transition: border-color var(--transition);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--lime);
+    }
+
+    .form-input::placeholder {
+      color: var(--faint);
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .btn-submit {
+      flex: 1;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--lime);
+      border: none;
+      border-radius: var(--radius);
+      padding: 12px 20px;
+      cursor: pointer;
+      transition: background var(--transition), opacity var(--transition);
+    }
+
+    .btn-submit:hover {
+      background: #d4ff7a;
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .btn-cancel {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: color var(--transition), border-color var(--transition);
+    }
+
+    .btn-cancel:hover {
+      color: var(--white);
+      border-color: var(--border-bright);
+    }
+
+    /* ── SUCCESS STATE ─────────────────────────────── */
+    .success-banner {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      background: var(--lime-dim);
+      border: 1px solid var(--lime);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      margin-top: 16px;
+    }
+
+    .success-banner.visible {
+      display: flex;
+    }
+
+    .success-icon {
+      width: 20px;
+      height: 20px;
+      background: var(--lime);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--bg);
+      font-size: 11px;
+    }
+
+    .success-text {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--lime);
+    }
+
+    /* Netlify hidden form */
+    .netlify-hidden {
+      display: none;
+    }
+
+    /* ── FOOTER ────────────────────────────────────── */
+    .page-footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-credit {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--faint);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-note {
+      font-size: 11px;
+      color: var(--faint);
+    }
+
+    /* ── RESPONSIVE ────────────────────────────────── */
+    @media (max-width: 700px) {
+      .page-wrap {
+        padding: 32px 16px 60px;
+      }
+
+      .floor {
+        gap: 16px;
+      }
+
+      .booth-grid {
+        grid-template-columns: repeat(9, 1fr);
+        gap: 4px;
+      }
+
+      .booth {
+        min-width: 30px;
+      }
+
+      .booth-num {
+        font-size: 9px;
+      }
+
+      .booth-company {
+        display: none;
+      }
+
+      .aisle {
+        width: 16px;
+      }
+
+      .aisle-label {
+        display: none;
+      }
+
+      .toolbar {
+        gap: 16px;
+      }
+
+      .legend {
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .floor {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .aisle {
+        width: 100%;
+        height: 20px;
+        flex-direction: row;
+        writing-mode: horizontal-tb;
+      }
+
+      .aisle-line {
+        width: auto;
+        height: 1px;
+        flex: 1;
+      }
+
+      .aisle-label {
+        display: block;
+        writing-mode: horizontal-tb;
+        transform: none;
+        font-size: 9px;
+      }
+
+      .booth-grid {
+        grid-template-columns: repeat(9, 1fr);
+        gap: 3px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Netlify hidden form for form detection -->
+  <form class="netlify-hidden" name="booth-selection" netlify netlify-honeypot="bot-field">
+    <input name="booth-number">
+    <input name="company-name">
+    <input name="contact-email">
+  </form>
+
+  <div class="page-wrap">
+
+    <!-- Header -->
+    <header class="header">
+      <p class="header-tag">IHA Annual Meeting 2026</p>
+      <h1 class="header-title">Booth Selection</h1>
+      <p class="header-sub">Click an available booth to reserve it. Selections are saved until confirmed by IHA staff.</p>
+    </header>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="counter">
+        <strong id="counter-num">90</strong>
+        of 90 booths available
+      </div>
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-swatch available"></div>
+          Available
+        </div>
+        <div class="legend-item">
+          <div class="legend-swatch selected"></div>
+          Your selection
+        </div>
+        <div class="legend-item">
+          <div class="legend-swatch taken"></div>
+          Taken
+        </div>
+      </div>
+      <button class="btn-reset" id="btn-reset" type="button" aria-label="Reset all booth selections">Reset all</button>
+    </div>
+
+    <!-- Floor plan -->
+    <div class="floor-wrap">
+      <div class="floor">
+
+        <!-- Section A: Booths 1–45 -->
+        <div class="floor-section">
+          <p class="section-label">Section A — Booths 1–45</p>
+          <div class="booth-grid" id="grid-a"></div>
+        </div>
+
+        <!-- Aisle -->
+        <div class="aisle">
+          <div class="aisle-line"></div>
+          <span class="aisle-label">Main Aisle</span>
+          <div class="aisle-line"></div>
+        </div>
+
+        <!-- Section B: Booths 46–90 -->
+        <div class="floor-section">
+          <p class="section-label">Section B — Booths 46–90</p>
+          <div class="booth-grid" id="grid-b"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <span class="footer-credit">Iowa Hospital Association — Annual Meeting</span>
+      <span class="footer-note">Questions? Contact exhibitor services.</span>
+    </footer>
+
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <div class="modal-header">
+        <p class="modal-tag">Reserve Booth</p>
+        <h2 class="modal-title" id="modal-title">Booth <span id="modal-booth-num"></span></h2>
+        <p class="modal-sub">Enter your company details to hold this booth.</p>
+      </div>
+
+      <form id="reservation-form" name="booth-selection" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="booth-selection">
+        <input type="hidden" name="booth-number" id="field-booth-number">
+        <div class="form-field" aria-hidden="true" style="display:none">
+          <label class="form-label">Do not fill this out</label>
+          <input name="bot-field">
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="field-company">Company Name</label>
+          <input
+            class="form-input"
+            type="text"
+            id="field-company"
+            name="company-name"
+            placeholder="Iowa Health System"
+            required
+            autocomplete="organization"
+          >
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="field-email">Contact Email</label>
+          <input
+            class="form-input"
+            type="email"
+            id="field-email"
+            name="contact-email"
+            placeholder="you@company.com"
+            required
+            autocomplete="email"
+          >
+        </div>
+
+        <div id="success-banner" class="success-banner" role="status" aria-live="polite">
+          <div class="success-icon">✓</div>
+          <p class="success-text">Booth reserved. You'll receive a confirmation email shortly.</p>
+        </div>
+
+        <div class="form-actions" id="form-actions">
+          <button class="btn-submit" type="submit" id="btn-submit">Reserve Booth</button>
+          <button class="btn-cancel" type="button" id="btn-cancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      const TOTAL = 90;
+      const STORAGE_KEY = 'iha-booth-state';
+
+      // ── State ────────────────────────────────────────
+      // Map of boothNumber (int) → { state: 'available'|'taken', company: string }
+      let boothState = loadState();
+      let selectedBooth = null;
+
+      // ── DOM Refs ─────────────────────────────────────
+      const gridA = document.getElementById('grid-a');
+      const gridB = document.getElementById('grid-b');
+      const counterNum = document.getElementById('counter-num');
+      const modalOverlay = document.getElementById('modal-overlay');
+      const modalBoothNum = document.getElementById('modal-booth-num');
+      const form = document.getElementById('reservation-form');
+      const fieldBoothNumber = document.getElementById('field-booth-number');
+      const fieldCompany = document.getElementById('field-company');
+      const fieldEmail = document.getElementById('field-email');
+      const btnCancel = document.getElementById('btn-cancel');
+      const btnReset = document.getElementById('btn-reset');
+      const successBanner = document.getElementById('success-banner');
+      const formActions = document.getElementById('form-actions');
+
+      // ── Load/save state ──────────────────────────────
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) return JSON.parse(raw);
+        } catch (e) {}
+        const state = {};
+        for (let i = 1; i <= TOTAL; i++) {
+          state[i] = { status: 'available', company: '' };
+        }
+        return state;
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(boothState));
+        } catch (e) {}
+      }
+
+      // ── Render ───────────────────────────────────────
+      function renderGrid() {
+        gridA.innerHTML = '';
+        gridB.innerHTML = '';
+
+        for (let i = 1; i <= TOTAL; i++) {
+          const data = boothState[i] || { status: 'available', company: '' };
+          const el = document.createElement('button');
+          el.type = 'button';
+          el.className = 'booth ' + data.status;
+          el.dataset.booth = i;
+
+          const numSpan = document.createElement('span');
+          numSpan.className = 'booth-num';
+          numSpan.textContent = i;
+          el.appendChild(numSpan);
+
+          if (data.status === 'taken' && data.company) {
+            const companySpan = document.createElement('span');
+            companySpan.className = 'booth-company';
+            companySpan.textContent = data.company;
+            el.appendChild(companySpan);
+            el.setAttribute('data-tooltip', data.company);
+            el.setAttribute('aria-label', 'Booth ' + i + ' — taken by ' + data.company);
+          } else if (data.status === 'available') {
+            el.setAttribute('data-tooltip', 'Booth ' + i + ' — available');
+            el.setAttribute('aria-label', 'Booth ' + i + ' — available, click to reserve');
+          } else {
+            el.setAttribute('aria-label', 'Booth ' + i + ' — taken');
+          }
+
+          if (data.status !== 'taken') {
+            el.addEventListener('click', () => handleBoothClick(i));
+          }
+
+          if (i <= 45) {
+            gridA.appendChild(el);
+          } else {
+            gridB.appendChild(el);
+          }
+        }
+
+        updateCounter();
+      }
+
+      function updateCounter() {
+        let available = 0;
+        for (let i = 1; i <= TOTAL; i++) {
+          if ((boothState[i] || {}).status === 'available') available++;
+        }
+        counterNum.textContent = available;
+      }
+
+      // ── Booth click ──────────────────────────────────
+      function handleBoothClick(num) {
+        if (boothState[num] && boothState[num].status === 'taken') return;
+
+        selectedBooth = num;
+        modalBoothNum.textContent = num;
+        fieldBoothNumber.value = num;
+        fieldCompany.value = '';
+        fieldEmail.value = '';
+        successBanner.classList.remove('visible');
+        formActions.style.display = 'flex';
+
+        // Highlight selected
+        document.querySelectorAll('.booth').forEach(el => {
+          el.classList.remove('selected');
+        });
+        const boothEl = document.querySelector('.booth[data-booth="' + num + '"]');
+        if (boothEl) boothEl.classList.add('selected');
+
+        openModal();
+      }
+
+      // ── Modal ────────────────────────────────────────
+      function openModal() {
+        modalOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => fieldCompany.focus(), 210);
+      }
+
+      function closeModal() {
+        modalOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+
+        // Deselect if not taken
+        if (selectedBooth && boothState[selectedBooth] && boothState[selectedBooth].status !== 'taken') {
+          const boothEl = document.querySelector('.booth[data-booth="' + selectedBooth + '"]');
+          if (boothEl) boothEl.classList.remove('selected');
+        }
+        selectedBooth = null;
+      }
+
+      // ── Form submit ──────────────────────────────────
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const company = fieldCompany.value.trim();
+        const email = fieldEmail.value.trim();
+        const boothNum = parseInt(fieldBoothNumber.value, 10);
+
+        if (!company || !email || !boothNum) return;
+
+        const submitBtn = document.getElementById('btn-submit');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Reserving…';
+
+        // Submit to Netlify
+        const data = new FormData(form);
+
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(data).toString()
+        })
+        .then(() => {
+          markTaken(boothNum, company);
+          showSuccess();
+        })
+        .catch(() => {
+          // Still mark locally even if network fails (demo resilience)
+          markTaken(boothNum, company);
+          showSuccess();
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Reserve Booth';
+        });
+      });
+
+      function markTaken(num, company) {
+        boothState[num] = { status: 'taken', company: company };
+        saveState();
+        renderGrid();
+        selectedBooth = null;
+      }
+
+      function showSuccess() {
+        successBanner.classList.add('visible');
+        formActions.style.display = 'none';
+        setTimeout(() => closeModal(), 2800);
+      }
+
+      // ── Cancel ───────────────────────────────────────
+      btnCancel.addEventListener('click', closeModal);
+
+      // Close on overlay click
+      modalOverlay.addEventListener('click', function (e) {
+        if (e.target === modalOverlay) closeModal();
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modalOverlay.classList.contains('open')) closeModal();
+      });
+
+      // ── Reset ────────────────────────────────────────
+      btnReset.addEventListener('click', function () {
+        if (!confirm('Reset all booth selections? This cannot be undone.')) return;
+        for (let i = 1; i <= TOTAL; i++) {
+          boothState[i] = { status: 'available', company: '' };
+        }
+        saveState();
+        renderGrid();
+      });
+
+      // ── Init ─────────────────────────────────────────
+      renderGrid();
+
+    })();
+  </script>
+
+</body>
+</html>

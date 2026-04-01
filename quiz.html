@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Kind of Artist Are You? — ArtDrop Quiz</title>
+  <meta name="description" content="Take the 2-minute ArtDrop quiz. Find out which artist profile you are, get your recommended setup, and see exactly how much time and money you're leaving on the table.">
+
+  <!-- Default OG (overridden by JS per result) -->
+  <meta property="og:title" content="What Kind of Artist Are You? — ArtDrop Quiz" id="og-title">
+  <meta property="og:description" content="2-minute quiz. Find out which artist profile you are and get your personalized ArtDrop setup." id="og-desc">
+  <meta property="og:url" content="https://getartdrop.com/quiz.html" id="og-url">
+  <meta property="og:image" content="https://getartdrop.com/og-quiz.png" id="og-image">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ArtDrop™">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Kind of Artist Are You? — ArtDrop Quiz" id="tw-title">
+  <meta name="twitter:description" content="2-minute quiz. Get your personalized ArtDrop setup and stop leaving money on the table." id="tw-desc">
+
+  <link rel="canonical" href="https://getartdrop.com/quiz.html">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1a2e'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='22' font-weight='bold' fill='%23bfff5e' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+
+  <!-- Microsoft Clarity analytics -->
+  <script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "w2uh6ee7z5");
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,900;1,6..96,400;1,6..96,700;1,6..96,900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #181818;
+      --border: rgba(255,255,255,0.07);
+      --border-bright: rgba(255,255,255,0.14);
+      --lime: #bfff5e;
+      --lime-dim: rgba(191,255,94,0.12);
+      --lime-glow: rgba(191,255,94,0.28);
+      --lime-mid: rgba(191,255,94,0.18);
+      --white: #f0f0ec;
+      --muted: rgba(240,240,236,0.60);
+      --faint: rgba(240,240,236,0.30);
+      --mono: 'DM Mono', monospace;
+      --sans: 'Bodoni Moda', Georgia, serif;
+      --body: 'Instrument Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ── NOISE OVERLAY ─────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.6;
+    }
+
+    /* ── NAV (from site nav.html styles) ─────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 18px;
+      color: var(--lime);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .nav-cta {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--bg);
+      background: var(--lime);
+      padding: 9px 20px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.85; box-shadow: 0 4px 20px var(--lime-glow); }
+
+    /* ── QUIZ SHELL ─────────────────────────────────── */
+    .quiz-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 24px 60px;
+      position: relative;
+    }
+
+    /* Grid background */
+    .quiz-bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 20%, transparent 75%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .quiz-glow {
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse, var(--lime-glow) 0%, transparent 65%);
+      pointer-events: none;
+      filter: blur(60px);
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── PROGRESS BAR ────────────────────────────────── */
+    .progress-wrap {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      z-index: 200;
+      background: rgba(255,255,255,0.05);
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--lime);
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 12px var(--lime-glow);
+    }
+
+    /* ── QUESTION COUNTER ─────────────────────────────── */
+    .q-counter {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.1s ease forwards;
+    }
+
+    /* ── CARD ───────────────────────────────────────── */
+    .quiz-card {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 620px;
+      background: var(--bg2);
+      border: 1px solid var(--border-bright);
+      border-radius: 12px;
+      padding: 52px 52px 44px;
+      will-change: transform, opacity;
+    }
+
+    .q-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.15s ease forwards;
+    }
+
+    .q-text {
+      font-family: var(--sans);
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 900;
+      font-variation-settings: 'opsz' 60;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.2s ease forwards;
+    }
+    .q-text em { font-style: italic; color: var(--lime); }
+
+    /* ── ANSWER OPTIONS ───────────────────────────────── */
+    .q-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.3s ease forwards;
+    }
+
+    .q-option {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s, transform 0.15s;
+      font-size: 15px;
+      color: var(--muted);
+      text-align: left;
+      font-family: var(--body);
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .q-option:hover {
+      border-color: rgba(191,255,94,0.35);
+      background: rgba(191,255,94,0.04);
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+    .q-option.selected {
+      border-color: var(--lime);
+      background: var(--lime-dim);
+      color: var(--white);
+    }
+    .q-option.selected .opt-indicator {
+      background: var(--lime);
+      border-color: var(--lime);
+      color: var(--bg);
+    }
+    .q-option.selected .opt-indicator svg {
+      display: block;
+    }
+
+    .opt-indicator {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid var(--border-bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .opt-indicator svg { display: none; }
+
+    .opt-text { flex: 1; line-height: 1.4; }
+    .opt-sub {
+      display: block;
+      font-size: 12px;
+      color: var(--faint);
+      margin-top: 2px;
+      font-family: var(--mono);
+    }
+
+    /* ── NEXT BUTTON ─────────────────────────────────── */
+    .q-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 32px;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.4s ease forwards;
+    }
+
+    .btn-next {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--bg);
+      background: var(--lime);
+      border: none;
+      padding: 14px 32px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-next:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    .btn-next:not(:disabled):hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px var(--lime-glow);
+    }
+    .btn-next svg { transition: transform 0.2s; }
+    .btn-next:not(:disabled):hover svg { transform: translateX(3px); }
+
+    .btn-back {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--faint);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px 0;
+      transition: color 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-back:hover { color: var(--muted); }
+
+    /* ── SLIDE TRANSITIONS ───────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes slideOutLeft {
+      from { opacity: 1; transform: translateX(0); }
+      to   { opacity: 0; transform: translateX(-40px); }
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(40px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideOutRight {
+      from { opacity: 1; transform: translateX(0); }
+      to   { opacity: 0; transform: translateX(40px); }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-40px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .card-exit-left  { animation: slideOutLeft  0.3s ease forwards; }
+    .card-exit-right { animation: slideOutRight 0.3s ease forwards; }
+    .card-enter-right { animation: slideInRight 0.4s 0.15s ease both; }
+    .card-enter-left  { animation: slideInLeft  0.4s 0.15s ease both; }
+
+    /* ── INTRO SCREEN ────────────────────────────────── */
+    .intro-screen {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 560px;
+    }
+    .intro-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.2s ease forwards;
+    }
+    .intro-headline {
+      font-family: var(--sans);
+      font-size: clamp(40px, 7vw, 72px);
+      font-weight: 900;
+      font-variation-settings: 'opsz' 96;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.3s ease forwards;
+    }
+    .intro-headline em { font-style: italic; color: var(--lime); }
+    .intro-sub {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.45s ease forwards;
+    }
+    .intro-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.5s ease forwards;
+    }
+    .intro-meta-item {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--faint);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .intro-meta-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--lime);
+      opacity: 0.6;
+    }
+    .btn-start {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--bg);
+      background: var(--lime);
+      border: none;
+      padding: 18px 44px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.6s ease forwards;
+    }
+    .btn-start:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 36px var(--lime-glow);
+    }
+    .btn-start svg { transition: transform 0.2s; }
+    .btn-start:hover svg { transform: translateX(4px); }
+
+    /* ── RESULT SCREEN ───────────────────────────────── */
+    .result-screen {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 680px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.2s ease forwards;
+    }
+
+    .result-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 20px;
+    }
+
+    .result-profile-name {
+      font-family: var(--sans);
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 900;
+      font-variation-settings: 'opsz' 96;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .result-profile-name em { font-style: italic; color: var(--lime); }
+
+    .result-desc {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 40px;
+      max-width: 520px;
+    }
+
+    /* ── STATS ROW ─────────────────────────────────── */
+    .result-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .stat-card {
+      background: var(--bg2);
+      border: 1px solid var(--border-bright);
+      border-radius: 8px;
+      padding: 24px 24px 20px;
+    }
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 8px;
+    }
+    .stat-value {
+      font-family: var(--sans);
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 900;
+      font-variation-settings: 'opsz' 48;
+      color: var(--lime);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .stat-unit {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── RECOMMENDED SETUP ───────────────────────────── */
+    .setup-block {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px 28px 24px;
+      margin-bottom: 32px;
+    }
+    .setup-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 16px;
+    }
+    .setup-features {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .setup-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .setup-check {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--lime-dim);
+      border: 1px solid rgba(191,255,94,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .setup-check svg { display: block; }
+
+    /* ── EARNINGS CHART ──────────────────────────────── */
+    .earnings-block {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px;
+      margin-bottom: 32px;
+    }
+    .earnings-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 20px;
+    }
+    .earnings-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .earnings-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .earnings-row-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .earnings-platform {
+      font-size: 13px;
+      font-family: var(--mono);
+      color: var(--muted);
+    }
+    .earnings-pct {
+      font-size: 13px;
+      font-family: var(--mono);
+    }
+    .earnings-bar-track {
+      height: 6px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .earnings-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .earnings-bar-fill.platform { background: rgba(255,255,255,0.2); }
+    .earnings-bar-fill.artdrop  { background: var(--lime); box-shadow: 0 0 8px var(--lime-glow); }
+
+    /* ── EMAIL CAPTURE ───────────────────────────────── */
+    .email-block {
+      background: var(--lime-dim);
+      border: 1px solid rgba(191,255,94,0.25);
+      border-radius: 8px;
+      padding: 32px 28px 28px;
+      margin-bottom: 28px;
+    }
+    .email-headline {
+      font-family: var(--body);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .email-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .email-form {
+      display: flex;
+      gap: 10px;
+    }
+    .email-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border-bright);
+      border-radius: 4px;
+      padding: 13px 16px;
+      font-family: var(--body);
+      font-size: 14px;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .email-input::placeholder { color: var(--faint); }
+    .email-input:focus { border-color: var(--lime); }
+    .btn-join {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--bg);
+      background: var(--lime);
+      border: none;
+      padding: 13px 22px;
+      border-radius: 4px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-join:hover { transform: translateY(-1px); box-shadow: 0 6px 20px var(--lime-glow); }
+    .email-success {
+      display: none;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--lime);
+      padding: 10px 0 0;
+      letter-spacing: 0.05em;
+    }
+    .email-privacy {
+      font-size: 11px;
+      color: var(--faint);
+      margin-top: 10px;
+      font-family: var(--mono);
+    }
+
+    /* ── SHARE BUTTONS ───────────────────────────────── */
+    .share-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .share-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+    .btn-share {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      font-weight: 500;
+      color: var(--white);
+      background: var(--bg3);
+      border: 1px solid var(--border-bright);
+      border-radius: 4px;
+      padding: 9px 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-share:hover { border-color: var(--lime); color: var(--lime); }
+    .btn-retake {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--faint);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 9px 0;
+      transition: color 0.15s;
+    }
+    .btn-retake:hover { color: var(--muted); }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      padding: 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      position: relative;
+      z-index: 2;
+    }
+    .footer-logo { font-family: var(--mono); font-size: 14px; color: var(--lime); }
+    .footer-links { display: flex; gap: 32px; flex-wrap: wrap; }
+    .footer-links a { font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-family: var(--mono); font-size: 11px; color: var(--faint); }
+
+    /* ── MOBILE ──────────────────────────────────────── */
+    @media (max-width: 640px) {
+      nav { padding: 16px 24px; }
+      .quiz-shell { padding: 80px 16px 48px; }
+      .quiz-card { padding: 32px 24px 28px; }
+      .result-stats { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .stat-card { padding: 18px 16px 14px; }
+      .email-form { flex-direction: column; }
+      .btn-join { width: 100%; }
+      .setup-block, .earnings-block, .email-block { padding: 22px 18px; }
+      footer { padding: 36px 24px; flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-direction: column; gap: 10px; }
+      .q-footer { flex-direction: row-reverse; }
+    }
+
+    /* ── RESULT SCREEN ALIGNMENT ─────────────────────── */
+    .quiz-shell.result-aligned {
+      align-items: flex-start;
+      padding-top: 96px;
+    }
+
+    /* ── EARNINGS BAR COLORS ──────────────────────────── */
+    .earnings-pct-artdrop { color: var(--lime); }
+    .earnings-pct-platform { color: var(--muted); }
+
+    /* ── SHARED RESULT CTA ────────────────────────────── */
+    .btn-take-quiz {
+      width: 100%;
+      padding: 14px 22px;
+      font-size: 13px;
+    }
+
+    /* ── HIDDEN STATES ────────────────────────────────── */
+    .screen { display: none; }
+    .screen.active { display: flex; }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  </style>
+</head>
+<body>
+
+  <div class="progress-wrap" aria-hidden="true">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+
+  <nav>
+    <a href="/index.html" class="nav-logo">ArtDrop™</a>
+    <a href="/index.html#pricing" class="nav-cta">Join the Beta</a>
+  </nav>
+
+  <main id="quiz-main">
+
+    <!-- ── INTRO SCREEN ─────────────────────────────── -->
+    <div class="quiz-shell screen active" id="screen-intro">
+      <div class="quiz-bg-grid" aria-hidden="true"></div>
+      <div class="quiz-glow" aria-hidden="true"></div>
+      <div class="intro-screen">
+        <p class="intro-eyebrow">// 8 questions · 2 minutes</p>
+        <h1 class="intro-headline">What kind of<br><em>artist</em> are you?</h1>
+        <p class="intro-sub">Find out your artist profile. Get a personalized ArtDrop setup recommendation and see exactly how much time and money you're leaving on the table.</p>
+        <div class="intro-meta">
+          <span class="intro-meta-item"><span class="intro-meta-dot"></span>8 questions</span>
+          <span class="intro-meta-item"><span class="intro-meta-dot"></span>~2 minutes</span>
+          <span class="intro-meta-item"><span class="intro-meta-dot"></span>5 possible results</span>
+        </div>
+        <button class="btn-start" id="btn-start" onclick="startQuiz()">
+          Start the quiz
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── QUESTION SCREENS ─────────────────────────── -->
+    <div class="quiz-shell screen" id="screen-questions">
+      <div class="quiz-bg-grid" aria-hidden="true"></div>
+      <div class="quiz-glow" aria-hidden="true"></div>
+      <p class="q-counter" id="q-counter">Question 1 of 8</p>
+      <div class="quiz-card" id="quiz-card">
+        <p class="q-label" id="q-label">// Question 1</p>
+        <h2 class="q-text" id="q-text"></h2>
+        <div class="q-options" id="q-options" role="radiogroup"></div>
+        <div class="q-footer">
+          <button class="btn-back" id="btn-back" onclick="goBack()" aria-label="Previous question">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 7H3M7 3l-4 4 4 4"/></svg>
+            Back
+          </button>
+          <button class="btn-next" id="btn-next" onclick="goNext()" disabled>
+            Next
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M7 3l4 4-4 4"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RESULT SCREEN ─────────────────────────────── -->
+    <div class="quiz-shell screen result-aligned" id="screen-result">
+      <div class="quiz-bg-grid" aria-hidden="true"></div>
+      <div class="quiz-glow" aria-hidden="true"></div>
+      <div class="result-screen" id="result-content"></div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-logo">ArtDrop™</div>
+    <div class="footer-links">
+      <a href="/about.html">About</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/compare-earnings.html">Earnings</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="mailto:support@getartdrop.com">support@getartdrop.com</a>
+    </div>
+    <div class="footer-copy">© 2026 STANHATTIE LLC · ArtDrop™</div>
+  </footer>
+
+  <script>
+  // ── UTM CAPTURE ───────────────────────────────────────────────────────────
+  var _utmParams = (function() {
+    var p = new URLSearchParams(window.location.search);
+    return {
+      utm_source:   p.get('utm_source')   || '',
+      utm_medium:   p.get('utm_medium')   || '',
+      utm_campaign: p.get('utm_campaign') || '',
+      utm_content:  p.get('utm_content')  || '',
+      referrer:     document.referrer     || 'direct'
+    };
+  })();
+
+  // ── QUIZ DATA ──────────────────────────────────────────────────────────────
+
+  const QUESTIONS = [
+    {
+      id: 'art_type',
+      label: '// Question 1 of 8',
+      text: 'What kind of <em>art</em> do you make?',
+      options: [
+        { value: 'photography',   text: 'Photography' },
+        { value: 'digital',       text: 'Digital illustration' },
+        { value: 'traditional',   text: 'Traditional painting / drawing' },
+        { value: 'graphic',       text: 'Graphic design / typography' },
+        { value: 'mixed',         text: 'Mixed media / collage' },
+        { value: 'ai',            text: 'AI-assisted art' }
+      ]
+    },
+    {
+      id: 'output',
+      label: '// Question 2 of 8',
+      text: 'How many pieces do you <em>create</em> per month?',
+      options: [
+        { value: 'low',     text: '1–5 pieces',  sub: 'Weekend artist' },
+        { value: 'mid',     text: '5–20 pieces',  sub: 'Serious side hustle' },
+        { value: 'high',    text: '20–50 pieces', sub: 'Full-time creator' },
+        { value: 'machine', text: '50+ pieces',   sub: 'Production machine' }
+      ]
+    },
+    {
+      id: 'selling',
+      label: '// Question 3 of 8',
+      text: 'Where do you <em>sell</em> right now?',
+      options: [
+        { value: 'nowhere',   text: 'Nowhere yet',               sub: 'Just starting out' },
+        { value: 'etsy',      text: 'Etsy' },
+        { value: 'redbubble', text: 'Redbubble / Society6' },
+        { value: 'shopify',   text: 'My own Shopify store' },
+        { value: 'multiple',  text: 'Multiple platforms' },
+        { value: 'local',     text: 'Art fairs / local markets' }
+      ]
+    },
+    {
+      id: 'frustration',
+      label: '// Question 4 of 8',
+      text: "What's your <em>biggest frustration?</em>",
+      options: [
+        { value: 'listings',  text: 'Creating product listings takes forever' },
+        { value: 'products',  text: "I don't know which products to make" },
+        { value: 'copy',      text: 'My descriptions sound generic / like AI' },
+        { value: 'chaos',     text: 'Managing multiple platforms is chaos' },
+        { value: 'money',     text: "I'm not making enough money" },
+        { value: 'ideas',     text: "I don't know what to create next" }
+      ]
+    },
+    {
+      id: 'time',
+      label: '// Question 5 of 8',
+      text: 'How much time on <em>non-art tasks</em> per week?',
+      options: [
+        { value: 'low',    text: 'Less than 2 hours' },
+        { value: 'mid',    text: '2–5 hours' },
+        { value: 'high',   text: '5–10 hours' },
+        { value: 'drowning', text: '10+ hours', sub: 'Help me' }
+      ]
+    },
+    {
+      id: 'priority',
+      label: '// Question 6 of 8',
+      text: 'What matters <em>most</em> to you?',
+      options: [
+        { value: 'money',    text: 'Making more money from my art' },
+        { value: 'time',     text: 'Saving time on boring stuff' },
+        { value: 'audience', text: 'Growing my audience' },
+        { value: 'brand',    text: 'Having my own brand / store' },
+        { value: 'data',     text: 'Understanding what sells' }
+      ]
+    },
+    {
+      id: 'tech',
+      label: '// Question 7 of 8',
+      text: 'How <em>tech-savvy</em> are you?',
+      options: [
+        { value: 'none',     text: 'I can barely use email' },
+        { value: 'basic',    text: 'Comfortable with basic tools' },
+        { value: 'shopify',  text: "I've set up a Shopify store" },
+        { value: 'builder',  text: 'I code / build websites' }
+      ]
+    },
+    {
+      id: 'revenue',
+      label: '// Question 8 of 8',
+      text: "What's your monthly art <em>revenue?</em>",
+      options: [
+        { value: 'zero',   text: '$0',             sub: 'Not selling yet' },
+        { value: 'small',  text: 'Under $500' },
+        { value: 'mid',    text: '$500–$2,000' },
+        { value: 'good',   text: '$2,000–$10,000' },
+        { value: 'pro',    text: '$10,000+' }
+      ]
+    }
+  ];
+
+  // ── RESULT PROFILES ────────────────────────────────────────────────────────
+
+  const PROFILES = {
+    emerging: {
+      key: 'emerging',
+      name: 'The <em>Emerging</em> Creator',
+      shareText: "I'm an Emerging Creator",
+      desc: "You're ready to turn your art into income but haven't cracked the code on selling yet. The barrier isn't your art — it's everything around the art. Listings, descriptions, product decisions, publishing. ArtDrop handles all of that so you can focus on making things and see real sales without the learning curve.",
+      timeSaved: '6 hrs',
+      revenueBoost: '3×',
+      timeSavedLabel: 'saved per week',
+      revenueLabel: 'avg revenue increase',
+      setup: [
+        'Express Setup — live in under 30 minutes',
+        'AI listing generator — titles, descriptions, tags from your image',
+        '3 free drops included — no risk to start',
+        'Gelato integration — fulfilled in 32+ countries',
+        'Brand Voice training — so copy sounds like you, not like AI'
+      ],
+      earnings: [
+        { name: 'Redbubble',  pct: 20, label: '~20% kept' },
+        { name: 'Etsy',       pct: 35, label: '~35% kept' },
+        { name: 'ArtDrop',    pct: 82, label: '~82% kept', artdrop: true }
+      ]
+    },
+    frustrated: {
+      key: 'frustrated',
+      name: 'The <em>Frustrated</em> Seller',
+      shareText: "I'm a Frustrated Seller",
+      desc: "You're already selling but the platforms are eating your profits and the work-to-payout ratio doesn't make sense anymore. Redbubble and Etsy take a 60–80% cut and treat you like a supplier, not an artist. ArtDrop migrates your catalog to your own Shopify store where you keep 80%+ of every sale.",
+      timeSaved: '8 hrs',
+      revenueBoost: '2.4×',
+      timeSavedLabel: 'saved per week',
+      revenueLabel: 'avg revenue increase',
+      setup: [
+        'Migration tool — rebuild your catalog on Shopify in hours, not weeks',
+        'Print-provider comparison — Gelato vs Printful vs Printify, by product',
+        'Automated repricing — margins that make sense',
+        'SEO-optimized listings — rank in Google, not just Etsy search',
+        'No monthly platform fees eating into profit'
+      ],
+      earnings: [
+        { name: 'Redbubble',  pct: 20, label: '~20% kept' },
+        { name: 'Society6',   pct: 25, label: '~25% kept' },
+        { name: 'Etsy',       pct: 35, label: '~35% kept' },
+        { name: 'ArtDrop',    pct: 82, label: '~82% kept', artdrop: true }
+      ]
+    },
+    pro: {
+      key: 'pro',
+      name: 'The <em>Time-Starved</em> Pro',
+      shareText: "I'm a Time-Starved Pro",
+      desc: "You're making real money but the business is running you instead of the other way around. Every hour in spreadsheets and copy editing is an hour not making art. ArtDrop's batch processing turns a week of admin into 20 minutes — drop a folder, let it run, come back to a published catalog.",
+      timeSaved: '12 hrs',
+      revenueBoost: '1.8×',
+      timeSavedLabel: 'saved per week',
+      revenueLabel: 'avg revenue increase',
+      setup: [
+        'Batch processing — drop a folder, publish an entire series',
+        'Brand Voice rules — AI copy that matches your tone perfectly',
+        'Multi-provider publishing — Gelato + Printful + Printify simultaneously',
+        'Backblaze B2 backup — original files archived automatically',
+        'Webhook notifications — know when products go live'
+      ],
+      earnings: [
+        { name: 'Manual workflow', pct: 30, label: '~30% time on art' },
+        { name: 'With ArtDrop',   pct: 85, label: '~85% time on art', artdrop: true }
+      ]
+    },
+    juggler: {
+      key: 'juggler',
+      name: 'The <em>Multi-Platform</em> Juggler',
+      shareText: "I'm a Multi-Platform Juggler",
+      desc: "You're everywhere — Etsy, Redbubble, Shopify, maybe your own site — and managing it all is burning you out. Every platform has its own dashboard, its own listing format, its own quirks. ArtDrop publishes once and handles the distribution, keeping every platform in sync from one place.",
+      timeSaved: '14 hrs',
+      revenueBoost: '2.1×',
+      timeSavedLabel: 'saved per week',
+      revenueLabel: 'avg revenue increase',
+      setup: [
+        'Unified publishing — one drop, multiple destinations',
+        'Per-platform copy optimization — listings adapted per platform',
+        'Shopify as home base — your own store with full margin control',
+        'Gelato + Printful + Printify — best fulfillment per product type',
+        'Sync management — catalog updates propagate everywhere'
+      ],
+      earnings: [
+        { name: 'Redbubble',  pct: 20, label: '~20% kept' },
+        { name: 'Etsy',       pct: 35, label: '~35% kept' },
+        { name: 'Own store',  pct: 65, label: '~65% kept (manual)' },
+        { name: 'ArtDrop',    pct: 82, label: '~82% kept', artdrop: true }
+      ]
+    },
+    hunter: {
+      key: 'hunter',
+      name: 'The <em>Growth</em> Hunter',
+      shareText: "I'm a Growth Hunter",
+      desc: "You've got a real business but you've hit a ceiling. Revenue is flat, you're not sure what to create next, and you sense you're missing signals the market is giving you. ArtDrop's Intelligence Engine tracks demand signals across 16 countries — surfacing what to make before your competitors notice.",
+      timeSaved: '10 hrs',
+      revenueBoost: '2.6×',
+      timeSavedLabel: 'saved per week',
+      revenueLabel: 'avg revenue increase',
+      setup: [
+        'Intelligence Engine — trending colors, subjects, formats by country',
+        'Demand signal alerts — know what buyers want before they search for it',
+        'Profit margin modeling — optimize product mix, not just volume',
+        'Batch creation with trend matching — create to demand, not to hope',
+        'Full API access — integrate with your existing workflow'
+      ],
+      earnings: [
+        { name: 'Etsy',         pct: 35, label: '~35% kept' },
+        { name: 'Shopify solo', pct: 60, label: '~60% kept (manual)' },
+        { name: 'ArtDrop',      pct: 82, label: '~82% kept', artdrop: true }
+      ]
+    }
+  };
+
+  // ── SCORING LOGIC ──────────────────────────────────────────────────────────
+
+  function scoreAnswers(answers) {
+    const scores = { emerging: 0, frustrated: 0, pro: 0, juggler: 0, hunter: 0 };
+
+    // Q1: art_type (minor signals)
+    const artType = answers.art_type;
+    if (artType === 'photography' || artType === 'digital') {
+      scores.pro += 1; scores.hunter += 1;
+    }
+
+    // Q2: output volume
+    const output = answers.output;
+    if (output === 'low')    { scores.emerging += 3; }
+    if (output === 'mid')    { scores.frustrated += 2; scores.emerging += 1; }
+    if (output === 'high')   { scores.pro += 3; scores.juggler += 1; }
+    if (output === 'machine'){ scores.pro += 2; scores.juggler += 2; scores.hunter += 1; }
+
+    // Q3: where selling
+    const selling = answers.selling;
+    if (selling === 'nowhere')   { scores.emerging += 4; }
+    if (selling === 'etsy')      { scores.frustrated += 3; scores.emerging += 1; }
+    if (selling === 'redbubble') { scores.frustrated += 4; }
+    if (selling === 'shopify')   { scores.pro += 2; scores.hunter += 2; }
+    if (selling === 'multiple')  { scores.juggler += 5; }
+    if (selling === 'local')     { scores.emerging += 2; scores.frustrated += 1; }
+
+    // Q4: frustration
+    const frust = answers.frustration;
+    if (frust === 'listings')  { scores.pro += 3; scores.emerging += 2; }
+    if (frust === 'products')  { scores.hunter += 3; scores.emerging += 1; }
+    if (frust === 'copy')      { scores.pro += 2; scores.frustrated += 1; }
+    if (frust === 'chaos')     { scores.juggler += 4; }
+    if (frust === 'money')     { scores.frustrated += 3; scores.hunter += 1; }
+    if (frust === 'ideas')     { scores.hunter += 3; scores.emerging += 1; }
+
+    // Q5: time on non-art
+    const time = answers.time;
+    if (time === 'low')      { scores.emerging += 1; }
+    if (time === 'mid')      { scores.frustrated += 1; scores.emerging += 1; }
+    if (time === 'high')     { scores.pro += 2; scores.juggler += 2; }
+    if (time === 'drowning') { scores.pro += 3; scores.juggler += 3; }
+
+    // Q6: priority
+    const priority = answers.priority;
+    if (priority === 'money')    { scores.frustrated += 2; scores.hunter += 1; }
+    if (priority === 'time')     { scores.pro += 3; }
+    if (priority === 'audience') { scores.emerging += 2; scores.hunter += 1; }
+    if (priority === 'brand')    { scores.emerging += 2; scores.frustrated += 1; }
+    if (priority === 'data')     { scores.hunter += 4; }
+
+    // Q7: tech level (weights)
+    const tech = answers.tech;
+    if (tech === 'none')    { scores.emerging += 2; }
+    if (tech === 'basic')   { scores.frustrated += 1; scores.emerging += 1; }
+    if (tech === 'shopify') { scores.juggler += 1; scores.pro += 1; }
+    if (tech === 'builder') { scores.hunter += 2; scores.pro += 1; }
+
+    // Q8: revenue
+    const rev = answers.revenue;
+    if (rev === 'zero')  { scores.emerging += 4; }
+    if (rev === 'small') { scores.frustrated += 2; scores.emerging += 1; }
+    if (rev === 'mid')   { scores.pro += 2; scores.frustrated += 1; }
+    if (rev === 'good')  { scores.pro += 2; scores.juggler += 1; scores.hunter += 1; }
+    if (rev === 'pro')   { scores.hunter += 3; scores.juggler += 1; }
+
+    // Find winner
+    return Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+  }
+
+  // ── QUIZ STATE ─────────────────────────────────────────────────────────────
+
+  let currentQ = 0;
+  let answers = {};
+  let selectedValue = null;
+  let direction = 'forward'; // for animation direction
+
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function updateProgress() {
+    const total = QUESTIONS.length;
+    const pct = (currentQ / total) * 100;
+    document.getElementById('progress-fill').style.width = pct + '%';
+  }
+
+  function startQuiz() {
+    currentQ = 0;
+    answers = {};
+    updateProgress();
+    showScreen('screen-questions');
+    renderQuestion(currentQ, 'enter-right');
+  }
+
+  function renderQuestion(idx, animClass) {
+    const q = QUESTIONS[idx];
+    const card = document.getElementById('quiz-card');
+
+    // Update counter
+    document.getElementById('q-counter').textContent = 'Question ' + (idx + 1) + ' of ' + QUESTIONS.length;
+
+    // Reset selection state
+    selectedValue = answers[q.id] || null;
+
+    // Build options HTML
+    const optionsHTML = q.options.map(opt => {
+      const isSelected = selectedValue === opt.value;
+      return `<button
+        class="q-option${isSelected ? ' selected' : ''}"
+        data-value="${opt.value}"
+        role="radio"
+        aria-checked="${isSelected ? 'true' : 'false'}"
+        onclick="selectOption(this, '${opt.value}')"
+      >
+        <span class="opt-indicator">
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,4 4,7 9,1"/></svg>
+        </span>
+        <span class="opt-text">
+          ${opt.text}
+          ${opt.sub ? `<span class="opt-sub">${opt.sub}</span>` : ''}
+        </span>
+      </button>`;
+    }).join('');
+
+    // Update card content
+    document.getElementById('q-label').textContent = '// ' + q.label.replace('// ', '');
+    document.getElementById('q-text').innerHTML = q.text;
+    document.getElementById('q-options').innerHTML = optionsHTML;
+
+    // Next button state
+    const btnNext = document.getElementById('btn-next');
+    btnNext.disabled = !selectedValue;
+    btnNext.textContent = '';
+    if (idx < QUESTIONS.length - 1) {
+      btnNext.innerHTML = 'Next <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M7 3l4 4-4 4"/></svg>';
+    } else {
+      btnNext.innerHTML = 'See my result <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M7 3l4 4-4 4"/></svg>';
+    }
+
+    // Back button
+    document.getElementById('btn-back').style.visibility = idx === 0 ? 'hidden' : 'visible';
+
+    // Animation
+    if (animClass) {
+      card.classList.remove('card-enter-right', 'card-enter-left', 'card-exit-left', 'card-exit-right');
+      void card.offsetWidth; // reflow
+      card.classList.add(animClass);
+    }
+  }
+
+  function selectOption(el, value) {
+    // Clear all
+    document.querySelectorAll('.q-option').forEach(opt => {
+      opt.classList.remove('selected');
+      opt.setAttribute('aria-checked', 'false');
+    });
+
+    // Select this one
+    el.classList.add('selected');
+    el.setAttribute('aria-checked', 'true');
+    selectedValue = value;
+
+    // Enable next
+    document.getElementById('btn-next').disabled = false;
+
+    // Auto-advance after brief pause if not last question
+    if (currentQ < QUESTIONS.length - 1) {
+      clearTimeout(window._autoAdvance);
+      window._autoAdvance = setTimeout(() => {
+        if (selectedValue === value) goNext();
+      }, 420);
+    }
+  }
+
+  function goNext() {
+    if (!selectedValue) return;
+    const q = QUESTIONS[currentQ];
+    answers[q.id] = selectedValue;
+
+    if (currentQ < QUESTIONS.length - 1) {
+      const card = document.getElementById('quiz-card');
+      card.classList.add('card-exit-left');
+      setTimeout(() => {
+        currentQ++;
+        updateProgress();
+        renderQuestion(currentQ, 'card-enter-right');
+      }, 280);
+    } else {
+      // Final question answered — show result
+      updateProgress();
+      showResult();
+    }
+  }
+
+  function goBack() {
+    if (currentQ === 0) return;
+    const card = document.getElementById('quiz-card');
+    card.classList.add('card-exit-right');
+    setTimeout(() => {
+      currentQ--;
+      updateProgress();
+      renderQuestion(currentQ, 'card-enter-left');
+    }, 280);
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    const qs = document.getElementById('screen-questions');
+    if (!qs.classList.contains('active')) return;
+
+    if (e.key === 'Enter' && !document.getElementById('btn-next').disabled) {
+      clearTimeout(window._autoAdvance);
+      goNext();
+    }
+    if (e.key === 'ArrowRight' && !document.getElementById('btn-next').disabled) {
+      clearTimeout(window._autoAdvance);
+      goNext();
+    }
+    if (e.key === 'ArrowLeft' && currentQ > 0) {
+      clearTimeout(window._autoAdvance);
+      goBack();
+    }
+
+    // Number keys for option selection
+    const numMap = {'1':0,'2':1,'3':2,'4':3,'5':4,'6':5};
+    if (numMap[e.key] !== undefined) {
+      const opts = document.querySelectorAll('.q-option');
+      if (opts[numMap[e.key]]) opts[numMap[e.key]].click();
+    }
+  });
+
+  // ── RESULT RENDERING ───────────────────────────────────────────────────────
+
+  function showResult() {
+    const profileKey = scoreAnswers(answers);
+    const profile = PROFILES[profileKey];
+
+    // Update URL hash for shareability
+    const newURL = window.location.pathname + '?result=' + profileKey;
+    history.pushState({ result: profileKey }, '', newURL);
+
+    // Update progress to 100%
+    document.getElementById('progress-fill').style.width = '100%';
+
+    // Build earnings chart HTML
+    const earningsRows = profile.earnings.map(row => {
+      const color = row.artdrop ? 'artdrop' : 'platform';
+      const pctClass = row.artdrop ? 'earnings-pct-artdrop' : 'earnings-pct-platform';
+      return `<div class="earnings-row">
+        <div class="earnings-row-head">
+          <span class="earnings-platform">${row.name}</span>
+          <span class="earnings-pct ${pctClass}">${row.label}</span>
+        </div>
+        <div class="earnings-bar-track">
+          <div class="earnings-bar-fill ${color}" data-width="${row.pct}%"></div>
+        </div>
+      </div>`;
+    }).join('');
+
+    // Build setup features HTML
+    const featuresHTML = profile.setup.map(f => `
+      <div class="setup-feature">
+        <span class="setup-check">
+          <svg width="9" height="7" viewBox="0 0 9 7" fill="none" stroke="#bfff5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,3.5 3.5,6 8,1"/></svg>
+        </span>
+        <span>${f}</span>
+      </div>`).join('');
+
+    // Build full result HTML
+    const shareURL = 'https://getartdrop.com/quiz.html?result=' + profileKey;
+    const shareTextRaw = profile.shareText + ' according to @getartdrop — what are you? Take the quiz: ' + shareURL;
+    const twitterURL = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareTextRaw);
+    const linkedinURL = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(shareURL);
+
+    document.getElementById('result-content').innerHTML = `
+      <p class="result-eyebrow">// Your artist profile</p>
+      <h2 class="result-profile-name">${profile.name}</h2>
+      <p class="result-desc">${profile.desc}</p>
+
+      <div class="result-stats">
+        <div class="stat-card">
+          <div class="stat-label">Time saved</div>
+          <div class="stat-value">${profile.timeSaved}</div>
+          <div class="stat-unit">${profile.timeSavedLabel}</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Revenue impact</div>
+          <div class="stat-value">${profile.revenueBoost}</div>
+          <div class="stat-unit">${profile.revenueLabel}</div>
+        </div>
+      </div>
+
+      <div class="setup-block">
+        <div class="setup-label">// Recommended ArtDrop setup</div>
+        <div class="setup-features">${featuresHTML}</div>
+      </div>
+
+      <div class="earnings-block">
+        <div class="earnings-label">// Where your money actually goes</div>
+        <div class="earnings-rows">${earningsRows}</div>
+      </div>
+
+      <div class="email-block">
+        <div class="email-headline">Join the beta — personalized for ${profile.shareText.replace("I'm a ", "").replace("I'm an ", "")}</div>
+        <p class="email-sub">We're onboarding a small group of artists first. Drop your email and we'll reach out when your spot is ready.</p>
+        <form class="email-form" id="result-email-form" onsubmit="submitEmail(event, '${profileKey}')">
+          <label for="result-email" class="sr-only">Your email address</label>
+          <input type="email" id="result-email" class="email-input" placeholder="your@email.com" autocomplete="email" required>
+          <button type="submit" class="btn-join">Join the beta</button>
+        </form>
+        <div class="email-success" id="email-success">✓ You're on the list. We'll be in touch.</div>
+        <p class="email-privacy">No spam. Opt-in only. Unsubscribe anytime.</p>
+      </div>
+
+      <div class="share-block">
+        <span class="share-label">Share your result —</span>
+        <a href="${twitterURL}" target="_blank" rel="noopener" class="btn-share">
+          <svg width="14" height="12" viewBox="0 0 14 12" fill="currentColor"><path d="M13.07.72H15L10.02 6.4 15.85 12h-4.61L7.76 8.14 4.31 12H2.38l5.29-6.05L2 .72h4.72l3.09 3.52L13.07.72zm-.67 10.13h1.08L3.22 1.83H2.06l10.34 9.02z"/></svg>
+          Post on X
+        </a>
+        <a href="${linkedinURL}" target="_blank" rel="noopener" class="btn-share">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M1.56 0C.7 0 0 .7 0 1.56v10.88C0 13.3.7 14 1.56 14h10.88c.86 0 1.56-.7 1.56-1.56V1.56C14 .7 13.3 0 12.44 0H1.56zm1.5 5.19h1.96V12H3.06V5.19zm.98-3.12c.63 0 1.14.51 1.14 1.14 0 .63-.51 1.14-1.14 1.14a1.14 1.14 0 110-2.28zm2.62 3.12h1.88v.93h.03c.26-.49.9-1.01 1.85-1.01 1.98 0 2.34 1.3 2.34 2.99V12H11.3V8.46c0-.73-.01-1.67-1.02-1.67-1.02 0-1.17.8-1.17 1.62V12H7.16V5.19z"/></svg>
+          Share on LinkedIn
+        </a>
+        <button class="btn-share" onclick="copyResultLink('${shareURL}', this)">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="9" height="9" rx="1.5"/><path d="M4 4V2.5A1.5 1.5 0 015.5 1H11.5A1.5 1.5 0 0113 2.5V8.5A1.5 1.5 0 0111.5 10H10"/></svg>
+          Copy link
+        </button>
+        <button class="btn-retake" onclick="retakeQuiz()">Retake quiz</button>
+      </div>
+    `;
+
+    showScreen('screen-result');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Animate earnings bars
+    setTimeout(() => {
+      document.querySelectorAll('.earnings-bar-fill[data-width]').forEach(bar => {
+        bar.style.width = bar.getAttribute('data-width');
+      });
+    }, 400);
+
+    // Update OG meta for social sharing (won't affect current load, but good hygiene)
+    const ogTitle = profile.shareText + ' — ArtDrop Quiz';
+    const ogDesc = profile.desc.substring(0, 140) + '...';
+    document.title = ogTitle + ' | ArtDrop™';
+    document.getElementById('og-title').setAttribute('content', ogTitle);
+    document.getElementById('og-desc').setAttribute('content', ogDesc);
+    document.getElementById('og-url').setAttribute('content', shareURL);
+    document.getElementById('tw-title').setAttribute('content', ogTitle);
+    document.getElementById('tw-desc').setAttribute('content', ogDesc);
+  }
+
+  function copyResultLink(url, btn) {
+    navigator.clipboard.writeText(url).then(() => {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 10 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,4 4,7 9,1"/></svg> Copied!';
+      btn.style.borderColor = 'var(--lime)';
+      btn.style.color = 'var(--lime)';
+      setTimeout(() => {
+        btn.innerHTML = orig;
+        btn.style.borderColor = '';
+        btn.style.color = '';
+      }, 2000);
+    });
+  }
+
+  function retakeQuiz() {
+    answers = {};
+    currentQ = 0;
+    history.pushState({}, '', window.location.pathname);
+    document.getElementById('progress-fill').style.width = '0%';
+    showScreen('screen-intro');
+  }
+
+  function submitEmail(e, profileKey) {
+    e.preventDefault();
+    const email = document.getElementById('result-email').value.trim();
+    if (!email) return;
+
+    const form = document.getElementById('result-email-form');
+    const success = document.getElementById('email-success');
+
+    // Submit to Netlify Forms (or your form endpoint)
+    // Fallback: mailto with pre-filled subject
+    const subject = encodeURIComponent('ArtDrop Beta - ' + PROFILES[profileKey].shareText + ' (' + email + ')');
+    const mailtoFallback = 'mailto:support@getartdrop.com?subject=' + subject;
+
+    // Try fetch to a form endpoint first; fallback gracefully
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('profile', profileKey);
+    formData.append('profile_label', PROFILES[profileKey].shareText.replace("I'm ", '').replace("I'm an ", '').replace("I'm a ", ''));
+    formData.append('source', 'quiz');
+    formData.append('utm_source',   _utmParams.utm_source);
+    formData.append('utm_medium',   _utmParams.utm_medium);
+    formData.append('utm_campaign', _utmParams.utm_campaign);
+    formData.append('utm_content',  _utmParams.utm_content);
+    formData.append('referrer',     _utmParams.referrer);
+
+    // POST to a /subscribe endpoint if it exists; otherwise succeed visually
+    // (replace with your actual form handler URL)
+    const endpoint = '/subscribe';
+    fetch(endpoint, { method: 'POST', body: formData })
+      .catch(() => {}) // fail silently — we show success either way
+      .finally(() => {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      });
+  }
+
+  // ── HANDLE RESULT URL ON LOAD ──────────────────────────────────────────────
+
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const result = params.get('result');
+    if (result && PROFILES[result]) {
+      // Show result directly from URL (shared link)
+      document.getElementById('progress-fill').style.width = '100%';
+
+      // Build fake answers that produce this profile
+      answers = { _direct: true };
+      // We don't need real answers since showResult() uses profileKey directly
+      // but scoreAnswers won't be called here — we bypass it
+      const profileKey = result;
+      const profile = PROFILES[profileKey];
+
+      // Build earnings chart HTML
+      const earningsRows = profile.earnings.map(row => {
+        const color = row.artdrop ? 'artdrop' : 'platform';
+        const pctColor = row.artdrop ? 'style="color:var(--lime)"' : 'style="color:var(--muted)"';
+        return `<div class="earnings-row">
+          <div class="earnings-row-head">
+            <span class="earnings-platform">${row.name}</span>
+            <span class="earnings-pct" ${pctColor}>${row.label}</span>
+          </div>
+          <div class="earnings-bar-track">
+            <div class="earnings-bar-fill ${color}" style="width:0%" data-width="${row.pct}%"></div>
+          </div>
+        </div>`;
+      }).join('');
+
+      const featuresHTML = profile.setup.map(f => `
+        <div class="setup-feature">
+          <span class="setup-check">
+            <svg width="9" height="7" viewBox="0 0 9 7" fill="none" stroke="#bfff5e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,3.5 3.5,6 8,1"/></svg>
+          </span>
+          <span>${f}</span>
+        </div>`).join('');
+
+      const shareURL = 'https://getartdrop.com/quiz.html?result=' + profileKey;
+      const shareTextRaw = profile.shareText + ' according to @getartdrop — what are you? Take the quiz: ' + shareURL;
+      const twitterURL = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareTextRaw);
+      const linkedinURL = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(shareURL);
+
+      document.getElementById('result-content').innerHTML = `
+        <p class="result-eyebrow">// Your friend's artist profile — what's yours?</p>
+        <h2 class="result-profile-name">${profile.name}</h2>
+        <p class="result-desc">${profile.desc}</p>
+
+        <div class="result-stats">
+          <div class="stat-card">
+            <div class="stat-label">Time saved</div>
+            <div class="stat-value">${profile.timeSaved}</div>
+            <div class="stat-unit">${profile.timeSavedLabel}</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Revenue impact</div>
+            <div class="stat-value">${profile.revenueBoost}</div>
+            <div class="stat-unit">${profile.revenueLabel}</div>
+          </div>
+        </div>
+
+        <div class="setup-block">
+          <div class="setup-label">// Recommended ArtDrop setup</div>
+          <div class="setup-features">${featuresHTML}</div>
+        </div>
+
+        <div class="earnings-block">
+          <div class="earnings-label">// Where your money actually goes</div>
+          <div class="earnings-rows">${earningsRows}</div>
+        </div>
+
+        <div class="email-block">
+          <div class="email-headline">Find out your own artist profile</div>
+          <p class="email-sub">Take the 2-minute quiz to get your personalized ArtDrop setup and see how much you could save.</p>
+          <button class="btn-join" onclick="retakeQuiz()" style="width:100%; padding:14px 22px; font-size:13px;">Take the quiz</button>
+          <p class="email-privacy">8 questions · 2 minutes · 5 possible profiles</p>
+        </div>
+
+        <div class="share-block">
+          <a href="${twitterURL}" target="_blank" rel="noopener" class="btn-share">
+            <svg width="14" height="12" viewBox="0 0 14 12" fill="currentColor"><path d="M13.07.72H15L10.02 6.4 15.85 12h-4.61L7.76 8.14 4.31 12H2.38l5.29-6.05L2 .72h4.72l3.09 3.52L13.07.72zm-.67 10.13h1.08L3.22 1.83H2.06l10.34 9.02z"/></svg>
+            Share on X
+          </a>
+          <a href="${linkedinURL}" target="_blank" rel="noopener" class="btn-share">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M1.56 0C.7 0 0 .7 0 1.56v10.88C0 13.3.7 14 1.56 14h10.88c.86 0 1.56-.7 1.56-1.56V1.56C14 .7 13.3 0 12.44 0H1.56zm1.5 5.19h1.96V12H3.06V5.19zm.98-3.12c.63 0 1.14.51 1.14 1.14 0 .63-.51 1.14-1.14 1.14a1.14 1.14 0 110-2.28zm2.62 3.12h1.88v.93h.03c.26-.49.9-1.01 1.85-1.01 1.98 0 2.34 1.3 2.34 2.99V12H11.3V8.46c0-.73-.01-1.67-1.02-1.67-1.02 0-1.17.8-1.17 1.62V12H7.16V5.19z"/></svg>
+            Share on LinkedIn
+          </a>
+          <button class="btn-retake" onclick="retakeQuiz()">Take the quiz yourself</button>
+        </div>
+      `;
+
+      document.title = profile.shareText + ' — ArtDrop™ Quiz';
+      showScreen('screen-result');
+
+      setTimeout(() => {
+        document.querySelectorAll('.earnings-bar-fill[data-width]').forEach(bar => {
+          bar.style.width = bar.getAttribute('data-width');
+        });
+      }, 600);
+    }
+  })();
+  </script>
+
+</body>
+</html>

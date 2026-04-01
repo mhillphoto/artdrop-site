@@ -3,17 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ArtDrop™ — Drop a file. Everything else is automatic.</title>
-  <meta name="description" content="ArtDrop automates print-on-demand publishing. Drop an image — AI writes copy, creates products, publishes to your store. $197 one-time. Mac + Windows.">
-  <meta property="og:title" content="ArtDrop™ — Automated Print-on-Demand Publishing">
+  <title>ArtDrop — Print-on-Demand Automation for Artists | $197</title>
+  <meta name="description" content="Drop an image. ArtDrop writes the copy, creates every product, and publishes to your store. Works in any browser. $197 one-time — no subscription.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="ArtDrop — Automated Print-on-Demand Publishing for Artists">
   <meta property="og:description" content="Drop a file. AI writes the copy, builds the products, publishes to your store — in minutes. $197 one-time.">
-  <meta property="og:url" content="https://getartdrop.com">
+  <meta property="og:url" content="https://getartdrop.com/">
   <meta property="og:image" content="https://getartdrop.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="ArtDrop™">
-  <!-- OG tags handle social previews for all platforms -->
+  <meta property="og:site_name" content="ArtDrop">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ArtDrop — Automated Print-on-Demand Publishing for Artists">
+  <meta name="twitter:description" content="Drop a file. AI writes the copy, builds the products, publishes to your store — in minutes. $197 one-time.">
+  <meta name="twitter:image" content="https://getartdrop.com/og-image.png">
   <link rel="canonical" href="https://getartdrop.com/">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1a2e'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='22' font-weight='bold' fill='%23bfff5e' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
 
@@ -597,6 +601,52 @@
       transition: opacity 0.2s;
     }
     .roadmap-tag:hover { opacity: 0.85; text-decoration: none; }
+    .roadmap-tag--shipped {
+      background: transparent;
+      border: 1px solid var(--lime);
+      color: var(--lime);
+    }
+    .roadmap-tag--shipped::before {
+      content: '✓ ';
+    }
+
+    /* ── INTELLIGENCE GRID ────────────────────────── */
+    .intel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .intel-card {
+      background: var(--bg);
+      padding: 32px 28px;
+    }
+    .intel-card-icon {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: var(--lime);
+    }
+    .intel-card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .intel-card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .intel-footnote {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-top: 8px;
+    }
     .roadmap-prose {
       font-size: 15px;
       color: var(--muted);
@@ -775,6 +825,7 @@
 
     /* ── PRICING NOTE ────────────────────────────── */
     .pricing-note--spaced { margin-bottom: 12px; }
+    .pricing-note--demo { font-size: 15px; color: var(--lime); padding: 10px 0; }
 
     /* ── PRIVACY SECTION ──────────────────────────── */
     .privacy-section {
@@ -1315,6 +1366,8 @@
       .screenshot-grid { grid-template-columns: 1fr; }
       .screenshot-placeholder { height: 160px; }
       .roadmap-tag { font-size: 11px; padding: 5px 10px; }
+      .intel-grid { grid-template-columns: 1fr; }
+      .intel-card { padding: 20px 16px; }
       .setup-callout h3 { font-size: 26px; }
       .setup-callout p { font-size: 15px; }
 
@@ -1369,9 +1422,9 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "ArtDrop",
-    "applicationCategory": "DesignApplication",
-    "operatingSystem": "macOS, Windows, Web",
-    "description": "Automated print-on-demand product creation for artists. Drop an image, get products.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "ArtDrop automates print-on-demand publishing for artists. Drop an image — AI analyzes your artwork, writes product copy, creates every product format, and publishes to your store. $197 one-time. No subscription.",
     "url": "https://getartdrop.com",
     "author": {
       "@type": "Organization",
@@ -1383,7 +1436,8 @@
       "price": "197.00",
       "priceCurrency": "USD",
       "availability": "https://schema.org/InStock",
-      "priceValidUntil": "2027-12-31"
+      "priceValidUntil": "2027-12-31",
+      "description": "One-time purchase. No subscription."
     }
   }
   </script>
@@ -1397,12 +1451,24 @@
     "legalName": "StanHattie LLC",
     "url": "https://getartdrop.com",
     "logo": "https://getartdrop.com/static/icon-512.png",
+    "sameAs": ["https://getartdrop.com"],
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+1-833-278-5002",
       "contactType": "customer service",
       "email": "support@getartdrop.com"
     }
+  }
+  </script>
+
+  <!-- Structured data: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ArtDrop",
+    "url": "https://getartdrop.com",
+    "description": "ArtDrop automates print-on-demand publishing for artists. Drop an image — AI writes copy, creates products, publishes to your Shopify store. $197 one-time."
   }
   </script>
 </head>
@@ -1426,14 +1492,14 @@
         <em>Done.</em>
       </h2>
       <p class="hero-sub">
-        Drop an image. That's it. ArtDrop analyzes your artwork — colors, composition, mood, subject — then writes the copy, creates every product format you sell, publishes everything to your store, and posts to all your socials. Store organization, SEO, alt text — all of it. Configure once. Every drop after that is automatic. Runs as a desktop app on Mac and Windows, or in your browser — no download required.
+        Drop an image. That's it. ArtDrop analyzes your artwork — colors, composition, mood, subject — then writes the copy, creates every product format you sell, publishes everything to your store, and posts to all your socials. Store organization, SEO, alt text — all of it. Configure once. Every drop after that is automatic. Works in any browser on any device — nothing to install.
       </p>
       <div class="hero-actions">
         <a href="#pricing" class="btn-primary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
           Get ArtDrop™
         </a>
-        <span class="hero-price"><strong>$197</strong> &nbsp;one-time · Mac + Windows + Web</span>
+        <span class="hero-price"><strong>$197</strong> &nbsp;one-time · Works on any device</span>
       </div>
     </div>
   </section>
@@ -1468,9 +1534,9 @@
         const features = [
           '<span class="t-lime">⚡</span> AI reads your actual artwork, not filenames',
           '<span class="t-lime">⚡</span> Product copy written in your voice',
-          '<span class="t-lime">⚡</span> Your data stays on your machine',
+          '<span class="t-lime">⚡</span> Your data stays in your browser session',
           '<span class="t-lime">⚡</span> One-time setup. Every drop is automatic',
-          '<span class="t-lime">⚡</span> Works with three POD providers at once',
+          '<span class="t-lime">⚡</span> Works with 16 POD providers simultaneously',
           '<span class="t-lime">⚡</span> Full SEO on every product. No manual entry',
           '<span class="t-lime">⚡</span> Products organized and published automatically',
           '<span class="t-lime">⚡</span> Voice trained from Reddit, website, or docs',
@@ -1834,8 +1900,13 @@
       <a href="https://www.gelato.com" target="_blank" rel="noopener"><img src="logos/gelato.svg" alt="Gelato" class="trust-logo"></a>
       <a href="https://www.printful.com" target="_blank" rel="noopener"><img src="logos/printful.svg" alt="Printful" class="trust-logo trust-logo--printful"></a>
       <a href="https://www.printify.com" target="_blank" rel="noopener"><img src="logos/printify.svg" alt="Printify" class="trust-logo"></a>
+      <a href="https://www.prodigi.com" target="_blank" rel="noopener"><img src="logos/prodigi.svg" alt="Prodigi" class="trust-logo"></a>
       <a href="https://www.anthropic.com" target="_blank" rel="noopener"><img src="logos/claude.svg" alt="Claude AI by Anthropic" class="trust-logo"></a>
       <a href="https://www.backblaze.com" target="_blank" rel="noopener"><img src="logos/backblaze.svg" alt="Backblaze" class="trust-logo trust-logo--backblaze"></a>
+      <a href="https://www.etsy.com" target="_blank" rel="noopener"><img src="logos/etsy.svg" alt="Etsy" class="trust-logo"></a>
+      <a href="https://woocommerce.com" target="_blank" rel="noopener"><img src="logos/woocommerce.svg" alt="WooCommerce" class="trust-logo"></a>
+      <a href="https://www.stripe.com" target="_blank" rel="noopener"><img src="logos/stripe.svg" alt="Stripe" class="trust-logo"></a>
+      <a href="https://www.pinterest.com" target="_blank" rel="noopener"><img src="logos/pinterest.svg" alt="Pinterest" class="trust-logo"></a>
     </div>
     </div>
   </section>
@@ -1861,9 +1932,16 @@
     </p>
     <div class="reveal">
       <div class="roadmap-group">
+        <div class="roadmap-group-label">Recently shipped</div>
+        <div class="roadmap-grid">
+          <a href="https://www.prodigi.com" target="_blank" rel="noopener" class="roadmap-tag roadmap-tag--shipped">Prodigi</a>
+          <span class="roadmap-tag roadmap-tag--shipped">AI Trend Recommendations</span>
+          <span class="roadmap-tag roadmap-tag--shipped">Analytics Dashboard</span>
+        </div>
+      </div>
+      <div class="roadmap-group">
         <div class="roadmap-group-label">Print providers</div>
         <div class="roadmap-grid">
-          <a href="https://www.prodigi.com" target="_blank" rel="noopener" class="roadmap-tag">Prodigi</a>
           <a href="https://www.gooten.com" target="_blank" rel="noopener" class="roadmap-tag">Gooten</a>
           <a href="https://www.shineon.com" target="_blank" rel="noopener" class="roadmap-tag">ShineOn</a>
           <a href="https://www.lulu.com/sell/sell-on-your-site" target="_blank" rel="noopener" class="roadmap-tag">Lulu Direct</a>
@@ -1886,9 +1964,7 @@
       <div class="roadmap-group">
         <div class="roadmap-group-label">Features</div>
         <div class="roadmap-grid">
-          <span class="roadmap-tag">AI Trend Recommendations</span>
           <span class="roadmap-tag">Multi-Language Support</span>
-          <span class="roadmap-tag">Analytics Dashboard</span>
         </div>
       </div>
     </div>
@@ -1905,14 +1981,14 @@
     </p>
     <div class="social-feature-grid reveal">
       <div class="social-feature-card">
-        <img src="logos/pinterest.svg" alt="Pinterest" class="social-feature-logo">
-        <div class="social-feature-name">Pinterest</div>
-        <div class="social-feature-desc">Keyword-rich pins optimized for search discovery. Pinterest is a search engine — ArtDrop writes for it.</div>
-      </div>
-      <div class="social-feature-card">
         <img src="logos/instagram.svg" alt="Instagram" class="social-feature-logo social-feature-logo--lg">
         <div class="social-feature-name">Instagram</div>
         <div class="social-feature-desc">Voice-forward captions with smart hashtag blocks. Personal, engaging, not robotic.</div>
+      </div>
+      <div class="social-feature-card">
+        <img src="logos/pinterest.svg" alt="Pinterest" class="social-feature-logo">
+        <div class="social-feature-name">Pinterest</div>
+        <div class="social-feature-desc">Keyword-rich pins optimized for search discovery. Pinterest is a search engine — ArtDrop writes for it.</div>
       </div>
       <div class="social-feature-card">
         <img src="logos/facebook.svg" alt="Facebook" class="social-feature-logo">
@@ -1928,6 +2004,16 @@
         <img src="logos/bluesky.svg" alt="Bluesky" class="social-feature-logo">
         <div class="social-feature-name">Bluesky</div>
         <div class="social-feature-desc">Short, punchy posts with personality. The growing platform for independent creators.</div>
+      </div>
+      <div class="social-feature-card">
+        <img src="logos/x.svg" alt="Twitter/X" class="social-feature-logo">
+        <div class="social-feature-name">Twitter/X</div>
+        <div class="social-feature-desc">Concise, sharp posts that cut through the noise. Built for engagement, not filler.</div>
+      </div>
+      <div class="social-feature-card">
+        <img src="logos/tiktok.svg" alt="TikTok" class="social-feature-logo">
+        <div class="social-feature-name">TikTok</div>
+        <div class="social-feature-desc">Trend-aware captions with relevant hashtags. Reach the next generation of art collectors.</div>
       </div>
     </div>
     <p class="section-sub social-footer-note reveal">
@@ -1948,12 +2034,12 @@
         </div>
         <div>
           <ul class="privacy-bullets">
-            <li><span class="bullet-check">✓</span> Runs entirely on your machine</li>
-            <li><span class="bullet-check">✓</span> API keys stored locally, never transmitted to us</li>
+            <li><span class="bullet-check">✓</span> Runs entirely in your browser — nothing to install</li>
+            <li><span class="bullet-check">✓</span> API keys stored in your encrypted session, never transmitted to us</li>
             <li><span class="bullet-check">✓</span> No cloud dashboard or account required</li>
             <li><span class="bullet-check">✓</span> No analytics, telemetry, or tracking in the app — your drops are private</li>
             <li><span class="bullet-check">✓</span> No data harvesting — ever</li>
-            <li><span class="bullet-check">✓</span> We don't have servers — your files go directly from your machine to your providers</li>
+            <li><span class="bullet-check">✓</span> We don't have servers — your files go directly from your browser to your providers</li>
           </ul>
         </div>
       </div>
@@ -2199,7 +2285,7 @@
         <div class="tstat-label">products processed</div>
       </div>
       <div class="tstat">
-        <div class="tstat-num">3</div>
+        <div class="tstat-num">16</div>
         <div class="tstat-label">POD providers supported</div>
       </div>
       <div class="tstat">
@@ -2223,12 +2309,11 @@
         </div>
         <div class="price-once">one-time purchase · lifetime license</div>
         <div class="pricing-includes">
-          <div class="pi-item"><div class="pi-dot"></div>Mac + Windows desktop app</div>
-          <div class="pi-item"><div class="pi-dot"></div>Web app included — use from any browser</div>
+          <div class="pi-item"><div class="pi-dot"></div>Web app — works in any browser, any device</div>
           <div class="pi-item"><div class="pi-dot"></div>Unlimited artwork drops — no per-drop fees</div>
           <div class="pi-item"><div class="pi-dot"></div>Unlimited product formats — you configure the templates</div>
           <div class="pi-item"><div class="pi-dot"></div>Setup guide included</div>
-          <div class="pi-item"><div class="pi-dot"></div>Activate on up to 2 machines</div>
+          <div class="pi-item"><div class="pi-dot"></div>Activate on up to 2 devices</div>
           <div class="pi-item"><div class="pi-dot"></div>Email support</div>
         </div>
         <div class="pricing-vs">
@@ -2256,10 +2341,15 @@
         <div class="beta-badge">Beta — Launching Soon</div>
         <form name="waitlist" method="POST" data-netlify="true" class="waitlist-form">
           <input type="email" name="email" placeholder="Enter your email for early access" required class="waitlist-input" />
+          <input type="hidden" name="utm_source" value="">
+          <input type="hidden" name="utm_medium" value="">
+          <input type="hidden" name="utm_campaign" value="">
+          <input type="hidden" name="utm_content" value="">
+          <input type="hidden" name="referrer" value="">
           <button type="submit" class="btn-buy">Join the Waitlist</button>
         </form>
         <div class="pricing-note pricing-note--spaced">Be first in line when ArtDrop launches · No credit card required</div>
-        <div class="pricing-note pricing-note--spaced">Try 3 free drops before you buy · No commitment</div>
+        <div class="pricing-note pricing-note--spaced pricing-note--demo"><strong>3 free demo drops</strong> — try ArtDrop before you buy · No commitment</div>
         <div class="pricing-guarantee"><i data-lucide="shield-check" class="icon-shield-inline"></i>14-day satisfaction guarantee. If ArtDrop doesn't work for you, email us for a full refund.</div>
       </div>
     </div>
@@ -2325,49 +2415,18 @@
       }, { threshold: 0.3 });
       termObs.observe(termBody);
     }
+
+    // UTM parameter capture — populates hidden fields on the waitlist form
+    document.addEventListener('DOMContentLoaded', function() {
+        var params = new URLSearchParams(window.location.search);
+        ['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(key) {
+            var field = document.querySelector('input[name="' + key + '"]');
+            if (field && params.get(key)) field.value = params.get(key);
+        });
+        var ref = document.querySelector('input[name="referrer"]');
+        if (ref) ref.value = document.referrer || 'direct';
+    });
 </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "ArtDrop",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "macOS, Windows",
-  "description": "ArtDrop automates print-on-demand publishing. Drop an image — AI analyzes your artwork, writes product copy, creates every product format, and publishes to your store. One action, everything handled.",
-  "url": "https://getartdrop.com",
-  "offers": {
-    "@type": "Offer",
-    "price": "197",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock",
-    "priceValidUntil": "2027-12-31",
-    "description": "One-time purchase. No subscription."
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "StanHattie LLC"
-  }
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "ArtDrop",
-  "url": "https://getartdrop.com",
-  "description": "ArtDrop automates print-on-demand publishing for artists. Drop an image — AI writes copy, creates products, publishes to your Shopify store. $197 one-time.",
-  "publisher": {
-    "@type": "Organization",
-    "name": "ArtDrop",
-    "url": "https://getartdrop.com",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://getartdrop.com/og-image.png"
-    }
-  }
-}
-</script>
 </body>
 </html><!-- deploy -->

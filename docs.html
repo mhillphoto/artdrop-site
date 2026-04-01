@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ArtDrop Documentation — Setup Guide for Shopify POD Automation</title>
-  <meta name="description" content="ArtDrop setup guide: connect Shopify, Gelato, Printful, Printify, Backblaze, and Anthropic. Configure product templates and brand voice. Setup takes 30–60 minutes.">
-  <meta property="og:title" content="Docs — ArtDrop">
-  <meta property="og:description" content="ArtDrop setup guide: connect Shopify, Gelato, Printful, Printify, Backblaze, and Anthropic. Configure product templates and brand voice.">
-  <meta property="og:url" content="https://getartdrop.com/docs.html">
+  <title>ArtDrop Docs — Setup Guide for Print-on-Demand Automation</title>
+  <meta name="description" content="ArtDrop setup guide: connect your storefront, POD providers (16 supported), Backblaze, and Anthropic. Configure templates and brand voice. Setup takes 30–60 minutes.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="ArtDrop Docs — Setup Guide for Print-on-Demand Automation">
+  <meta property="og:description" content="ArtDrop setup guide: connect your storefront and POD providers (16 supported — Gelato, Printful, Printify, Prodigi, and more). Configure templates and brand voice.">
+  <meta property="og:url" content="https://getartdrop.com/docs">
   <meta property="og:image" content="https://getartdrop.com/og-image.png">
   <meta property="og:type" content="website">
-  <link rel="canonical" href="https://getartdrop.com/docs.html">
+  <meta property="og:site_name" content="ArtDrop">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ArtDrop Docs — Setup Guide for Print-on-Demand Automation">
+  <meta name="twitter:description" content="ArtDrop setup guide: connect your storefront and 16 supported POD providers. Configure templates and brand voice. Setup in 30–60 minutes.">
+  <meta name="twitter:image" content="https://getartdrop.com/og-image.png">
+  <link rel="canonical" href="https://getartdrop.com/docs">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1a2e'/%3E%3Ctext x='16' y='23' font-family='sans-serif' font-size='22' font-weight='bold' fill='%23bfff5e' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
   <!-- Microsoft Clarity analytics -->
   <script type="text/javascript">
@@ -142,14 +148,14 @@
 
       <div class="sidebar-section">Troubleshooting</div>
       <a href="#troubleshoot">Common issues</a>
-      <a href="#license">License &amp; machines</a>
+      <a href="#license">License &amp; devices</a>
     </aside>
 
     <main id="main-content" class="doc-content">
 
       <div class="doc-label">// Documentation</div>
       <h1>Setup &amp; <em>user guide.</em></h1>
-      <p>Everything you need to go from download to live products. Setup takes about 30–60 minutes.</p>
+      <p>Everything you need to go from sign-in to live products. Setup takes about 30–60 minutes.</p>
 
       <!-- BEFORE YOU BEGIN -->
       <h2 id="before-you-begin">Before you begin</h2>
@@ -158,8 +164,8 @@
       <div class="step-block">
         <div class="step-num">1</div>
         <div class="step-body">
-          <h3>A print provider — Gelato, Printful, or Printify (at least one)</h3>
-          <p>This is who prints and ships your products. <a href="https://gelato.com">gelato.com</a>, <a href="https://printful.com">printful.com</a>, or <a href="https://printify.com">printify.com</a> — all three have free accounts. You can use one, two, or all three.</p>
+          <h3>A print provider — at least one (16 supported)</h3>
+          <p>This is who prints and ships your products. ArtDrop supports 16 POD providers: <a href="https://gelato.com">Gelato</a>, <a href="https://printful.com">Printful</a>, <a href="https://printify.com">Printify</a>, <a href="https://prodigi.com">Prodigi</a>, Gooten, JetPrint, ShineOn, CustomCat, Fourthwall, ScalablePress, Lulu xPress, Fine Art America, Contrado, SPOD, TPOP, and Printrove. All have free accounts. You can connect any combination — start with one and add more later.</p>
         </div>
       </div>
       <div class="step-block">
@@ -186,7 +192,7 @@
 
       <!-- STEP 1 -->
       <h2 id="step1">Step 1 — Print Providers</h2>
-      <p>Connect ArtDrop to the print providers you want to use. You need at least one — Gelato, Printful, Printify, or any combination.</p>
+      <p>Connect ArtDrop to the print providers you want to use. You need at least one. ArtDrop supports 16 providers — connect any combination. Below are setup instructions for the most popular ones; the Settings wizard covers all 16 with inline guidance.</p>
 
       <h3>Gelato</h3>
       <p>In Gelato: click your profile icon → <strong>Developer → API Keys → Generate Key</strong>. Copy the full key. ArtDrop will automatically find your stores once you paste the key in.</p>
@@ -198,7 +204,7 @@
       <p>In Printify: go to <strong>My Account → Connections → Generate API token</strong>. Copy the token. Your Shop ID is in the URL when you visit your shop — looks like <code>/shop/12345678/dashboard</code>.</p>
 
       <div class="callout">
-        <strong>Tip:</strong> You can use any combination of Gelato, Printful, and Printify. Each one you connect will get its own product templates in Step 5. Leave a provider blank to skip it.
+        <strong>Tip:</strong> You can use any combination of all 16 supported providers. Each one you connect will get its own product templates in Step 5. Leave a provider blank to skip it.
       </div>
 
       <!-- STEP 2 -->
@@ -274,7 +280,7 @@
       <p>Optional but powerful. Set the tone of voice, tell the AI what to focus on, give it examples of good copy, and list words you never want used. Leave any field blank to use ArtDrop's defaults.</p>
 
       <div class="callout">
-        <strong>Tip:</strong> You can download and upload your voice configuration as a file. This makes it easy to back up your settings or share them between machines.
+        <strong>Tip:</strong> You can download and upload your voice configuration as a file. This makes it easy to back up your settings or share them between devices.
       </div>
 
       <h3>Voice Trainer — the easier way</h3>
@@ -319,8 +325,8 @@
       <p>The final step tests all your connections. ArtDrop checks every service you configured and shows you a green or red status for each one.</p>
       <ul>
         <li>Anthropic and Backblaze must pass — they're always required</li>
-        <li>At least one print provider must pass (Gelato, Printful, or Printify)</li>
-        <li>At least one storefront must pass (Shopify)</li>
+        <li>At least one print provider must pass (any of the 16 supported providers)</li>
+        <li>At least one storefront must pass (Shopify, Etsy, WooCommerce, or others)</li>
       </ul>
       <p>If something fails, the error message tells you what's wrong. Go back to the relevant step, fix it, and test again. Once everything is green, click <strong>Finish Setup</strong> and you're ready to drop your first file.</p>
 
@@ -413,11 +419,11 @@
       </ul>
 
       <!-- LICENSE -->
-      <h2 id="license">License &amp; machines</h2>
-      <p>Your license covers up to <strong>2 machines</strong>. To move to a new computer, open ArtDrop on the old machine → <strong>License</strong> tab → <strong>Transfer Machine</strong>. Then activate on the new machine with the same key.</p>
-      <p>If you can't access the old machine, email support@getartdrop.com and we'll reset it for you.</p>
+      <h2 id="license">License &amp; devices</h2>
+      <p>Your license covers up to <strong>2 devices</strong>. To move to a new device, open ArtDrop on the old device → <strong>License</strong> tab → <strong>Transfer Device</strong>. Then activate on the new device with the same key.</p>
+      <p>If you can't access the old device, email support@getartdrop.com and we'll reset it for you.</p>
 
-      <p class="doc-footnote">Still have questions? See the <a href="/faq.html">FAQ</a> for common setup and compatibility questions.</p>
+      <p class="doc-footnote">Still have questions? See the <a href="/faq">FAQ</a> for common setup and compatibility questions.</p>
 
     </main>
   </div>
@@ -428,10 +434,10 @@
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "url": "https://getartdrop.com/docs.html",
+  "url": "https://getartdrop.com/docs",
   "name": "ArtDrop Setup Guide",
-  "headline": "ArtDrop Documentation — Setup Guide for Shopify POD Automation",
-  "description": "ArtDrop setup guide: connect Shopify, Gelato, Printful, Printify, Backblaze, and Anthropic. Configure product templates and brand voice. Setup takes 30–60 minutes.",
+  "headline": "ArtDrop Docs — Setup Guide for Print-on-Demand Automation",
+  "description": "ArtDrop setup guide: connect your storefront and POD providers (16 supported — Gelato, Printful, Printify, Prodigi, and more), Backblaze, and Anthropic. Configure product templates and brand voice. Setup takes 30–60 minutes.",
   "author": {
     "@type": "Organization",
     "name": "ArtDrop",
@@ -444,7 +450,7 @@
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://getartdrop.com/docs.html"
+    "@id": "https://getartdrop.com/docs"
   }
 }
 </script>
