@@ -739,19 +739,12 @@
         <div class="persona-type">Astrophotography — Flagstaff, AZ</div>
         <div class="persona-why">Mostly-dark images, specialized EXIF, scientific+poetic voice. Hardest test for the AI.</div>
       </div>
-      <div class="persona-card" onclick="selectPersona(this, 'Priya Menon')" data-persona="priya">
-        <div class="persona-name">Priya Menon</div>
-        <div class="persona-store">Menon Studio</div>
-        <div class="persona-tagline">Form and feeling. Nothing else.</div>
-        <div class="persona-type">Minimalist / abstract art — Brooklyn, NY</div>
-        <div class="persona-why">Non-representational work, sparse curatorial voice. Hardest copy challenge — no subject, no scene.</div>
-      </div>
-      <div class="persona-card" onclick="selectPersona(this, 'Tomás Rivera')" data-persona="tomas">
-        <div class="persona-name">Tomás Rivera</div>
-        <div class="persona-store">Tomas Rivera Art</div>
-        <div class="persona-tagline">Bold worlds. Limited runs.</div>
-        <div class="persona-type">Digital illustration / character design — Austin, TX</div>
-        <div class="persona-why">Fictional characters, no EXIF, fandom-fluent voice. Tests stickers, cases, and apparel heavily.</div>
+      <div class="persona-card" onclick="selectPersona(this, 'Own Artwork')" data-persona="own" style="border-style: dashed;">
+        <div class="persona-name">Own Artwork</div>
+        <div class="persona-store">Your own store</div>
+        <div class="persona-tagline">Test with your real art.</div>
+        <div class="persona-type">Use your own images and style</div>
+        <div class="persona-why">Available after completing one persona test. Lets you see how ArtDrop handles your actual work.</div>
       </div>
     </div>
   </div>
@@ -869,7 +862,7 @@
   <div class="section">
     <div class="section-label">3 — Test Images</div>
     <p class="section-desc">You'll need 3–5 images that match your persona's art style. Use high-resolution files (.tif, .png, or .jpg). These will be "dropped" into ArtDrop to trigger the full pipeline.</p>
-    <p class="section-desc">Find images that fit your persona — watercolor botanicals for Elena, bold geometric designs for Marcus, golden-hour portraits for Janelle, deep-sky astrophotos for David, minimal abstract for Priya, illustrated characters for Tomás. Stock images are fine, or use your own work if it fits the style.</p>
+    <p class="section-desc">Find images that fit your persona — watercolor botanicals for Elena, bold geometric designs for Marcus, golden-hour portraits for Janelle, deep-sky astrophotos for David. Stock images are fine, or use your own work if it fits the style.</p>
     <p class="section-desc">Free sources:</p>
     <ul class="image-sources">
       <li>
@@ -878,7 +871,7 @@
       </li>
       <li>
         <a href="https://www.rawpixel.com/public-domain" target="_blank" rel="noopener">Rawpixel Public Domain</a>
-        <span class="source-desc">— illustration, watercolor, botanical (great for Elena, Priya)</span>
+        <span class="source-desc">— illustration, watercolor, botanical (great for Elena)</span>
       </li>
       <li>
         <a href="https://images.nasa.gov" target="_blank" rel="noopener">NASA Image Gallery</a>
@@ -1017,12 +1010,11 @@
               <option value="Rachel Hill">Rachel Hill</option>
             </optgroup>
             <optgroup label="Personas">
-              <option value="Elena Vasquez — Verdant Studio">Elena Vasquez</option>
-              <option value="Marcus Cole — Cole Works">Marcus Cole</option>
-              <option value="Janelle Torres — Torres Gallery">Janelle Torres</option>
-              <option value="David Okonkwo — Dark Sky Prints">David Okonkwo</option>
-              <option value="Priya Menon — Menon Studio">Priya Menon</option>
-              <option value="Tomás Rivera — Tomas Rivera Art">Tomás Rivera</option>
+              <option value="Elena Vasquez">Elena Vasquez</option>
+              <option value="Marcus Cole">Marcus Cole</option>
+              <option value="Janelle Torres">Janelle Torres</option>
+              <option value="David Okonkwo">David Okonkwo</option>
+              <option value="Own Artwork">Own Artwork</option>
             </optgroup>
           </select>
         </div>
@@ -1259,8 +1251,15 @@ function escapeHtml(str) {
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-// ── PERSONA SELECTION ───────────────────────
-function selectPersona(card, name) {
+// ── PERSONA SELECTION (server-side locking) ───────────────────────
+async function selectPersona(card, name) {
+  var testerName = sessionStorage.getItem('artdrop-tester-name');
+  if (!testerName) {
+    alert('Please log in first.');
+    return;
+  }
+
+  // Optimistic UI
   document.querySelectorAll('.persona-card').forEach(function(c) {
     c.classList.remove('selected');
     c.classList.add('dimmed');
@@ -1268,52 +1267,150 @@ function selectPersona(card, name) {
   card.classList.remove('dimmed');
   card.classList.add('selected');
 
-  // Sync form dropdown
-  var sel = document.getElementById('form-persona');
-  for (var i = 0; i < sel.options.length; i++) {
-    if (sel.options[i].text === name || sel.options[i].value.indexOf(name) === 0) {
-      sel.selectedIndex = i;
-      break;
+  try {
+    var res = await fetch('/.netlify/functions/claim-persona', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tester: testerName, persona: name })
+    });
+    var data = await res.json();
+
+    if (data.ok) {
+      // Sync form dropdown
+      var sel = document.getElementById('form-persona');
+      for (var i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].text === name || sel.options[i].value.indexOf(name) === 0) {
+          sel.selectedIndex = i;
+          break;
+        }
+      }
+      var credsSection = document.getElementById('credentials-section');
+      credsSection.classList.add('active');
+      credsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      sessionStorage.setItem('artdrop-persona', name);
+      loadStatusDashboard();
+    } else {
+      // Revert UI
+      card.classList.remove('selected');
+      document.querySelectorAll('.persona-card').forEach(function(c) { c.classList.remove('dimmed'); });
+      var prev = sessionStorage.getItem('artdrop-persona');
+      if (prev) restorePersistedIdentity();
+      alert(data.error || 'Could not claim this persona — it may already be taken.');
     }
+  } catch (err) {
+    // Fallback to client-side
+    console.warn('claim-persona failed, using fallback:', err);
+    var sel = document.getElementById('form-persona');
+    for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].text === name || sel.options[i].value.indexOf(name) === 0) {
+        sel.selectedIndex = i;
+        break;
+      }
+    }
+    var credsSection = document.getElementById('credentials-section');
+    credsSection.classList.add('active');
+    credsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    sessionStorage.setItem('artdrop-persona', name);
   }
-
-  // Unlock credentials section
-  var credsSection = document.getElementById('credentials-section');
-  credsSection.classList.add('active');
-
-  // Smooth-scroll to credentials
-  credsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  // Persist to sessionStorage
-  sessionStorage.setItem('artdrop-persona', name);
 }
 
-// ── FEEDBACK FORM (NETLIFY) ──────────────────
+// ── STATUS DASHBOARD ──────────────────────────
+async function loadStatusDashboard() {
+  try {
+    var res = await fetch('/.netlify/functions/get-status');
+    var data = await res.json();
+    var personas = data.personas || {};
+    var currentTester = sessionStorage.getItem('artdrop-tester-name');
+
+    document.querySelectorAll('.persona-card').forEach(function(card) {
+      var nameEl = card.querySelector('.persona-name');
+      if (!nameEl) return;
+      var pName = nameEl.textContent.trim();
+      var holder = personas[pName];
+
+      var existingBadge = card.querySelector('.claim-badge');
+      if (existingBadge) existingBadge.remove();
+
+      if (holder && holder !== currentTester) {
+        var badge = document.createElement('div');
+        badge.className = 'claim-badge';
+        badge.style.cssText = 'font-family: var(--mono); font-size: 12px; color: #ff5f57; margin-top: 6px;';
+        badge.textContent = 'Claimed by ' + holder;
+        card.appendChild(badge);
+        card.style.opacity = '0.5';
+        card.style.pointerEvents = 'none';
+      } else if (holder === currentTester) {
+        var badge = document.createElement('div');
+        badge.className = 'claim-badge';
+        badge.style.cssText = 'font-family: var(--mono); font-size: 12px; color: #28c840; margin-top: 6px;';
+        badge.textContent = 'Your claim';
+        card.appendChild(badge);
+        card.style.opacity = '';
+        card.style.pointerEvents = '';
+      } else {
+        card.style.opacity = '';
+        card.style.pointerEvents = '';
+      }
+    });
+  } catch (err) {
+    console.warn('get-status failed:', err);
+  }
+}
+
+// ── FEEDBACK FORM (server function + Netlify fallback) ──────────────────
 var form = document.getElementById('feedback-form');
 if (form) {
-  form.addEventListener('submit', function(e) {
+  form.addEventListener('submit', async function(e) {
     e.preventDefault();
-    var formData = new FormData(form);
-    fetch('/', { method: 'POST', body: formData })
-      .then(function(response) {
-        if (response.ok) {
+    var testerName = sessionStorage.getItem('artdrop-tester-name')
+      || (document.getElementById('tester-name-input') || {}).value || '';
+    var personaSel = document.getElementById('form-persona');
+    var personaVal = personaSel ? personaSel.options[personaSel.selectedIndex].text : '';
+    var areaSel = form.querySelector('[name="area"]');
+    var severitySel = form.querySelector('[name="severity"]');
+    var descEl = form.querySelector('[name="description"]');
+    var deviceEl = form.querySelector('[name="device"]');
+
+    var payload = {
+      tester: testerName,
+      persona: personaVal,
+      area: areaSel ? areaSel.value : '',
+      severity: severitySel ? severitySel.value : '',
+      description: descEl ? descEl.value : '',
+      device: deviceEl ? deviceEl.value : ''
+    };
+
+    try {
+      var res = await fetch('/.netlify/functions/submit-feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      var data = await res.json();
+      if (data.ok) {
+        var count = parseInt(sessionStorage.getItem('artdrop-submit-count') || '0', 10) + 1;
+        sessionStorage.setItem('artdrop-submit-count', String(count));
+        updateSubmissionCounter(count);
+        form.style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        alert(data.error || 'Something went wrong. Try again or text Michael.');
+      }
+    } catch (err) {
+      // Fallback to Netlify Forms
+      console.warn('submit-feedback function failed, falling back:', err);
+      try {
+        var formData = new FormData(form);
+        var fbRes = await fetch('/', { method: 'POST', body: formData });
+        if (fbRes.ok) {
           var count = parseInt(sessionStorage.getItem('artdrop-submit-count') || '0', 10) + 1;
           sessionStorage.setItem('artdrop-submit-count', String(count));
           updateSubmissionCounter(count);
           form.style.display = 'none';
           document.getElementById('form-success').style.display = 'block';
-          // Persist tester name from feedback form in case they typed it there
-          var nameInput = document.getElementById('tester-name-input');
-          if (nameInput && nameInput.value) {
-            sessionStorage.setItem('artdrop-tester-name', nameInput.value);
-          }
-        } else {
-          alert('Something went wrong. Try again or text Michael.');
-        }
-      })
-      .catch(function() {
-        alert('Network error. Try again or text Michael.');
-      });
+        } else { alert('Something went wrong. Try again or text Michael.'); }
+      } catch (e2) { alert('Network error. Try again or text Michael.'); }
+    }
   });
 }
 
@@ -1476,6 +1573,7 @@ function restoreCheckboxes() {
     restorePersistedIdentity();
     restoreCheckboxes();
     initShareSection();
+    loadStatusDashboard();
 
     var count = parseInt(sessionStorage.getItem('artdrop-submit-count') || '0', 10);
     if (count > 0) updateSubmissionCounter(count);
@@ -1503,19 +1601,51 @@ function restoreCheckboxes() {
     return arr.map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
   }
 
-  function tryUnlock() {
+  async function tryUnlock() {
     var pw = input.value.trim();
     if (!pw) return;
-    checkPassword(pw).then(function(hash) {
-      if (hash === HASH) {
+    input.disabled = true;
+
+    try {
+      // Try server-side auth first — gives us tester identity + claimed persona
+      var res = await fetch('/.netlify/functions/tester-auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: pw })
+      });
+      var data = await res.json();
+
+      if (data.ok) {
         sessionStorage.setItem('artdrop-beta-auth', 'ok');
+        sessionStorage.setItem('artdrop-tester-name', data.tester);
+        if (data.claimed_persona) {
+          sessionStorage.setItem('artdrop-persona', data.claimed_persona);
+        }
+        // Pre-fill tester identity for registration
+        var testerData = getTesterData();
+        if (!testerData || !testerData.name) {
+          saveTesterData({ name: data.tester, email: '', referrer: '', registeredAt: new Date().toISOString() });
+        }
         unlockPage();
-      } else {
-        input.classList.add('wrong');
-        input.value = '';
-        setTimeout(function() { input.classList.remove('wrong'); }, 400);
+        loadStatusDashboard();
+        input.disabled = false;
+        return;
       }
-    });
+    } catch (err) {
+      console.warn('tester-auth unavailable, falling back to client-side:', err);
+    }
+
+    // Fallback to client-side hash check
+    var hash = await checkPassword(pw);
+    if (hash === HASH) {
+      sessionStorage.setItem('artdrop-beta-auth', 'ok');
+      unlockPage();
+    } else {
+      input.classList.add('wrong');
+      input.value = '';
+      setTimeout(function() { input.classList.remove('wrong'); }, 400);
+    }
+    input.disabled = false;
   }
 
   input.addEventListener('keydown', function(e) {

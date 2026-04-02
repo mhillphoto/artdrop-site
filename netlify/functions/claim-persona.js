@@ -28,7 +28,7 @@ const VALID_PERSONAS = new Set([
 ]);
 
 // ── Valid tester names ─────────────────────────────────────────────────────
-const VALID_TESTERS = new Set(["Kim", "Cassidy", "Marshall", "Mark", "Lisa", "Michael"]);
+const VALID_TESTERS = new Set(["Kim", "Cassidy", "Marshall", "Mark", "Lisa", "Jen", "Michael"]);
 
 // ── CORS headers ───────────────────────────────────────────────────────────
 const CORS = {

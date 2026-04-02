@@ -31,7 +31,7 @@ const ALL_PERSONAS = [
   "Own Artwork",
 ];
 
-const ALL_TESTERS = ["Kim", "Cassidy", "Marshall", "Mark", "Lisa", "Michael"];
+const ALL_TESTERS = ["Kim", "Cassidy", "Marshall", "Mark", "Lisa", "Jen", "Michael"];
 
 // ── CORS headers ───────────────────────────────────────────────────────────
 const CORS = {

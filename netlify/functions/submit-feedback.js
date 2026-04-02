@@ -29,7 +29,7 @@
 import { getStore } from "@netlify/blobs";
 
 // ── Valid field values ─────────────────────────────────────────────────────
-const VALID_TESTERS = new Set(["Kim", "Cassidy", "Marshall", "Mark", "Lisa", "Michael"]);
+const VALID_TESTERS = new Set(["Kim", "Cassidy", "Marshall", "Mark", "Lisa", "Jen", "Michael"]);
 
 const VALID_AREAS = new Set([
   "First Launch",

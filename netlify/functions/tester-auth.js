@@ -19,7 +19,7 @@ const TESTERS = {
   cassidy:  "Cassidy",
   marshall: "Marshall",
   mark:     "Mark",
-  elisa:    "Elisa",
+  lisa:     "Lisa",
   jen:      "Jen",
   michael:  "Michael", // admin
 };
