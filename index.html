@@ -1387,6 +1387,70 @@
       .social-feature-grid { grid-template-columns: 1fr; }
     }
 
+    /* ── LANGUAGE TOGGLE ──────────────────────────────── */
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      background: none;
+      border: 1px solid var(--border-bright);
+      border-radius: 4px;
+      padding: 0;
+      cursor: pointer;
+      overflow: hidden;
+      transition: border-color 0.2s;
+      flex-shrink: 0;
+    }
+    .lang-toggle:hover { border-color: var(--lime); }
+
+    .lang-toggle-track {
+      display: flex;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+    }
+
+    .lang-label-en,
+    .lang-label-es {
+      padding: 7px 10px;
+      transition: background 0.15s, color 0.15s;
+      line-height: 1;
+      color: var(--muted);
+    }
+
+    /* Default state: EN is active */
+    .lang-label-en {
+      background: var(--lime);
+      color: var(--bg);
+    }
+    .lang-label-es {
+      background: transparent;
+      color: var(--muted);
+    }
+
+    /* ES active state */
+    .lang-toggle--es .lang-label-en {
+      background: transparent;
+      color: var(--muted);
+    }
+    .lang-toggle--es .lang-label-es {
+      background: var(--lime);
+      color: var(--bg);
+    }
+
+    @media (max-width: 767px) {
+      .lang-toggle {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 200;
+        border-color: var(--border-bright);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        background: var(--bg2);
+      }
+      .lang-label-en, .lang-label-es { padding: 9px 12px; font-size: 12px; }
+    }
+
     /* ── Accessibility ──────────────────────────────── */
     :focus-visible {
       outline: 2px solid var(--lime);
@@ -1484,6 +1548,7 @@
 
   <!-- NAV -->
   <header id="site-nav"></header>
+  <script src="/translations.js"></script>
   <script src="/nav.js"></script>
 
   <main id="main-content">
@@ -1494,20 +1559,20 @@
   <section class="hero">
     <div class="hero-content">
       <h1 class="sr-only">ArtDrop — Automated Print-on-Demand Publishing Software</h1>
-      <p class="hero-label">// Automated Print-on-Demand Publishing</p>
-      <h2 class="hero-headline">
+      <p class="hero-label" data-i18n="hero.label">// Automated Print-on-Demand Publishing</p>
+      <h2 class="hero-headline" data-i18n="hero.headline">
         Drop a file.<br>
         <em>Done.</em>
       </h2>
-      <p class="hero-sub">
+      <p class="hero-sub" data-i18n="hero.sub">
         Drop an image. That's it. ArtDrop analyzes your artwork — colors, composition, mood, subject — then writes the copy, creates every product format you sell, publishes everything to your store, and posts to all your socials. Store organization, SEO, alt text — all of it. Configure once. Every drop after that is automatic. Works in any browser on any device — nothing to install.
       </p>
       <div class="hero-actions">
         <a href="#pricing" class="btn-primary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline></svg>
-          Get ArtDrop™
+          <span data-i18n="hero.cta">Get ArtDrop™</span>
         </a>
-        <span class="hero-price"><strong>$197</strong> &nbsp;one-time · Works on any device</span>
+        <span class="hero-price" data-i18n="hero.price"><strong>$197</strong> &nbsp;one-time · Works on any device</span>
       </div>
     </div>
   </section>
@@ -1615,55 +1680,55 @@
 
   <!-- HOW IT WORKS -->
   <section class="section">
-    <div class="section-label">// How it works</div>
-    <h2 class="section-title reveal">Drop a file. Everything else is automatic.</h2>
+    <div class="section-label" data-i18n="how.label">// How it works</div>
+    <h2 class="section-title reveal" data-i18n="how.title">Drop a file. Everything else is automatic.</h2>
     <div class="steps reveal">
       <div class="step">
-        <div class="step-num">01 / DETECT</div>
-        <div class="step-title">Drop your files</div>
-        <div class="step-desc">ArtDrop watches your incoming folder. Drop one file or a hundred — PNG, JPG, or TIF. ArtDrop processes them all, sequentially and reliably, without supervision. That's the entire workflow on your end.</div>
+        <div class="step-num" data-i18n="step.01.num">01 / DETECT</div>
+        <div class="step-title" data-i18n="step.01.title">Drop your files</div>
+        <div class="step-desc" data-i18n="step.01.desc">ArtDrop watches your incoming folder. Drop one file or a hundred — PNG, JPG, or TIF. ArtDrop processes them all, sequentially and reliably, without supervision. That's the entire workflow on your end.</div>
       </div>
       <div class="step">
-        <div class="step-num">02 / ANALYZE</div>
-        <div class="step-title">AI reads the image</div>
-        <div class="step-desc">AI studies your artwork — colors, composition, mood, subject matter. It looks at what's actually in the piece, not just guessing from a filename.</div>
+        <div class="step-num" data-i18n="step.02.num">02 / ANALYZE</div>
+        <div class="step-title" data-i18n="step.02.title">AI reads the image</div>
+        <div class="step-desc" data-i18n="step.02.desc">AI studies your artwork — colors, composition, mood, subject matter. It looks at what's actually in the piece, not just guessing from a filename.</div>
       </div>
       <div class="step">
-        <div class="step-num">03 / WRITE</div>
-        <div class="step-title">Copy generated</div>
-        <div class="step-desc">Title, description, SEO tags — all written to match your brand voice. Use the built-in Voice Trainer to teach ArtDrop how you talk about your work — no prompt engineering required. No generic AI slop. No duplicates.</div>
+        <div class="step-num" data-i18n="step.03.num">03 / WRITE</div>
+        <div class="step-title" data-i18n="step.03.title">Copy generated</div>
+        <div class="step-desc" data-i18n="step.03.desc">Title, description, SEO tags — all written to match your brand voice. Use the built-in Voice Trainer to teach ArtDrop how you talk about your work — no prompt engineering required. No generic AI slop. No duplicates.</div>
       </div>
       <div class="step">
-        <div class="step-num">04 / BUILD</div>
-        <div class="step-title">Every product created</div>
-        <div class="step-desc">Your print providers create every product format you've set up — all running simultaneously. Whatever templates you've configured: posters, canvases, phone cases — all from your setup. Nothing to touch.</div>
+        <div class="step-num" data-i18n="step.04.num">04 / BUILD</div>
+        <div class="step-title" data-i18n="step.04.title">Every product created</div>
+        <div class="step-desc" data-i18n="step.04.desc">Your print providers create every product format you've set up — all running simultaneously. Whatever templates you've configured: posters, canvases, phone cases — all from your setup. Nothing to touch.</div>
       </div>
       <div class="step">
-        <div class="step-num">05 / PUBLISH</div>
-        <div class="step-title">Your store goes live</div>
-        <div class="step-desc">All products published to the right categories in your store — with SEO title, description, alt text, and tags. Full audit log so you know exactly what was created.</div>
+        <div class="step-num" data-i18n="step.05.num">05 / PUBLISH</div>
+        <div class="step-title" data-i18n="step.05.title">Your store goes live</div>
+        <div class="step-desc" data-i18n="step.05.desc">All products published to the right categories in your store — with SEO title, description, alt text, and tags. Full audit log so you know exactly what was created.</div>
       </div>
       <div class="step">
-        <div class="step-num">06 / COMPLETE</div>
-        <div class="step-title">Fully automated</div>
-        <div class="step-desc">Each file takes a few minutes. Drop your whole portfolio before bed, wake up to a full catalog — every product live in the right store category with professional copy, SEO, and tags. Nothing left to do.</div>
+        <div class="step-num" data-i18n="step.06.num">06 / COMPLETE</div>
+        <div class="step-title" data-i18n="step.06.title">Fully automated</div>
+        <div class="step-desc" data-i18n="step.06.desc">Each file takes a few minutes. Drop your whole portfolio before bed, wake up to a full catalog — every product live in the right store category with professional copy, SEO, and tags. Nothing left to do.</div>
       </div>
     </div>
   </section>
 
   <!-- SET IT UP ONCE -->
   <section class="section">
-    <div class="section-label">// One-time setup</div>
+    <div class="section-label" data-i18n="setup.label">// One-time setup</div>
     <div class="setup-callout reveal">
-      <h3>Set it up once</h3>
-      <p>Configure your products, connect your store, and train your voice — one time. Every drop after that is fully automatic. Drop one file or an entire portfolio. No touching templates, no re-entering settings, no babysitting.</p>
+      <h3 data-i18n="setup.title">Set it up once</h3>
+      <p data-i18n="setup.desc">Configure your products, connect your store, and train your voice — one time. Every drop after that is fully automatic. Drop one file or an entire portfolio. No touching templates, no re-entering settings, no babysitting.</p>
     </div>
   </section>
 
   <!-- WHAT GETS CREATED -->
   <section class="section">
-    <div class="section-label">// What gets created</div>
-    <h2 class="section-title reveal">One drop.<br>Every format you sell.</h2>
+    <div class="section-label" data-i18n="products.label">// What gets created</div>
+    <h2 class="section-title reveal" data-i18n="products.title">One drop.<br>Every format you sell.</h2>
     <div class="products-grid reveal" id="products-grid">
       <div class="product-card"><div class="product-icon"><i data-lucide="image"></i></div><div class="product-name">Fine Art Poster</div><div class="product-detail">Museum-quality print paper</div></div>
       <div class="product-card"><div class="product-icon"><i data-lucide="gem"></i></div><div class="product-name">Acrylic Print</div><div class="product-detail">Face-mounted, 4mm thickness</div></div>
@@ -1762,77 +1827,77 @@
 
   <!-- FEATURES -->
   <section class="section">
-    <div class="section-label">// What's automated</div>
-    <h2 class="section-title reveal">All of this happens<br>after you drop your artwork.</h2>
+    <div class="section-label" data-i18n="features.label">// What's automated</div>
+    <h2 class="section-title reveal" data-i18n="features.title">All of this happens<br>after you drop your artwork.</h2>
     <div class="features-list reveal">
       <div class="feature">
         <div class="feature-check"><i data-lucide="pen-tool"></i></div>
         <div class="feature-text">
-          <div class="feature-title">AI-written product copy</div>
-          <div class="feature-desc">Title, description, and SEO — written to match the specific visual language of each piece. Not boilerplate.</div>
+          <div class="feature-title" data-i18n="feature.copy.title">AI-written product copy</div>
+          <div class="feature-desc" data-i18n="feature.copy.desc">Title, description, and SEO — written to match the specific visual language of each piece. Not boilerplate.</div>
         </div>
       </div>
       <div class="feature">
         <div class="feature-check"><i data-lucide="camera"></i></div>
         <div class="feature-text">
-          <div class="feature-title">Tech specs from EXIF</div>
-          <div class="feature-desc">Camera, lens, focal length, shutter, aperture, ISO, resolution, DPI — pulled from the file itself. No manual input.</div>
+          <div class="feature-title" data-i18n="feature.exif.title">Tech specs from EXIF</div>
+          <div class="feature-desc" data-i18n="feature.exif.desc">Camera, lens, focal length, shutter, aperture, ISO, resolution, DPI — pulled from the file itself. No manual input.</div>
         </div>
       </div>
       <div class="feature">
         <div class="feature-check"><i data-lucide="search"></i></div>
         <div class="feature-text">
-          <div class="feature-title">Full store SEO</div>
-          <div class="feature-desc">SEO title, meta description, alt text, product tags — all set automatically for every product.</div>
+          <div class="feature-title" data-i18n="feature.seo.title">Full store SEO</div>
+          <div class="feature-desc" data-i18n="feature.seo.desc">SEO title, meta description, alt text, product tags — all set automatically for every product.</div>
         </div>
       </div>
       <div class="feature">
         <div class="feature-check"><i data-lucide="layout-grid"></i></div>
         <div class="feature-text">
-          <div class="feature-title">Store organization</div>
-          <div class="feature-desc">Every product placed in the right category — posters under Wall Art, cases under Phone Cases. Your store stays organized without you touching it.</div>
+          <div class="feature-title" data-i18n="feature.org.title">Store organization</div>
+          <div class="feature-desc" data-i18n="feature.org.desc">Every product placed in the right category — posters under Wall Art, cases under Phone Cases. Your store stays organized without you touching it.</div>
         </div>
       </div>
       <div class="feature">
         <div class="feature-check"><i data-lucide="tags"></i></div>
         <div class="feature-text">
-          <div class="feature-title">Comprehensive tagging</div>
-          <div class="feature-desc">Style, color, mood, category, format — every product tagged automatically for filtering and search in your store.</div>
+          <div class="feature-title" data-i18n="feature.tags.title">Comprehensive tagging</div>
+          <div class="feature-desc" data-i18n="feature.tags.desc">Style, color, mood, category, format — every product tagged automatically for filtering and search in your store.</div>
         </div>
       </div>
       <div class="feature">
         <div class="feature-check"><i data-lucide="file-spreadsheet"></i></div>
         <div class="feature-text">
-          <div class="feature-title">Excel audit log</div>
-          <div class="feature-desc">Every product logged with thumbnail, all metadata, and timestamps. Full traceable record of everything created.</div>
+          <div class="feature-title" data-i18n="feature.log.title">Excel audit log</div>
+          <div class="feature-desc" data-i18n="feature.log.desc">Every product logged with thumbnail, all metadata, and timestamps. Full traceable record of everything created.</div>
         </div>
       </div>
       <div class="feature">
         <div class="feature-check"><i data-lucide="settings"></i></div>
         <div class="feature-text">
-          <div class="feature-title">Guided setup wizard</div>
-          <div class="feature-desc">Step-by-step setup walks you through connecting your accounts, configuring templates, and customizing your brand voice. Validates everything live before saving.</div>
+          <div class="feature-title" data-i18n="feature.wizard.title">Guided setup wizard</div>
+          <div class="feature-desc" data-i18n="feature.wizard.desc">Step-by-step setup walks you through connecting your accounts, configuring templates, and customizing your brand voice. Validates everything live before saving.</div>
         </div>
       </div>
       <div class="feature">
         <div class="feature-check"><i data-lucide="mic"></i></div>
         <div class="feature-text">
-          <div class="feature-title">Interactive Voice Trainer</div>
-          <div class="feature-desc">Don't write prompt rules — just react. Drop an image, see the AI copy, say what you'd change in plain English. ArtDrop learns your style and saves the rules for you.</div>
+          <div class="feature-title" data-i18n="feature.voice.title">Interactive Voice Trainer</div>
+          <div class="feature-desc" data-i18n="feature.voice.desc">Don't write prompt rules — just react. Drop an image, see the AI copy, say what you'd change in plain English. ArtDrop learns your style and saves the rules for you.</div>
         </div>
       </div>
       <div class="feature">
         <div class="feature-check"><i data-lucide="monitor"></i></div>
         <div class="feature-text">
-          <div class="feature-title">Browser-based UI</div>
-          <div class="feature-desc">Everything runs from a clean browser interface. Start/stop the worker, watch live logs, drop files — all point-and-click.</div>
+          <div class="feature-title" data-i18n="feature.browser.title">Browser-based UI</div>
+          <div class="feature-desc" data-i18n="feature.browser.desc">Everything runs from a clean browser interface. Start/stop the worker, watch live logs, drop files — all point-and-click.</div>
         </div>
       </div>
       <div class="feature">
         <div class="feature-check"><i data-lucide="layers"></i></div>
         <div class="feature-text">
-          <div class="feature-title">Batch processing</div>
-          <div class="feature-desc">Drop one file or a hundred. ArtDrop processes them all sequentially and reliably. Load up your portfolio before bed, wake up to a full catalog.</div>
+          <div class="feature-title" data-i18n="feature.batch.title">Batch processing</div>
+          <div class="feature-desc" data-i18n="feature.batch.desc">Drop one file or a hundred. ArtDrop processes them all sequentially and reliably. Load up your portfolio before bed, wake up to a full catalog.</div>
         </div>
       </div>
     </div>
@@ -1840,9 +1905,9 @@
 
   <!-- SEE IT IN ACTION -->
   <section class="section">
-    <div class="section-label">// See it in action</div>
-    <h2 class="section-title section-title--tight reveal">One file. <em>Every product</em> you sell.</h2>
-    <p class="section-prose reveal">
+    <div class="section-label" data-i18n="demo.label">// See it in action</div>
+    <h2 class="section-title section-title--tight reveal" data-i18n="demo.title">One file. <em>Every product</em> you sell.</h2>
+    <p class="section-prose reveal" data-i18n="demo.prose">
       Drop one image and ArtDrop creates every product format you've configured — posters under Wall Art, cases under Phone Cases, mugs under Drinkware — each one published to the right category in your store with full SEO, alt text, and tags. Your customers browse by product type. Your store stays organized. You didn't touch it.
     </p>
     <div class="screenshot-grid reveal">
@@ -1852,8 +1917,8 @@
           <span>[ Screenshot: Your store's product categories —<br>Wall Art, Phone Cases, Home &amp; Living ]</span>
         </div>
         <div class="screenshot-caption">
-          <div class="screenshot-caption-title">Organized by product type</div>
-          <div class="screenshot-caption-desc">Every product lands in the right category automatically. Posters under Wall Art, phone cases under Accessories — organized the way customers actually shop.</div>
+          <div class="screenshot-caption-title" data-i18n="demo.cap1.title">Organized by product type</div>
+          <div class="screenshot-caption-desc" data-i18n="demo.cap1.desc">Every product lands in the right category automatically. Posters under Wall Art, phone cases under Accessories — organized the way customers actually shop.</div>
         </div>
       </div>
       <!-- Placeholder 2: ArtDrop dashboard -->
@@ -1862,8 +1927,8 @@
           <span>[ Screenshot: ArtDrop dashboard mid-drop —<br>live log showing a drop in progress ]</span>
         </div>
         <div class="screenshot-caption">
-          <div class="screenshot-caption-title">ArtDrop dashboard</div>
-          <div class="screenshot-caption-desc">Watch everything happen in real time. Drop a file, see the AI analyze it, watch products get created, and see them go live — all from one screen.</div>
+          <div class="screenshot-caption-title" data-i18n="demo.cap2.title">ArtDrop dashboard</div>
+          <div class="screenshot-caption-desc" data-i18n="demo.cap2.desc">Watch everything happen in real time. Drop a file, see the AI analyze it, watch products get created, and see them go live — all from one screen.</div>
         </div>
       </div>
       <!-- Placeholder 3: Product listing -->
@@ -1872,8 +1937,8 @@
           <span>[ Screenshot: A finished product listing —<br>AI-written title, description, and SEO ]</span>
         </div>
         <div class="screenshot-caption">
-          <div class="screenshot-caption-title">AI-written product listing</div>
-          <div class="screenshot-caption-desc">Every product gets a unique title and description written specifically for what's in the image. SEO title, meta description, alt text, and tags — all done.</div>
+          <div class="screenshot-caption-title" data-i18n="demo.cap3.title">AI-written product listing</div>
+          <div class="screenshot-caption-desc" data-i18n="demo.cap3.desc">Every product gets a unique title and description written specifically for what's in the image. SEO title, meta description, alt text, and tags — all done.</div>
         </div>
       </div>
     </div>
@@ -1885,24 +1950,24 @@
   <!-- BUILT BY AN ARTIST -->
   <section class="section artist-section">
     <div class="wrapper">
-      <div class="section-label">// Built by a working artist</div>
-      <h2 class="section-title reveal">Without this, I'd have gone insane.</h2>
-      <p class="section-prose section-prose--wide reveal">Hundreds of photographs sitting on a hard drive. Each one needed product listings — title, description, SEO tags, alt text, variants, pricing — for every format I sell. One piece of art across ten product types is ten separate listings. Each one takes 30-45 minutes when you do it right — write real copy, set the SEO, tag it, organize it. That's six hours of data entry per photograph. Ten photographs, sixty hours. And that's just one provider — do it across three and you're looking at months of full-time work that has nothing to do with making art.</p>
-      <p class="section-prose section-prose--wide reveal">And the "bulk tools" don't save you. Your print provider takes your image and puts it on a server you can't access — no control over where it lives or whether it gets recompressed. Their CSV export requires image URLs you don't have. Shopify's bulk editor makes you scroll through products ten at a time — with 800 listings, you'll lose your mind before you find the one you need. None of it was built for artists working at scale. It was built for someone listing twelve coffee mugs.</p>
-      <p class="section-prose section-prose--wide reveal">ArtDrop exists because I hit that wall. I spent months creating products by hand — searching catalogs, configuring templates, uploading artwork, then switching to Shopify to rewrite every title, every description, every tag, for every product, from scratch. Over and over. That's what forced me to build this. Every feature in ArtDrop came from a real problem I ran into doing it the hard way.</p>
-      <p class="reveal"><a href="/about.html" class="artist-link">Read the full story →</a></p>
+      <div class="section-label" data-i18n="artist.label">// Built by a working artist</div>
+      <h2 class="section-title reveal" data-i18n="artist.title">Without this, I'd have gone insane.</h2>
+      <p class="section-prose section-prose--wide reveal" data-i18n="artist.p1">Hundreds of photographs sitting on a hard drive. Each one needed product listings — title, description, SEO tags, alt text, variants, pricing — for every format I sell. One piece of art across ten product types is ten separate listings. Each one takes 30-45 minutes when you do it right — write real copy, set the SEO, tag it, organize it. That's six hours of data entry per photograph. Ten photographs, sixty hours. And that's just one provider — do it across three and you're looking at months of full-time work that has nothing to do with making art.</p>
+      <p class="section-prose section-prose--wide reveal" data-i18n="artist.p2">And the "bulk tools" don't save you. Your print provider takes your image and puts it on a server you can't access — no control over where it lives or whether it gets recompressed. Their CSV export requires image URLs you don't have. Shopify's bulk editor makes you scroll through products ten at a time — with 800 listings, you'll lose your mind before you find the one you need. None of it was built for artists working at scale. It was built for someone listing twelve coffee mugs.</p>
+      <p class="section-prose section-prose--wide reveal" data-i18n="artist.p3">ArtDrop exists because I hit that wall. I spent months creating products by hand — searching catalogs, configuring templates, uploading artwork, then switching to Shopify to rewrite every title, every description, every tag, for every product, from scratch. Over and over. That's what forced me to build this. Every feature in ArtDrop came from a real problem I ran into doing it the hard way.</p>
+      <p class="reveal"><a href="/about.html" class="artist-link" data-i18n="artist.link">Read the full story →</a></p>
     </div>
   </section>
 
   <!-- STACK -->
   <section class="section">
     <div class="wrapper">
-    <div class="section-label">// The stack</div>
-    <h2 class="section-title section-title--tight reveal">Built on services you already trust.</h2>
-    <p class="section-prose section-prose--stack reveal">
+    <div class="section-label" data-i18n="stack.label">// The stack</div>
+    <h2 class="section-title section-title--tight reveal" data-i18n="stack.title">Built on services you already trust.</h2>
+    <p class="section-prose section-prose--stack reveal" data-i18n="stack.prose">
       ArtDrop connects the services you already use. Your print provider fulfills and ships worldwide. Your storefront handles sales. Backblaze stores your files. ArtDrop is the glue — and the automation. Built and sold by StanHattie LLC.
     </p>
-    <h3 class="trust-marks-label reveal">Integrates with</h3>
+    <h3 class="trust-marks-label reveal" data-i18n="stack.integrates">Integrates with</h3>
     <div class="trust-logos reveal">
       <a href="https://www.shopify.com" target="_blank" rel="noopener"><img src="logos/shopify.svg" alt="Shopify" class="trust-logo"></a>
       <a href="https://www.gelato.com" target="_blank" rel="noopener"><img src="logos/gelato.svg" alt="Gelato" class="trust-logo"></a>
@@ -1920,9 +1985,9 @@
   <!-- AI ENGINE -->
   <section class="section">
     <div class="wrapper">
-    <div class="section-label">// AI engine</div>
-    <h2 class="section-title section-title--tight reveal">Powered by Claude from Anthropic.</h2>
-    <p class="section-prose section-prose--stack reveal">
+    <div class="section-label" data-i18n="ai.label">// AI engine</div>
+    <h2 class="section-title section-title--tight reveal" data-i18n="ai.title">Powered by Claude from Anthropic.</h2>
+    <p class="section-prose section-prose--stack reveal" data-i18n="ai.prose">
       The AI engine behind every title, description, and SEO tag ArtDrop generates. No generic AI slop. No prompt engineering required. Train your voice once — Claude writes like you for every product, every platform, every time.
     </p>
     </div>
@@ -1931,14 +1996,14 @@
   <!-- ROADMAP -->
   <section class="section">
     <div class="wrapper">
-    <div class="section-label">// What's next</div>
-    <h2 class="section-title section-title--tight reveal">We never stop building.</h2>
-    <p class="roadmap-prose reveal">
+    <div class="section-label" data-i18n="roadmap.label">// What's next</div>
+    <h2 class="section-title section-title--tight reveal" data-i18n="roadmap.title">We never stop building.</h2>
+    <p class="roadmap-prose reveal" data-i18n="roadmap.prose">
       ArtDrop is under constant development. New providers, new storefronts, new intelligence features — all included at the same fixed price. No upgrade fees. No subscription creep. You buy once, you get everything that comes after.
     </p>
     <div class="reveal">
       <div class="roadmap-group">
-        <div class="roadmap-group-label">Recently shipped</div>
+        <div class="roadmap-group-label" data-i18n="roadmap.shipped">Recently shipped</div>
         <div class="roadmap-grid">
           <a href="https://www.prodigi.com" target="_blank" rel="noopener" class="roadmap-tag roadmap-tag--shipped">Prodigi</a>
           <span class="roadmap-tag roadmap-tag--shipped">AI Trend Recommendations</span>
@@ -1946,7 +2011,7 @@
         </div>
       </div>
       <div class="roadmap-group">
-        <div class="roadmap-group-label">Print providers</div>
+        <div class="roadmap-group-label" data-i18n="roadmap.providers">Print providers</div>
         <div class="roadmap-grid">
           <a href="https://www.gooten.com" target="_blank" rel="noopener" class="roadmap-tag">Gooten</a>
           <a href="https://www.shineon.com" target="_blank" rel="noopener" class="roadmap-tag">ShineOn</a>
@@ -1954,21 +2019,21 @@
         </div>
       </div>
       <div class="roadmap-group">
-        <div class="roadmap-group-label">Storefronts</div>
+        <div class="roadmap-group-label" data-i18n="roadmap.storefronts">Storefronts</div>
         <div class="roadmap-grid">
           <a href="https://www.etsy.com" target="_blank" rel="noopener" class="roadmap-tag">Etsy</a>
           <a href="https://woocommerce.com" target="_blank" rel="noopener" class="roadmap-tag">WooCommerce</a>
         </div>
       </div>
       <div class="roadmap-group">
-        <div class="roadmap-group-label">New products</div>
+        <div class="roadmap-group-label" data-i18n="roadmap.products">New products</div>
         <div class="roadmap-grid">
           <span class="roadmap-tag">Custom Slipmats</span>
           <span class="roadmap-tag">Digital Downloads</span>
         </div>
       </div>
       <div class="roadmap-group">
-        <div class="roadmap-group-label">Features</div>
+        <div class="roadmap-group-label" data-i18n="roadmap.features">Features</div>
         <div class="roadmap-grid">
           <span class="roadmap-tag">Multi-Language Support</span>
         </div>
@@ -1980,40 +2045,40 @@
   <!-- SOCIAL PUBLISHING -->
   <section class="section">
     <div class="wrapper">
-    <div class="section-label">// Social publishing</div>
-    <h2 class="section-title section-title--tight reveal">Post everywhere.<br>Sound like yourself.</h2>
-    <p class="section-sub social-intro reveal">
+    <div class="section-label" data-i18n="social.label">// Social publishing</div>
+    <h2 class="section-title section-title--tight reveal" data-i18n="social.title">Post everywhere.<br>Sound like yourself.</h2>
+    <p class="section-sub social-intro reveal" data-i18n="social.intro">
       Every drop generates unique, voice-matched posts for each platform — not the same caption copy-pasted five times. ArtDrop adapts your voice to each platform's culture so it reads like you wrote it, because it sounds like you did. Choose which platforms to post to, or turn off social publishing entirely — it's completely optional.
     </p>
     <div class="social-feature-grid reveal">
       <div class="social-feature-card">
         <img src="logos/instagram.svg" alt="Instagram" class="social-feature-logo social-feature-logo--lg">
         <div class="social-feature-name">Instagram</div>
-        <div class="social-feature-desc">Voice-forward captions with smart hashtag blocks. Personal, engaging, not robotic.</div>
+        <div class="social-feature-desc" data-i18n="social.ig.desc">Voice-forward captions with smart hashtag blocks. Personal, engaging, not robotic.</div>
       </div>
       <div class="social-feature-card">
         <img src="logos/pinterest.svg" alt="Pinterest" class="social-feature-logo">
         <div class="social-feature-name">Pinterest</div>
-        <div class="social-feature-desc">Keyword-rich pins optimized for search discovery. Pinterest is a search engine — ArtDrop writes for it.</div>
+        <div class="social-feature-desc" data-i18n="social.pin.desc">Keyword-rich pins optimized for search discovery. Pinterest is a search engine — ArtDrop writes for it.</div>
       </div>
       <div class="social-feature-card">
         <img src="logos/facebook.svg" alt="Facebook" class="social-feature-logo">
         <div class="social-feature-name">Facebook</div>
-        <div class="social-feature-desc">Conversational posts with direct calls to action. Speaks to art buyers, not algorithms.</div>
+        <div class="social-feature-desc" data-i18n="social.fb.desc">Conversational posts with direct calls to action. Speaks to art buyers, not algorithms.</div>
       </div>
       <div class="social-feature-card">
         <img src="logos/threads.svg" alt="Threads" class="social-feature-logo">
         <div class="social-feature-name">Threads</div>
-        <div class="social-feature-desc">Brief, personality-first posts. Casual tone, genuine voice. No corporate speak.</div>
+        <div class="social-feature-desc" data-i18n="social.threads.desc">Brief, personality-first posts. Casual tone, genuine voice. No corporate speak.</div>
       </div>
       <div class="social-feature-card">
         <img src="logos/bluesky.svg" alt="Bluesky" class="social-feature-logo">
         <div class="social-feature-name">Bluesky</div>
-        <div class="social-feature-desc">Short, punchy posts with personality. The growing platform for independent creators.</div>
+        <div class="social-feature-desc" data-i18n="social.bsky.desc">Short, punchy posts with personality. The growing platform for independent creators.</div>
       </div>
       <!-- Twitter/X and TikTok removed — not active -->
     </div>
-    <p class="section-sub social-footer-note reveal">
+    <p class="section-sub social-footer-note reveal" data-i18n="social.footer">
       All posts are generated automatically after each drop — no extra steps. Enable the platforms you use, disable the ones you don't. Social publishing is fully optional.
     </p>
     </div>
@@ -2022,21 +2087,21 @@
   <!-- PRIVACY -->
   <section class="privacy-section">
     <div class="wrapper">
-      <div class="section-label">// Privacy</div>
+      <div class="section-label" data-i18n="privacy.label">// Privacy</div>
       <div class="section-inner reveal">
         <div>
-          <h2>Your data stays yours.</h2>
-          <p class="privacy-pledge">We will never sell your information, share it with third parties, or use your purchase data to market to you. ArtDrop was built by someone who hates that stuff as much as you do.</p>
-          <a href="/privacy.html" class="privacy-link">Read our full privacy policy →</a>
+          <h2 data-i18n="privacy.title">Your data stays yours.</h2>
+          <p class="privacy-pledge" data-i18n="privacy.pledge">We will never sell your information, share it with third parties, or use your purchase data to market to you. ArtDrop was built by someone who hates that stuff as much as you do.</p>
+          <a href="/privacy.html" class="privacy-link" data-i18n="privacy.link">Read our full privacy policy →</a>
         </div>
         <div>
           <ul class="privacy-bullets">
-            <li><span class="bullet-check">✓</span> Runs entirely in your browser — nothing to install</li>
-            <li><span class="bullet-check">✓</span> API keys stored in your encrypted session, never transmitted to us</li>
-            <li><span class="bullet-check">✓</span> No cloud dashboard or account required</li>
-            <li><span class="bullet-check">✓</span> No analytics, telemetry, or tracking in the app — your drops are private</li>
-            <li><span class="bullet-check">✓</span> No data harvesting — ever</li>
-            <li><span class="bullet-check">✓</span> We don't have servers — your files go directly from your browser to your providers</li>
+            <li><span class="bullet-check">✓</span> <span data-i18n="privacy.b1">Runs entirely in your browser — nothing to install</span></li>
+            <li><span class="bullet-check">✓</span> <span data-i18n="privacy.b2">API keys stored in your encrypted session, never transmitted to us</span></li>
+            <li><span class="bullet-check">✓</span> <span data-i18n="privacy.b3">No cloud dashboard or account required</span></li>
+            <li><span class="bullet-check">✓</span> <span data-i18n="privacy.b4">No analytics, telemetry, or tracking in the app — your drops are private</span></li>
+            <li><span class="bullet-check">✓</span> <span data-i18n="privacy.b5">No data harvesting — ever</span></li>
+            <li><span class="bullet-check">✓</span> <span data-i18n="privacy.b6">We don't have servers — your files go directly from your browser to your providers</span></li>
           </ul>
         </div>
       </div>
@@ -2266,9 +2331,9 @@
   <section class="testimonials-section" id="testimonials">
     <div class="testimonials-meta reveal">
       <div class="testimonials-meta-left">
-        <div class="section-label">// Built for artists, by an artist</div>
-        <h2 class="section-title section-title--tight">One pipeline. Zero manual listings.</h2>
-        <p class="section-prose">
+        <div class="section-label" data-i18n="stats.label">// Built for artists, by an artist</div>
+        <h2 class="section-title section-title--tight" data-i18n="stats.title">One pipeline. Zero manual listings.</h2>
+        <p class="section-prose" data-i18n="stats.prose">
           ArtDrop was built by a working photographer who got tired of spending more time on product listings than on making art. Drop an image, and the pipeline handles every title, description, and SEO tag automatically.
         </p>
       </div>
@@ -2277,23 +2342,23 @@
     <div class="testimonials-stats reveal">
       <div class="tstat">
         <div class="tstat-num">65+</div>
-        <div class="tstat-label">product types across providers</div>
+        <div class="tstat-label" data-i18n="stat.products">product types across providers</div>
       </div>
       <div class="tstat">
         <div class="tstat-num">12</div>
-        <div class="tstat-label">POD providers integrated</div>
+        <div class="tstat-label" data-i18n="stat.providers">POD providers integrated</div>
       </div>
       <div class="tstat">
         <div class="tstat-num">$197</div>
-        <div class="tstat-label">one-time · no subscription</div>
+        <div class="tstat-label" data-i18n="stat.price">one-time · no subscription</div>
       </div>
     </div>
   </section>
 
   <!-- PRICING -->
   <section class="section" id="pricing">
-    <div class="section-label">// Pricing</div>
-    <h2 class="section-title reveal">One price. No subscription.</h2>
+    <div class="section-label" data-i18n="pricing.label">// Pricing</div>
+    <h2 class="section-title reveal" data-i18n="pricing.title">One price. No subscription.</h2>
     <div class="pricing-card reveal">
       <div class="pricing-top">
         <div class="pricing-label">ArtDrop™ v1.0</div>
@@ -2301,50 +2366,50 @@
           <span class="price-dollar">$</span>
           <span class="price-num">197</span>
         </div>
-        <div class="price-once">one-time purchase · lifetime license</div>
+        <div class="price-once" data-i18n="pricing.once">one-time purchase · lifetime license</div>
         <div class="pricing-includes">
-          <div class="pi-item"><div class="pi-dot"></div>Web app — works in any browser, any device</div>
-          <div class="pi-item"><div class="pi-dot"></div>Unlimited artwork drops — no per-drop fees</div>
-          <div class="pi-item"><div class="pi-dot"></div>Unlimited product formats — you configure the templates</div>
-          <div class="pi-item"><div class="pi-dot"></div>Setup guide included</div>
-          <div class="pi-item"><div class="pi-dot"></div>Activate on up to 2 devices</div>
-          <div class="pi-item"><div class="pi-dot"></div>Email support</div>
+          <div class="pi-item"><div class="pi-dot"></div><span data-i18n="pi.browser">Web app — works in any browser, any device</span></div>
+          <div class="pi-item"><div class="pi-dot"></div><span data-i18n="pi.unlimited">Unlimited artwork drops — no per-drop fees</span></div>
+          <div class="pi-item"><div class="pi-dot"></div><span data-i18n="pi.formats">Unlimited product formats — you configure the templates</span></div>
+          <div class="pi-item"><div class="pi-dot"></div><span data-i18n="pi.guide">Setup guide included</span></div>
+          <div class="pi-item"><div class="pi-dot"></div><span data-i18n="pi.devices">Activate on up to 2 devices</span></div>
+          <div class="pi-item"><div class="pi-dot"></div><span data-i18n="pi.support">Email support</span></div>
         </div>
         <div class="pricing-vs">
-          <div class="pricing-vs-label">vs. subscribing to separate tools</div>
+          <div class="pricing-vs-label" data-i18n="vs.label">vs. subscribing to separate tools</div>
           <div class="pricing-vs-row">
-            <span>Automation tools</span>
+            <span data-i18n="vs.automation">Automation tools</span>
             <span class="pricing-vs-cost">$29/mo</span>
           </div>
           <div class="pricing-vs-row">
-            <span>Listing formatters</span>
+            <span data-i18n="vs.listing">Listing formatters</span>
             <span class="pricing-vs-cost">$19/mo</span>
           </div>
           <div class="pricing-vs-row">
-            <span>AI mockup generators</span>
+            <span data-i18n="vs.mockup">AI mockup generators</span>
             <span class="pricing-vs-cost">$49/mo</span>
           </div>
           <div class="pricing-vs-total">
-            <span>Total stack</span>
-            <span>$97/mo · <strong>$1,164/year</strong></span>
+            <span data-i18n="vs.total">Total stack</span>
+            <span data-i18n="vs.total.val">$97/mo · <strong>$1,164/year</strong></span>
           </div>
-          <div class="pricing-vs-artdrop">ArtDrop: $197 once. You're ahead in month 3.</div>
+          <div class="pricing-vs-artdrop" data-i18n="vs.artdrop">ArtDrop: $197 once. You're ahead in month 3.</div>
         </div>
       </div>
       <div class="pricing-bottom">
-        <div class="beta-badge">Beta — Launching Soon</div>
+        <div class="beta-badge" data-i18n="pricing.beta">Beta — Launching Soon</div>
         <form name="waitlist" method="POST" data-netlify="true" class="waitlist-form">
-          <input type="email" name="email" placeholder="Enter your email for early access" required class="waitlist-input" />
+          <input type="email" name="email" placeholder="Enter your email for early access" required class="waitlist-input" data-i18n-placeholder="pricing.placeholder" />
           <input type="hidden" name="utm_source" value="">
           <input type="hidden" name="utm_medium" value="">
           <input type="hidden" name="utm_campaign" value="">
           <input type="hidden" name="utm_content" value="">
           <input type="hidden" name="referrer" value="">
-          <button type="submit" class="btn-buy">Join the Waitlist</button>
+          <button type="submit" class="btn-buy" data-i18n="pricing.waitlist">Join the Waitlist</button>
         </form>
-        <div class="pricing-note pricing-note--spaced">Be first in line when ArtDrop launches · No credit card required</div>
-        <div class="pricing-note pricing-note--spaced pricing-note--demo"><strong>3 free demo drops</strong> — try ArtDrop before you buy · No commitment</div>
-        <div class="pricing-guarantee"><i data-lucide="shield-check" class="icon-shield-inline"></i>14-day satisfaction guarantee. If ArtDrop doesn't work for you, email us for a full refund.</div>
+        <div class="pricing-note pricing-note--spaced" data-i18n="pricing.note">Be first in line when ArtDrop launches · No credit card required</div>
+        <div class="pricing-note pricing-note--spaced pricing-note--demo" data-i18n="pricing.demo"><strong>3 free demo drops</strong> — try ArtDrop before you buy · No commitment</div>
+        <div class="pricing-guarantee"><i data-lucide="shield-check" class="icon-shield-inline"></i><span data-i18n="pricing.guarantee">14-day satisfaction guarantee. If ArtDrop doesn't work for you, email us for a full refund.</span></div>
       </div>
     </div>
   </section>

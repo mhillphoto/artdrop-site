@@ -29,6 +29,8 @@
         var ctaMobile = el.querySelector('.nav-cta-mobile');
         if (ctaMobile) ctaMobile.setAttribute('href', '#pricing');
       }
+      // Apply saved language preference to nav elements (toggle button + nav links)
+      if (window.i18n) window.i18n.init();
     })
     .catch(function() {
       el.innerHTML = '<nav><a href="/index.html" class="nav-logo">ArtDrop™</a></nav>';

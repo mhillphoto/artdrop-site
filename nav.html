@@ -5,12 +5,18 @@
   </button>
   <a href="/index.html" class="nav-logo">ArtDrop™</a>
   <div class="nav-links">
-    <a href="/about.html">About</a>
-    <a href="/faq.html">FAQ</a>
-    <a href="/docs.html">Docs</a>
-    <a href="/changelog.html">Changelog</a>
-    <a href="/compare-earnings.html">Earnings</a>
-    <a href="#pricing" class="nav-cta-mobile" onclick="document.querySelector('.nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');">Join the Beta</a>
+    <a href="/about.html" data-i18n="nav.about">About</a>
+    <a href="/faq.html" data-i18n="nav.faq">FAQ</a>
+    <a href="/docs.html" data-i18n="nav.docs">Docs</a>
+    <a href="/changelog.html" data-i18n="nav.changelog">Changelog</a>
+    <a href="/compare-earnings.html" data-i18n="nav.earnings">Earnings</a>
+    <a href="#pricing" class="nav-cta-mobile" data-i18n="nav.cta" onclick="document.querySelector('.nav-hamburger').classList.remove('open');document.querySelector('.nav-links').classList.remove('open');">Join the Beta</a>
   </div>
-  <a href="#pricing" class="nav-cta">Join the Beta</a>
+  <button class="lang-toggle" id="lang-toggle" aria-label="Switch language" onclick="window.i18n && window.i18n.toggle()">
+    <span class="lang-toggle-track">
+      <span class="lang-toggle-label lang-label-en">EN</span>
+      <span class="lang-toggle-label lang-label-es">ES</span>
+    </span>
+  </button>
+  <a href="#pricing" class="nav-cta" data-i18n="nav.cta">Join the Beta</a>
 </nav>
