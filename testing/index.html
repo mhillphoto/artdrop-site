@@ -763,7 +763,7 @@
 
     <div class="cred-block">
       <div class="cred-label">Step 1 — Open ArtDrop</div>
-      <div class="cred-pending">Go to <a href="https://sweet-stillness-production-55a6.up.railway.app/" target="_blank" rel="noopener" class="cred-link">sweet-stillness-production-55a6.up.railway.app</a> in a new tab. That's the app. Come back here to copy the passwords below as the app asks for them.</div>
+      <div class="cred-pending">Go to <a href="https://sweet-stillness-production-55a6.up.railway.app/?key=5qtVK3kQchENBwAup9yN5cp7GiSnnk46xHtf1W4bbUc" target="_blank" rel="noopener" class="cred-link">Open ArtDrop (click here)</a> in a new tab. That's the app. Come back here to copy the passwords below as the app asks for them.</div>
     </div>
 
     <div class="cred-block">
@@ -1688,7 +1688,7 @@ function sendChat() {
   var ctx = buildContext();
   fetch(ASSISTANT_URL, {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
+    headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer 5qtVK3kQchENBwAup9yN5cp7GiSnnk46xHtf1W4bbUc'},
     body: JSON.stringify({message: msg, context: ctx})
   })
   .then(function(r) { return r.json(); })
