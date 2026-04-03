@@ -1,0 +1,183 @@
+/* ── Shared nav styles (loaded on every page) ──────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 48px;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.07));
+}
+
+.nav-logo {
+  font-family: var(--mono, 'DM Mono', monospace);
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--lime, #bfff5e);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.nav-cta {
+  font-family: var(--mono, 'DM Mono', monospace);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--bg, #0a0a0a);
+  background: var(--lime, #bfff5e);
+  padding: 9px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.nav-cta:hover { opacity: 0.92; box-shadow: 0 4px 20px rgba(191,255,94,0.28); }
+.nav-cta-mobile { display: none; }
+
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a:link, .nav-links a:visited {
+  font-family: var(--body, 'Instrument Sans', sans-serif);
+  font-size: 13px;
+  color: var(--lime, #bfff5e);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.15s, text-shadow 0.15s;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--white, #f0f0ec);
+  text-shadow: 0 0 12px rgba(191,255,94,0.28);
+}
+
+/* ── Hamburger menu ── */
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 102;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--white, #f0f0ec);
+  margin: 5px 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── Language toggle ── */
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: 1px solid var(--border-bright, rgba(255,255,255,0.14));
+  border-radius: 4px;
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.2s;
+  flex-shrink: 0;
+}
+.lang-toggle:hover { border-color: var(--lime, #bfff5e); }
+
+.lang-toggle-track {
+  display: flex;
+  font-family: var(--mono, 'DM Mono', monospace);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.lang-label-en,
+.lang-label-es {
+  padding: 7px 10px;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1;
+  color: var(--muted, rgba(240,240,236,0.60));
+}
+
+.lang-label-en {
+  background: var(--lime, #bfff5e);
+  color: var(--bg, #0a0a0a);
+}
+.lang-label-es {
+  background: transparent;
+  color: var(--muted, rgba(240,240,236,0.60));
+}
+
+.lang-toggle--es .lang-label-en {
+  background: transparent;
+  color: var(--muted, rgba(240,240,236,0.60));
+}
+.lang-toggle--es .lang-label-es {
+  background: var(--lime, #bfff5e);
+  color: var(--bg, #0a0a0a);
+}
+
+/* ── Skip link ── */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  background: var(--lime, #bfff5e);
+  color: var(--bg, #0a0a0a);
+  padding: 8px 16px;
+  z-index: 200;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: var(--mono, 'DM Mono', monospace);
+  font-size: 13px;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 0; }
+
+/* ── Mobile nav ── */
+@media (max-width: 767px) {
+  nav { padding: 16px 24px; }
+  .nav-hamburger { display: block; order: -1; }
+  .nav-logo { order: 0; margin: 0 auto; }
+  .nav-cta { display: none; }
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10,10,10,0.97);
+    backdrop-filter: blur(16px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    z-index: 101;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a:link, .nav-links a:visited { font-size: 20px; color: var(--white, #f0f0ec); }
+  .nav-links .nav-cta-mobile {
+    font-family: var(--mono, 'DM Mono', monospace);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--bg, #0a0a0a);
+    background: var(--lime, #bfff5e);
+    padding: 14px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 16px;
+  }
+
+  .lang-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 200;
+    border-color: var(--border-bright, rgba(255,255,255,0.14));
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    background: var(--bg2, #111111);
+  }
+  .lang-label-en, .lang-label-es { padding: 9px 12px; font-size: 12px; }
+}
