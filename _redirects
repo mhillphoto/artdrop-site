@@ -1,3 +1,92 @@
-# ── ArtDrop redirects only ──────────────────────────────────────
-# No cross-project redirects. GlowUpWorks handles its own routing.
-# getbizglow.com DNS should point to glowupworks.com Netlify, not here.
+# ── ArtDrop → GlowUpWorks Redirects ──────────────────────────────
+# All GUW forms and dashboards originally sent from getartdrop.com
+# Updated: 2026-04-02
+
+# Named form redirects (real people were sent these URLs)
+/q/dan https://glowupworks.com/q/dan 301!
+/q/dan2 https://glowupworks.com/q/dan2 301!
+/q/sophie https://glowupworks.com/q/sophie 301!
+/q/sophie2 https://glowupworks.com/q/sophie2 301!
+/q/sophie3 https://glowupworks.com/q/sophie3 301!
+/q/rachel https://glowupworks.com/q/rachel 301!
+/q/rachel2 https://glowupworks.com/q/rachel2 301!
+/q/sean https://glowupworks.com/q/sean 301!
+/q/sean2 https://glowupworks.com/q/sean2 301!
+/q/michelle https://glowupworks.com/q/michelle 301!
+/q/michelle2 https://glowupworks.com/q/michelle2 301!
+/q/crane https://glowupworks.com/q/crane 301!
+/q/crane2 https://glowupworks.com/q/crane2 301!
+/q/stanley https://glowupworks.com/q/stanley 301!
+/q/dad https://glowupworks.com/q/dad 301!
+/q/dad2 https://glowupworks.com/q/dad2 301!
+/q/andrew https://glowupworks.com/q/andrew 301!
+/q/nick https://glowupworks.com/q/nick 301!
+/q/patrick https://glowupworks.com/q/patrick 301!
+/q/northofgrand https://glowupworks.com/q/northofgrand 301!
+/q/cale https://glowupworks.com/q/cale 301!
+/q/heather https://glowupworks.com/q/heather 301!
+/q/confluence https://glowupworks.com/q/confluence 301!
+/q/bleier https://glowupworks.com/q/bleier 301!
+/q/breckie https://glowupworks.com/q/breckie 301!
+/q/jen https://glowupworks.com/q/jen 301!
+/q/jenny https://glowupworks.com/q/jenny 301!
+/q/joyce https://glowupworks.com/q/joyce 301!
+/q/megan https://glowupworks.com/q/megan 301!
+/q/brandon https://glowupworks.com/q/brandon 301!
+/q/leo https://glowupworks.com/q/leo 301!
+/q/marshall https://glowupworks.com/q/marshall 301!
+/q/ryan https://glowupworks.com/q/ryan 301!
+/q/marklage https://glowupworks.com/q/marklage 301!
+/q/dylan https://glowupworks.com/q/dylan 301!
+/q/elizabeth https://glowupworks.com/q/elizabeth 301!
+/q/danporter https://glowupworks.com/q/danporter 301!
+/q/josh https://glowupworks.com/q/josh 301!
+/q/james https://glowupworks.com/q/james 301!
+/q/hannah https://glowupworks.com/q/hannah 301!
+/q/olivia https://glowupworks.com/q/olivia 301!
+/q/marie https://glowupworks.com/q/marie 301!
+/q/johnny https://glowupworks.com/q/johnny 301!
+/q/kim-hill https://glowupworks.com/q/kim-hill 301!
+/q/kim-koehn https://glowupworks.com/q/kim-koehn 301!
+/q/cassidy https://glowupworks.com/q/cassidy 301!
+/q/matthew https://glowupworks.com/q/matthew 301!
+/q/mom https://glowupworks.com/q/mom 301!
+
+# Thanks/confirmation page
+/q/thanks https://glowupworks.com/q/thanks 301!
+/q/thanks.html https://glowupworks.com/q/thanks 301!
+
+# Dashboard redirects
+/c/dan https://glowupworks.com/c/dan 301!
+/c/sophie https://glowupworks.com/c/sophie 301!
+/c/sean https://glowupworks.com/c/sean 301!
+/c/rachel https://glowupworks.com/c/rachel 301!
+/c/stanley https://glowupworks.com/c/stanley 301!
+/c/dad https://glowupworks.com/c/dad 301!
+/c/crane https://glowupworks.com/c/crane 301!
+/c/michelle https://glowupworks.com/c/michelle 301!
+/c/northofgrand https://glowupworks.com/c/northofgrand 301!
+
+# Legacy concierge marketing pages
+/concierge https://glowupworks.com/ 301!
+/concierge/ https://glowupworks.com/ 301!
+/concierge/pricing https://glowupworks.com/pricing 301!
+/concierge/cases https://glowupworks.com/cases 301!
+/concierge/intake https://glowupworks.com/q/glow 301!
+/concierge/faq https://glowupworks.com/pricing 301!
+/concierge/terms https://glowupworks.com/terms 301!
+
+# Legacy /glow/ marketing paths
+/glow https://glowupworks.com/ 301!
+/glow/ https://glowupworks.com/ 301!
+/glow/business.html https://glowupworks.com/business 301!
+/glow/teach.html https://glowupworks.com/teach 301!
+/glow/life.html https://glowupworks.com/life 301!
+/glow/health.html https://glowupworks.com/health 301!
+/glow/cases.html https://glowupworks.com/cases 301!
+/glow/pricing.html https://glowupworks.com/pricing 301!
+
+# Wildcard catchalls (302 temporary — for any future unknown slugs)
+/q/* https://glowupworks.com/q/:splat 302!
+/c/* https://glowupworks.com/c/:splat 302!
+/glow/* https://glowupworks.com/:splat 302!
